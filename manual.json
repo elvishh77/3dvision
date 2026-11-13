@@ -9,30 +9,102 @@
  },
  "updated_by_lead": "2026-11-13T17:30:00-05:00",
  "stages": [
-  {"name": "Interface spec", "status": "done", "detail": "docs/interface.md v1 approved: 512x512, 49 frames @ 16 fps, MANO + per-vertex contact (vid-haco convention)."},
-  {"name": "Data", "status": "done", "detail": "3,032 HOT3D windows (2,728 train / 304 held-out participant P0015), outcome prompts, latent cache. Tests 16/16."},
-  {"name": "Model + smoke tests", "status": "done", "detail": "Adapter = trainable copy of the first 8 DiT blocks, zero-init. Overfit test: conditioning signal grows; resume check cut off by time limit (re-checked by the step-83 resume)."},
-  {"name": "Eval harness", "status": "done", "detail": "HaMeR/HACO hand metrics + Qwen2.5-VL outcome checklist. Scores real video and the base model."},
-  {"name": "Full training (2 runs)", "status": "active", "detail": "v1_K8 (hand/contact-weighted loss) vs v1_K8_plain (plain loss), 10k steps each on 3 GPUs."},
-  {"name": "Checkpoint evals", "status": "todo", "detail": "2.5k / 5k / 7.5k / 10k, 32 held-out clips x 1 seed per run. Stop rule at 5k."},
-  {"name": "Phase 1 report", "status": "todo", "detail": "Best checkpoint x 3 seeds vs base model and real video; sample videos."},
-  {"name": "Phase 2: robot hands", "status": "todo", "detail": "Format reserved in interface.md section 6; data source not chosen yet."}
+  {
+   "name": "Interface spec",
+   "status": "done",
+   "detail": "docs/interface.md v1 approved: 512x512, 49 frames @ 16 fps, MANO + per-vertex contact (vid-haco convention)."
+  },
+  {
+   "name": "Data",
+   "status": "done",
+   "detail": "3,032 HOT3D windows (2,728 train / 304 held-out participant P0015), outcome prompts, latent cache. Tests 16/16."
+  },
+  {
+   "name": "Model + smoke tests",
+   "status": "done",
+   "detail": "Adapter = trainable copy of the first 8 DiT blocks, zero-init. Overfit test: conditioning signal grows; resume check cut off by time limit (re-checked by the step-83 resume)."
+  },
+  {
+   "name": "Eval harness",
+   "status": "done",
+   "detail": "HaMeR/HACO hand metrics + Qwen2.5-VL outcome checklist. Scores real video and the base model."
+  },
+  {
+   "name": "Full training (2 runs)",
+   "status": "active",
+   "detail": "v1_K8 (hand/contact-weighted loss) vs v1_K8_plain (plain loss), 10k steps each on 3 GPUs."
+  },
+  {
+   "name": "Checkpoint evals",
+   "status": "todo",
+   "detail": "2.5k / 5k / 7.5k / 10k, 32 held-out clips x 1 seed per run. Stop rule at 5k."
+  },
+  {
+   "name": "Phase 1 report",
+   "status": "todo",
+   "detail": "Best checkpoint x 3 seeds vs base model and real video; sample videos."
+  },
+  {
+   "name": "Phase 2: robot hands",
+   "status": "todo",
+   "detail": "Format reserved in interface.md section 6; data source not chosen yet."
+  }
  ],
  "needs_input": [
-  {"title": "Create the GitHub repo for this site", "detail": "Create an empty public repo and send its name; the lead pushes the site and you enable Pages (Settings -> Pages -> main branch, root).", "since": "2026-11-13"},
-  {"title": "Optional: partition for checkpoint evals", "detail": "Default is the shared gpu partition (1 GPU, ~45 min per checkpoint per seed). Say if 1-GPU eval jobs may use culbertson instead.", "since": "2026-11-13"},
-  {"title": "Paper page: title and authors", "detail": "The paper-style page uses a working title and 'Authors TBD'. Send the title and author list when ready.", "since": "2026-11-13"}
+  {
+   "title": "Turn on GitHub Pages",
+   "detail": "Repo elvishh77/3dvision -> Settings -> Pages -> Deploy from a branch -> main / (root). The site then appears at elvishh77.github.io/3dvision/.",
+   "since": "2026-11-13"
+  },
+  {
+   "title": "Optional: partition for checkpoint evals",
+   "detail": "Default is the shared gpu partition (1 GPU, ~45 min per checkpoint per seed). Say if 1-GPU eval jobs may use culbertson instead.",
+   "since": "2026-11-13"
+  },
+  {
+   "title": "Paper page: title and authors",
+   "detail": "The paper-style page uses a working title and 'Authors TBD'. Send the title and author list when ready.",
+   "since": "2026-11-13"
+  }
  ],
  "blockers": [
-  {"title": "Training is waiting for GPUs", "severity": "high", "detail": "Both runs are queued on the shared gpu partition (A6000 or 6000 Ada allowed). Every hour in the queue moves every ETA by an hour."},
-  {"title": "4-GPU runs hang at the first all-reduce", "severity": "low", "detail": "Worked around by training on 3 GPUs per run. Not investigated further."},
-  {"title": "Idle-hand VLM metric is unreliable", "severity": "low", "detail": "Says an idle hand holds an object 24% of the time on real video; reported as a side number only."}
+  {
+   "title": "Training is waiting for GPUs",
+   "severity": "high",
+   "detail": "Both runs are queued on the shared gpu partition (A6000 or 6000 Ada allowed). Every hour in the queue moves every ETA by an hour."
+  },
+  {
+   "title": "4-GPU runs hang at the first all-reduce",
+   "severity": "low",
+   "detail": "Worked around by training on 3 GPUs per run. Not investigated further."
+  },
+  {
+   "title": "Idle-hand VLM metric is unreliable",
+   "severity": "low",
+   "detail": "Says an idle hand holds an object 24% of the time on real video; reported as a side number only."
+  }
  ],
  "team": [
-  {"role": "lead", "state": "active", "detail": "Monitoring both training runs; respawns critic-evaluator at step 2,200."},
-  {"role": "critic-evaluator", "state": "scheduled", "detail": "Respawns about 30 min before the 2.5k checkpoint to score both runs and judge the stop rule."},
-  {"role": "model-engineer", "state": "off", "detail": "Respawned only if a run fails or the stop rule fires at 5k."},
-  {"role": "data-specialist", "state": "off", "detail": "All data work done; not needed for the rest of Phase 1."}
+  {
+   "role": "lead",
+   "state": "active",
+   "detail": "Monitoring both training runs; respawns critic-evaluator at step 2,200."
+  },
+  {
+   "role": "critic-evaluator",
+   "state": "scheduled",
+   "detail": "Respawns about 30 min before the 2.5k checkpoint to score both runs and judge the stop rule."
+  },
+  {
+   "role": "model-engineer",
+   "state": "off",
+   "detail": "Respawned only if a run fails or the stop rule fires at 5k."
+  },
+  {
+   "role": "data-specialist",
+   "state": "off",
+   "detail": "All data work done; not needed for the rest of Phase 1."
+  }
  ],
  "next_actions": [
   "Training jobs start (queue).",
@@ -42,11 +114,26 @@
   "Step 10,000: pick best checkpoint by capped hand error; 3-seed final eval; Phase 1 report."
  ],
  "decisions": [
-  {"date": "2026-11-13", "text": "Training moved off culbertson to the shared gpu partition; A6000 allowed alongside 6000 Ada."},
-  {"date": "2026-11-13", "text": "Plain-loss comparison run v1_K8_plain launched next to the weighted run."},
-  {"date": "2026-11-06", "text": "Loss: hand weight 1, contact weight 2, with a stop rule at 5k steps."},
-  {"date": "2026-11-06", "text": "Metrics: capped hand-keypoint error selects checkpoints; PCK@25, HACO contact F1, jitter and a Qwen2.5-VL outcome checklist are reported."},
-  {"date": "2026-11-06", "text": "Base model Wan2.1-Fun-V1.1-1.3B-InP; 512x512, 49 frames @ 16 fps; human hands only in Phase 1."}
+  {
+   "date": "2026-11-13",
+   "text": "Training moved off culbertson to the shared gpu partition; A6000 allowed alongside 6000 Ada."
+  },
+  {
+   "date": "2026-11-13",
+   "text": "Plain-loss comparison run v1_K8_plain launched next to the weighted run."
+  },
+  {
+   "date": "2026-11-06",
+   "text": "Loss: hand weight 1, contact weight 2, with a stop rule at 5k steps."
+  },
+  {
+   "date": "2026-11-06",
+   "text": "Metrics: capped hand-keypoint error selects checkpoints; PCK@25, HACO contact F1, jitter and a Qwen2.5-VL outcome checklist are reported."
+  },
+  {
+   "date": "2026-11-06",
+   "text": "Base model Wan2.1-Fun-V1.1-1.3B-InP; 512x512, 49 frames @ 16 fps; human hands only in Phase 1."
+  }
  ],
  "final_eval_overhead_h": 3.0,
  "iteration_note": "Iteration = both 10k-step runs + final eval (10k checkpoints, then 3 seeds of the best) + report."
