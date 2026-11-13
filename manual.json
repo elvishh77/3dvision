@@ -32,7 +32,7 @@
   {
    "name": "Full training (2 runs)",
    "status": "active",
-   "detail": "v1_K8 (hand/contact-weighted loss) vs v1_K8_plain (plain loss), 10k steps each on 3 GPUs."
+   "detail": "v1_K8 (hand/contact-weighted loss) vs v1_K8_plain (plain loss), 10k steps each on 2 GPUs."
   },
   {
    "name": "Checkpoint evals",
@@ -66,12 +66,12 @@
   {
    "title": "Training is waiting for GPUs",
    "severity": "high",
-   "detail": "Both runs are queued on the shared gpu partition (A6000 or 6000 Ada allowed). Every hour in the queue moves every ETA by an hour."
+   "detail": "Both runs are queued on the shared gpu partition (2 x A6000 or 6000 Ada each). The A6000/Ada nodes are ~99% busy; every hour in the queue moves every ETA by an hour."
   },
   {
    "title": "4-GPU runs hang at the first all-reduce",
    "severity": "low",
-   "detail": "Worked around by training on 3 GPUs per run. Not investigated further."
+   "detail": "Worked around by training on 2-3 GPUs per run. Not investigated further."
   },
   {
    "title": "Idle-hand VLM metric is unreliable",
@@ -109,6 +109,10 @@
   "Step 10,000: pick best checkpoint by capped hand error; 3-seed final eval; Phase 1 report."
  ],
  "decisions": [
+  {
+   "date": "2026-11-13",
+   "text": "Runs resubmitted on 2 GPUs each (was 3) to start sooner; step time is unchanged, effective batch 4 instead of 6."
+  },
   {
    "date": "2026-11-13",
    "text": "Progress site live at elvishh77.github.io/3dvision (dashboard + project page), refreshed every 30 min."
