@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-13T22:09:21+00:00",
+ "generated": "2026-11-13T22:09:36+00:00",
  "runs": [
   {
    "run": "v1_K8",
@@ -21,7 +21,7 @@
    "eta_assumes_ada": true,
    "peak_mem_gib": 41.97,
    "last_log": "2026-11-13T21:30:53+00:00",
-   "last_log_age_min": 38.5,
+   "last_log_age_min": 38.7,
    "health": "queued",
    "health_reason": "waiting for GPUs (Priority)",
    "errors": [],
