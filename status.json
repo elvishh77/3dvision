@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-13T23:17:04+00:00",
+ "generated": "2026-11-13T23:17:29+00:00",
  "runs": [
   {
    "run": "v1_K8",
@@ -21,33 +21,33 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 41.97,
    "last_log": "2026-11-13T21:30:53+00:00",
-   "last_log_age_min": 106.2,
-   "health": "stalled",
-   "health_reason": "no log line for 106 min",
+   "last_log_age_min": 0.9,
+   "health": "healthy",
+   "health_reason": "starting (loading model)",
    "errors": [],
    "stop_rule": "not yet",
    "last_other_gain": 0.0,
-   "eta_finish": "2026-11-14T16:55:12+00:00",
+   "eta_finish": "2026-11-14T16:55:37+00:00",
    "milestones": [
     {
      "step": 2500,
      "saved": false,
-     "eta": "2026-11-14T03:35:12+00:00"
+     "eta": "2026-11-14T03:35:37+00:00"
     },
     {
      "step": 5000,
      "saved": false,
-     "eta": "2026-11-14T08:01:52+00:00"
+     "eta": "2026-11-14T08:02:17+00:00"
     },
     {
      "step": 7500,
      "saved": false,
-     "eta": "2026-11-14T12:28:32+00:00"
+     "eta": "2026-11-14T12:28:57+00:00"
     },
     {
      "step": 10000,
      "saved": false,
-     "eta": "2026-11-14T16:55:12+00:00"
+     "eta": "2026-11-14T16:55:37+00:00"
     }
    ],
    "loss_curve": [
@@ -104,7 +104,7 @@
     "reason": "Priority",
     "gpus": 1,
     "gpu_type": null,
-    "est_start": "2026-11-13T23:17:07+00:00"
+    "est_start": "2026-11-13T23:17:32+00:00"
    },
    "step": 0,
    "steps_total": 10000,
@@ -118,27 +118,27 @@
    "errors": [],
    "stop_rule": "not yet",
    "last_other_gain": null,
-   "eta_finish": "2026-11-14T17:03:47+00:00",
+   "eta_finish": "2026-11-14T17:04:12+00:00",
    "milestones": [
     {
      "step": 2500,
      "saved": false,
-     "eta": "2026-11-14T03:43:47+00:00"
+     "eta": "2026-11-14T03:44:12+00:00"
     },
     {
      "step": 5000,
      "saved": false,
-     "eta": "2026-11-14T08:10:27+00:00"
+     "eta": "2026-11-14T08:10:52+00:00"
     },
     {
      "step": 7500,
      "saved": false,
-     "eta": "2026-11-14T12:37:07+00:00"
+     "eta": "2026-11-14T12:37:32+00:00"
     },
     {
      "step": 10000,
      "saved": false,
-     "eta": "2026-11-14T17:03:47+00:00"
+     "eta": "2026-11-14T17:04:12+00:00"
     }
    ],
    "loss_curve": [],
@@ -172,7 +172,7 @@
  ],
  "eval_jobs": [],
  "iteration": {
-  "eta": "2026-11-14T20:03:47+00:00",
+  "eta": "2026-11-14T20:04:12+00:00",
   "final_eval_overhead_h": 3.0,
   "note": "Iteration = both 10k-step runs + final eval (10k checkpoints, then 3 seeds of the best) + report."
  },
