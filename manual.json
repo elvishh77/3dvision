@@ -52,11 +52,6 @@
  ],
  "needs_input": [
   {
-   "title": "Turn on GitHub Pages",
-   "detail": "Repo elvishh77/3dvision -> Settings -> Pages -> Deploy from a branch -> main / (root). The site then appears at elvishh77.github.io/3dvision/.",
-   "since": "2026-11-13"
-  },
-  {
    "title": "Optional: partition for checkpoint evals",
    "detail": "Default is the shared gpu partition (1 GPU, ~45 min per checkpoint per seed). Say if 1-GPU eval jobs may use culbertson instead.",
    "since": "2026-11-13"
@@ -114,6 +109,10 @@
   "Step 10,000: pick best checkpoint by capped hand error; 3-seed final eval; Phase 1 report."
  ],
  "decisions": [
+  {
+   "date": "2026-11-13",
+   "text": "Progress site live at elvishh77.github.io/3dvision (dashboard + project page), refreshed every 30 min."
+  },
   {
    "date": "2026-11-13",
    "text": "Training moved off culbertson to the shared gpu partition; A6000 allowed alongside 6000 Ada."
