@@ -13,7 +13,7 @@
   const STOP = { pass: "ok", "on track": "ok", warning: "warn", "not yet": "plain" };
 
   function item(cls, t, d, extra) {
-    return `<div class="item ${cls}"><div class="t">${esc(t)}${extra || ""}</div><div class="d">${esc(d)}</div></div>`;
+    return `<div class="item ${cls}"><div class="t"><span>${esc(t)}</span>${extra || ""}</div><div class="d">${esc(d)}</div></div>`;
   }
 
   function lineChart(series, opts) {
@@ -48,7 +48,8 @@
     return pts.map((p, i) => { const w = pts.slice(Math.max(0, i - k), i + 1); return [p[0], w.reduce((a, q) => a + q[1], 0) / w.length]; });
   }
 
-  function runCard(r, evals) {
+  const RUN_BG = ["bg-sky", "bg-coral", "bg-mint", "bg-yellow"];
+  function runCard(r, evals, idx) {
     const pct = Math.min(100, (100 * r.step) / r.steps_total);
     const css = getComputedStyle(document.documentElement);
     const c1 = css.getPropertyValue("--series-1").trim(), c2 = css.getPropertyValue("--series-2").trim();
@@ -61,10 +62,10 @@
     const ms = (r.milestones || []).map((m) => {
       const ev = evals.find((e) => e.tag === `${r.run}_adapter_step_${String(m.step).padStart(7, "0")}`);
       const evTxt = ev ? `hand err ${ev.epe_capped?.toFixed(1)} px` : m.saved ? "saved, eval pending" : `ETA ${fmtTime(m.eta)}`;
-      return `<div><div class="k">${m.step / 1000}k</div><div class="${m.saved ? "saved" : "muted"}">${esc(evTxt)}</div></div>`;
+      return `<div class="${m.saved ? "done" : ""}"><div class="k">${m.step / 1000}k</div><div>${esc(evTxt)}</div></div>`;
     }).join("");
-    return `<div class="card">
-      <div class="run-head">
+    return `<div class="card run-card">
+      <div class="run-head ${RUN_BG[idx % RUN_BG.length]}">
         <div><div class="run-name">${esc(r.run)}</div><div class="small muted">${esc(weights)}</div></div>
         <span class="badge ${HEALTH[r.health] || "plain"}" title="${esc(r.health_reason)}">${esc(r.health)}</span>
       </div>
@@ -108,7 +109,7 @@
     const rows = evals.map((e) => {
       const ref = e.tag in LABEL;
       return `<tr class="${ref ? "ref" : ""}"><td>${esc(LABEL[e.tag] || e.tag)}</td><td>${e.seeds}</td>${METRICS.map(([k, , d]) =>
-        `<td class="${!ref && best[k] === e[k] ? "best" : ""}">${e[k] != null ? Number(e[k]).toFixed(d) : "–"}</td>`).join("")}</tr>`;
+        (!ref && best[k] === e[k] ? `<td class="best"><span>${Number(e[k]).toFixed(d)}</span></td>` : `<td>${e[k] != null ? Number(e[k]).toFixed(d) : "–"}</td>`)).join("")}</tr>`;
     }).join("");
     return head + rows;
   }
@@ -116,39 +117,53 @@
   function render(s) {
     const m = s.manual, p = m.project;
     document.title = "HandCtrl Video Dashboard";
-    $("title").textContent = p.title;
-    $("phase").textContent = `${p.phase} · first-results target ${p.deadline}`;
+    $("pills").innerHTML = [[p.phase, "bg-yellow"], [`${s.runs.length} training runs`, "bg-mint"], [`First results target ${p.deadline}`, "bg-sky"]]
+      .map(([t, c]) => `<span class="pill ${c}">${esc(t)}</span>`).join("");
+    $("lead").textContent = p.one_liner;
     const ageMin = (Date.now() - new Date(s.generated)) / 60000;
     $("updated").innerHTML = `Data rebuilt <b title="${esc(s.generated)}">${esc(rel(s.generated))}</b>`;
     if (ageMin > 75) { $("stale").style.display = "block"; $("stale").textContent = `This data is ${Math.round(ageMin)} min old: the 30-minute updater may have stopped.`; }
+    else $("stale").style.display = "none";
+    const it = s.iteration || {};
+    ETA = it.eta ? new Date(it.eta) : null; tick();
+    $("eta-line").textContent = it.eta ? `${fmtTime(it.eta)} · both runs to 10k steps + ${it.final_eval_overhead_h} h of final evaluation` : "No ETA yet: a run has no start estimate.";
 
     const active = m.stages.findIndex((x) => x.status === "active");
     $("k-stage").textContent = active >= 0 ? m.stages[active].name : "–";
     $("k-stage-sub").textContent = `Stage ${active + 1} of ${m.stages.length}`;
-    const it = s.iteration || {};
-    $("k-eta").textContent = it.eta ? fmtTime(it.eta) : "unknown";
-    $("k-eta-sub").textContent = it.eta ? `${rel(it.eta)} · both runs + ${it.final_eval_overhead_h} h final eval` : "a run has no start estimate yet";
+    const done = s.runs.reduce((a, r) => a + r.step, 0), total = s.runs.reduce((a, r) => a + r.steps_total, 0);
+    $("k-prog").textContent = `${(100 * done / (total || 1)).toFixed(1)}%`;
+    $("k-prog-sub").textContent = s.runs.map((r) => `${r.run}: ${r.health}`).join(" · ");
     $("k-input").textContent = m.needs_input.length;
     $("k-input-sub").textContent = m.needs_input.length ? m.needs_input[0].title : "nothing waiting on you";
-    $("k-input-card").classList.toggle("attn", m.needs_input.length > 0);
     const high = m.blockers.filter((b) => b.severity === "high").length;
     $("k-block").textContent = m.blockers.length;
     $("k-block-sub").textContent = high ? `${high} high severity` : "none high severity";
-    $("k-block-card").classList.toggle("alarm", high > 0);
+    $("stage-note").innerHTML = active >= 0 ? `<div class="t">Now: ${esc(m.stages[active].name)}</div><div class="d">${esc(m.stages[active].detail)}</div>` : "";
 
-    $("stepper").innerHTML = m.stages.map((x, i) => `<div class="step ${x.status}" title="${esc(x.detail)}"><div class="n">${i + 1} · ${x.status === "done" ? "done" : x.status === "active" ? "now" : "next"}</div><div class="t">${esc(x.name)}</div><div class="s">${esc(x.detail)}</div></div>`).join("");
-    $("input-list").innerHTML = m.needs_input.length ? m.needs_input.map((x) => item("input", x.title, x.detail, x.since ? ` <span class="muted small">· since ${esc(x.since)}</span>` : "")).join("") : `<div class="empty">Nothing needs you right now.</div>`;
-    $("block-list").innerHTML = m.blockers.length ? m.blockers.map((b) => item(b.severity, b.title, b.detail, ` <span class="badge ${b.severity === "high" ? "bad" : b.severity === "medium" ? "warn" : "plain"}" style="margin-left:6px">${esc(b.severity)}</span>`)).join("") : `<div class="empty">No blockers.</div>`;
+    $("stepper").innerHTML = m.stages.map((x, i) => `<div class="step ${x.status}" title="${esc(x.detail)}"><div class="n">${i + 1} · ${x.status === "done" ? "done ✓" : x.status === "active" ? "now ★" : "next"}</div><div class="t">${esc(x.name)}</div><div class="s">${esc(x.detail)}</div></div>`).join("");
+    $("input-list").innerHTML = m.needs_input.length ? m.needs_input.map((x) => item("input", x.title, x.detail, x.since ? `<span class="badge plain">since ${esc(x.since)}</span>` : "")).join("") : `<div class="empty">Nothing needs you right now.</div>`;
+    $("block-list").innerHTML = m.blockers.length ? m.blockers.map((b) => item(b.severity, b.title, b.detail, `<span class="badge ${b.severity === "high" ? "bad" : b.severity === "medium" ? "warn" : "plain"}">${esc(b.severity)}</span>`)).join("") : `<div class="empty">No blockers.</div>`;
 
-    $("run-cards").innerHTML = s.runs.map((r) => runCard(r, s.evals)).join("");
-    $("runs-note").textContent = "Same data and settings; the runs differ only in the loss.";
+    $("run-cards").innerHTML = s.runs.map((r, i) => runCard(r, s.evals, i)).join("");
     $("eval-table").innerHTML = evalTable(s.evals);
     $("eval-jobs").textContent = s.eval_jobs.length ? "Eval jobs in queue: " + s.eval_jobs.map((j) => `${j.name} (${j.state.toLowerCase()})`).join(", ") : "";
     const TS = { active: "ok", scheduled: "info", off: "plain" };
-    $("team-list").innerHTML = m.team.map((t) => `<div class="item low"><div class="t">${esc(t.role)} <span class="badge ${TS[t.state] || "plain"}" style="margin-left:6px">${esc(t.state)}</span></div><div class="d">${esc(t.detail)}</div></div>`).join("");
+    $("team-list").innerHTML = m.team.map((t) => `<div class="item low"><div class="t">${esc(t.role)} <span class="badge ${TS[t.state] || "plain"}">${esc(t.state)}</span></div><div class="d">${esc(t.detail)}</div></div>`).join("");
     $("next").innerHTML = m.next_actions.map((a) => `<li>${esc(a)}</li>`).join("");
     $("decisions").innerHTML = m.decisions.map((d) => `<li><span class="date">${esc(d.date)}</span><span>${esc(d.text)}</span></li>`).join("");
   }
+
+  let ETA = null;
+  function tick() {
+    const pad = (n) => String(n).padStart(2, "0");
+    if (!ETA) { ["c-d", "c-h", "c-m", "c-s"].forEach((k) => ($(k).textContent = "–")); return; }
+    let t = Math.max(0, Math.floor((ETA - Date.now()) / 1000));
+    $("c-d").textContent = pad(Math.floor(t / 86400)); t %= 86400;
+    $("c-h").textContent = pad(Math.floor(t / 3600)); t %= 3600;
+    $("c-m").textContent = pad(Math.floor(t / 60)); $("c-s").textContent = pad(t % 60);
+  }
+  setInterval(tick, 1000);
 
   async function load() {
     try {
