@@ -46,7 +46,7 @@
           vertices in contact with an object (blue = left hand, green = right). Prompt: <i id="p-003230_w0"></i></figcaption>
       </figure>
       <figure style="margin:0">
-        <div class="media"><video src="assets/media/gt_vs_base_003230_w0.mp4" poster="assets/media/poster_003230_w0.jpg" autoplay muted loop playsinline></video></div>
+        <div class="media vs"><video src="assets/media/gt_vs_base_003230_w0.mp4" poster="assets/media/poster_003230_w0.jpg" autoplay muted loop playsinline></video><div class="vlabels"><span>Real clip</span><span>Base model, no hand control</span></div></div>
         <figcaption class="cap"><b>Why control is needed.</b> Left: the real clip. Right: the base image-to-video model given the same
           first frame and prompt, but no hand trajectory. It produces a plausible video that doesn't follow the real hands.</figcaption>
       </figure>
@@ -204,15 +204,15 @@
       <div class="media"><img loading="lazy" src="assets/media/strip_${c}.jpg" alt="Five frames with projected MANO hands and contact"></div>
       <figcaption class="cap">Frames 0, 12, 24, 36, 48 with the MANO conditioning drawn on top (red = contact). Prompt: <i>${esc(prompts[c])}</i></figcaption></figure>`).join("");
     document.getElementById("videos").innerHTML = clips.map((c) => `<figure style="margin:0">
-      <div class="media"><video src="assets/media/gt_vs_base_${c}.mp4" poster="assets/media/poster_${c}.jpg" muted loop playsinline controls preload="none"></video></div>
-      <figcaption class="cap"><b>Real | base model.</b> ${esc(prompts[c])}</figcaption></figure>`).join("");
+      <div class="media vs"><video src="assets/media/gt_vs_base_${c}.mp4" poster="assets/media/poster_${c}.jpg" autoplay muted loop playsinline></video><div class="vlabels"><span>Real</span><span>Base model</span></div></div>
+      <figcaption class="cap"><b>Prompt:</b> ${esc(prompts[c])}</figcaption></figure>`).join("");
   });
 
   const M = [["epe_capped", "Hand error (px) ↓", 1], ["pck25", "PCK@25 ↑", 3], ["contact_f1_active", "Contact F1 ↑", 3], ["task_bacc", "Task accuracy ↑", 3]];
   const LABEL = { gt: "Real video (upper bound)", base: "Base model, no hand control" };
   fetch("status.json?t=" + Date.now(), { cache: "no-store" }).then((r) => r.json()).then((s) => {
     const rows = s.evals.map((e) => `<tr class="${e.tag in LABEL ? "ref" : ""}"><td>${esc(LABEL[e.tag] || "Ours · " + e.tag)}</td>${M.map(([k, , d]) => `<td>${e[k] != null ? Number(e[k]).toFixed(d) : "–"}</td>`).join("")}</tr>`);
-    if (!s.evals.some((e) => !(e.tag in LABEL))) rows.splice(1, 0, `<tr><td>Ours</td><td colspan="${M.length}" style="text-align:center" class="muted">training in progress</td></tr>`);
+    if (!s.evals.some((e) => !(e.tag in LABEL))) rows.push(`<tr><td>Ours</td><td colspan="${M.length}" style="text-align:center"><span class="badge warn">training in progress</span></td></tr>`);
     document.getElementById("results-table").innerHTML = `<tr><th>Model</th>${M.map((m) => `<th>${m[1]}</th>`).join("")}</tr>` + rows.join("");
   }).catch(() => {});
 

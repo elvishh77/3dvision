@@ -18,7 +18,7 @@
 
   function lineChart(series, opts) {
     // series: [{pts:[[x,y]], color, label}]
-    const W = 520, H = 150, L = 44, R = 10, T = 10, B = 22;
+    const W = window.innerWidth < 600 ? 330 : 440, H = window.innerWidth < 600 ? 140 : 150, L = 44, R = 10, T = 10, B = 22;
     const all = series.flatMap((s) => s.pts);
     if (all.length < 2) return `<div class="empty">${esc(opts.empty || "No data yet.")}</div>`;
     let x0 = opts.xmin ?? Math.min(...all.map((p) => p[0])), x1 = opts.xmax ?? Math.max(...all.map((p) => p[0]));
@@ -49,50 +49,70 @@
   }
 
   const RUN_BG = ["bg-sky", "bg-coral", "bg-mint", "bg-yellow"];
+  // Short time: "Sat 5:17 PM" within the next 6 days, otherwise "Nov 20, 5:17 PM".
+  const fmtShort = (iso) => {
+    if (!iso) return "–";
+    const d = new Date(iso), soon = Math.abs(d - Date.now()) < 6 * 86400e3;
+    return d.toLocaleString(undefined, soon ? { weekday: "short", hour: "numeric", minute: "2-digit" } : { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+  };
+  // Zoom the x axis to the data early in training; show the full run once it is far enough along.
+  function xRange(lastStep, total) {
+    const xmax = Math.min(total, Math.max(1000, Math.ceil((lastStep * 1.25) / 500) * 500));
+    const step = xmax <= 2000 ? 250 : xmax <= 5000 ? 1000 : 2500;
+    const ticks = []; for (let x = 0; x <= xmax; x += step) ticks.push(x);
+    return { xmin: 0, xmax, xticks: ticks };
+  }
   function runCard(r, evals, idx) {
     const pct = Math.min(100, (100 * r.step) / r.steps_total);
     const css = getComputedStyle(document.documentElement);
     const c1 = css.getPropertyValue("--series-1").trim(), c2 = css.getPropertyValue("--series-2").trim();
     const job = r.job || {};
-    const gpu = job.gpu_type ? `${job.gpus}× ${job.gpu_type}` : job.gpus ? `${job.gpus} GPUs (type when started)` : "–";
+    const gpu = job.gpu_type ? `${job.gpus}× ${job.gpu_type}` : job.gpus ? `${job.gpus} × A6000 / Ada` : "–";
     const weights = r.loss_weights && r.loss_weights.w_hand ? `weighted loss (hand ${r.loss_weights.w_hand}, contact ${r.loss_weights.w_contact})` : "plain loss";
-    const startLine = job.state === "PENDING" ? `Queued; Slurm estimates start ${fmtTime(job.est_start)} (${rel(job.est_start)}).` : "";
+    const startLine = job.state === "PENDING" ? `Slurm estimates the start at ${fmtShort(job.est_start)} (${rel(job.est_start)}).` : "";
     const loss = (r.loss_curve || []).map((p) => [p.step, p.mse]);
     const probes = (r.probes || []).filter((p) => p.other_gain != null).map((p) => [p.step, p.other_gain]);
+    const xr = xRange(r.step, r.steps_total);
     const ms = (r.milestones || []).map((m) => {
       const ev = evals.find((e) => e.tag === `${r.run}_adapter_step_${String(m.step).padStart(7, "0")}`);
-      const evTxt = ev ? `hand err ${ev.epe_capped?.toFixed(1)} px` : m.saved ? "saved, eval pending" : `ETA ${fmtTime(m.eta)}`;
+      const evTxt = ev ? `hand err ${ev.epe_capped?.toFixed(1)} px` : m.saved ? "saved · eval pending" : fmtShort(m.eta);
       return `<div class="${m.saved ? "done" : ""}"><div class="k">${m.step / 1000}k</div><div>${esc(evTxt)}</div></div>`;
     }).join("");
     return `<div class="card run-card">
       <div class="run-head ${RUN_BG[idx % RUN_BG.length]}">
-        <div><div class="run-name">${esc(r.run)}</div><div class="small muted">${esc(weights)}</div></div>
+        <div><div class="run-name">${esc(r.run)}</div><div class="small">${esc(weights)}</div></div>
         <span class="badge ${HEALTH[r.health] || "plain"}" title="${esc(r.health_reason)}">${esc(r.health)}</span>
       </div>
-      <div class="progress" role="progressbar" aria-valuenow="${r.step}" aria-valuemin="0" aria-valuemax="${r.steps_total}"><div style="width:${pct}%"></div></div>
-      <div class="small"><b>${r.step.toLocaleString()}</b> / ${r.steps_total.toLocaleString()} steps (${pct.toFixed(1)}%) · <span class="muted">${esc(r.health_reason)}</span></div>
-      ${startLine ? `<div class="small muted" style="margin-top:4px">${esc(startLine)}</div>` : ""}
-      <div class="facts">
-        <div class="fact"><div class="k">Job</div><div class="v">${esc(job.job_id || "–")} <span class="muted small">${esc((job.state || "").toLowerCase())}</span></div></div>
-        <div class="fact"><div class="k">GPUs</div><div class="v">${esc(gpu)}</div></div>
-        <div class="fact"><div class="k">Speed</div><div class="v">${r.s_per_step ? r.s_per_step + " s/step" : "–"}</div></div>
-        <div class="fact"><div class="k">Finishes</div><div class="v">${fmtTime(r.eta_finish)}</div><div class="small muted">${rel(r.eta_finish)}${r.eta_assumes_ada ? " · assumes Ada speed" : ""}</div></div>
-        <div class="fact"><div class="k">Last log line</div><div class="v">${r.last_log_age_min != null ? rel(r.last_log) : "–"}</div></div>
-        <div class="fact"><div class="k">Stop rule</div><div class="v"><span class="badge ${STOP[r.stop_rule] || "bad"}">${esc(r.stop_rule)}</span></div></div>
+      <div class="run-body">
+        <div>
+          <div class="progress" role="progressbar" aria-valuenow="${r.step}" aria-valuemin="0" aria-valuemax="${r.steps_total}"><div style="width:${pct}%"></div></div>
+          <div class="small"><b>${r.step.toLocaleString()}</b> / ${r.steps_total.toLocaleString()} steps (${pct.toFixed(1)}%) · <span class="muted">${esc(r.health_reason)}</span></div>
+          ${startLine ? `<div class="small muted" style="margin-top:2px">${esc(startLine)}</div>` : ""}
+          <div class="facts">
+            <div class="fact"><div class="k">Job</div><div class="v">${esc(job.job_id || "–")}</div><div class="small muted">${esc((job.state || "").toLowerCase())}</div></div>
+            <div class="fact"><div class="k">GPUs</div><div class="v">${esc(gpu)}</div></div>
+            <div class="fact"><div class="k">Speed</div><div class="v">${r.s_per_step ? r.s_per_step + " s/step" : "–"}</div></div>
+            <div class="fact"><div class="k">Finishes</div><div class="v">${fmtShort(r.eta_finish)}</div><div class="small muted">${rel(r.eta_finish)}${r.eta_assumes_ada ? " (est.)" : ""}</div></div>
+            <div class="fact"><div class="k">Last log line</div><div class="v">${r.last_log_age_min != null ? rel(r.last_log) : "–"}</div></div>
+            <div class="fact"><div class="k">Stop rule</div><div class="v"><span class="badge ${STOP[r.stop_rule] || "bad"}">${esc(r.stop_rule)}</span></div></div>
+          </div>
+          ${r.errors && r.errors.length ? `<div class="item high"><div class="t">Errors in the job log</div><div class="d mono">${r.errors.map(esc).join("<br>")}</div></div>` : ""}
+          <div class="chart-title">Checkpoints (ETA, or score once evaluated)</div>
+          <div class="ms">${ms}</div>
+        </div>
+        <div>
+          <div class="chart-title" style="margin-top:0">Training loss · unweighted MSE (thin = raw, bold = smoothed)</div>
+          ${lineChart([{ pts: loss, color: c1, op: 0.3, w: 1 }, { pts: smooth(loss, 8), color: c1, w: 2.5 }], { ...xr, empty: "No training steps logged yet." })}
+          <div class="chart-title">Held-out hand-conditioning gain (σ = 0.8) · must be &gt; 0 and rising</div>
+          ${lineChart([{ pts: probes, color: c2, dots: true, w: 2.5 }], { ...xr, zero: true, dec: 3, empty: "First probe at step 500." })}
+        </div>
       </div>
-      ${r.errors && r.errors.length ? `<div class="item high"><div class="t">Errors in the job log</div><div class="d mono">${r.errors.map(esc).join("<br>")}</div></div>` : ""}
-      <div class="chart-title">Training loss (unweighted MSE; thin = raw, bold = smoothed)</div>
-      ${lineChart([{ pts: loss, color: c1, op: 0.3, w: 1 }, { pts: smooth(loss, 8), color: c1, w: 2 }], { xmin: 0, xmax: r.steps_total, xticks: [0, 2500, 5000, 7500, 10000], empty: "No training steps logged yet." })}
-      <div class="chart-title">Held-out conditioning gain: loss with another clip's hand trajectory − loss with the right one (σ = 0.8). Must be &gt; 0 and rising.</div>
-      ${lineChart([{ pts: probes, color: c2, dots: true }], { xmin: 0, xmax: r.steps_total, zero: true, dec: 4, xticks: [0, 2500, 5000, 7500, 10000], empty: "First probe at step 500." })}
-      <div class="chart-title">Milestones</div>
-      <div class="ms">${ms}</div>
     </div>`;
   }
 
   const METRICS = [
-    ["epe_capped", "Hand error (px) ↓", 1, "min"], ["pck25", "PCK@25 ↑", 3, "max"], ["contact_f1_active", "Contact F1 ↑", 3, "max"],
-    ["task_bacc", "Task accuracy ↑", 3, "max"], ["jitter_ratio", "Jitter ratio (1 = real)", 2, null], ["idle_vlm_fgr", "Idle-hand false grip ↓", 3, "min"],
+    ["epe_capped", "Hand err px ↓", 1, "min"], ["pck25", "PCK@25 ↑", 3, "max"], ["contact_f1_active", "Contact F1 ↑", 3, "max"],
+    ["task_bacc", "Task acc ↑", 3, "max"], ["jitter_ratio", "Jitter (1 = real)", 2, null], ["idle_vlm_fgr", "Idle grip ↓", 3, "min"],
   ];
   const LABEL = { gt: "Real video (upper bound)", base: "Base model, no adapter" };
 
@@ -117,7 +137,7 @@
   function render(s) {
     const m = s.manual, p = m.project;
     document.title = "HandCtrl Video Dashboard";
-    $("pills").innerHTML = [[p.phase, "bg-yellow"], [`${s.runs.length} training runs`, "bg-mint"], [`First results target ${p.deadline}`, "bg-sky"]]
+    $("pills").innerHTML = [["Phase 1 · human hands", "bg-yellow"], [`${s.runs.length} training runs`, "bg-mint"], ["Target Nov 13", "bg-sky"]]
       .map(([t, c]) => `<span class="pill ${c}">${esc(t)}</span>`).join("");
     $("lead").textContent = p.one_liner;
     const ageMin = (Date.now() - new Date(s.generated)) / 60000;
