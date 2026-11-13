@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>HandCtrl Video Dashboard</title>
+<meta name="description" content="Live progress of the hand-contact-conditioned video generation project: stage, training health, blockers, ETA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html">HandCtrl&nbsp;Video</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#overview">Overview</a><a href="#input">Your input</a><a href="#blockers">Blockers</a>
+      <a href="#runs">Training</a><a href="#evals">Evals</a><a href="#team">Team</a><a href="#log">Decisions</a>
+    </nav>
+    <a class="btn ghost" href="paper.html">Project page</a>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="overview">
+    <div class="sec-head">
+      <div>
+        <h1 id="title" style="font-size:1.7rem;margin:0">Project dashboard</h1>
+        <div class="muted small" id="phase"></div>
+      </div>
+      <div class="small muted" id="updated">Loading…</div>
+    </div>
+    <div class="stale-banner" id="stale"></div>
+    <div class="grid g4" style="margin-top:16px">
+      <div class="card kpi"><div class="label">Current stage</div><div class="value" id="k-stage">–</div><div class="sub" id="k-stage-sub"></div></div>
+      <div class="card kpi"><div class="label">Iteration finishes</div><div class="value" id="k-eta">–</div><div class="sub" id="k-eta-sub"></div></div>
+      <div class="card kpi" id="k-input-card"><div class="label">Needs your input</div><div class="value" id="k-input">–</div><div class="sub" id="k-input-sub"></div></div>
+      <div class="card kpi" id="k-block-card"><div class="label">Blockers</div><div class="value" id="k-block">–</div><div class="sub" id="k-block-sub"></div></div>
+    </div>
+    <h3 style="margin-top:26px">Pipeline</h3>
+    <div class="stepper" id="stepper"></div>
+  </section>
+
+  <section id="input">
+    <div class="sec-head"><h2>Needs your input</h2><span class="muted small">decisions only you can make</span></div>
+    <div id="input-list"></div>
+  </section>
+
+  <section id="blockers">
+    <div class="sec-head"><h2>Blockers and risks</h2></div>
+    <div id="block-list"></div>
+  </section>
+
+  <section id="runs">
+    <div class="sec-head"><h2>Training runs</h2><span class="muted small" id="runs-note"></span></div>
+    <div class="grid g2" id="run-cards"></div>
+  </section>
+
+  <section id="evals">
+    <div class="sec-head"><h2>Evaluation scores</h2>
+      <span class="muted small">32 held-out clips (participant P0015). ↓ lower is better, ↑ higher is better. Capped hand error selects checkpoints.</span></div>
+    <div class="table-wrap"><table id="eval-table"></table></div>
+    <div class="small muted" id="eval-jobs" style="margin-top:8px"></div>
+  </section>
+
+  <section id="team">
+    <div class="grid g2">
+      <div>
+        <div class="sec-head"><h2>Team</h2></div>
+        <div id="team-list"></div>
+      </div>
+      <div>
+        <div class="sec-head"><h2>Next actions</h2></div>
+        <div class="card"><ol class="next" id="next"></ol></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="log">
+    <div class="sec-head"><h2>Decisions</h2></div>
+    <div class="card"><ul class="tl" id="decisions"></ul></div>
+  </section>
+</main>
+
+<footer class="wrap">
+  Rebuilt every 30 minutes from the training logs and the Slurm queue; this page reloads its data every 5 minutes.
+  Times are shown in your browser's time zone. ETAs use the measured speed of a running job, or 6.4 s/step (3× RTX 6000 Ada) for a queued one.
+</footer>
+
+<script src="assets/dashboard.js"></script>
+</body>
+</html>

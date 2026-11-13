@@ -1,0 +1,1 @@
+First-person view: the red spatula ends up moved to the left and farther and turned.
