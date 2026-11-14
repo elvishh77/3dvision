@@ -101,6 +101,10 @@
  "decisions": [
   {
    "date": "2026-11-14",
+   "text": "v1_K8_h100_nocond submitted on CoreWeave (job 254316, code 3ef6c8a) after the user confirmed."
+  },
+  {
+   "date": "2026-11-14",
    "text": "Control = exact match (option 1) on CoreWeave: v1_K8_h100_nocond, code 3ef6c8a. The unicorn batch-2 variant was cancelled before it started."
   },
   {
@@ -192,7 +196,8 @@
    "branch": "run-status",
    "cluster": "coreweave",
    "gpus": 8,
-   "gpu_type": "H100 80GB"
+   "gpu_type": "H100 80GB",
+   "job_id": "254316"
   }
  ]
 }

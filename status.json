@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-14T07:46:10+00:00",
+ "generated": "2026-11-14T07:51:08+00:00",
  "runs": [
   {
    "run": "v1_K8_h100",
@@ -23,14 +23,14 @@
    "s_per_step": 1.2,
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
-   "last_log": "2026-11-14T04:09:07+00:00",
-   "last_log_age_min": 217.1,
+   "last_log": "2026-11-14T07:50:52+00:00",
+   "last_log_age_min": 0.3,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
    "stop_rule": "pass",
    "last_other_gain": 0.08467,
-   "eta_finish": "2026-11-14T04:09:07+00:00",
+   "eta_finish": "2026-11-14T07:50:52+00:00",
    "milestones": [
     {
      "step": 2500,
@@ -2746,7 +2746,7 @@
    },
    "effective_batch": 16,
    "job": {
-    "job_id": null,
+    "job_id": "254316",
     "state": "UNKNOWN",
     "reason": "waiting for the first status snapshot",
     "gpus": 8,
@@ -2825,35 +2825,44 @@
   {
    "tag": "v1_K8_h100__adapter_step_0002500",
    "seeds": 3,
-   "updated": "2026-11-14T07:27:10+00:00",
-   "epe_capped": 34.5592,
-   "pck25": 0.7168,
+   "updated": "2026-11-14T07:46:19+00:00",
+   "epe_capped": 32.9482,
+   "pck25": 0.7292,
    "contact_f1_active": 0.7253,
    "idle_vlm_fgr": 0.374,
    "jitter_ratio": 1.212,
-   "task_bacc": 0.8417
+   "task_bacc": 0.8417,
+   "handedness_mismatch_rate": 0.0363,
+   "epe_capped_frameweighted": 30.0705,
+   "epe_position_only": 28.5866
   },
   {
    "tag": "v1_K8_h100__adapter_step_0005000",
    "seeds": 3,
-   "updated": "2026-11-14T07:24:03+00:00",
-   "epe_capped": 35.7596,
-   "pck25": 0.7138,
+   "updated": "2026-11-14T07:49:22+00:00",
+   "epe_capped": 34.1692,
+   "pck25": 0.7261,
    "contact_f1_active": 0.7258,
    "idle_vlm_fgr": 0.4157,
    "jitter_ratio": 1.3582,
-   "task_bacc": 0.8507
+   "task_bacc": 0.8507,
+   "handedness_mismatch_rate": 0.0281,
+   "epe_capped_frameweighted": 31.0707,
+   "epe_position_only": 30.4785
   },
   {
    "tag": "v1_K8_h100__adapter_step_0007500",
    "seeds": 1,
-   "updated": "2026-11-14T05:22:38+00:00",
-   "epe_capped": 35.4341,
-   "pck25": 0.7198,
+   "updated": "2026-11-14T07:50:27+00:00",
+   "epe_capped": 33.8382,
+   "pck25": 0.7322,
    "contact_f1_active": 0.733,
    "idle_vlm_fgr": 0.3244,
    "jitter_ratio": 1.3332,
-   "task_bacc": 0.754
+   "task_bacc": 0.754,
+   "handedness_mismatch_rate": 0.038,
+   "epe_capped_frameweighted": 31.0013,
+   "epe_position_only": 28.8185
   },
   {
    "tag": "v1_K8_h100__adapter_step_0010000",
@@ -2982,6 +2991,10 @@
   "decisions": [
    {
     "date": "2026-11-14",
+    "text": "v1_K8_h100_nocond submitted on CoreWeave (job 254316, code 3ef6c8a) after the user confirmed."
+   },
+   {
+    "date": "2026-11-14",
     "text": "Control = exact match (option 1) on CoreWeave: v1_K8_h100_nocond, code 3ef6c8a. The unicorn batch-2 variant was cancelled before it started."
    },
    {
@@ -3073,7 +3086,8 @@
     "branch": "run-status",
     "cluster": "coreweave",
     "gpus": 8,
-    "gpu_type": "H100 80GB"
+    "gpu_type": "H100 80GB",
+    "job_id": "254316"
    }
   ]
  }
