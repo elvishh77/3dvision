@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-14T04:15:46+00:00",
+ "generated": "2026-11-14T04:39:40+00:00",
  "runs": [
   {
    "run": "v1_K8_h100",
@@ -24,7 +24,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-14T04:09:07+00:00",
-   "last_log_age_min": 6.7,
+   "last_log_age_min": 30.6,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
@@ -2763,6 +2763,26 @@
  ],
  "eval_jobs": [
   {
+   "job_id": "571093",
+   "name": "v1_K8_h100_adapter_step_0007500",
+   "state": "PENDING"
+  },
+  {
+   "job_id": "571091",
+   "name": "v1_K8_h100_adapter_step_0005000",
+   "state": "RUNNING"
+  },
+  {
+   "job_id": "571094",
+   "name": "v1_K8_h100_adapter_step_0010000",
+   "state": "RUNNING"
+  },
+  {
+   "job_id": "571090",
+   "name": "v1_K8_h100_adapter_step_0002500",
+   "state": "RUNNING"
+  },
+  {
    "job_id": "565289",
    "name": "onehand_base",
    "state": "RUNNING"
@@ -2806,13 +2826,13 @@
    },
    {
     "name": "Full training (CoreWeave)",
-    "status": "active",
-    "detail": "v1_K8_h100 on 8x H100 at CoreWeave: same recipe as v1_K8 (hand 1 / contact 2 weighted loss), effective batch 8, ~1.2 s/step, 10k steps in ~4 h. The unicorn runs were cancelled."
+    "status": "done",
+    "detail": "v1_K8_h100 finished 10k steps on 8x H100 at CoreWeave (Nov 13, ~4 h). Milestones copied to unicorn."
    },
    {
     "name": "Checkpoint evals",
-    "status": "todo",
-    "detail": "2.5k / 5k / 7.5k / 10k, 32 held-out clips x 1 seed per run. Stop rule at 5k."
+    "status": "active",
+    "detail": "Standard eval of the 2.5k/5k/7.5k/10k milestones running on unicorn (jobs 571090-571094); one-hand test being validated."
    },
    {
     "name": "Phase 1 report",
@@ -2827,22 +2847,12 @@
   ],
   "needs_input": [
    {
-    "title": "How to score v1_K8_h100's checkpoints",
-    "detail": "Either copy its adapter milestones (2.5k/5k/7.5k/10k) from CoreWeave to unicorn and score them with the existing eval, or set up the eval on CoreWeave. Recommended: copy.",
-    "since": "2026-11-13"
-   },
-   {
     "title": "Paper page: title and authors",
     "detail": "The paper-style page uses a working title and 'Authors TBD'. Send the title and author list when ready.",
     "since": "2026-11-13"
    }
   ],
   "blockers": [
-   {
-    "title": "Checkpoint scores need the eval pipeline",
-    "severity": "medium",
-    "detail": "Eval (HaMeR/HACO + Qwen2.5-VL + held-out clips) exists only on unicorn. v1_K8_h100's milestones must be copied here, or the eval set up on CoreWeave, before they can be scored."
-   },
    {
     "title": "Multi-GPU runs hang on some nodes",
     "severity": "low",
@@ -2882,13 +2892,16 @@
    }
   ],
   "next_actions": [
-   "critic-evaluator: build + validate the one-hand test (gt and base now; trained checkpoints when they arrive).",
-   "v1_K8_h100 milestones at 2.5k / 5k / 7.5k / 10k (~50 min apart).",
-   "Get the milestones to the eval machine; score 32 held-out clips x 1 seed each.",
-   "Stop rule on the held-out probe: gain > 0 and rising at 2.5k, > 0 at 5k.",
-   "Pick the best milestone by capped hand error; 3-seed final eval; Phase 1 report."
+   "Score 2.5k/5k/7.5k/10k (32 held-out clips, seed 0) - running.",
+   "Pick the best milestone by capped hand error; 3-seed final eval.",
+   "One-hand test on the 10k (and best) milestone once critic-evaluator's harness is validated.",
+   "Qualitative demo: real vs base vs trained videos on the site."
   ],
   "decisions": [
+   {
+    "date": "2026-11-13",
+    "text": "Unicorn runs v1_K8 / v1_K8_plain hard-killed: the first cancel had triggered the trainer's self-requeue, so they kept running ~4 h (no effect on results)."
+   },
    {
     "date": "2026-11-13",
     "text": "One-hand test approved: idle hand held at its frame-0 pose with no contact; prompt rewritten to name the acting hand."
