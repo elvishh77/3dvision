@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-14T11:16:36+00:00",
+ "generated": "2026-11-14T11:46:40+00:00",
  "runs": [
   {
    "run": "v1_K8_h100",
@@ -23,14 +23,14 @@
    "s_per_step": 1.2,
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
-   "last_log": "2026-11-14T11:11:21+00:00",
-   "last_log_age_min": 5.3,
+   "last_log": "2026-11-14T11:42:27+00:00",
+   "last_log_age_min": 4.2,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
    "stop_rule": "pass",
    "last_other_gain": 0.08467,
-   "eta_finish": "2026-11-14T11:11:21+00:00",
+   "eta_finish": "2026-11-14T11:42:27+00:00",
    "milestones": [
     {
      "step": 2500,
@@ -2747,25 +2747,25 @@
    "effective_batch": 8,
    "job": {
     "job_id": "254316",
-    "state": "RUNNING",
+    "state": "COMPLETED",
     "reason": "",
     "gpus": 8,
     "gpu_type": "H100 80GB",
     "est_start": null
    },
-   "step": 9000,
+   "step": 10000,
    "steps_total": 10000,
    "s_per_step": 1.21,
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
-   "last_log": "2026-11-14T11:11:21+00:00",
-   "last_log_age_min": 5.3,
+   "last_log": "2026-11-14T11:42:27+00:00",
+   "last_log_age_min": 4.2,
    "health": "unhealthy",
    "health_reason": "stop rule failed at 5k",
    "errors": [],
    "stop_rule": "FAIL: stop and debug",
    "last_other_gain": 0.0,
-   "eta_finish": "2026-11-14T11:31:30+00:00",
+   "eta_finish": "2026-11-14T11:42:27+00:00",
    "milestones": [
     {
      "step": 2500,
@@ -2784,8 +2784,8 @@
     },
     {
      "step": 10000,
-     "saved": false,
-     "eta": "2026-11-14T11:31:30+00:00"
+     "saved": true,
+     "eta": null
     }
    ],
    "loss_curve": [
@@ -5043,6 +5043,256 @@
      "step": 9000,
      "loss": 0.15973,
      "mse": 0.13226
+    },
+    {
+     "step": 9020,
+     "loss": 0.14856,
+     "mse": 0.12342
+    },
+    {
+     "step": 9040,
+     "loss": 0.13994,
+     "mse": 0.11476
+    },
+    {
+     "step": 9060,
+     "loss": 0.15309,
+     "mse": 0.12502
+    },
+    {
+     "step": 9080,
+     "loss": 0.16126,
+     "mse": 0.13157
+    },
+    {
+     "step": 9100,
+     "loss": 0.14336,
+     "mse": 0.11736
+    },
+    {
+     "step": 9120,
+     "loss": 0.1419,
+     "mse": 0.11687
+    },
+    {
+     "step": 9140,
+     "loss": 0.13996,
+     "mse": 0.11477
+    },
+    {
+     "step": 9160,
+     "loss": 0.14006,
+     "mse": 0.11545
+    },
+    {
+     "step": 9180,
+     "loss": 0.15386,
+     "mse": 0.12712
+    },
+    {
+     "step": 9200,
+     "loss": 0.1478,
+     "mse": 0.12239
+    },
+    {
+     "step": 9220,
+     "loss": 0.16632,
+     "mse": 0.13838
+    },
+    {
+     "step": 9240,
+     "loss": 0.12831,
+     "mse": 0.10588
+    },
+    {
+     "step": 9260,
+     "loss": 0.13505,
+     "mse": 0.10984
+    },
+    {
+     "step": 9280,
+     "loss": 0.16285,
+     "mse": 0.13308
+    },
+    {
+     "step": 9300,
+     "loss": 0.13833,
+     "mse": 0.11229
+    },
+    {
+     "step": 9320,
+     "loss": 0.17515,
+     "mse": 0.1439
+    },
+    {
+     "step": 9340,
+     "loss": 0.14932,
+     "mse": 0.11887
+    },
+    {
+     "step": 9360,
+     "loss": 0.15184,
+     "mse": 0.12471
+    },
+    {
+     "step": 9380,
+     "loss": 0.14484,
+     "mse": 0.12015
+    },
+    {
+     "step": 9400,
+     "loss": 0.13926,
+     "mse": 0.11441
+    },
+    {
+     "step": 9420,
+     "loss": 0.14948,
+     "mse": 0.12303
+    },
+    {
+     "step": 9440,
+     "loss": 0.13833,
+     "mse": 0.11302
+    },
+    {
+     "step": 9460,
+     "loss": 0.12268,
+     "mse": 0.09835
+    },
+    {
+     "step": 9480,
+     "loss": 0.1403,
+     "mse": 0.11494
+    },
+    {
+     "step": 9500,
+     "loss": 0.15608,
+     "mse": 0.1275
+    },
+    {
+     "step": 9520,
+     "loss": 0.16925,
+     "mse": 0.14039
+    },
+    {
+     "step": 9540,
+     "loss": 0.14566,
+     "mse": 0.12057
+    },
+    {
+     "step": 9560,
+     "loss": 0.16971,
+     "mse": 0.14071
+    },
+    {
+     "step": 9580,
+     "loss": 0.14754,
+     "mse": 0.1218
+    },
+    {
+     "step": 9600,
+     "loss": 0.14843,
+     "mse": 0.11941
+    },
+    {
+     "step": 9620,
+     "loss": 0.14933,
+     "mse": 0.12256
+    },
+    {
+     "step": 9640,
+     "loss": 0.14786,
+     "mse": 0.12061
+    },
+    {
+     "step": 9660,
+     "loss": 0.15268,
+     "mse": 0.12679
+    },
+    {
+     "step": 9680,
+     "loss": 0.13696,
+     "mse": 0.11255
+    },
+    {
+     "step": 9700,
+     "loss": 0.13925,
+     "mse": 0.11285
+    },
+    {
+     "step": 9720,
+     "loss": 0.16556,
+     "mse": 0.1343
+    },
+    {
+     "step": 9740,
+     "loss": 0.13257,
+     "mse": 0.10835
+    },
+    {
+     "step": 9760,
+     "loss": 0.15146,
+     "mse": 0.12505
+    },
+    {
+     "step": 9780,
+     "loss": 0.15423,
+     "mse": 0.12538
+    },
+    {
+     "step": 9800,
+     "loss": 0.14528,
+     "mse": 0.11794
+    },
+    {
+     "step": 9820,
+     "loss": 0.15237,
+     "mse": 0.12514
+    },
+    {
+     "step": 9840,
+     "loss": 0.15857,
+     "mse": 0.13107
+    },
+    {
+     "step": 9860,
+     "loss": 0.14082,
+     "mse": 0.11618
+    },
+    {
+     "step": 9880,
+     "loss": 0.13768,
+     "mse": 0.11312
+    },
+    {
+     "step": 9900,
+     "loss": 0.15785,
+     "mse": 0.12888
+    },
+    {
+     "step": 9920,
+     "loss": 0.12374,
+     "mse": 0.09985
+    },
+    {
+     "step": 9940,
+     "loss": 0.14856,
+     "mse": 0.12109
+    },
+    {
+     "step": 9960,
+     "loss": 0.14613,
+     "mse": 0.12013
+    },
+    {
+     "step": 9980,
+     "loss": 0.13235,
+     "mse": 0.10818
+    },
+    {
+     "step": 10000,
+     "loss": 0.14527,
+     "mse": 0.11896
     }
    ],
    "probes": [
@@ -5197,11 +5447,27 @@
      "shuffle_gain": 0.0,
      "swap_gain": 0.0,
      "probe_loss_hand": 0.13079
+    },
+    {
+     "step": 9500,
+     "other_gain": 0.0,
+     "zero_gain": 0.0,
+     "shuffle_gain": 0.0,
+     "swap_gain": 0.0,
+     "probe_loss_hand": 0.12942
+    },
+    {
+     "step": 10000,
+     "other_gain": 0.0,
+     "zero_gain": 0.0,
+     "shuffle_gain": 0.0,
+     "swap_gain": 0.0,
+     "probe_loss_hand": 0.12918
     }
    ],
    "latest": {
-    "loss": 0.15973,
-    "grad_norm": 0.7041,
+    "loss": 0.14527,
+    "grad_norm": 0.3245,
     "lr": 0.0001
    }
   }
@@ -5294,7 +5560,7 @@
  ],
  "eval_jobs": [],
  "iteration": {
-  "eta": "2026-11-14T14:31:30+00:00",
+  "eta": "2026-11-14T14:42:27+00:00",
   "final_eval_overhead_h": 3.0,
   "note": "Iteration = both 10k-step runs + final eval (10k checkpoints, then 3 seeds of the best) + report."
  },
