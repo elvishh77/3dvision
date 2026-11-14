@@ -250,3 +250,11 @@ table.wrap-cells td:first-child { min-width: 170px; }
   #ex-hands td:first-child { min-width: 150px; }
   th, td { padding: 8px 9px; }
 }
+
+/* Qualitative demo page */
+figure.demo { margin: 0 0 26px; }
+.media.vs3 { position: relative; }
+.vlabels3 { position: absolute; top: 8px; left: 0; right: 0; display: grid; grid-template-columns: repeat(3, 1fr); pointer-events: none; }
+.vlabels3 span { justify-self: start; margin-left: 8px; background: var(--cream); border: 2px solid var(--ink); border-radius: 999px; padding: 0 9px; font-size: .74rem; }
+.vlabels3 span.ours { background: var(--mint); }
+@media (max-width: 640px) { .vlabels3 span { font-size: .62rem; padding: 0 6px; margin-left: 4px; } }

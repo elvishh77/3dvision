@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>HandCtrl Qualitative Results</title>
+<meta name="description" content="Side-by-side videos: real clip, base model and the trained hand-conditioned model, with the target hand keypoints drawn on every panel.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Huninn&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/icons.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span data-i="film"></span>HandCtrl Video</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#compare">Trained vs base</a><a href="#onehand">One-hand test</a>
+      <a href="index.html">Dashboard</a><a href="eval.html">Eval</a><a href="explore.html">Data &amp; model</a><a href="paper.html">Project page</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero" style="padding-bottom:6px">
+    <div class="pills" id="pills"></div>
+    <h1>Does it <mark class="hl yellow">follow</mark> the hands?</h1>
+    <p class="lead">Held-out clips the model never trained on. Every panel gets the same first frame and prompt. The base model and the
+      trained model generate the rest of the video, and the trained model also receives the hand trajectory.</p>
+  </div>
+
+  <section id="compare">
+    <div class="sec-head"><span class="ico" data-i="play"></span><div><h2>Real · base model · trained model</h2>
+      <div class="sub" id="cmp-sub">Click a clip to play it.</div></div></div>
+    <div class="legend" style="flex-wrap:wrap;margin-bottom:14px">
+      <span><i style="background:#4682ff"></i>target left hand (from the trajectory)</span>
+      <span><i style="background:#3cdc3c"></i>target right hand</span>
+      <span><i style="background:#fff;border:2px solid #e63c32;border-radius:50%"></i>target says the hand is in contact</span>
+    </div>
+    <div class="cap" style="margin:-4px 0 16px">How to read it: the skeletons are the <b>same on all three panels</b>: they are where the hands
+      should be. In the real clip the hands sit under them by definition. The question is whether the generated hands do.</div>
+    <div id="cmp"></div>
+  </section>
+
+  <section id="onehand">
+    <div class="sec-head"><span class="ico" data-i="hand"></span><div><h2>One-hand test</h2>
+      <div class="sub">Same clip, three instructions: both hands act / only the right hand acts / only the left hand acts</div></div></div>
+    <div class="wip" id="oh">Running now (job 571340). Videos appear here when it finishes.</div>
+  </section>
+</main>
+<footer class="wrap"><span class="sunset" data-i="sunset"></span>Videos: 49 frames at 16 fps, downscaled to 384 px per panel. Per-clip hand error = capped keypoint error (px), mean over hands.</footer>
+<script src="assets/demo.js"></script>
+</body>
+</html>

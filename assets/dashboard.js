@@ -75,7 +75,7 @@
     const probes = (r.probes || []).filter((p) => p.other_gain != null).map((p) => [p.step, p.other_gain]);
     const xr = xRange(r.step, r.steps_total);
     const ms = (r.milestones || []).map((m) => {
-      const ev = evals.find((e) => e.tag === `${r.run}_adapter_step_${String(m.step).padStart(7, "0")}`);
+      const ev = evals.find((e) => (e.tag || "").replace("__", "_") === `${r.run}_adapter_step_${String(m.step).padStart(7, "0")}`);
       const evTxt = ev ? `hand err ${ev.epe_capped?.toFixed(1)} px` : m.saved ? "saved · eval pending" : fmtShort(m.eta);
       return `<div class="${m.saved ? "done" : ""}"><div class="k">${m.step / 1000}k</div><div>${esc(evTxt)}</div></div>`;
     }).join("");

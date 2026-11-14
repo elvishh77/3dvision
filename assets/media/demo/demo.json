@@ -1,0 +1,121 @@
+{
+ "ckpt": "v1_K8_h100__adapter_step_0010000",
+ "items": [
+  {
+   "id": "003214_w59",
+   "prompt": "the red spatula ends up moved to the left and farther and turned.",
+   "active": "right",
+   "outcomes": [
+    "moved"
+   ],
+   "epe": {
+    "real": 11.6,
+    "base": 92.6,
+    "ours": null
+   }
+  },
+  {
+   "id": "003219_w59",
+   "prompt": "the wooden spoon ends up moved farther and turned, and the bowl ends up lifted in the left hand.",
+   "active": "both",
+   "outcomes": [
+    "moved",
+    "lifted"
+   ],
+   "epe": {
+    "real": 8.5,
+    "base": 103.1,
+    "ours": null
+   }
+  },
+  {
+   "id": "003230_w0",
+   "prompt": "the ranch bottle ends up lifted in both hands and turned.",
+   "active": "both",
+   "outcomes": [
+    "lifted"
+   ],
+   "epe": {
+    "real": 12.6,
+    "base": 123.2,
+    "ours": null
+   }
+  },
+  {
+   "id": "003233_w59",
+   "prompt": "the vase ends up moved closer and turned.",
+   "active": "left",
+   "outcomes": [
+    "moved"
+   ],
+   "epe": {
+    "real": 25.1,
+    "base": 116.4,
+    "ours": null
+   }
+  },
+  {
+   "id": "003234_w0",
+   "prompt": "the vase ends up lifted in both hands and turned.",
+   "active": "both",
+   "outcomes": [
+    "lifted"
+   ],
+   "epe": {
+    "real": 26.1,
+    "base": 123.6,
+    "ours": null
+   }
+  },
+  {
+   "id": "003241_w59",
+   "prompt": "the bamboo plate stays held in the left hand.",
+   "active": "both",
+   "outcomes": [
+    "held"
+   ],
+   "epe": {
+    "real": 67.3,
+    "base": 82.4,
+    "ours": null
+   }
+  },
+  {
+   "id": "003244_w59",
+   "prompt": "the DVD remote ends up moved to the left.",
+   "active": "right",
+   "outcomes": [
+    "moved"
+   ],
+   "epe": {
+    "real": 7.5,
+    "base": 45.9,
+    "ours": null
+   }
+  },
+  {
+   "id": "003245_w0",
+   "prompt": "the DVD remote ends up set down to the left and farther and turned.",
+   "active": "left",
+   "outcomes": [
+    "placed"
+   ],
+   "epe": {
+    "real": 27.4,
+    "base": 112.8,
+    "ours": null
+   }
+  },
+  {
+   "id": "003247_w0",
+   "prompt": "the hands move without touching anything.",
+   "active": "none",
+   "outcomes": [],
+   "epe": {
+    "real": 4.9,
+    "base": 51.8,
+    "ours": null
+   }
+  }
+ ]
+}
