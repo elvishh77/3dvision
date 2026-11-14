@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-14T07:36:56+00:00",
+ "generated": "2026-11-14T07:39:00+00:00",
  "runs": [
   {
    "run": "v1_K8_h100",
@@ -24,7 +24,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-14T04:09:07+00:00",
-   "last_log_age_min": 207.8,
+   "last_log_age_min": 209.9,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
@@ -2927,11 +2927,6 @@
   ],
   "needs_input": [
    {
-    "title": "Approve eval amendment A3?",
-    "detail": "(1) Count a hand in the headline hand error only if its target is visible for at least 5 frames (2.5k: 32.1 -> 30.4 px; ranking unchanged). (2) Add a diagnostic left/right-mismatch rate instead of re-assigning flipped hands, because re-assigning would reward the wrong hand moving.",
-    "since": "2026-11-14"
-   },
-   {
     "title": "Paper page: title and authors",
     "detail": "The paper-style page uses a working title and 'Authors TBD'. Send the title and author list when ready.",
     "since": "2026-11-13"
@@ -2958,7 +2953,7 @@
    {
     "role": "critic-evaluator",
     "state": "active",
-    "detail": "One-hand test built, validated and scored (base, 10k); running it on 2.5k. Proposed amendment A3 for two M1 artifacts."
+    "detail": "Implementing A3 and rescoring all checkpoints (no regeneration); one-hand test on 2.5k."
    },
    {
     "role": "model-engineer",
@@ -2979,6 +2974,10 @@
    "Phase 1 report."
   ],
   "decisions": [
+   {
+    "date": "2026-11-14",
+    "text": "Eval amendment A3 approved: hand-windows need >= 5 visible target frames to enter the headline; add a diagnostic left/right mismatch rate instead of re-assigning hands."
+   },
    {
     "date": "2026-11-14",
     "text": "Control run approved: same fine-tune (10k steps, weighted loss) with the hand input zeroed (--no_hand_input), on CoreWeave."
