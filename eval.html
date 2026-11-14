@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>HandCtrl Evaluation</title>
+<meta name="description" content="How generated videos are scored: hand trajectory error, contact, jitter and a VLM outcome checklist, with a worked example and live results.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Huninn&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/icons.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span data-i="film"></span>HandCtrl Video</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#pipeline">Pipeline</a><a href="#example">Example</a><a href="#metrics">Metrics</a><a href="#results">Results</a><a href="#next">Planned</a>
+      <a href="index.html">Dashboard</a><a href="explore.html">Data &amp; model</a><a href="paper.html">Project page</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero" style="padding-bottom:10px">
+    <div class="pills"><span class="pill bg-yellow">32 held-out clips</span><span class="pill bg-mint">participant P0015, never trained on</span><span class="pill bg-sky">~45 min per checkpoint</span></div>
+    <h1>Do the hands go where we <mark class="hl mint">asked</mark>?</h1>
+    <p class="lead">How a generated video is scored: detect the hands in every frame, compare them with the trajectory the model was given, and ask a vision-language model whether the prompted outcome happened.</p>
+  </div>
+
+  <section id="pipeline">
+    <div class="sec-head"><span class="ico" data-i="ruler"></span><div><h2>The pipeline</h2><div class="sub">Run per checkpoint by <code>eval/run_eval.py</code> on one GPU</div></div></div>
+    <div class="steps">
+      <div class="card bg-coral-soft"><div class="num">1</div><h3>Inputs</h3><div class="muted small">A held-out clip's first frame, outcome prompt and real MANO hand trajectory with contact.</div></div>
+      <div class="card bg-yellow-soft"><div class="num">2</div><h3>Generate</h3><div class="muted small">The model makes a 49-frame video from those inputs (about 67 s).</div></div>
+      <div class="card bg-sky-soft"><div class="num">3</div><h3>Detect hands</h3><div class="muted small">WiLoR finds hands, HaMeR gives 21 keypoints per hand and HACO gives the parts in contact, in every frame.</div></div>
+      <div class="card bg-mint-soft"><div class="num">4</div><h3>Ask the judge</h3><div class="muted small">Qwen2.5-VL-7B answers yes/no questions built from the prompt, at 8 keyframes.</div></div>
+      <div class="card bg-coral-soft"><div class="num">5</div><h3>Score</h3><div class="muted small">Detected vs conditioned hands, per hand and per clip, are averaged over the set. Overlay videos are written for checking by eye.</div></div>
+    </div>
+  </section>
+
+  <section id="example">
+    <div class="sec-head"><span class="ico" data-i="play"></span><div><h2>Worked example</h2><div class="sub">The same clip scored for the real video and for the base model with no hand control. Pick a clip:</div></div></div>
+    <div class="pills" id="ex-tabs" role="tablist" style="margin-bottom:14px"></div>
+    <div class="card">
+      <div class="small" style="margin-bottom:10px"><b>Prompt:</b> <span id="ex-prompt"></span> <span class="badge plain" id="ex-active"></span></div>
+      <div class="grid g2">
+        <figure style="margin:0"><div class="media vs"><video id="ex-v-gt" muted loop playsinline controls preload="none"></video><div class="vlabels"><span>Real video</span></div></div></figure>
+        <figure style="margin:0"><div class="media vs"><video id="ex-v-base" muted loop playsinline controls preload="none"></video><div class="vlabels"><span>Base model, no hand control</span></div></div></figure>
+      </div>
+      <div class="legend" style="margin:12px 0 4px;flex-wrap:wrap">
+        <span><i style="background:#28ff28"></i>target keypoints (the conditioning)</span>
+        <span><i style="background:#ff2828"></i>hand detected in the video (HaMeR)</span>
+        <span><i style="background:#ffc800"></i>contact predicted by HACO</span>
+      </div>
+      <h3 style="margin-top:18px">Per-hand scores <span class="small muted">(real video → <b>base model</b>)</span></h3>
+      <div class="table-wrap"><table id="ex-hands"></table></div>
+      <h3 style="margin-top:18px">The judge's checklist <span class="small muted">(base model's video)</span></h3>
+      <div class="table-wrap"><table id="ex-q"></table></div>
+      <div class="cap">Questions about <i>other</i> objects in the scene are controls: the right answer is "no". On a single clip the judge
+        often says yes to those too, so task accuracy is only reported pooled over all 32 clips, never per clip.</div>
+    </div>
+  </section>
+
+  <section id="metrics">
+    <div class="sec-head"><span class="ico" data-i="clip"></span><div><h2>The metrics and how much to trust them</h2>
+      <div class="sub">Each metric was first run on real clips paired with deliberately wrong trajectories. It is used only if it prefers the true pairing.</div></div></div>
+    <div class="table-wrap"><table class="wrap-cells">
+      <tr><th>Metric</th><th style="text-align:left">Catches</th><th>Real clip</th><th>Wrong trajectory</th><th>Prefers the truth</th><th style="text-align:left">Role</th></tr>
+      <tr><td><b>M1 hand error, capped</b> (px)</td><td style="text-align:left">hands not following the trajectory; missing hands count 128 px</td><td>9.5</td><td>68–128</td><td>98–100%</td><td style="text-align:left"><span class="badge ok">selects checkpoints</span></td></tr>
+      <tr><td>M1 PCK@25</td><td style="text-align:left">share of keypoints within 25 px</td><td>0.97</td><td>0.00–0.22</td><td>98–100%</td><td style="text-align:left"><span class="badge info">reported</span></td></tr>
+      <tr><td>M2 contact F1</td><td style="text-align:left">touching at the wrong time or with the wrong hand</td><td>0.74</td><td>0.42–0.69</td><td>65–81%</td><td style="text-align:left"><span class="badge warn">diagnostic only</span></td></tr>
+      <tr><td>M2 idle-hand grip</td><td style="text-align:left">a hand that should be idle holding something (VLM)</td><td>0.24</td><td>swap: higher</td><td>weak</td><td style="text-align:left"><span class="badge warn">diagnostic only</span></td></tr>
+      <tr><td>M3 jitter ratio</td><td style="text-align:left">flickering or melting hands (1.0 = as smooth as real)</td><td>1.0</td><td>3.4× on shuffled video</td><td>100%</td><td style="text-align:left"><span class="badge info">reported</span></td></tr>
+      <tr><td>M4 task accuracy</td><td style="text-align:left">the prompted outcome not happening</td><td>0.83</td><td>0.48 (other clip's outcomes)</td><td>pooled only</td><td style="text-align:left"><span class="badge info">reported for the set</span></td></tr>
+      <tr><td>M5 PSNR / LPIPS</td><td style="text-align:left">overall similarity to the real clip</td><td>—</td><td>—</td><td>—</td><td style="text-align:left"><span class="badge plain">optional</span></td></tr>
+    </table></div>
+  </section>
+
+  <section id="results">
+    <div class="sec-head"><span class="ico" data-i="chart"></span><div><h2>Results so far</h2><div class="sub">Averages over the 32 held-out clips. Trained checkpoints appear here as they are scored.</div></div></div>
+    <div class="table-wrap"><table id="res"></table></div>
+    <div class="cap" id="res-note"></div>
+    <h3 style="margin-top:22px">Held-out check during training <span class="small muted">(no video generated)</span></h3>
+    <div class="muted small" style="margin-bottom:10px">Every 500 steps the training job measures how much worse the model's prediction gets on 8 held-out clips when the
+      hand conditioning is changed. Positive = the model relies on that part of the conditioning.</div>
+    <div class="table-wrap"><table id="probe"></table></div>
+  </section>
+
+  <section id="next">
+    <div class="sec-head"><span class="ico" data-i="bubble"></span><div><h2>Planned: the one-hand test</h2><div class="sub">Proposed, waiting for your OK on the design</div></div></div>
+    <div class="grid g3">
+      <div class="card bg-sky-soft"><h3>Question</h3><div class="muted small">If only one hand is told to act, does only that hand act? The current eval never gives the model a trajectory different from the real one.</div></div>
+      <div class="card bg-yellow-soft"><h3>Setup</h3><div class="muted small">18 eval clips with both hands active. Each clip is generated three times: both hands, right hand only and left hand only. In the one-hand runs the other hand is held still at its first-frame pose with no contact.</div></div>
+      <div class="card bg-mint-soft"><h3>Score</h3><div class="muted small">For the active hand: trajectory error and contact. For the idle hand: does it stay still and empty? Headline: contact rate of the commanded hand minus that of the idle hand.</div></div>
+    </div>
+    <div class="cap">Why it matters: the held-out check shows the model barely reacts when the left and right hands are swapped (+0.002). It may follow where the hands are drawn rather than which hand is which.</div>
+  </section>
+</main>
+<footer class="wrap"><span class="sunset" data-i="sunset"></span>Metric definitions: <code>eval/METRICS_PROPOSAL.md</code> (approved v1 + amendment A1). Real and base-model rows are measured; trained rows fill in as checkpoints are scored.</footer>
+<script src="assets/eval.js"></script>
+</body>
+</html>

@@ -235,3 +235,18 @@ pre.bib { background: var(--card); border: var(--bw) solid var(--ink); border-ra
   .condgrid > div:first-child { display: none; }
   .condrow { margin-top: 14px; }
 }
+
+/* Eval page */
+.steps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 900px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
+.steps .num { width: 30px; height: 30px; border: 2px solid var(--ink); border-radius: 50%; display: grid; place-items: center;
+  background: var(--cream); margin-bottom: 8px; font-size: .9rem; }
+td.hi { background: var(--coral-soft); }
+table.wrap-cells td, table.wrap-cells th { white-space: normal; }
+table.wrap-cells td:first-child { min-width: 170px; }
+@media (max-width: 640px) {
+  #ex-q td:first-child { min-width: 230px; }
+  #ex-hands td:first-child { min-width: 150px; }
+  th, td { padding: 8px 9px; }
+}

@@ -1,0 +1,335 @@
+[
+ {
+  "id": "003230_w0",
+  "prompt": "the ranch bottle ends up lifted in both hands and turned.",
+  "active": "both",
+  "rows": {
+   "gt": {
+    "hands": {
+     "left": {
+      "moving": true,
+      "frames": 48,
+      "epe": 11.50629,
+      "pck": 0.94176,
+      "recall": 0.97917,
+      "role": "active",
+      "f1": 0.93548,
+      "jitter": 1.0
+     },
+     "right": {
+      "moving": false,
+      "frames": 22,
+      "epe": 13.65647,
+      "pck": 0.86682,
+      "recall": 1.0,
+      "role": "active",
+      "f1": 0.83871,
+      "jitter": 1.0
+     }
+    },
+    "questions": [
+     {
+      "q": "At the end of the video, is the ranch bottle lifted off the surface and held in both of the person's hands?",
+      "expected": true,
+      "p": 0.97916,
+      "ok": true
+     },
+     {
+      "q": "At the end of the video, is the coffee pot lifted off the surface and held in the person's hand?",
+      "expected": false,
+      "p": 0.02037,
+      "ok": true
+     },
+     {
+      "q": "During the video, is the ranch bottle turned or rotated noticeably?",
+      "expected": true,
+      "p": 0.56034,
+      "ok": true
+     },
+     {
+      "q": "During the video, is the coffee pot turned or rotated noticeably?",
+      "expected": false,
+      "p": 0.00519,
+      "ok": true
+     }
+    ]
+   },
+   "base": {
+    "hands": {
+     "left": {
+      "moving": true,
+      "frames": 48,
+      "epe": 118.38415,
+      "pck": 0.0022,
+      "recall": 0.97917,
+      "role": "active",
+      "f1": 0.78378,
+      "jitter": 0.41822
+     },
+     "right": {
+      "moving": false,
+      "frames": 22,
+      "epe": 128.0,
+      "pck": 0.00234,
+      "recall": 1.0,
+      "role": "active",
+      "f1": 0.8,
+      "jitter": 0.86457
+     }
+    },
+    "questions": [
+     {
+      "q": "At the end of the video, is the ranch bottle lifted off the surface and held in both of the person's hands?",
+      "expected": true,
+      "p": 0.96362,
+      "ok": true
+     },
+     {
+      "q": "At the end of the video, is the coffee pot lifted off the surface and held in the person's hand?",
+      "expected": false,
+      "p": 0.94885,
+      "ok": false
+     },
+     {
+      "q": "During the video, is the ranch bottle turned or rotated noticeably?",
+      "expected": true,
+      "p": 0.644,
+      "ok": true
+     },
+     {
+      "q": "During the video, is the coffee pot turned or rotated noticeably?",
+      "expected": false,
+      "p": 0.61025,
+      "ok": false
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "003266_w0",
+  "prompt": "the tomato sauce can ends up lifted in the left hand and turned.",
+  "active": "left",
+  "rows": {
+   "gt": {
+    "hands": {
+     "left": {
+      "moving": true,
+      "frames": 48,
+      "epe": 8.60129,
+      "pck": 0.96204,
+      "recall": 1.0,
+      "role": "active",
+      "f1": 1.0,
+      "jitter": 1.0
+     },
+     "right": {
+      "moving": false,
+      "frames": 31,
+      "epe": 15.3989,
+      "pck": 0.94625,
+      "recall": 0.93548,
+      "role": "inactive",
+      "f1": null,
+      "jitter": 1.0
+     }
+    },
+    "questions": [
+     {
+      "q": "At the end of the video, is the tomato sauce can lifted off the surface and held in the person's left hand?",
+      "expected": true,
+      "p": 0.91252,
+      "ok": true
+     },
+     {
+      "q": "At the end of the video, is the tomato sauce can lifted off the surface and held in the person's right hand only?",
+      "expected": false,
+      "p": 0.36962,
+      "ok": true
+     },
+     {
+      "q": "At the end of the video, is the potato masher lifted off the surface and held in the person's hand?",
+      "expected": false,
+      "p": 0.09547,
+      "ok": true
+     },
+     {
+      "q": "During the video, is the tomato sauce can turned or rotated noticeably?",
+      "expected": true,
+      "p": 0.62129,
+      "ok": true
+     },
+     {
+      "q": "During the video, is the potato masher turned or rotated noticeably?",
+      "expected": false,
+      "p": 0.01786,
+      "ok": true
+     }
+    ]
+   },
+   "base": {
+    "hands": {
+     "left": {
+      "moving": true,
+      "frames": 48,
+      "epe": 127.17217,
+      "pck": 0.002,
+      "recall": 0.27083,
+      "role": "active",
+      "f1": 0.42623,
+      "jitter": 2.05086
+     },
+     "right": {
+      "moving": false,
+      "frames": 31,
+      "epe": 128.0,
+      "pck": 0.0,
+      "recall": 0.32258,
+      "role": "inactive",
+      "f1": null,
+      "jitter": 2.26766
+     }
+    },
+    "questions": [
+     {
+      "q": "At the end of the video, is the tomato sauce can lifted off the surface and held in the person's left hand?",
+      "expected": true,
+      "p": 0.32085,
+      "ok": false
+     },
+     {
+      "q": "At the end of the video, is the tomato sauce can lifted off the surface and held in the person's right hand only?",
+      "expected": false,
+      "p": 0.43678,
+      "ok": true
+     },
+     {
+      "q": "At the end of the video, is the potato masher lifted off the surface and held in the person's hand?",
+      "expected": false,
+      "p": 0.84925,
+      "ok": false
+     },
+     {
+      "q": "During the video, is the tomato sauce can turned or rotated noticeably?",
+      "expected": true,
+      "p": 0.18203,
+      "ok": false
+     },
+     {
+      "q": "During the video, is the potato masher turned or rotated noticeably?",
+      "expected": false,
+      "p": 0.09465,
+      "ok": true
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "003302_w0",
+  "prompt": "the patterned mug ends up in the left hand and turned.",
+  "active": "both",
+  "rows": {
+   "gt": {
+    "hands": {
+     "left": {
+      "moving": true,
+      "frames": 34,
+      "epe": 7.84808,
+      "pck": 0.97021,
+      "recall": 1.0,
+      "role": "active",
+      "f1": 1.0,
+      "jitter": 1.0
+     },
+     "right": {
+      "moving": false,
+      "frames": 43,
+      "epe": 16.32462,
+      "pck": 0.87169,
+      "recall": 0.97674,
+      "role": "active",
+      "f1": 0.90667,
+      "jitter": 1.0
+     }
+    },
+    "questions": [
+     {
+      "q": "During the video, is the patterned mug passed from one of the person's hands to the other?",
+      "expected": true,
+      "p": 0.69172,
+      "ok": true
+     },
+     {
+      "q": "During the video, is the bowl passed from one of the person's hands to the other?",
+      "expected": false,
+      "p": 0.22195,
+      "ok": true
+     },
+     {
+      "q": "During the video, is the patterned mug turned or rotated noticeably?",
+      "expected": true,
+      "p": 0.62022,
+      "ok": true
+     },
+     {
+      "q": "During the video, is the bowl turned or rotated noticeably?",
+      "expected": false,
+      "p": 0.18218,
+      "ok": true
+     }
+    ]
+   },
+   "base": {
+    "hands": {
+     "left": {
+      "moving": true,
+      "frames": 34,
+      "epe": 128.0,
+      "pck": 0.0,
+      "recall": 0.0,
+      "role": "active",
+      "f1": 0.0,
+      "jitter": null
+     },
+     "right": {
+      "moving": false,
+      "frames": 43,
+      "epe": 83.39414,
+      "pck": 0.02381,
+      "recall": 1.0,
+      "role": "active",
+      "f1": 0.82927,
+      "jitter": 1.58715
+     }
+    },
+    "questions": [
+     {
+      "q": "During the video, is the patterned mug passed from one of the person's hands to the other?",
+      "expected": true,
+      "p": 0.25634,
+      "ok": false
+     },
+     {
+      "q": "During the video, is the bowl passed from one of the person's hands to the other?",
+      "expected": false,
+      "p": 0.14717,
+      "ok": true
+     },
+     {
+      "q": "During the video, is the patterned mug turned or rotated noticeably?",
+      "expected": true,
+      "p": 0.83432,
+      "ok": true
+     },
+     {
+      "q": "During the video, is the bowl turned or rotated noticeably?",
+      "expected": false,
+      "p": 0.5308,
+      "ok": false
+     }
+    ]
+   }
+  }
+ }
+]
