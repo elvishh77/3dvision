@@ -14,10 +14,11 @@
     let lastGroup = null;
     $("cmp").innerHTML = d.items.map((it) => { const head = it.group && it.group !== lastGroup ? `<h3 class="grp">${esc(it.group)}</h3>` : ""; lastGroup = it.group || lastGroup; return head + `<figure class="demo">
         <div class="media vs3"><video src="assets/media/demo/${it.id}.mp4?v=3" poster="assets/media/demo/${it.id}.jpg?v=3" muted loop playsinline controls preload="none"></video>
-          <div class="vlabels3"><span>Real clip</span><span>Base model</span><span class="ours">Trained · ${esc(s)}</span></div></div>
+          ${d.ctrl ? `<div class="vlabels4"><span>Real clip</span><span>Base model</span><span class="ctrl">Fine-tuned, no hand input</span><span class="ours">Trained · ${esc(s)}</span></div>`
+                   : `<div class="vlabels3"><span>Real clip</span><span>Base model</span><span class="ours">Trained · ${esc(s)}</span></div>`}</div>
         <figcaption class="cap"><span class="badge plain">${esc(it.id)}</span> <span class="badge plain">${esc(ACT[it.active] || it.active)}</span>
           <b>Prompt:</b> ${esc(it.prompt)}
-          <br>Hand error: real ${n(it.epe.real)} · base ${n(it.epe.base)} · <b>trained ${n(it.epe.ours)}</b>
+          <br>Hand error: real ${n(it.epe.real)} · base ${n(it.epe.base)}${d.ctrl ? ` · no hand input ${n(it.epe.ctrl)}` : ""} · <b>trained ${n(it.epe.ours)}</b>
           ${it.note ? `<div class="item ${it.group === "Failures" ? "high" : "input"}" style="margin-top:8px;padding:8px 12px"><div class="d" style="margin:0;color:var(--ink)">${esc(it.note)}</div></div>` : ""}</figcaption>
       </figure>`; }).join("");
   }).catch(() => ($("cmp").innerHTML = `<div class="wip">No demo videos yet.</div>`));
