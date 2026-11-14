@@ -92,11 +92,16 @@
   }
  ],
  "next_actions": [
+  "Control evals running on unicorn (628246-628250; 10k with 3 seeds) -> 'no hand input' row and demo panel.",
+  "v2a / v2b finish ~1.8 h after 17:15; copy their milestones/ to unicorn for eval.",
   "v1_K8_h100_nocond trains on CoreWeave (job 254316); copy its milestones to unicorn; score them -> HOT3D adaptation vs hand following.",
-  "CoreWeave launches v2a / v2b (code 8ce085b, ~1.8 h each); copy their milestones/ (EMA weights) to unicorn for eval.",
   "Phase 1 report: results table, one-hand test, demos, limitations (object identity drift, jitter)."
  ],
  "decisions": [
+  {
+   "date": "2026-11-14",
+   "text": "v2a (job 254693) and v2b (job 254694) running on CoreWeave at 8ce085b after your go-ahead; settings verified against v1_K8_h100."
+  },
   {
    "date": "2026-11-14",
    "text": "EMA + cosine options pushed (8ce085b) after a GPU smoke test; v2a/v2b configs sent to CoreWeave (launch after your confirmation)."
@@ -216,7 +221,8 @@
    "branch": "run-status",
    "cluster": "coreweave",
    "gpus": 8,
-   "gpu_type": "H100 80GB"
+   "gpu_type": "H100 80GB",
+   "job_id": "254693"
   },
   {
    "name": "v2b_K8_h100",
@@ -225,7 +231,8 @@
    "branch": "run-status",
    "cluster": "coreweave",
    "gpus": 8,
-   "gpu_type": "H100 80GB"
+   "gpu_type": "H100 80GB",
+   "job_id": "254694"
   },
   {
    "name": "v2_mix_h100",
