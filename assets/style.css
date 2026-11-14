@@ -217,3 +217,21 @@ pre.bib { background: var(--card); border: var(--bw) solid var(--ink); border-ra
 .vlabels span { background: var(--cream); border: 2px solid var(--ink); border-radius: 999px; padding: 0 9px; font-size: .74rem; }
 .vlabels span + span { background: var(--coral); }
 @media (max-width: 640px) { .nav { -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent); mask-image: linear-gradient(90deg, #000 85%, transparent); } }
+
+/* Data & model page */
+.condwrap { overflow-x: auto; }
+.condgrid, .condrow { display: grid; grid-template-columns: 190px minmax(0, 1fr); column-gap: 12px; align-items: center; min-width: 620px; }
+.condgrid .frames { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); text-align: center; font-size: .8rem; color: var(--ink-2); }
+.condrow { margin-top: 10px; }
+.condrow img { width: 100%; height: auto; image-rendering: pixelated; border: 2px solid var(--ink); border-radius: 10px; background: #fff; display: block; }
+.cl { line-height: 1.3; }
+.legend { display: flex; gap: 14px; font-size: .82rem; color: var(--ink-2); margin: 8px 0 2px; }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.tip { position: fixed; display: none; pointer-events: none; z-index: 50; background: var(--cream); border: 2px solid var(--ink);
+  border-radius: 10px; padding: 6px 10px; font-size: .82rem; box-shadow: var(--shadow-sm); max-width: 260px; }
+.card h3 { margin-bottom: 2px; }
+@media (max-width: 640px) {
+  .condgrid, .condrow { grid-template-columns: 1fr; min-width: 0; row-gap: 4px; }
+  .condgrid > div:first-child { display: none; }
+  .condrow { margin-top: 14px; }
+}

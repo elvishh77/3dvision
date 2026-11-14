@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>HandCtrl Data and Model</title>
+<meta name="description" content="The training data and the model architecture of the hand-contact-conditioned video model: inputs, conditioning volume and outputs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Huninn&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<script src="assets/icons.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span data-i="film"></span>HandCtrl Video</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#data">Dataset</a><a href="#gallery">Samples</a><a href="#cond">Conditioning</a><a href="#model">Model</a>
+      <a href="index.html">Dashboard</a><a href="paper.html">Project page</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero" style="padding-bottom:10px">
+    <div class="pills"><span class="pill bg-yellow">HOT3D-Clips</span><span class="pill bg-mint">3,032 clips · 49 frames</span><span class="pill bg-sky">Wan2.1-Fun-1.3B-InP + adapter</span></div>
+    <h1>What the model <mark class="hl sky">sees</mark> and makes</h1>
+    <p class="lead">The training data, one clip turned into the model's hand-conditioning input, and the network from inputs to output video.</p>
+  </div>
+
+  <!-- ===================== DATASET ===================== -->
+  <section id="data">
+    <div class="sec-head"><span class="ico" data-i="db"></span><div><h2>Training data</h2>
+      <div class="sub">HOT3D-Clips egocentric (Aria) recordings, cut into 49-frame windows at 16 fps (about 3 s each)</div></div></div>
+    <div class="grid g4" id="data-stats"></div>
+    <div class="grid g2" style="margin-top:22px">
+      <div class="card"><h3>Clips per participant</h3><div class="small muted">P0015 never appears in training: its 304 clips are the held-out set for probes and scoring.</div><div id="ch-part"></div></div>
+      <div class="card"><h3>What happens in a clip</h3><div class="small muted">Outcome of each moved object, from the object poses. This is what the prompt describes.</div><div id="ch-outcome"></div></div>
+      <div class="card"><h3>Which hands are active</h3><div class="small muted">Hands that touch an object at some point in the clip.</div><div id="ch-active"></div></div>
+      <div class="card"><h3>Most-handled objects</h3><div class="small muted">Top 12 of the objects that end up moved, by clip count.</div><div id="ch-objects"></div></div>
+      <div class="card"><h3>Where hands touch</h3><div class="small muted">Share of frames in which each hand part is in contact (≥ 3 of its MANO vertices within 10 mm of an object).</div><div id="ch-parts"></div></div>
+      <div class="card"><h3>How much of a clip has contact</h3><div class="small muted">Clips by the share of their frames in which either hand touches an object.</div><div id="ch-contact"></div></div>
+    </div>
+  </section>
+
+  <!-- ===================== GALLERY ===================== -->
+  <section id="gallery">
+    <div class="sec-head"><span class="ico" data-i="play"></span><div><h2>Training samples</h2>
+      <div class="sub">One clip per outcome type, each from a different participant. Click a clip to play it. Overlay: MANO hand (blue = left, green = right), red = contact.</div></div></div>
+    <div class="grid g3" id="gal"></div>
+  </section>
+
+  <!-- ===================== CONDITIONING ===================== -->
+  <section id="cond">
+    <div class="sec-head"><span class="ico" data-i="grid"></span><div><h2>From hand trajectory to model input</h2>
+      <div class="sub">The "red spatula ends up lifted in the right hand" clip above, rasterised the way the adapter receives it</div></div></div>
+    <div class="prose muted"><p>For every video frame the MANO trajectory is drawn onto a 64 × 64 grid, the size of the video latent, with
+      64 channels. Below are 5 of the 49 frames and the channel groups, each at its true 64 × 64 resolution.</p></div>
+    <div class="card condwrap">
+      <div class="condgrid"><div></div><div class="frames"><div>frame 0</div><div>12</div><div>24</div><div>36</div><div>48</div></div></div>
+      <div id="cond-rows"></div>
+    </div>
+    <div class="grid g2" style="margin-top:18px">
+      <div class="card bg-yellow-soft"><h3>Packing 49 frames into 13 latent frames</h3>
+        <div class="muted small" style="margin-bottom:10px">The video VAE compresses time 4×. Each latent frame stacks the 4 video frames it covers as 4 slots of 64 channels, giving 256 channels.</div>
+        <svg class="diagram" viewBox="0 0 470 150" role="img" aria-label="49 video frames packed into 13 latent frames">
+          <text x="0" y="16" class="sub">video frames 0–48</text>
+          <g id="pk-top"></g>
+          <text x="0" y="128" class="sub">latent frames 0–12 (256 ch each)</text>
+          <g id="pk-bot"></g>
+        </svg>
+      </div>
+      <div class="card bg-sky-soft"><h3>Channel layout (per video frame)</h3>
+        <div class="chan" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+          <div><div class="c">ch 0–55</div><b>Keypoint identity</b><div class="muted small">fixed random code per joint (42 joints)</div></div>
+          <div><div class="c">ch 56–57</div><b>Keypoint occupancy</b><div class="muted small">left / right</div></div>
+          <div><div class="c">ch 58–59</div><b>Hand surface</b><div class="muted small">all 778 vertices, L / R</div></div>
+          <div><div class="c">ch 60–61</div><b>Contact</b><div class="muted small">contact vertices, L / R</div></div>
+          <div><div class="c">ch 62–63</div><b>Depth</b><div class="muted small">keypoint distance, L / R</div></div>
+          <div><div class="c">result</div><b>256 × 13 × 64 × 64</b><div class="muted small">the tensor the adapter reads</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== MODEL ===================== -->
+  <section id="model">
+    <div class="sec-head"><span class="ico" data-i="layers"></span><div><h2>Model architecture</h2>
+      <div class="sub">Inputs on the left, output on the right. Dashed = frozen, blue = trained (432M parameters on top of the frozen 1.56B DiT).</div></div></div>
+    <div class="card" style="overflow-x:auto">
+      <svg class="diagram arch" viewBox="0 0 1100 610" role="img" aria-label="Model architecture with tensor shapes" style="min-width:760px">
+        <defs>
+          <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="#3e3a39"/></marker>
+          <marker id="ahb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="#3f86b8"/></marker>
+        </defs>
+        <!-- column labels -->
+        <text x="20" y="18" class="sub">INPUTS</text><text x="275" y="18" class="sub">ENCODE (frozen)</text>
+        <text x="545" y="18" class="sub">DENOISER</text><text x="905" y="18" class="sub">OUTPUT</text>
+
+        <!-- inputs -->
+        <rect class="box in1" x="20" y="34" width="210" height="58" rx="12"/><text x="125" y="58" text-anchor="middle">First frame</text><text x="125" y="78" text-anchor="middle" class="sub">RGB 3 × 512 × 512</text>
+        <rect class="box in2" x="20" y="164" width="210" height="58" rx="12"/><text x="125" y="188" text-anchor="middle">Outcome prompt</text><text x="125" y="208" text-anchor="middle" class="sub">"the spatula ends up lifted…"</text>
+        <rect class="box" x="20" y="244" width="210" height="58" rx="12"/><text x="125" y="268" text-anchor="middle">Noisy video latent x_t</text><text x="125" y="288" text-anchor="middle" class="sub">16 × 13 × 64 × 64</text>
+        <rect class="box in3" x="20" y="420" width="210" height="76" rx="12"/><text x="125" y="444" text-anchor="middle">MANO hand trajectory</text><text x="125" y="464" text-anchor="middle" class="sub">49 frames × 2 hands</text><text x="125" y="482" text-anchor="middle" class="sub">21 keypoints, 778 verts + contact</text>
+
+        <!-- encoders -->
+        <rect class="box frozen" x="275" y="34" width="220" height="50" rx="10"/><text x="385" y="55" text-anchor="middle">VAE encode + mask</text><text x="385" y="73" text-anchor="middle" class="sub">y: 20 × 13 × 64 × 64</text>
+        <rect class="box frozen" x="275" y="96" width="220" height="50" rx="10"/><text x="385" y="117" text-anchor="middle">CLIP ViT-H/14</text><text x="385" y="135" text-anchor="middle" class="sub">257 × 1280 image tokens</text>
+        <rect class="box frozen" x="275" y="168" width="220" height="50" rx="10"/><text x="385" y="189" text-anchor="middle">umT5-XXL</text><text x="385" y="207" text-anchor="middle" class="sub">≤ 512 × 4096 text tokens</text>
+        <rect class="box frozen" x="275" y="244" width="220" height="58" rx="10"/><text x="385" y="265" text-anchor="middle">concat x_t ⊕ y → patchify</text><text x="385" y="285" text-anchor="middle" class="sub">36 ch → 13,312 tokens × 1536</text>
+        <rect class="box" x="275" y="420" width="220" height="76" rx="10"/><text x="385" y="444" text-anchor="middle">Rasterise (no weights)</text><text x="385" y="464" text-anchor="middle" class="sub">cond: 256 × 13 × 64 × 64</text><text x="385" y="482" text-anchor="middle" class="sub">see "From hand trajectory…"</text>
+
+        <!-- arrows inputs -> encoders -->
+        <path class="arrow" d="M230,58 L273,58"/><path class="arrow" d="M230,70 C255,70 250,121 273,121"/>
+        <path class="arrow" d="M230,193 L273,193"/><path class="arrow" d="M230,273 L273,273"/>
+        <path class="arrow" d="M230,458 L273,458"/>
+
+        <!-- base DiT -->
+        <rect class="box frozen" x="545" y="34" width="330" height="300" rx="14"/>
+        <text x="710" y="58" text-anchor="middle">Wan2.1-Fun DiT · 30 blocks</text><text x="710" y="76" text-anchor="middle" class="sub">frozen, 1.56B params · self-attn + cross-attn + MLP</text>
+        <g id="base-blocks"></g>
+        <text x="710" y="322" text-anchor="middle" class="sub">time t → embedding into every block</text>
+
+        <!-- adapter -->
+        <rect class="box train" x="545" y="400" width="330" height="190" rx="14"/>
+        <text x="710" y="424" text-anchor="middle">Adapter · copy of blocks 1–8</text><text x="710" y="442" text-anchor="middle" class="sub">trainable, 432M params</text>
+        <g id="ad-blocks"></g>
+        <rect class="box" x="565" y="530" width="290" height="44" rx="10"/><text x="710" y="548" text-anchor="middle" class="sub">cond patch-embed (Conv3d 256 → 1536)</text><text x="710" y="566" text-anchor="middle" class="sub">+ zero-init Linear, added to video tokens</text>
+
+        <!-- encoder -> denoiser arrows -->
+        <path class="arrow" d="M495,52 L508,52 L508,236 L470,236 L470,242"/><text x="503" y="232" class="sub" text-anchor="end">y</text>
+        <path class="arrow" d="M495,273 L543,273"/>
+        <path class="arrow" d="M495,121 L527,121 L527,150 L543,150"/><path class="arrow" d="M495,193 L527,193 L527,160 L543,160"/><text x="532" y="186" class="sub">ctx</text>
+        <path class="arrow" d="M495,458 L530,458 L530,552 L563,552"/>
+        <path class="arrow" d="M520,302 L520,470 L563,470" />
+        <text x="508" y="392" class="sub" text-anchor="end">video tokens</text>
+
+        <!-- residual arrows adapter -> base -->
+        <path class="arrow train" d="M710,398 L710,338"/><text x="720" y="362" class="sub" style="fill:#3f86b8">8 zero-init Linear layers</text><text x="720" y="380" class="sub" style="fill:#3f86b8">+ residual into blocks 1–8</text>
+
+        <!-- output -->
+        <path class="arrow" d="M875,184 L903,184"/>
+        <rect class="box out" x="905" y="150" width="180" height="68" rx="12"/><text x="995" y="176" text-anchor="middle">Velocity v̂</text><text x="995" y="196" text-anchor="middle" class="sub">16 × 13 × 64 × 64</text>
+        <rect class="box" x="905" y="250" width="180" height="96" rx="12"/><text x="995" y="272" text-anchor="middle">Training</text>
+        <text x="995" y="292" text-anchor="middle" class="sub">loss = ‖v̂ − (ε − z)‖²</text><text x="995" y="310" text-anchor="middle" class="sub">+ hand ×1, contact ×2</text><text x="995" y="328" text-anchor="middle" class="sub">σ ~ shifted uniform (3.0)</text>
+        <rect class="box" x="905" y="372" width="180" height="96" rx="12"/><text x="995" y="394" text-anchor="middle">Sampling</text>
+        <text x="995" y="414" text-anchor="middle" class="sub">30 UniPC steps, CFG 5.0</text><text x="995" y="432" text-anchor="middle" class="sub">→ VAE decode</text><text x="995" y="450" text-anchor="middle" class="sub">from pure noise</text>
+        <rect class="box out" x="905" y="494" width="180" height="62" rx="12"/><text x="995" y="518" text-anchor="middle">Generated video</text><text x="995" y="538" text-anchor="middle" class="sub">49 × 512 × 512 @ 16 fps</text>
+        <path class="arrow" d="M995,218 L995,248"/><path class="arrow" d="M995,346 L995,370"/><path class="arrow" d="M995,468 L995,492"/>
+      </svg>
+    </div>
+    <div class="grid g3" style="margin-top:18px">
+      <div class="card bg-coral-soft"><h3>Why it starts as the base model</h3><div class="muted small">All projections between the adapter and the base are zero-initialised. At step 0 the adapter adds exactly nothing, so training only has to learn what the hands add.</div></div>
+      <div class="card bg-mint-soft"><h3>What is trained</h3><div class="muted small">The patch-embed, the 9 zero-init projections and 8 copied transformer blocks (432M parameters). The VAE, CLIP, T5 and the 30-block DiT (1.56B) stay frozen.</div></div>
+      <div class="card bg-yellow-soft"><h3>Training cost</h3><div class="muted small">Encoders run once offline (21 GB latent cache), so a step only touches the DiT and the adapter. That's about 6 s per 2 clips on an RTX 6000 Ada, or 1.2 s per 8 clips on 8× H100.</div></div>
+    </div>
+    <h3 style="margin-top:26px">Tensor shapes</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Tensor</th><th style="text-align:left">Shape</th><th style="text-align:left">Made by</th><th style="text-align:left">Role</th></tr>
+      <tr><td>First frame</td><td style="text-align:left">3 × 512 × 512</td><td style="text-align:left">input</td><td style="text-align:left">what the scene looks like</td></tr>
+      <tr><td>y</td><td style="text-align:left">20 × 13 × 64 × 64</td><td style="text-align:left">VAE(first frame) + 4-ch frame mask</td><td style="text-align:left">image conditioning, concatenated to x_t</td></tr>
+      <tr><td>CLIP tokens</td><td style="text-align:left">257 × 1280</td><td style="text-align:left">CLIP ViT-H/14</td><td style="text-align:left">cross-attention context</td></tr>
+      <tr><td>Text tokens</td><td style="text-align:left">≤ 512 × 4096</td><td style="text-align:left">umT5-XXL(prompt)</td><td style="text-align:left">cross-attention context (dropped 10% in training)</td></tr>
+      <tr><td>Hand cond</td><td style="text-align:left">256 × 13 × 64 × 64</td><td style="text-align:left">rasteriser(MANO trajectory)</td><td style="text-align:left">adapter input (dropped 10% in training)</td></tr>
+      <tr><td>x_t</td><td style="text-align:left">16 × 13 × 64 × 64</td><td style="text-align:left">(1 − σ)·z + σ·ε</td><td style="text-align:left">noisy video latent</td></tr>
+      <tr><td>Tokens</td><td style="text-align:left">13,312 × 1536</td><td style="text-align:left">patchify (1, 2, 2)</td><td style="text-align:left">13 × 32 × 32 spacetime patches</td></tr>
+      <tr><td>Output v̂</td><td style="text-align:left">16 × 13 × 64 × 64</td><td style="text-align:left">DiT head</td><td style="text-align:left">velocity, trained toward ε − z</td></tr>
+    </table></div>
+  </section>
+</main>
+
+<div class="tip" id="tip" role="tooltip"></div>
+<footer class="wrap"><span class="sunset" data-i="sunset"></span>Dataset numbers computed from all 3,032 windows of the training cache. HOT3D is used under its non-commercial research licence.</footer>
+<script src="assets/explore.js"></script>
+</body>
+</html>

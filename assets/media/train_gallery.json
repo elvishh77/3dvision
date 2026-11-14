@@ -1,0 +1,50 @@
+[
+ {
+  "id": "002090_w0",
+  "participant": "P0003",
+  "outcome": "held",
+  "object": "keyboard",
+  "active": "both",
+  "prompt": "the keyboard stays held in both hands."
+ },
+ {
+  "id": "002326_w0",
+  "participant": "P0009",
+  "outcome": "rotated",
+  "object": "orange juice carton",
+  "active": "both",
+  "prompt": "the orange juice carton ends up turned in both hands."
+ },
+ {
+  "id": "002477_w59",
+  "participant": "P0010",
+  "outcome": "lifted",
+  "object": "red spatula",
+  "active": "right",
+  "prompt": "the red spatula ends up lifted in the right hand and turned."
+ },
+ {
+  "id": "002714_w59",
+  "participant": "P0011",
+  "outcome": "placed",
+  "object": "mustard bottle",
+  "active": "right",
+  "prompt": "the mustard bottle ends up set down to the left and farther and turned."
+ },
+ {
+  "id": "003016_w59",
+  "participant": "P0012",
+  "outcome": "handover",
+  "object": "ranch bottle",
+  "active": "both",
+  "prompt": "the ranch bottle ends up in the right hand and turned."
+ },
+ {
+  "id": "003205_w59",
+  "participant": "P0014",
+  "outcome": "moved",
+  "object": "vase",
+  "active": "left",
+  "prompt": "the vase ends up moved to the right and farther."
+ }
+]
