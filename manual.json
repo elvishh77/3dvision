@@ -36,8 +36,8 @@
   },
   {
    "name": "Checkpoint evals",
-   "status": "active",
-   "detail": "Scored (seed 0, 32 held-out clips): 2.5k 32.1 px, 5k 32.9 px, 7.5k 35.4 px (real 14.9, base 100.9). 10k re-running after pre-emption; 3-seed runs on 2.5k and 5k running."
+   "status": "done",
+   "detail": "Final checkpoint v1_K8_h100 @ 10k: 32.7 px capped hand error (3 seeds, A3) vs base 100.5 and real 15.0; tied with 2.5k (32.9), ahead on PCK (0.755) and idle-hand false grasps."
   },
   {
    "name": "Phase 1 report",
@@ -78,12 +78,12 @@
   {
    "role": "critic-evaluator",
    "state": "active",
-   "detail": "Implementing A3 and rescoring all checkpoints (no regeneration); one-hand test on 2.5k."
+   "detail": "A3 applied and all checkpoints rescored; one-hand test on 10k and 2.5k done. Next: score the no-hand control."
   },
   {
    "role": "model-engineer",
    "state": "off",
-   "detail": "Respawned only if a run fails or the stop rule fires."
+   "detail": "Added --no_hand_input (control run); done."
   },
   {
    "role": "data-specialist",
@@ -92,13 +92,14 @@
   }
  ],
  "next_actions": [
-  "CoreWeave launches v1_K8_h100_nocond (code 3ef6c8a, ~3.6 h); you copy its milestones to unicorn; lead scores them (3 seeds on the best).",
-  "3-seed eval of 2.5k and 5k (running) -> pick the best checkpoint.",
-  "10k standard eval (re-running) and one-hand test on 10k (critic-evaluator).",
-  "Look into two eval artifacts seen in the demos: detector left/right label flips, and per-clip averaging over hands seen for only a frame.",
-  "Phase 1 report."
+  "v1_K8_h100_nocond trains on CoreWeave (job 254316); copy its milestones to unicorn; score them -> HOT3D adaptation vs hand following.",
+  "Phase 1 report: results table, one-hand test, demos, limitations (object identity drift, jitter)."
  ],
  "decisions": [
+  {
+   "date": "2026-11-14",
+   "text": "Final Phase 1 checkpoint: v1_K8_h100 @ 10k (32.7 px, 3 seeds, A3). Statistical tie with 2.5k (32.9 px, Wilcoxon p = 0.80); 10k wins on PCK and idle-hand false grasps."
+  },
   {
    "date": "2026-11-14",
    "text": "v1_K8_h100_nocond submitted on CoreWeave (job 254316, code 3ef6c8a) after the user confirmed."

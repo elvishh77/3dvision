@@ -13,7 +13,7 @@
     if (d.summary) $("cmp-sub").textContent = d.summary + " Click a clip to play it.";
     let lastGroup = null;
     $("cmp").innerHTML = d.items.map((it) => { const head = it.group && it.group !== lastGroup ? `<h3 class="grp">${esc(it.group)}</h3>` : ""; lastGroup = it.group || lastGroup; return head + `<figure class="demo">
-        <div class="media vs3"><video src="assets/media/demo/${it.id}.mp4?v=2" poster="assets/media/demo/${it.id}.jpg?v=2" muted loop playsinline controls preload="none"></video>
+        <div class="media vs3"><video src="assets/media/demo/${it.id}.mp4?v=3" poster="assets/media/demo/${it.id}.jpg?v=3" muted loop playsinline controls preload="none"></video>
           <div class="vlabels3"><span>Real clip</span><span>Base model</span><span class="ours">Trained · ${esc(s)}</span></div></div>
         <figcaption class="cap"><span class="badge plain">${esc(it.id)}</span> <span class="badge plain">${esc(ACT[it.active] || it.active)}</span>
           <b>Prompt:</b> ${esc(it.prompt)}

@@ -1,6 +1,6 @@
 {
- "ckpt": "v1_K8_h100__adapter_step_0002500",
- "summary": "Checkpoint 2.5k (lowest error so far). Over all 32 held-out clips the median hand error is 25 px for the trained model vs 112 px for the base model; it beats the base on 31 of 32 clips.",
+ "ckpt": "v1_K8_h100__adapter_step_0010000",
+ "summary": "Final checkpoint: 10k steps (scored under amendment A3). Over all 32 held-out clips the median hand error is 24 px for the trained model vs 112 px for the base model; it beats the base on 31 of 32 clips.",
  "items": [
   {
    "id": "003279_w59",
@@ -13,9 +13,9 @@
    "epe": {
     "real": 8.5,
     "base": 85.6,
-    "ours": 8.9
+    "ours": 8.8
    },
-   "note": "Trained model 8.9 px vs base 85.6 px: essentially as close as the real clip (8.5 px)."
+   "note": "8.8 px vs base 85.6 px: as close as the real clip (8.5 px)."
   },
   {
    "id": "003288_w59",
@@ -28,9 +28,9 @@
    "epe": {
     "real": 6.1,
     "base": 65.9,
-    "ours": 8.9
+    "ours": 8.4
    },
-   "note": "8.9 px vs base 65.9 px; the hand turns the spatula along the target path."
+   "note": "8.4 px vs base 65.9 px. The spatula is held by the right hand, mostly out of frame; the visible left hand follows its target closely."
   },
   {
    "id": "003341_w0",
@@ -43,7 +43,22 @@
    "epe": {
     "real": 7.3,
     "base": 110.0,
-    "ours": 15.6
+    "ours": 10.3
+   },
+   "note": "8.5 and 12.1 px for the two hands vs base 110 px: reproduces the camera pan, the grasp and the turn."
+  },
+  {
+   "id": "003302_w0",
+   "group": "Typical (near the median)",
+   "prompt": "the patterned mug ends up in the left hand and turned.",
+   "active": "both",
+   "outcomes": [
+    "handover"
+   ],
+   "epe": {
+    "real": 12.1,
+    "base": 105.7,
+    "ours": 22.8
    }
   },
   {
@@ -57,7 +72,7 @@
    "epe": {
     "real": 11.6,
     "base": 92.6,
-    "ours": 23.4
+    "ours": 24.9
    }
   },
   {
@@ -71,22 +86,23 @@
    "epe": {
     "real": 12.6,
     "base": 123.2,
-    "ours": 23.5
+    "ours": 27.0
    }
   },
   {
-   "id": "003302_w0",
-   "group": "Typical (near the median)",
-   "prompt": "the patterned mug ends up in the left hand and turned.",
+   "id": "003300_w59",
+   "group": "Failures",
+   "prompt": "the flask ends up set down to the left and farther and turned.",
    "active": "both",
    "outcomes": [
-    "handover"
+    "placed"
    ],
    "epe": {
-    "real": 12.1,
-    "base": 105.7,
-    "ours": 24.5
-   }
+    "real": 15.5,
+    "base": 97.4,
+    "ours": 54.5
+   },
+   "note": "The left hand drifts (81 px, missed in about half the frames) while the right hand is fine (28 px)."
   },
   {
    "id": "003266_w0",
@@ -99,25 +115,9 @@
    "epe": {
     "real": 12.0,
     "base": 127.6,
-    "ours": 54.6
+    "ours": 56.0
    },
-   "note": "A real miss: both hands drift from their targets (45 and 64 px) and are not detected in about a quarter of the frames."
-  },
-  {
-   "id": "003277_w59",
-   "group": "Failures",
-   "prompt": "the parmesan can ends up set down to the right and farther and turned, and the orange juice carton ends up lifted in the right hand and turned.",
-   "active": "right",
-   "outcomes": [
-    "placed",
-    "lifted"
-   ],
-   "epe": {
-    "real": 8.3,
-    "base": 122.3,
-    "ours": 72.7
-   },
-   "note": "The right hand follows its target closely (17.5 px). The left hand is in view for a single frame, is missed, and is capped at 128 px. The per-clip average weights it equally with the right hand."
+   "note": "A real miss: both hands drift (56 and 55 px), and the can turns into a larger jar."
   },
   {
    "id": "003247_w0",
@@ -128,9 +128,9 @@
    "epe": {
     "real": 4.9,
     "base": 51.8,
-    "ours": 128.0
+    "ours": 120.5
    },
-   "note": "Eval artifact more than a failure: the generated hand sits on the target skeleton, but the hand detector labels it a RIGHT hand while the target is the LEFT hand, so the metric counts the left hand as missing (capped at 128 px)."
+   "note": "Mostly an eval artifact: the generated left hand sits on its target, but the detector labels it a right hand in 45 of 48 frames. A3 now reports this as the left/right mismatch rate."
   }
  ]
 }
