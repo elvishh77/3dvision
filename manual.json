@@ -60,8 +60,8 @@
  "blockers": [
   {
    "title": "Multi-GPU runs hang on some nodes",
-   "severity": "low",
-   "detail": "Hung twice on unicorn (4 GPUs on Nov 7, 2 GPUs on Nov 13). The CoreWeave 8x H100 run uses NVLink with P2P on and has no problems so far."
+   "severity": "medium",
+   "detail": "Intermittent hang in the first ~20 steps (8 of 10 recent CoreWeave launches; also unicorn). Stack dump: one rank blocked in a CPU->GPU noise copy while the others wait in the per-step stop-flag all_reduce. Fix in progress (GPU-side noise, stop check every 20 steps)."
   }
  ],
  "team": [
@@ -98,6 +98,10 @@
   "Phase 1 report: results table, one-hand test, demos, limitations (object identity drift, jitter)."
  ],
  "decisions": [
+  {
+   "date": "2026-11-14",
+   "text": "v2b training on its 7th launch (job 254707, num_workers 2). The early multi-GPU hang is probabilistic (stack: blocking CPU->GPU noise copy vs per-step stop-flag all_reduce); model-engineer is fixing it for future runs."
+  },
   {
    "date": "2026-11-14",
    "text": "v2a (job 254693) and v2b (job 254694) running on CoreWeave at 8ce085b after your go-ahead; settings verified against v1_K8_h100."
@@ -232,7 +236,7 @@
    "cluster": "coreweave",
    "gpus": 8,
    "gpu_type": "H100 80GB",
-   "job_id": "254694"
+   "job_id": "254707"
   },
   {
    "name": "v2_mix_h100",
