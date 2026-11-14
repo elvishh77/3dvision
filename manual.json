@@ -92,8 +92,8 @@
   },
   {
    "role": "critic-evaluator",
-   "state": "scheduled",
-   "detail": "Respawned when the first milestone is available for scoring."
+   "state": "active",
+   "detail": "Building and validating the one-hand test (approved Nov 13): 18 two-hand clips x {both, right-only, left-only}; validated on real single-hand clips; base-model reference."
   },
   {
    "role": "model-engineer",
@@ -107,12 +107,17 @@
   }
  ],
  "next_actions": [
+  "critic-evaluator: build + validate the one-hand test (gt and base now; trained checkpoints when they arrive).",
   "v1_K8_h100 milestones at 2.5k / 5k / 7.5k / 10k (~50 min apart).",
   "Get the milestones to the eval machine; score 32 held-out clips x 1 seed each.",
   "Stop rule on the held-out probe: gain > 0 and rising at 2.5k, > 0 at 5k.",
   "Pick the best milestone by capped hand error; 3-seed final eval; Phase 1 report."
  ],
  "decisions": [
+  {
+   "date": "2026-11-13",
+   "text": "One-hand test approved: idle hand held at its frame-0 pose with no contact; prompt rewritten to name the acting hand."
+  },
   {
    "date": "2026-11-13",
    "text": "Unicorn runs (v1_K8, v1_K8_plain) cancelled: training continues on CoreWeave only."
