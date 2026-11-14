@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-14T07:16:08+00:00",
+ "generated": "2026-11-14T07:29:24+00:00",
  "runs": [
   {
    "run": "v1_K8_h100",
@@ -24,7 +24,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-14T04:09:07+00:00",
-   "last_log_age_min": 187.0,
+   "last_log_age_min": 200.3,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
@@ -2762,25 +2762,25 @@
   },
   {
    "tag": "v1_K8_h100__adapter_step_0002500",
-   "seeds": 1,
-   "updated": "2026-11-14T05:36:45+00:00",
-   "epe_capped": 32.0857,
-   "pck25": 0.7345,
-   "contact_f1_active": 0.7353,
-   "idle_vlm_fgr": 0.3958,
-   "jitter_ratio": 1.2382,
-   "task_bacc": 0.802
+   "seeds": 3,
+   "updated": "2026-11-14T07:27:10+00:00",
+   "epe_capped": 34.5592,
+   "pck25": 0.7168,
+   "contact_f1_active": 0.7253,
+   "idle_vlm_fgr": 0.374,
+   "jitter_ratio": 1.212,
+   "task_bacc": 0.8417
   },
   {
    "tag": "v1_K8_h100__adapter_step_0005000",
-   "seeds": 1,
-   "updated": "2026-11-14T05:35:04+00:00",
-   "epe_capped": 32.8893,
-   "pck25": 0.7373,
-   "contact_f1_active": 0.7591,
-   "idle_vlm_fgr": 0.4107,
-   "jitter_ratio": 1.295,
-   "task_bacc": 0.856
+   "seeds": 3,
+   "updated": "2026-11-14T07:24:03+00:00",
+   "epe_capped": 35.7596,
+   "pck25": 0.7138,
+   "contact_f1_active": 0.7258,
+   "idle_vlm_fgr": 0.4157,
+   "jitter_ratio": 1.3582,
+   "task_bacc": 0.8507
   },
   {
    "tag": "v1_K8_h100__adapter_step_0007500",
@@ -2807,14 +2807,9 @@
  ],
  "eval_jobs": [
   {
-   "job_id": "579829",
-   "name": "v1_K8_h100_adapter_step_0002500",
-   "state": "RUNNING"
-  },
-  {
-   "job_id": "579830",
-   "name": "v1_K8_h100_adapter_step_0005000",
-   "state": "RUNNING"
+   "job_id": "593924",
+   "name": "v1_K8_h100_adapter_step_0010000",
+   "state": "PENDING"
   }
  ],
  "iteration": {
