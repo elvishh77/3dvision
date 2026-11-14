@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-14T14:47:04+00:00",
+ "generated": "2026-11-14T15:17:08+00:00",
  "runs": [
   {
    "run": "v1_K8_h100",
@@ -23,14 +23,14 @@
    "s_per_step": 1.2,
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
-   "last_log": "2026-11-14T14:47:01+00:00",
-   "last_log_age_min": 0.1,
+   "last_log": "2026-11-14T14:48:03+00:00",
+   "last_log_age_min": 29.1,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
    "stop_rule": "pass",
    "last_other_gain": 0.08467,
-   "eta_finish": "2026-11-14T14:47:01+00:00",
+   "eta_finish": "2026-11-14T14:48:03+00:00",
    "milestones": [
     {
      "step": 2500,
@@ -2758,14 +2758,14 @@
    "s_per_step": 1.21,
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
-   "last_log": "2026-11-14T14:47:02+00:00",
-   "last_log_age_min": 0.0,
+   "last_log": "2026-11-14T14:48:03+00:00",
+   "last_log_age_min": 29.1,
    "health": "unhealthy",
    "health_reason": "stop rule failed at 5k",
    "errors": [],
    "stop_rule": "FAIL: stop and debug",
    "last_other_gain": 0.0,
-   "eta_finish": "2026-11-14T14:47:02+00:00",
+   "eta_finish": "2026-11-14T14:48:03+00:00",
    "milestones": [
     {
      "step": 2500,
@@ -5560,7 +5560,7 @@
  ],
  "eval_jobs": [],
  "iteration": {
-  "eta": "2026-11-14T17:47:02+00:00",
+  "eta": "2026-11-14T17:48:03+00:00",
   "final_eval_overhead_h": 3.0,
   "note": "Iteration = both 10k-step runs + final eval (10k checkpoints, then 3 seeds of the best) + report."
  },
