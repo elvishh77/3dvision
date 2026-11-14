@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-14T05:40:35+00:00",
+ "generated": "2026-11-14T05:45:55+00:00",
  "runs": [
   {
    "run": "v1_K8_h100",
@@ -24,7 +24,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-14T04:09:07+00:00",
-   "last_log_age_min": 91.5,
+   "last_log_age_min": 96.8,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
@@ -2808,11 +2808,6 @@
   {
    "job_id": "579714",
    "name": "v1_K8_h100_adapter_step_0010000",
-   "state": "RUNNING"
-  },
-  {
-   "job_id": "571340",
-   "name": "onehand_v1_K8_h100_adapter_step_0010000",
    "state": "RUNNING"
   }
  ],
