@@ -34,9 +34,10 @@
   });
 
   const LABEL = { gt: "Real video (upper bound)", base: "Base model, no hand control" };
+  const PRETTY = (t) => { const m = /^(.*?)_+adapter_step_0*(\d+)$/.exec(t || ""); return m ? `${m[1]} · ${Number(m[2]) / 1000}k steps` : t; };
   const M = [["epe_capped", "Hand error (px) ↓", 1], ["pck25", "PCK@25 ↑", 3], ["contact_f1_active", "Contact F1 ↑", 3], ["task_bacc", "Task acc ↑", 3], ["jitter_ratio", "Jitter (1 = real)", 2]];
   fetch("status.json?t=" + Date.now(), { cache: "no-store" }).then((r) => r.json()).then((s) => {
-    const rows = s.evals.map((e) => `<tr class="${e.tag in LABEL ? "ref" : ""}"><td>${esc(LABEL[e.tag] || e.tag)}</td><td>${e.seeds}</td>${M.map(([k, , d]) => `<td>${f(e[k], d)}</td>`).join("")}</tr>`);
+    const rows = s.evals.map((e) => `<tr class="${e.tag in LABEL ? "ref" : ""}"><td>${esc(LABEL[e.tag] || PRETTY(e.tag))}</td><td>${e.seeds}</td>${M.map(([k, , d]) => `<td>${f(e[k], d)}</td>`).join("")}</tr>`);
     const trained = s.evals.filter((e) => !(e.tag in LABEL));
     if (!trained.length) rows.push(`<tr><td>Trained checkpoints</td><td colspan="${M.length + 1}" style="text-align:center"><span class="badge warn">waiting for the checkpoint files to reach the eval machine</span></td></tr>`);
     $("res").innerHTML = `<tr><th>Model</th><th>Seeds</th>${M.map((m) => `<th>${m[1]}</th>`).join("")}</tr>` + rows.join("");

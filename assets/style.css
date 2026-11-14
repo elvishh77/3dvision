@@ -258,3 +258,5 @@ figure.demo { margin: 0 0 26px; }
 .vlabels3 span { justify-self: start; margin-left: 8px; background: var(--cream); border: 2px solid var(--ink); border-radius: 999px; padding: 0 9px; font-size: .74rem; }
 .vlabels3 span.ours { background: var(--mint); }
 @media (max-width: 640px) { .vlabels3 span { font-size: .62rem; padding: 0 6px; margin-left: 4px; } }
+
+h3.grp { margin: 28px 0 12px; font-size: 1.35rem; } h3.grp:first-child { margin-top: 0; }

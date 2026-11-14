@@ -10,13 +10,16 @@
     const s = step(d.ckpt);
     $("pills").innerHTML = [["held-out participant P0015", "bg-yellow"], [`trained model: v1_K8_h100 @ ${s} steps`, "bg-mint"], [`${d.items.length} clips`, "bg-sky"]]
       .map(([t, c]) => `<span class="pill ${c}">${esc(t)}</span>`).join("");
-    $("cmp").innerHTML = d.items.map((it) => `<figure class="demo">
+    if (d.summary) $("cmp-sub").textContent = d.summary + " Click a clip to play it.";
+    let lastGroup = null;
+    $("cmp").innerHTML = d.items.map((it) => { const head = it.group && it.group !== lastGroup ? `<h3 class="grp">${esc(it.group)}</h3>` : ""; lastGroup = it.group || lastGroup; return head + `<figure class="demo">
         <div class="media vs3"><video src="assets/media/demo/${it.id}.mp4?v=2" poster="assets/media/demo/${it.id}.jpg?v=2" muted loop playsinline controls preload="none"></video>
           <div class="vlabels3"><span>Real clip</span><span>Base model</span><span class="ours">Trained · ${esc(s)}</span></div></div>
         <figcaption class="cap"><span class="badge plain">${esc(it.id)}</span> <span class="badge plain">${esc(ACT[it.active] || it.active)}</span>
           <b>Prompt:</b> ${esc(it.prompt)}
-          <br>Hand error: real ${n(it.epe.real)} · base ${n(it.epe.base)} · <b>trained ${n(it.epe.ours)}</b></figcaption>
-      </figure>`).join("");
+          <br>Hand error: real ${n(it.epe.real)} · base ${n(it.epe.base)} · <b>trained ${n(it.epe.ours)}</b>
+          ${it.note ? `<div class="item ${it.group === "Failures" ? "high" : "input"}" style="margin-top:8px;padding:8px 12px"><div class="d" style="margin:0;color:var(--ink)">${esc(it.note)}</div></div>` : ""}</figcaption>
+      </figure>`; }).join("");
   }).catch(() => ($("cmp").innerHTML = `<div class="wip">No demo videos yet.</div>`));
 
   fetch("assets/media/demo/onehand.json?t=" + Date.now(), { cache: "no-store" }).then((r) => (r.ok ? r.json() : null)).then((d) => {

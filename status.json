@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-14T05:15:52+00:00",
+ "generated": "2026-11-14T05:40:35+00:00",
  "runs": [
   {
    "run": "v1_K8_h100",
@@ -24,7 +24,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-14T04:09:07+00:00",
-   "last_log_age_min": 66.8,
+   "last_log_age_min": 91.5,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
@@ -2759,27 +2759,60 @@
    "idle_vlm_fgr": 0.2649,
    "jitter_ratio": 1.0636,
    "task_bacc": 0.733
+  },
+  {
+   "tag": "v1_K8_h100__adapter_step_0002500",
+   "seeds": 1,
+   "updated": "2026-11-14T05:36:45+00:00",
+   "epe_capped": 32.0857,
+   "pck25": 0.7345,
+   "contact_f1_active": 0.7353,
+   "idle_vlm_fgr": 0.3958,
+   "jitter_ratio": 1.2382,
+   "task_bacc": 0.802
+  },
+  {
+   "tag": "v1_K8_h100__adapter_step_0005000",
+   "seeds": 1,
+   "updated": "2026-11-14T05:35:04+00:00",
+   "epe_capped": 32.8893,
+   "pck25": 0.7373,
+   "contact_f1_active": 0.7591,
+   "idle_vlm_fgr": 0.4107,
+   "jitter_ratio": 1.295,
+   "task_bacc": 0.856
+  },
+  {
+   "tag": "v1_K8_h100__adapter_step_0007500",
+   "seeds": 1,
+   "updated": "2026-11-14T05:22:38+00:00",
+   "epe_capped": 35.4341,
+   "pck25": 0.7198,
+   "contact_f1_active": 0.733,
+   "idle_vlm_fgr": 0.3244,
+   "jitter_ratio": 1.3332,
+   "task_bacc": 0.754
   }
  ],
  "eval_jobs": [
   {
-   "job_id": "571340",
-   "name": "onehand_v1_K8_h100_adapter_step_0010000",
+   "job_id": "579829",
+   "name": "v1_K8_h100_adapter_step_0002500",
    "state": "RUNNING"
   },
   {
-   "job_id": "571093",
-   "name": "v1_K8_h100_adapter_step_0007500",
-   "state": "RUNNING"
-  },
-  {
-   "job_id": "571091",
+   "job_id": "579830",
    "name": "v1_K8_h100_adapter_step_0005000",
    "state": "RUNNING"
   },
   {
-   "job_id": "571090",
-   "name": "v1_K8_h100_adapter_step_0002500",
+   "job_id": "579714",
+   "name": "v1_K8_h100_adapter_step_0010000",
+   "state": "RUNNING"
+  },
+  {
+   "job_id": "571340",
+   "name": "onehand_v1_K8_h100_adapter_step_0010000",
    "state": "RUNNING"
   }
  ],
@@ -2827,7 +2860,7 @@
    {
     "name": "Checkpoint evals",
     "status": "active",
-    "detail": "Standard eval of the 2.5k/5k/7.5k/10k milestones running on unicorn (jobs 571090-571094); one-hand test being validated."
+    "detail": "Scored (seed 0, 32 held-out clips): 2.5k 32.1 px, 5k 32.9 px, 7.5k 35.4 px (real 14.9, base 100.9). 10k re-running after pre-emption; 3-seed runs on 2.5k and 5k running."
    },
    {
     "name": "Phase 1 report",
@@ -2852,11 +2885,6 @@
     "title": "Multi-GPU runs hang on some nodes",
     "severity": "low",
     "detail": "Hung twice on unicorn (4 GPUs on Nov 7, 2 GPUs on Nov 13). The CoreWeave 8x H100 run uses NVLink with P2P on and has no problems so far."
-   },
-   {
-    "title": "Idle-hand VLM metric is unreliable",
-    "severity": "low",
-    "detail": "Says an idle hand holds an object 24% of the time on real video; reported as a side number only."
    }
   ],
   "team": [
@@ -2887,12 +2915,16 @@
    }
   ],
   "next_actions": [
-   "Score 2.5k/5k/7.5k/10k (32 held-out clips, seed 0) - running.",
-   "Pick the best milestone by capped hand error; 3-seed final eval.",
-   "One-hand test on the 10k (and best) milestone once critic-evaluator's harness is validated.",
-   "Qualitative demo: real vs base vs trained videos on the site."
+   "3-seed eval of 2.5k and 5k (running) -> pick the best checkpoint.",
+   "10k standard eval (re-running) and one-hand test on 10k (critic-evaluator).",
+   "Look into two eval artifacts seen in the demos: detector left/right label flips, and per-clip averaging over hands seen for only a frame.",
+   "Phase 1 report."
   ],
   "decisions": [
+   {
+    "date": "2026-11-14",
+    "text": "First trained scores: capped hand error 32 px at 2.5k/5k vs 101 px base (real 15). Best checkpoint chosen after 3-seed runs on 2.5k and 5k."
+   },
    {
     "date": "2026-11-13",
     "text": "Unicorn runs v1_K8 / v1_K8_plain hard-killed: the first cancel had triggered the trainer's self-requeue, so they kept running ~4 h (no effect on results)."

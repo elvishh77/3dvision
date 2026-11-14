@@ -1,8 +1,54 @@
 {
- "ckpt": "v1_K8_h100__adapter_step_0010000",
+ "ckpt": "v1_K8_h100__adapter_step_0002500",
+ "summary": "Checkpoint 2.5k (lowest error so far). Over all 32 held-out clips the median hand error is 25 px for the trained model vs 112 px for the base model; it beats the base on 31 of 32 clips.",
  "items": [
   {
+   "id": "003279_w59",
+   "group": "Best",
+   "prompt": "the potato masher ends up lifted in the left hand.",
+   "active": "left",
+   "outcomes": [
+    "lifted"
+   ],
+   "epe": {
+    "real": 8.5,
+    "base": 85.6,
+    "ours": 8.9
+   },
+   "note": "Trained model 8.9 px vs base 85.6 px: essentially as close as the real clip (8.5 px)."
+  },
+  {
+   "id": "003288_w59",
+   "group": "Best",
+   "prompt": "the red spatula ends up turned in the right hand.",
+   "active": "both",
+   "outcomes": [
+    "rotated"
+   ],
+   "epe": {
+    "real": 6.1,
+    "base": 65.9,
+    "ours": 8.9
+   },
+   "note": "8.9 px vs base 65.9 px; the hand turns the spatula along the target path."
+  },
+  {
+   "id": "003341_w0",
+   "group": "Best",
+   "prompt": "the white mug ends up turned in the right hand.",
+   "active": "right",
+   "outcomes": [
+    "rotated"
+   ],
+   "epe": {
+    "real": 7.3,
+    "base": 110.0,
+    "ours": 15.6
+   }
+  },
+  {
    "id": "003214_w59",
+   "group": "Typical (near the median)",
    "prompt": "the red spatula ends up moved to the left and farther and turned.",
    "active": "right",
    "outcomes": [
@@ -11,25 +57,12 @@
    "epe": {
     "real": 11.6,
     "base": 92.6,
-    "ours": null
-   }
-  },
-  {
-   "id": "003219_w59",
-   "prompt": "the wooden spoon ends up moved farther and turned, and the bowl ends up lifted in the left hand.",
-   "active": "both",
-   "outcomes": [
-    "moved",
-    "lifted"
-   ],
-   "epe": {
-    "real": 8.5,
-    "base": 103.1,
-    "ours": null
+    "ours": 23.4
    }
   },
   {
    "id": "003230_w0",
+   "group": "Typical (near the median)",
    "prompt": "the ranch bottle ends up lifted in both hands and turned.",
    "active": "both",
    "outcomes": [
@@ -38,84 +71,66 @@
    "epe": {
     "real": 12.6,
     "base": 123.2,
-    "ours": null
+    "ours": 23.5
    }
   },
   {
-   "id": "003233_w59",
-   "prompt": "the vase ends up moved closer and turned.",
-   "active": "left",
+   "id": "003302_w0",
+   "group": "Typical (near the median)",
+   "prompt": "the patterned mug ends up in the left hand and turned.",
+   "active": "both",
    "outcomes": [
-    "moved"
+    "handover"
    ],
    "epe": {
-    "real": 25.1,
-    "base": 116.4,
-    "ours": null
+    "real": 12.1,
+    "base": 105.7,
+    "ours": 24.5
    }
   },
   {
-   "id": "003234_w0",
-   "prompt": "the vase ends up lifted in both hands and turned.",
-   "active": "both",
+   "id": "003266_w0",
+   "group": "Failures",
+   "prompt": "the tomato sauce can ends up lifted in the left hand and turned.",
+   "active": "left",
    "outcomes": [
     "lifted"
    ],
    "epe": {
-    "real": 26.1,
-    "base": 123.6,
-    "ours": null
-   }
+    "real": 12.0,
+    "base": 127.6,
+    "ours": 54.6
+   },
+   "note": "A real miss: both hands drift from their targets (45 and 64 px) and are not detected in about a quarter of the frames."
   },
   {
-   "id": "003241_w59",
-   "prompt": "the bamboo plate stays held in the left hand.",
-   "active": "both",
-   "outcomes": [
-    "held"
-   ],
-   "epe": {
-    "real": 67.3,
-    "base": 82.4,
-    "ours": null
-   }
-  },
-  {
-   "id": "003244_w59",
-   "prompt": "the DVD remote ends up moved to the left.",
+   "id": "003277_w59",
+   "group": "Failures",
+   "prompt": "the parmesan can ends up set down to the right and farther and turned, and the orange juice carton ends up lifted in the right hand and turned.",
    "active": "right",
    "outcomes": [
-    "moved"
+    "placed",
+    "lifted"
    ],
    "epe": {
-    "real": 7.5,
-    "base": 45.9,
-    "ours": null
-   }
-  },
-  {
-   "id": "003245_w0",
-   "prompt": "the DVD remote ends up set down to the left and farther and turned.",
-   "active": "left",
-   "outcomes": [
-    "placed"
-   ],
-   "epe": {
-    "real": 27.4,
-    "base": 112.8,
-    "ours": null
-   }
+    "real": 8.3,
+    "base": 122.3,
+    "ours": 72.7
+   },
+   "note": "The right hand follows its target closely (17.5 px). The left hand is in view for a single frame, is missed, and is capped at 128 px. The per-clip average weights it equally with the right hand."
   },
   {
    "id": "003247_w0",
+   "group": "Failures",
    "prompt": "the hands move without touching anything.",
    "active": "none",
    "outcomes": [],
    "epe": {
     "real": 4.9,
     "base": 51.8,
-    "ours": null
-   }
+    "ours": 128.0
+   },
+   "note": "Eval artifact more than a failure: the generated hand sits on the target skeleton, but the hand detector labels it a RIGHT hand while the target is the LEFT hand, so the metric counts the left hand as missing (capped at 128 px)."
   }
  ]
 }

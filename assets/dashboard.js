@@ -118,6 +118,7 @@
     ["task_bacc", "Task acc ↑", 3, "max"], ["jitter_ratio", "Jitter (1 = real)", 2, null], ["idle_vlm_fgr", "Idle grip ↓", 3, "min"],
   ];
   const LABEL = { gt: "Real video (upper bound)", base: "Base model, no adapter" };
+  const PRETTY = (t) => { const m = /^(.*?)_+adapter_step_0*(\d+)$/.exec(t || ""); return m ? `${m[1]} · ${Number(m[2]) / 1000}k steps` : t; };
 
   function evalTable(evals) {
     if (!evals.length) return `<tr><td class="empty">No scores yet.</td></tr>`;
@@ -131,7 +132,7 @@
     const head = `<tr><th>Checkpoint</th><th>Seeds</th>${METRICS.map((m) => `<th>${m[1]}</th>`).join("")}</tr>`;
     const rows = evals.map((e) => {
       const ref = e.tag in LABEL;
-      return `<tr class="${ref ? "ref" : ""}"><td>${esc(LABEL[e.tag] || e.tag)}</td><td>${e.seeds}</td>${METRICS.map(([k, , d]) =>
+      return `<tr class="${ref ? "ref" : ""}"><td>${esc(LABEL[e.tag] || PRETTY(e.tag))}</td><td>${e.seeds}</td>${METRICS.map(([k, , d]) =>
         (!ref && best[k] === e[k] ? `<td class="best"><span>${Number(e[k]).toFixed(d)}</span></td>` : `<td>${e[k] != null ? Number(e[k]).toFixed(d) : "–"}</td>`)).join("")}</tr>`;
     }).join("");
     return head + rows;

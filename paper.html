@@ -195,8 +195,9 @@
 
   const M = [["epe_capped", "Hand error (px) ↓", 1], ["pck25", "PCK@25 ↑", 3], ["contact_f1_active", "Contact F1 ↑", 3], ["task_bacc", "Task accuracy ↑", 3]];
   const LABEL = { gt: "Real video (upper bound)", base: "Base model, no hand control" };
+  const PRETTY = (t) => { const m = /^(.*?)_+adapter_step_0*(\d+)$/.exec(t || ""); return m ? `${m[1]} · ${Number(m[2]) / 1000}k steps` : t; };
   fetch("status.json?t=" + Date.now(), { cache: "no-store" }).then((r) => r.json()).then((s) => {
-    const rows = s.evals.map((e) => `<tr class="${e.tag in LABEL ? "ref" : ""}"><td>${esc(LABEL[e.tag] || "Ours · " + e.tag)}</td>${M.map(([k, , d]) => `<td>${e[k] != null ? Number(e[k]).toFixed(d) : "–"}</td>`).join("")}</tr>`);
+    const rows = s.evals.map((e) => `<tr class="${e.tag in LABEL ? "ref" : ""}"><td>${esc(LABEL[e.tag] || "Ours · " + PRETTY(e.tag))}</td>${M.map(([k, , d]) => `<td>${e[k] != null ? Number(e[k]).toFixed(d) : "–"}</td>`).join("")}</tr>`);
     if (!s.evals.some((e) => !(e.tag in LABEL))) rows.push(`<tr><td>Ours</td><td colspan="${M.length}" style="text-align:center"><span class="badge warn">training in progress</span></td></tr>`);
     document.getElementById("results-table").innerHTML = `<tr><th>Model</th>${M.map((m) => `<th>${m[1]}</th>`).join("")}</tr>` + rows.join("");
   }).catch(() => {});
