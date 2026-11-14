@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-14T00:38:56+00:00",
+ "generated": "2026-11-14T00:45:19+00:00",
  "runs": [
   {
    "run": "v1_K8_h100",
@@ -24,7 +24,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-14T00:37:29+00:00",
-   "last_log_age_min": 1.5,
+   "last_log_age_min": 7.8,
    "health": "healthy",
    "health_reason": "step 740, 1.2 s/step",
    "errors": [],
