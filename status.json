@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-14T18:47:36+00:00",
+ "generated": "2026-11-14T19:06:51+00:00",
  "runs": [
   {
    "run": "v1_K8_h100",
@@ -24,7 +24,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-14T14:48:03+00:00",
-   "last_log_age_min": 239.6,
+   "last_log_age_min": 258.8,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
@@ -2759,7 +2759,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-14T14:48:03+00:00",
-   "last_log_age_min": 239.6,
+   "last_log_age_min": 258.8,
    "health": "unhealthy",
    "health_reason": "stop rule failed at 5k",
    "errors": [],
@@ -5470,6 +5470,118 @@
     "grad_norm": 0.3245,
     "lr": 0.0001
    }
+  },
+  {
+   "run": "v2a_K8_h100",
+   "cluster": "coreweave",
+   "note": "waiting for the first status snapshot",
+   "loss_weights": {
+    "w_hand": null,
+    "w_contact": null
+   },
+   "effective_batch": 16,
+   "job": {
+    "job_id": null,
+    "state": "UNKNOWN",
+    "reason": "waiting for the first status snapshot",
+    "gpus": 8,
+    "gpu_type": "H100 80GB",
+    "est_start": null
+   },
+   "step": 0,
+   "steps_total": 10000,
+   "s_per_step": null,
+   "eta_assumes_ada": false,
+   "peak_mem_gib": null,
+   "last_log": null,
+   "last_log_age_min": null,
+   "health": "idle",
+   "health_reason": "waiting for the first status snapshot",
+   "errors": [],
+   "stop_rule": "not yet",
+   "last_other_gain": null,
+   "eta_finish": null,
+   "milestones": [
+    {
+     "step": 2500,
+     "saved": false,
+     "eta": null
+    },
+    {
+     "step": 5000,
+     "saved": false,
+     "eta": null
+    },
+    {
+     "step": 7500,
+     "saved": false,
+     "eta": null
+    },
+    {
+     "step": 10000,
+     "saved": false,
+     "eta": null
+    }
+   ],
+   "loss_curve": [],
+   "probes": [],
+   "latest": null
+  },
+  {
+   "run": "v2b_K8_h100",
+   "cluster": "coreweave",
+   "note": "waiting for the first status snapshot",
+   "loss_weights": {
+    "w_hand": null,
+    "w_contact": null
+   },
+   "effective_batch": 16,
+   "job": {
+    "job_id": null,
+    "state": "UNKNOWN",
+    "reason": "waiting for the first status snapshot",
+    "gpus": 8,
+    "gpu_type": "H100 80GB",
+    "est_start": null
+   },
+   "step": 0,
+   "steps_total": 10000,
+   "s_per_step": null,
+   "eta_assumes_ada": false,
+   "peak_mem_gib": null,
+   "last_log": null,
+   "last_log_age_min": null,
+   "health": "idle",
+   "health_reason": "waiting for the first status snapshot",
+   "errors": [],
+   "stop_rule": "not yet",
+   "last_other_gain": null,
+   "eta_finish": null,
+   "milestones": [
+    {
+     "step": 2500,
+     "saved": false,
+     "eta": null
+    },
+    {
+     "step": 5000,
+     "saved": false,
+     "eta": null
+    },
+    {
+     "step": 7500,
+     "saved": false,
+     "eta": null
+    },
+    {
+     "step": 10000,
+     "saved": false,
+     "eta": null
+    }
+   ],
+   "loss_curve": [],
+   "probes": [],
+   "latest": null
   }
  ],
  "evals": [
@@ -5560,7 +5672,7 @@
  ],
  "eval_jobs": [],
  "iteration": {
-  "eta": "2026-11-14T17:48:03+00:00",
+  "eta": null,
   "final_eval_overhead_h": 3.0,
   "note": "Iteration = both 10k-step runs + final eval (10k checkpoints, then 3 seeds of the best) + report."
  },
@@ -5648,8 +5760,8 @@
    },
    {
     "role": "model-engineer",
-    "state": "off",
-    "detail": "Added --no_hand_input (control run); done."
+    "state": "active",
+    "detail": "Adding EMA and cosine-LR options for v2a/v2b."
    },
    {
     "role": "data-specialist",
@@ -5659,9 +5771,14 @@
   ],
   "next_actions": [
    "v1_K8_h100_nocond trains on CoreWeave (job 254316); copy its milestones to unicorn; score them -> HOT3D adaptation vs hand following.",
+   "model-engineer adds --ema / --lr_schedule cosine; lead pushes; CoreWeave runs v2a and v2b (~1.8 h each on 8x H100).",
    "Phase 1 report: results table, one-hand test, demos, limitations (object identity drift, jitter)."
   ],
   "decisions": [
+   {
+    "date": "2026-11-14",
+    "text": "v2a/v2b approved: v1 recipe with EMA 0.999 and cosine LR decay over 5k steps; v2a lr 1e-4, v2b lr 5e-5. Tests whether a cleaner schedule improves jitter and hand error at half the compute."
+   },
    {
     "date": "2026-11-14",
     "text": "Final Phase 1 checkpoint: v1_K8_h100 @ 10k (32.7 px, 3 seeds, A3). Statistical tie with 2.5k (32.9 px, Wilcoxon p = 0.80); 10k wins on PCK and idle-hand false grasps."
@@ -5765,6 +5882,24 @@
     "gpus": 8,
     "gpu_type": "H100 80GB",
     "job_id": "254316"
+   },
+   {
+    "name": "v2a_K8_h100",
+    "source": "remote",
+    "repo": "git@github.com:elvishh77/3dvision-code.git",
+    "branch": "run-status",
+    "cluster": "coreweave",
+    "gpus": 8,
+    "gpu_type": "H100 80GB"
+   },
+   {
+    "name": "v2b_K8_h100",
+    "source": "remote",
+    "repo": "git@github.com:elvishh77/3dvision-code.git",
+    "branch": "run-status",
+    "cluster": "coreweave",
+    "gpus": 8,
+    "gpu_type": "H100 80GB"
    }
   ]
  }
