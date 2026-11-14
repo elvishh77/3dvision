@@ -1,0 +1,131 @@
+{
+ "ckpt": "v1_K8_h100 @ 10k steps",
+ "items": [
+  {
+   "id": "003341_w0",
+   "epe": 10.3,
+   "title": "Mug picked up and turned",
+   "real": "The camera pans left; the right hand picks up the mug and turns it.",
+   "base": "A frozen video: the camera and hands never move.",
+   "ours": "Reproduces the pan, the grasp and the turn closely; invents the newly revealed corner of the desk.",
+   "tags": [
+    [
+     "follows hands",
+     "ok"
+    ],
+    [
+     "camera motion",
+     "ok"
+    ],
+    [
+     "invented scene",
+     "warn"
+    ]
+   ]
+  },
+  {
+   "id": "003288_w59",
+   "epe": 8.4,
+   "title": "Spatula turned in the right hand",
+   "real": "The hand picks up the spatula and turns it.",
+   "base": "The hand drifts; the spatula moves on its own.",
+   "ours": "The hand path matches and the spatula is lifted and turned, but its colour and shape drift (red to pinkish).",
+   "tags": [
+    [
+     "follows hands",
+     "ok"
+    ],
+    [
+     "object identity drift",
+     "bad"
+    ]
+   ]
+  },
+  {
+   "id": "003343_w0",
+   "epe": 15.8,
+   "title": "Cellphone held and tapped",
+   "real": "Both hands hold the phone and tap it.",
+   "base": "The phone rotates and its screen lights up; a different grip.",
+   "ours": "Grip and finger motion match closely; the phone stays the same object.",
+   "tags": [
+    [
+     "follows hands",
+     "ok"
+    ],
+    [
+     "object kept",
+     "ok"
+    ]
+   ]
+  },
+  {
+   "id": "003214_w59",
+   "epe": 24.9,
+   "title": "Spatula moved onto the plate",
+   "real": "The spatula is carried onto the plate.",
+   "base": "Hallucinates an orange flame or blob flying up.",
+   "ours": "Calm and plausible, hands in the right place, but the spatula moves less than in the real clip.",
+   "tags": [
+    [
+     "grounded",
+     "ok"
+    ],
+    [
+     "timid object motion",
+     "warn"
+    ]
+   ]
+  },
+  {
+   "id": "003253_w0",
+   "epe": 36.8,
+   "title": "Mug moved, camera tilts down",
+   "real": "The camera tilts down from the wall to the table and the hands work the mug.",
+   "base": "The camera stays on the wall; no hands ever appear.",
+   "ours": "Reproduces the camera tilt implied by where the hands are, but invents the revealed table and changes the sleeves.",
+   "tags": [
+    [
+     "camera motion",
+     "ok"
+    ],
+    [
+     "invented scene",
+     "warn"
+    ]
+   ]
+  },
+  {
+   "id": "003266_w0",
+   "epe": 56.0,
+   "title": "Tomato-sauce can lifted",
+   "real": "The left hand lifts and turns a small can.",
+   "base": "Sauce pouring and splashing.",
+   "ours": "The hands lift and turn it at the right times, but the small can becomes a big labelled jar.",
+   "tags": [
+    [
+     "timing right",
+     "ok"
+    ],
+    [
+     "object identity drift",
+     "bad"
+    ]
+   ]
+  }
+ ],
+ "summary": {
+  "works": [
+   "Hands go where and when they are told: pose, grip and timing follow the trajectory.",
+   "It stays grounded: the base model often hallucinates (flames, splashing, zooming in) or freezes; the trained model stays close to the real scene.",
+   "It infers head motion: when the hands' positions imply the camera must move, it moves the camera."
+  ],
+  "fails": [
+   "Object identity drifts: colour, shape or size changes (can to jar, red to pink spatula). Nothing in the conditioning describes the object.",
+   "Newly revealed parts of the scene are invented, as expected from a single first frame.",
+   "Object motion is sometimes timid: hands in the right place, object not all the way there.",
+   "Some hands are degraded (blurry fists) and jitterier than real (jitter ratio 1.2-1.35)."
+  ],
+  "caveat": "The adapter was trained on HOT3D, so part of 'staying grounded' may come from adapting to this lab's footage rather than from the hand input. A 'trained, no hand input' control would separate the two."
+ }
+}

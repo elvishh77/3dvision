@@ -22,6 +22,22 @@
       </figure>`; }).join("");
   }).catch(() => ($("cmp").innerHTML = `<div class="wip">No demo videos yet.</div>`));
 
+  fetch("assets/media/qual/qual.json?t=" + Date.now(), { cache: "no-store" }).then((r) => r.json()).then((q) => {
+    const li = (xs) => `<ul class="qlist">${xs.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`;
+    $("qual-sum").innerHTML = `<div class="card bg-mint-soft"><h3>What works</h3>${li(q.summary.works)}</div>
+      <div class="card bg-coral-soft"><h3>What doesn't yet</h3>${li(q.summary.fails)}</div>
+      <div class="cap" style="grid-column:1/-1;margin-top:0">${esc(q.summary.caveat)}</div>`;
+    $("qual-items").innerHTML = q.items.map((it) => `<div class="card qitem">
+        <div class="qhead"><h3>${esc(it.title)}</h3><span class="badge plain">${esc(it.id)}</span><span class="badge plain">trained hand error ${it.epe.toFixed(1)} px</span>
+          ${it.tags.map(([t, c]) => `<span class="badge ${c}">${esc(t)}</span>`).join("")}</div>
+        <div class="media" style="background:#fffcf6;box-shadow:none;border-width:2px"><img loading="lazy" src="assets/media/qual/${it.id}.jpg" alt="${esc(it.title)}: real, base and trained frames"></div>
+        <div class="qrows">
+          <div><b>Real</b><span>${esc(it.real)}</span></div>
+          <div class="bg-coral-soft"><b>Base</b><span>${esc(it.base)}</span></div>
+          <div class="bg-mint-soft"><b>Trained</b><span>${esc(it.ours)}</span></div>
+        </div></div>`).join("");
+  }).catch(() => {});
+
   fetch("assets/media/demo/onehand.json?t=" + Date.now(), { cache: "no-store" }).then((r) => (r.ok ? r.json() : null)).then((d) => {
     if (!d || !d.items || !d.items.length) return;
     $("oh").outerHTML = `<div id="oh">${d.note ? `<div class="cap" style="margin:0 0 14px">${esc(d.note)}</div>` : ""}${d.items.map((it) => `<figure class="demo">
