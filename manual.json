@@ -82,8 +82,8 @@
   },
   {
    "role": "model-engineer",
-   "state": "active",
-   "detail": "Adding EMA and cosine-LR options for v2a/v2b."
+   "state": "off",
+   "detail": "Added --no_hand_input and --ema / --lr_schedule cosine; done."
   },
   {
    "role": "data-specialist",
@@ -93,10 +93,14 @@
  ],
  "next_actions": [
   "v1_K8_h100_nocond trains on CoreWeave (job 254316); copy its milestones to unicorn; score them -> HOT3D adaptation vs hand following.",
-  "model-engineer adds --ema / --lr_schedule cosine; lead pushes; CoreWeave runs v2a and v2b (~1.8 h each on 8x H100).",
+  "CoreWeave launches v2a / v2b (code 8ce085b, ~1.8 h each); copy their milestones/ (EMA weights) to unicorn for eval.",
   "Phase 1 report: results table, one-hand test, demos, limitations (object identity drift, jitter)."
  ],
  "decisions": [
+  {
+   "date": "2026-11-14",
+   "text": "EMA + cosine options pushed (8ce085b) after a GPU smoke test; v2a/v2b configs sent to CoreWeave (launch after your confirmation)."
+  },
   {
    "date": "2026-11-14",
    "text": "v2a/v2b approved: v1 recipe with EMA 0.999 and cosine LR decay over 5k steps; v2a lr 1e-4, v2b lr 5e-5. Tests whether a cleaner schedule improves jitter and hand error at half the compute."
