@@ -70,7 +70,7 @@
   </section>
 
   <section id="runs">
-    <div class="sec-head"><span class="ico" data-i="chart"></span><div><h2>Training runs</h2><div class="sub">Same data and settings; the two runs differ only in the loss</div></div></div>
+    <div class="sec-head"><span class="ico" data-i="chart"></span><div><h2>Training runs</h2><div class="sub">Live from each cluster: progress, speed, loss and the held-out stop-rule signal</div></div></div>
     <div class="grid" id="run-cards"></div>
   </section>
 
@@ -102,8 +102,8 @@
 
 <footer class="wrap">
   <span class="sunset" data-i="sunset"></span>
-  Rebuilt every 30 minutes from the training logs and the Slurm queue; this page reloads its data every 5 minutes.<br>
-  Times are in your browser's time zone. ETAs use a running job's measured speed, or 6.4 s/step (3× RTX 6000 Ada) for a queued one.
+  Rebuilt every 30 minutes. CoreWeave runs report through status snapshots pushed every ~10 min; this page reloads its data every 5 minutes.<br>
+  Times are in your browser's time zone. ETAs use each run's measured speed from its latest snapshot.
 </footer>
 
 <script src="assets/dashboard.js"></script>

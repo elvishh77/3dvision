@@ -30,9 +30,9 @@
    "detail": "HaMeR/HACO hand metrics + Qwen2.5-VL outcome checklist. Scores real video and the base model."
   },
   {
-   "name": "Full training (3 runs)",
+   "name": "Full training (CoreWeave)",
    "status": "active",
-   "detail": "v1_K8 (weighted loss) and v1_K8_plain (plain loss) on 1 GPU each here; v1_K8_h100 (weighted, effective batch 8) on 8x H100 at CoreWeave, ~1.2 s/step, ETA ~4 h from 18:40."
+   "detail": "v1_K8_h100 on 8x H100 at CoreWeave: same recipe as v1_K8 (hand 1 / contact 2 weighted loss), effective batch 8, ~1.2 s/step, 10k steps in ~4 h. The unicorn runs were cancelled."
   },
   {
    "name": "Checkpoint evals",
@@ -52,8 +52,8 @@
  ],
  "needs_input": [
   {
-   "title": "Optional: partition for checkpoint evals",
-   "detail": "Default is the shared gpu partition (1 GPU, ~45 min per checkpoint per seed). Say if 1-GPU eval jobs may use culbertson instead.",
+   "title": "How to score v1_K8_h100's checkpoints",
+   "detail": "Either copy its adapter milestones (2.5k/5k/7.5k/10k) from CoreWeave to unicorn and score them with the existing eval, or set up the eval on CoreWeave. Recommended: copy.",
    "since": "2026-11-13"
   },
   {
@@ -64,14 +64,14 @@
  ],
  "blockers": [
   {
-   "title": "Training is waiting for GPUs",
-   "severity": "high",
-   "detail": "Both runs are queued on the shared gpu partition (1 x A6000 or 6000 Ada each). Every hour in the queue moves every ETA by an hour."
+   "title": "Checkpoint scores need the eval pipeline",
+   "severity": "medium",
+   "detail": "Eval (HaMeR/HACO + Qwen2.5-VL + held-out clips) exists only on unicorn. v1_K8_h100's milestones must be copied here, or the eval set up on CoreWeave, before they can be scored."
   },
   {
    "title": "Multi-GPU runs hang on some nodes",
-   "severity": "medium",
-   "detail": "4 GPUs hung at the first all-reduce (Nov 7); 2 GPUs fell out of sync after 1 min on a shared node (Nov 13). Runs now use 1 GPU each, so no cross-GPU communication. Root cause not investigated."
+   "severity": "low",
+   "detail": "Hung twice on unicorn (4 GPUs on Nov 7, 2 GPUs on Nov 13). The CoreWeave 8x H100 run uses NVLink with P2P on and has no problems so far."
   },
   {
    "title": "Idle-hand VLM metric is unreliable",
@@ -83,17 +83,22 @@
   {
    "role": "lead",
    "state": "active",
-   "detail": "Monitoring both training runs; respawns critic-evaluator at step 2,200."
+   "detail": "Tracking the CoreWeave run on this dashboard; will score milestones once they reach the eval machine."
+  },
+  {
+   "role": "3dvision_gen2",
+   "state": "active",
+   "detail": "Claude session on the CoreWeave cluster: runs v1_K8_h100 and publishes status snapshots to the run-status branch."
   },
   {
    "role": "critic-evaluator",
    "state": "scheduled",
-   "detail": "Respawns about 30 min before the 2.5k checkpoint to score both runs and judge the stop rule."
+   "detail": "Respawned when the first milestone is available for scoring."
   },
   {
    "role": "model-engineer",
    "state": "off",
-   "detail": "Respawned only if a run fails or the stop rule fires at 5k."
+   "detail": "Respawned only if a run fails or the stop rule fires."
   },
   {
    "role": "data-specialist",
@@ -102,14 +107,16 @@
   }
  ],
  "next_actions": [
-  "~22:30: v1_K8_h100 reaches 10k on CoreWeave; score its milestones (needs the eval set up there, or its adapter milestones copied here).",
-  "Training jobs start (queue).",
-  "Step 2,200: respawn critic-evaluator.",
-  "Step 2,500: score both runs; stop rule check (held-out gain > 0 and rising).",
-  "Step 5,000: go / no-go (stop and debug if held-out gain <= 0).",
-  "Step 10,000: pick best checkpoint by capped hand error; 3-seed final eval; Phase 1 report."
+  "v1_K8_h100 milestones at 2.5k / 5k / 7.5k / 10k (~50 min apart).",
+  "Get the milestones to the eval machine; score 32 held-out clips x 1 seed each.",
+  "Stop rule on the held-out probe: gain > 0 and rising at 2.5k, > 0 at 5k.",
+  "Pick the best milestone by capped hand error; 3-seed final eval; Phase 1 report."
  ],
  "decisions": [
+  {
+   "date": "2026-11-13",
+   "text": "Unicorn runs (v1_K8, v1_K8_plain) cancelled: training continues on CoreWeave only."
+  },
   {
    "date": "2026-11-13",
    "text": "v1_K8_h100 launched on the CoreWeave cluster: same recipe as v1_K8, 8x H100, batch 8, ~1.2 s/step (~4 h for 10k steps). Its logs live only on CoreWeave, so it is not charted here."
@@ -148,5 +155,17 @@
   }
  ],
  "final_eval_overhead_h": 3.0,
- "iteration_note": "Iteration = both 10k-step runs + final eval (10k checkpoints, then 3 seeds of the best) + report."
+ "iteration_note": "Iteration = both 10k-step runs + final eval (10k checkpoints, then 3 seeds of the best) + report.",
+ "runs": [
+  {
+   "name": "v1_K8_h100",
+   "source": "remote",
+   "repo": "git@github.com:elvishh77/3dvision-code.git",
+   "branch": "run-status",
+   "cluster": "coreweave",
+   "job_id": "253409",
+   "gpus": 8,
+   "gpu_type": "H100 80GB"
+  }
+ ]
 }

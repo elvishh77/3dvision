@@ -1,235 +1,248 @@
 {
- "generated": "2026-11-14T00:22:44+00:00",
+ "generated": "2026-11-14T00:38:56+00:00",
  "runs": [
   {
-   "run": "v1_K8",
+   "run": "v1_K8_h100",
+   "cluster": "coreweave",
+   "note": "",
    "loss_weights": {
     "w_hand": 1.0,
     "w_contact": 2.0
    },
+   "effective_batch": 8,
    "job": {
-    "job_id": "532885",
+    "job_id": "253409",
     "state": "RUNNING",
-    "reason": null,
-    "gpus": 1,
-    "gpu_type": "RTX 6000 Ada",
+    "reason": "",
+    "gpus": 8,
+    "gpu_type": "H100 80GB",
     "est_start": null
    },
-   "step": 700,
+   "step": 740,
    "steps_total": 10000,
-   "s_per_step": 5.98,
+   "s_per_step": 1.19,
    "eta_assumes_ada": false,
-   "peak_mem_gib": 40.36,
-   "last_log": "2026-11-14T00:21:51+00:00",
-   "last_log_age_min": 0.9,
+   "peak_mem_gib": 40.41,
+   "last_log": "2026-11-14T00:37:29+00:00",
+   "last_log_age_min": 1.5,
    "health": "healthy",
-   "health_reason": "step 700, 6.0 s/step",
+   "health_reason": "step 740, 1.2 s/step",
    "errors": [],
    "stop_rule": "not yet",
-   "last_other_gain": 0.02833,
-   "eta_finish": "2026-11-14T15:49:29+00:00",
+   "last_other_gain": 0.05018,
+   "eta_finish": "2026-11-14T03:41:54+00:00",
    "milestones": [
     {
      "step": 2500,
      "saved": false,
-     "eta": "2026-11-14T03:22:06+00:00"
+     "eta": "2026-11-14T01:12:32+00:00"
     },
     {
      "step": 5000,
      "saved": false,
-     "eta": "2026-11-14T07:31:14+00:00"
+     "eta": "2026-11-14T02:02:19+00:00"
     },
     {
      "step": 7500,
      "saved": false,
-     "eta": "2026-11-14T11:40:21+00:00"
+     "eta": "2026-11-14T02:52:07+00:00"
     },
     {
      "step": 10000,
      "saved": false,
-     "eta": "2026-11-14T15:49:29+00:00"
+     "eta": "2026-11-14T03:41:54+00:00"
     }
    ],
    "loss_curve": [
     {
      "step": 1,
-     "loss": 0.08894,
-     "mse": 0.06551
+     "loss": 0.11456,
+     "mse": 0.08971
     },
     {
      "step": 20,
-     "loss": 0.13891,
-     "mse": 0.115
+     "loss": 0.15443,
+     "mse": 0.12804
     },
     {
      "step": 40,
-     "loss": 0.15581,
-     "mse": 0.12809
+     "loss": 0.14594,
+     "mse": 0.11877
     },
     {
      "step": 60,
-     "loss": 0.15773,
-     "mse": 0.13117
+     "loss": 0.16027,
+     "mse": 0.13203
     },
     {
      "step": 80,
-     "loss": 0.15317,
-     "mse": 0.12305
+     "loss": 0.13347,
+     "mse": 0.10824
     },
     {
      "step": 100,
-     "loss": 0.141,
-     "mse": 0.11923
+     "loss": 0.14592,
+     "mse": 0.12163
     },
     {
      "step": 120,
-     "loss": 0.16375,
-     "mse": 0.13033
+     "loss": 0.15406,
+     "mse": 0.13121
     },
     {
      "step": 140,
-     "loss": 0.15712,
-     "mse": 0.13174
+     "loss": 0.13107,
+     "mse": 0.10765
     },
     {
      "step": 160,
-     "loss": 0.17855,
-     "mse": 0.14812
+     "loss": 0.16242,
+     "mse": 0.1349
     },
     {
      "step": 180,
-     "loss": 0.1567,
-     "mse": 0.1298
+     "loss": 0.17833,
+     "mse": 0.14941
     },
     {
      "step": 200,
-     "loss": 0.17011,
-     "mse": 0.14258
+     "loss": 0.16735,
+     "mse": 0.14149
     },
     {
      "step": 220,
-     "loss": 0.18601,
-     "mse": 0.15914
+     "loss": 0.13421,
+     "mse": 0.1123
     },
     {
      "step": 240,
-     "loss": 0.16292,
-     "mse": 0.14046
+     "loss": 0.12713,
+     "mse": 0.10287
     },
     {
      "step": 260,
-     "loss": 0.1673,
-     "mse": 0.13917
+     "loss": 0.15144,
+     "mse": 0.12491
     },
     {
      "step": 280,
-     "loss": 0.15272,
-     "mse": 0.12555
+     "loss": 0.14744,
+     "mse": 0.12198
     },
     {
      "step": 300,
-     "loss": 0.13762,
-     "mse": 0.10997
+     "loss": 0.13972,
+     "mse": 0.11722
     },
     {
      "step": 320,
-     "loss": 0.12872,
-     "mse": 0.10706
+     "loss": 0.15369,
+     "mse": 0.12734
     },
     {
      "step": 340,
-     "loss": 0.16115,
-     "mse": 0.13621
+     "loss": 0.16378,
+     "mse": 0.1374
     },
     {
      "step": 360,
-     "loss": 0.14442,
-     "mse": 0.11732
+     "loss": 0.14943,
+     "mse": 0.12237
     },
     {
      "step": 380,
-     "loss": 0.14667,
-     "mse": 0.11881
+     "loss": 0.13481,
+     "mse": 0.11117
     },
     {
      "step": 400,
-     "loss": 0.11529,
-     "mse": 0.09716
+     "loss": 0.15754,
+     "mse": 0.13362
     },
     {
      "step": 420,
-     "loss": 0.13298,
-     "mse": 0.11282
+     "loss": 0.14044,
+     "mse": 0.11668
     },
     {
      "step": 440,
-     "loss": 0.18111,
-     "mse": 0.15058
+     "loss": 0.14782,
+     "mse": 0.12202
     },
     {
      "step": 460,
-     "loss": 0.13249,
-     "mse": 0.11246
+     "loss": 0.14334,
+     "mse": 0.12017
     },
     {
      "step": 480,
-     "loss": 0.18445,
-     "mse": 0.16038
+     "loss": 0.16326,
+     "mse": 0.13556
     },
     {
      "step": 500,
-     "loss": 0.20157,
-     "mse": 0.18043
+     "loss": 0.12131,
+     "mse": 0.10001
     },
     {
      "step": 520,
-     "loss": 0.1691,
-     "mse": 0.14571
+     "loss": 0.14503,
+     "mse": 0.12154
     },
     {
      "step": 540,
-     "loss": 0.16561,
-     "mse": 0.13505
+     "loss": 0.15506,
+     "mse": 0.13018
     },
     {
      "step": 560,
-     "loss": 0.13577,
-     "mse": 0.11331
+     "loss": 0.13077,
+     "mse": 0.10984
     },
     {
      "step": 580,
-     "loss": 0.14387,
-     "mse": 0.12045
+     "loss": 0.12516,
+     "mse": 0.10331
     },
     {
      "step": 600,
-     "loss": 0.1606,
-     "mse": 0.13233
+     "loss": 0.14442,
+     "mse": 0.12127
     },
     {
      "step": 620,
-     "loss": 0.14654,
-     "mse": 0.11786
+     "loss": 0.16585,
+     "mse": 0.13827
     },
     {
      "step": 640,
-     "loss": 0.15256,
-     "mse": 0.12535
+     "loss": 0.16604,
+     "mse": 0.13837
     },
     {
      "step": 660,
-     "loss": 0.16873,
-     "mse": 0.13506
+     "loss": 0.15825,
+     "mse": 0.1332
     },
     {
      "step": 680,
-     "loss": 0.17745,
-     "mse": 0.14669
+     "loss": 0.12817,
+     "mse": 0.10546
     },
     {
      "step": 700,
-     "loss": 0.15836,
-     "mse": 0.1328
+     "loss": 0.15444,
+     "mse": 0.12774
+    },
+    {
+     "step": 720,
+     "loss": 0.12769,
+     "mse": 0.10568
+    },
+    {
+     "step": 740,
+     "loss": 0.14771,
+     "mse": 0.12141
     }
    ],
    "probes": [
@@ -238,210 +251,19 @@
      "other_gain": 0.0,
      "zero_gain": 0.0,
      "shuffle_gain": 0.0,
-     "probe_loss_hand": 0.13675
+     "probe_loss_hand": 0.13674
     },
     {
      "step": 500,
-     "other_gain": 0.02833,
-     "zero_gain": 0.0204,
-     "shuffle_gain": 0.02978,
-     "probe_loss_hand": 0.11731
+     "other_gain": 0.05018,
+     "zero_gain": 0.0282,
+     "shuffle_gain": 0.05969,
+     "probe_loss_hand": 0.10869
     }
    ],
    "latest": {
-    "loss": 0.15836,
-    "grad_norm": 1.0353,
-    "lr": 0.0001
-   }
-  },
-  {
-   "run": "v1_K8_plain",
-   "loss_weights": {
-    "w_hand": 0.0,
-    "w_contact": 0.0
-   },
-   "job": {
-    "job_id": "532886",
-    "state": "RUNNING",
-    "reason": null,
-    "gpus": 1,
-    "gpu_type": "RTX A6000",
-    "est_start": null
-   },
-   "step": 480,
-   "steps_total": 10000,
-   "s_per_step": 6.19,
-   "eta_assumes_ada": false,
-   "peak_mem_gib": 40.36,
-   "last_log": "2026-11-14T00:21:30+00:00",
-   "last_log_age_min": 1.2,
-   "health": "healthy",
-   "health_reason": "step 480, 6.2 s/step",
-   "errors": [],
-   "stop_rule": "not yet",
-   "last_other_gain": 0.0,
-   "eta_finish": "2026-11-14T16:44:53+00:00",
-   "milestones": [
-    {
-     "step": 2500,
-     "saved": false,
-     "eta": "2026-11-14T03:51:08+00:00"
-    },
-    {
-     "step": 5000,
-     "saved": false,
-     "eta": "2026-11-14T08:09:03+00:00"
-    },
-    {
-     "step": 7500,
-     "saved": false,
-     "eta": "2026-11-14T12:26:58+00:00"
-    },
-    {
-     "step": 10000,
-     "saved": false,
-     "eta": "2026-11-14T16:44:53+00:00"
-    }
-   ],
-   "loss_curve": [
-    {
-     "step": 1,
-     "loss": 0.06742,
-     "mse": 0.06742
-    },
-    {
-     "step": 20,
-     "loss": 0.12777,
-     "mse": 0.12777
-    },
-    {
-     "step": 40,
-     "loss": 0.13604,
-     "mse": 0.13604
-    },
-    {
-     "step": 60,
-     "loss": 0.10683,
-     "mse": 0.10683
-    },
-    {
-     "step": 80,
-     "loss": 0.13749,
-     "mse": 0.13749
-    },
-    {
-     "step": 100,
-     "loss": 0.12129,
-     "mse": 0.12129
-    },
-    {
-     "step": 120,
-     "loss": 0.11266,
-     "mse": 0.11266
-    },
-    {
-     "step": 140,
-     "loss": 0.13255,
-     "mse": 0.13255
-    },
-    {
-     "step": 160,
-     "loss": 0.13279,
-     "mse": 0.13279
-    },
-    {
-     "step": 180,
-     "loss": 0.14016,
-     "mse": 0.14016
-    },
-    {
-     "step": 200,
-     "loss": 0.09508,
-     "mse": 0.09508
-    },
-    {
-     "step": 220,
-     "loss": 0.11288,
-     "mse": 0.11288
-    },
-    {
-     "step": 240,
-     "loss": 0.10922,
-     "mse": 0.10922
-    },
-    {
-     "step": 260,
-     "loss": 0.13294,
-     "mse": 0.13294
-    },
-    {
-     "step": 280,
-     "loss": 0.16047,
-     "mse": 0.16047
-    },
-    {
-     "step": 300,
-     "loss": 0.13867,
-     "mse": 0.13867
-    },
-    {
-     "step": 320,
-     "loss": 0.16616,
-     "mse": 0.16616
-    },
-    {
-     "step": 340,
-     "loss": 0.14196,
-     "mse": 0.14196
-    },
-    {
-     "step": 360,
-     "loss": 0.15059,
-     "mse": 0.15059
-    },
-    {
-     "step": 380,
-     "loss": 0.15858,
-     "mse": 0.15858
-    },
-    {
-     "step": 400,
-     "loss": 0.15172,
-     "mse": 0.15172
-    },
-    {
-     "step": 420,
-     "loss": 0.1075,
-     "mse": 0.1075
-    },
-    {
-     "step": 440,
-     "loss": 0.11573,
-     "mse": 0.11573
-    },
-    {
-     "step": 460,
-     "loss": 0.10839,
-     "mse": 0.10839
-    },
-    {
-     "step": 480,
-     "loss": 0.07764,
-     "mse": 0.07764
-    }
-   ],
-   "probes": [
-    {
-     "step": 1,
-     "other_gain": 0.0,
-     "zero_gain": 0.0,
-     "shuffle_gain": 0.0,
-     "probe_loss_hand": 0.13673
-    }
-   ],
-   "latest": {
-    "loss": 0.07764,
-    "grad_norm": 0.6632,
+    "loss": 0.14771,
+    "grad_norm": 0.8443,
     "lr": 0.0001
    }
   }
@@ -472,7 +294,7 @@
  ],
  "eval_jobs": [],
  "iteration": {
-  "eta": "2026-11-14T19:44:53+00:00",
+  "eta": "2026-11-14T06:41:54+00:00",
   "final_eval_overhead_h": 3.0,
   "note": "Iteration = both 10k-step runs + final eval (10k checkpoints, then 3 seeds of the best) + report."
  },
@@ -508,9 +330,9 @@
     "detail": "HaMeR/HACO hand metrics + Qwen2.5-VL outcome checklist. Scores real video and the base model."
    },
    {
-    "name": "Full training (3 runs)",
+    "name": "Full training (CoreWeave)",
     "status": "active",
-    "detail": "v1_K8 (weighted loss) and v1_K8_plain (plain loss) on 1 GPU each here; v1_K8_h100 (weighted, effective batch 8) on 8x H100 at CoreWeave, ~1.2 s/step, ETA ~4 h from 18:40."
+    "detail": "v1_K8_h100 on 8x H100 at CoreWeave: same recipe as v1_K8 (hand 1 / contact 2 weighted loss), effective batch 8, ~1.2 s/step, 10k steps in ~4 h. The unicorn runs were cancelled."
    },
    {
     "name": "Checkpoint evals",
@@ -530,8 +352,8 @@
   ],
   "needs_input": [
    {
-    "title": "Optional: partition for checkpoint evals",
-    "detail": "Default is the shared gpu partition (1 GPU, ~45 min per checkpoint per seed). Say if 1-GPU eval jobs may use culbertson instead.",
+    "title": "How to score v1_K8_h100's checkpoints",
+    "detail": "Either copy its adapter milestones (2.5k/5k/7.5k/10k) from CoreWeave to unicorn and score them with the existing eval, or set up the eval on CoreWeave. Recommended: copy.",
     "since": "2026-11-13"
    },
    {
@@ -542,14 +364,14 @@
   ],
   "blockers": [
    {
-    "title": "Training is waiting for GPUs",
-    "severity": "high",
-    "detail": "Both runs are queued on the shared gpu partition (1 x A6000 or 6000 Ada each). Every hour in the queue moves every ETA by an hour."
+    "title": "Checkpoint scores need the eval pipeline",
+    "severity": "medium",
+    "detail": "Eval (HaMeR/HACO + Qwen2.5-VL + held-out clips) exists only on unicorn. v1_K8_h100's milestones must be copied here, or the eval set up on CoreWeave, before they can be scored."
    },
    {
     "title": "Multi-GPU runs hang on some nodes",
-    "severity": "medium",
-    "detail": "4 GPUs hung at the first all-reduce (Nov 7); 2 GPUs fell out of sync after 1 min on a shared node (Nov 13). Runs now use 1 GPU each, so no cross-GPU communication. Root cause not investigated."
+    "severity": "low",
+    "detail": "Hung twice on unicorn (4 GPUs on Nov 7, 2 GPUs on Nov 13). The CoreWeave 8x H100 run uses NVLink with P2P on and has no problems so far."
    },
    {
     "title": "Idle-hand VLM metric is unreliable",
@@ -561,17 +383,22 @@
    {
     "role": "lead",
     "state": "active",
-    "detail": "Monitoring both training runs; respawns critic-evaluator at step 2,200."
+    "detail": "Tracking the CoreWeave run on this dashboard; will score milestones once they reach the eval machine."
+   },
+   {
+    "role": "3dvision_gen2",
+    "state": "active",
+    "detail": "Claude session on the CoreWeave cluster: runs v1_K8_h100 and publishes status snapshots to the run-status branch."
    },
    {
     "role": "critic-evaluator",
     "state": "scheduled",
-    "detail": "Respawns about 30 min before the 2.5k checkpoint to score both runs and judge the stop rule."
+    "detail": "Respawned when the first milestone is available for scoring."
    },
    {
     "role": "model-engineer",
     "state": "off",
-    "detail": "Respawned only if a run fails or the stop rule fires at 5k."
+    "detail": "Respawned only if a run fails or the stop rule fires."
    },
    {
     "role": "data-specialist",
@@ -580,14 +407,16 @@
    }
   ],
   "next_actions": [
-   "~22:30: v1_K8_h100 reaches 10k on CoreWeave; score its milestones (needs the eval set up there, or its adapter milestones copied here).",
-   "Training jobs start (queue).",
-   "Step 2,200: respawn critic-evaluator.",
-   "Step 2,500: score both runs; stop rule check (held-out gain > 0 and rising).",
-   "Step 5,000: go / no-go (stop and debug if held-out gain <= 0).",
-   "Step 10,000: pick best checkpoint by capped hand error; 3-seed final eval; Phase 1 report."
+   "v1_K8_h100 milestones at 2.5k / 5k / 7.5k / 10k (~50 min apart).",
+   "Get the milestones to the eval machine; score 32 held-out clips x 1 seed each.",
+   "Stop rule on the held-out probe: gain > 0 and rising at 2.5k, > 0 at 5k.",
+   "Pick the best milestone by capped hand error; 3-seed final eval; Phase 1 report."
   ],
   "decisions": [
+   {
+    "date": "2026-11-13",
+    "text": "Unicorn runs (v1_K8, v1_K8_plain) cancelled: training continues on CoreWeave only."
+   },
    {
     "date": "2026-11-13",
     "text": "v1_K8_h100 launched on the CoreWeave cluster: same recipe as v1_K8, 8x H100, batch 8, ~1.2 s/step (~4 h for 10k steps). Its logs live only on CoreWeave, so it is not charted here."
@@ -626,6 +455,18 @@
    }
   ],
   "final_eval_overhead_h": 3.0,
-  "iteration_note": "Iteration = both 10k-step runs + final eval (10k checkpoints, then 3 seeds of the best) + report."
+  "iteration_note": "Iteration = both 10k-step runs + final eval (10k checkpoints, then 3 seeds of the best) + report.",
+  "runs": [
+   {
+    "name": "v1_K8_h100",
+    "source": "remote",
+    "repo": "git@github.com:elvishh77/3dvision-code.git",
+    "branch": "run-status",
+    "cluster": "coreweave",
+    "job_id": "253409",
+    "gpus": 8,
+    "gpu_type": "H100 80GB"
+   }
+  ]
  }
 }

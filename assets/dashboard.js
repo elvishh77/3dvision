@@ -49,6 +49,7 @@
   }
 
   const RUN_BG = ["bg-sky", "bg-coral", "bg-mint", "bg-yellow"];
+  const CLUSTER = { unicorn: "Cornell unicorn", coreweave: "CoreWeave" };
   // Short time: "Sat 5:17 PM" within the next 6 days, otherwise "Nov 20, 5:17 PM".
   const fmtShort = (iso) => {
     if (!iso) return "–";
@@ -80,7 +81,8 @@
     }).join("");
     return `<div class="card run-card">
       <div class="run-head ${RUN_BG[idx % RUN_BG.length]}">
-        <div><div class="run-name">${esc(r.run)}</div><div class="small">${esc(weights)}</div></div>
+        <div><div class="run-name">${esc(r.run)} <span class="badge plain">${esc(CLUSTER[r.cluster] || r.cluster || "")}${job.gpus ? ` · ${job.gpus}× ${esc(job.gpu_type || "GPU")}` : ""}</span></div>
+          <div class="small">${esc(weights)}${r.effective_batch ? ` · batch ${r.effective_batch} per step` : ""}</div></div>
         <span class="badge ${HEALTH[r.health] || "plain"}" title="${esc(r.health_reason)}">${esc(r.health)}</span>
       </div>
       <div class="run-body">
@@ -93,9 +95,10 @@
             <div class="fact"><div class="k">GPUs</div><div class="v">${esc(gpu)}</div></div>
             <div class="fact"><div class="k">Speed</div><div class="v">${r.s_per_step ? r.s_per_step + " s/step" : "–"}</div></div>
             <div class="fact"><div class="k">Finishes</div><div class="v">${fmtShort(r.eta_finish)}</div><div class="small muted">${rel(r.eta_finish)}${r.eta_assumes_ada ? " (est.)" : ""}</div></div>
-            <div class="fact"><div class="k">Last log line</div><div class="v">${r.last_log_age_min != null ? rel(r.last_log) : "–"}</div></div>
+            <div class="fact"><div class="k">Last update</div><div class="v">${r.last_log_age_min != null ? rel(r.last_log) : "–"}</div></div>
             <div class="fact"><div class="k">Stop rule</div><div class="v"><span class="badge ${STOP[r.stop_rule] || "bad"}">${esc(r.stop_rule)}</span></div></div>
           </div>
+          ${r.note ? `<div class="small muted" style="margin-top:6px">Note: ${esc(r.note)}</div>` : ""}
           ${r.errors && r.errors.length ? `<div class="item high"><div class="t">Errors in the job log</div><div class="d mono">${r.errors.map(esc).join("<br>")}</div></div>` : ""}
           <div class="chart-title">Checkpoints (ETA, or score once evaluated)</div>
           <div class="ms">${ms}</div>
@@ -137,7 +140,7 @@
   function render(s) {
     const m = s.manual, p = m.project;
     document.title = "HandCtrl Video Dashboard";
-    $("pills").innerHTML = [["Phase 1 · human hands", "bg-yellow"], [`${s.runs.length} training runs`, "bg-mint"], ["Target Nov 13", "bg-sky"]]
+    $("pills").innerHTML = [["Phase 1 · human hands", "bg-yellow"], [`${s.runs.length} training run${s.runs.length === 1 ? "" : "s"}`, "bg-mint"], ["Target Nov 13", "bg-sky"]]
       .map(([t, c]) => `<span class="pill ${c}">${esc(t)}</span>`).join("");
     $("lead").textContent = p.one_liner;
     const ageMin = (Date.now() - new Date(s.generated)) / 60000;
@@ -146,7 +149,7 @@
     else $("stale").style.display = "none";
     const it = s.iteration || {};
     ETA = it.eta ? new Date(it.eta) : null; tick();
-    $("eta-line").textContent = it.eta ? `${fmtTime(it.eta)} · both runs to 10k steps + ${it.final_eval_overhead_h} h of final evaluation` : "No ETA yet: a run has no start estimate.";
+    $("eta-line").textContent = it.eta ? `${fmtTime(it.eta)} · ${s.runs.length === 1 ? "training" : "all runs"} to 10k steps + ${it.final_eval_overhead_h} h of final evaluation` : "No ETA yet: a run has no start estimate.";
 
     const active = m.stages.findIndex((x) => x.status === "active");
     $("k-stage").textContent = active >= 0 ? m.stages[active].name : "–";
