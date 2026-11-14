@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-14T06:16:00+00:00",
+ "generated": "2026-11-14T06:46:05+00:00",
  "runs": [
   {
    "run": "v1_K8_h100",
@@ -24,7 +24,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-14T04:09:07+00:00",
-   "last_log_age_min": 126.9,
+   "last_log_age_min": 157.0,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
@@ -2792,14 +2792,20 @@
    "idle_vlm_fgr": 0.3244,
    "jitter_ratio": 1.3332,
    "task_bacc": 0.754
+  },
+  {
+   "tag": "v1_K8_h100__adapter_step_0010000",
+   "seeds": 1,
+   "updated": "2026-11-14T06:18:51+00:00",
+   "epe_capped": 31.3876,
+   "pck25": 0.7657,
+   "contact_f1_active": 0.7343,
+   "idle_vlm_fgr": 0.3125,
+   "jitter_ratio": 1.2236,
+   "task_bacc": 0.829
   }
  ],
  "eval_jobs": [
-  {
-   "job_id": "581113",
-   "name": "onehand_v1_K8_h100_adapter_step_0002500",
-   "state": "RUNNING"
-  },
   {
    "job_id": "579829",
    "name": "v1_K8_h100_adapter_step_0002500",
@@ -2808,11 +2814,6 @@
   {
    "job_id": "579830",
    "name": "v1_K8_h100_adapter_step_0005000",
-   "state": "RUNNING"
-  },
-  {
-   "job_id": "579714",
-   "name": "v1_K8_h100_adapter_step_0010000",
    "state": "RUNNING"
   }
  ],
