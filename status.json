@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-14T19:08:07+00:00",
+ "generated": "2026-11-14T19:08:27+00:00",
  "runs": [
   {
    "run": "v1_K8_h100",
@@ -24,7 +24,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-14T19:07:49+00:00",
-   "last_log_age_min": 0.3,
+   "last_log_age_min": 0.6,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
@@ -2759,7 +2759,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-14T19:07:49+00:00",
-   "last_log_age_min": 0.3,
+   "last_log_age_min": 0.6,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
@@ -5606,7 +5606,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-14T19:07:49+00:00",
-   "last_log_age_min": 0.3,
+   "last_log_age_min": 0.6,
    "health": "done",
    "health_reason": "reached 15000 steps",
    "errors": [],
@@ -5615,23 +5615,13 @@
    "eta_finish": "2026-11-14T19:07:49+00:00",
    "milestones": [
     {
-     "step": 2500,
-     "saved": false,
+     "step": 12500,
+     "saved": true,
      "eta": null
     },
     {
-     "step": 5000,
-     "saved": false,
-     "eta": null
-    },
-    {
-     "step": 7500,
-     "saved": false,
-     "eta": null
-    },
-    {
-     "step": 10000,
-     "saved": false,
+     "step": 15000,
+     "saved": true,
      "eta": null
     }
    ],
