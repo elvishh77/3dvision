@@ -17,7 +17,7 @@
   <div class="wrap">
     <a class="brand" href="index.html"><span data-i="film"></span>HandCtrl Video</a>
     <nav class="nav" aria-label="Sections">
-      <a href="#pipeline">Pipeline</a><a href="#example">Example</a><a href="#metrics">Metrics</a><a href="#results">Results</a><a href="#next">Planned</a>
+      <a href="#pipeline">Pipeline</a><a href="#example">Example</a><a href="#metrics">Metrics</a><a href="#results">Results</a><a href="#next">One-hand test</a>
       <a href="index.html">Dashboard</a><a href="demo.html">Demos</a><a href="explore.html">Data &amp; model</a><a href="paper.html">Project page</a>
     </nav>
   </div>
@@ -90,13 +90,25 @@
   </section>
 
   <section id="next">
-    <div class="sec-head"><span class="ico" data-i="bubble"></span><div><h2>In progress: the one-hand test</h2><div class="sub">Approved Nov 13; critic-evaluator is building and validating it</div></div></div>
-    <div class="grid g3">
-      <div class="card bg-sky-soft"><h3>Question</h3><div class="muted small">If only one hand is told to act, does only that hand act? The current eval never gives the model a trajectory different from the real one.</div></div>
-      <div class="card bg-yellow-soft"><h3>Setup</h3><div class="muted small">18 eval clips with both hands active. Each clip is generated three times: both hands, right hand only and left hand only. In the one-hand runs the other hand is held still at its first-frame pose with no contact.</div></div>
-      <div class="card bg-mint-soft"><h3>Score</h3><div class="muted small">For the active hand: trajectory error and contact. For the idle hand: does it stay still and empty? Headline: contact rate of the commanded hand minus that of the idle hand.</div></div>
+    <div class="sec-head"><span class="ico" data-i="hand"></span><div><h2>The one-hand test</h2><div class="sub">If only one hand is told to act, does only that hand act? (amendment A2, validated)</div></div></div>
+    <div class="prose muted"><p>18 held-out clips with both hands active, each generated three times: real two-hand trajectory, <b>right acts</b>
+      (left hand frozen at its first-frame pose, no contact) and <b>left acts</b>. The prompt is rewritten to name the acting hand.
+      <a href="demo.html#onehand">See the videos.</a></p></div>
+    <div class="grid g3" style="margin-bottom:18px">
+      <div class="card bg-mint-soft"><div class="stat">0.09 → 0.28</div><div class="muted">contact selectivity, base → trained 10k (commanded hand's contact rate minus the idle hand's; headline)</div></div>
+      <div class="card bg-sky-soft"><div class="stat">31.7 → 9.8 px</div><div class="muted">how far the idle hand moves, base → trained 10k (diagnostic)</div></div>
+      <div class="card bg-yellow-soft"><div class="stat">96 → 32 px</div><div class="muted">commanded hand's trajectory error, base → trained 10k</div></div>
     </div>
-    <div class="cap">Why it matters: the held-out check shows the model barely reacts when the left and right hands are swapped (+0.002). It may follow where the hands are drawn rather than which hand is which.</div>
+    <div class="table-wrap"><table>
+      <tr><th>Sub-metric (idle hand free at frame 0, n = 20)</th><th>Base model</th><th>Trained 10k</th><th>Validated on real clips</th><th style="text-align:left">Role</th></tr>
+      <tr><td>Contact selectivity (HACO)</td><td>0.09</td><td><b>0.28</b></td><td>11/12, margin 1.44</td><td style="text-align:left"><span class="badge ok">headline</span></td></tr>
+      <tr><td>Hold selectivity (VLM)</td><td>0.08</td><td><b>0.22</b></td><td>10/12 (2 ties), margin 0.43</td><td style="text-align:left"><span class="badge info">accepted</span></td></tr>
+      <tr><td>Idle-hand movement (px)</td><td>31.7</td><td><b>9.8</b></td><td>7/12: real idle hands are not still</td><td style="text-align:left"><span class="badge warn">diagnostic</span></td></tr>
+      <tr><td>Contact selectivity, right acts / left acts (all 18)</td><td>0.06 / −0.12</td><td><b>0.23 / 0.10</b></td><td>—</td><td style="text-align:left"><span class="badge plain">breakdown</span></td></tr>
+    </table></div>
+    <div class="cap">Seed 0, 18 clips: differences below about 0.1 are noise. The base model is at chance, as expected. Headline restricted to clip-conditions
+      where the idle hand is free at frame 0: in 16 of 36, the frozen idle hand already rests on an object, so "idle" can't mean "no contact" there.
+      The 2.5k checkpoint is being tested next.</div>
   </section>
 </main>
 <footer class="wrap"><span class="sunset" data-i="sunset"></span>Metric definitions: <code>eval/METRICS_PROPOSAL.md</code> (approved v1 + amendment A1). Real and base-model rows are measured; trained rows fill in as checkpoints are scored.</footer>

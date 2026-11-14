@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-14T05:45:55+00:00",
+ "generated": "2026-11-14T05:49:12+00:00",
  "runs": [
   {
    "run": "v1_K8_h100",
@@ -24,7 +24,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-14T04:09:07+00:00",
-   "last_log_age_min": 96.8,
+   "last_log_age_min": 100.1,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
@@ -2796,6 +2796,11 @@
  ],
  "eval_jobs": [
   {
+   "job_id": "581113",
+   "name": "onehand_v1_K8_h100_adapter_step_0002500",
+   "state": "PENDING"
+  },
+  {
    "job_id": "579829",
    "name": "v1_K8_h100_adapter_step_0002500",
    "state": "RUNNING"
@@ -2870,6 +2875,11 @@
   ],
   "needs_input": [
    {
+    "title": "Approve eval amendment A3?",
+    "detail": "(1) Count a hand in the headline hand error only if its target is visible for at least 5 frames (2.5k: 32.1 -> 30.4 px; ranking unchanged). (2) Add a diagnostic left/right-mismatch rate instead of re-assigning flipped hands, because re-assigning would reward the wrong hand moving.",
+    "since": "2026-11-14"
+   },
+   {
     "title": "Paper page: title and authors",
     "detail": "The paper-style page uses a working title and 'Authors TBD'. Send the title and author list when ready.",
     "since": "2026-11-13"
@@ -2896,7 +2906,7 @@
    {
     "role": "critic-evaluator",
     "state": "active",
-    "detail": "Building and validating the one-hand test (approved Nov 13): 18 two-hand clips x {both, right-only, left-only}; validated on real single-hand clips; base-model reference."
+    "detail": "One-hand test built, validated and scored (base, 10k); running it on 2.5k. Proposed amendment A3 for two M1 artifacts."
    },
    {
     "role": "model-engineer",
@@ -2916,6 +2926,10 @@
    "Phase 1 report."
   ],
   "decisions": [
+   {
+    "date": "2026-11-14",
+    "text": "One-hand test (A2) validated and run: contact selectivity base 0.09 -> trained 10k 0.28; idle hand moves 31.7 -> 9.8 px."
+   },
    {
     "date": "2026-11-14",
     "text": "First trained scores: capped hand error 32 px at 2.5k/5k vs 101 px base (real 15). Best checkpoint chosen after 3-seed runs on 2.5k and 5k."

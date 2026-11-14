@@ -1,1 +1,29 @@
-{"items": []}
+{
+ "note": "Trained model at 10k steps. Each row is one held-out clip generated three times: with the real two-hand trajectory, with only the right hand's trajectory (left hand frozen at its first-frame pose, no contact) and with only the left hand's. Overlays: green dots = target keypoints, red skeleton = detected hand, orange = detected contact.",
+ "items": [
+  {
+   "id": "003312_w0",
+   "file": "onehand_003312_w0.mp4",
+   "poster": "onehand_003312_w0.jpg",
+   "caption": "Good. Both hands start out of view. Told 'right acts', only the right hand comes in and lifts the birdhouse; told 'left acts', only the left. Contact selectivity +0.23 / +0.79; idle hand moves 0 / 8 px."
+  },
+  {
+   "id": "003230_w0",
+   "file": "onehand_003230_w0.mp4",
+   "poster": "onehand_003230_w0.jpg",
+   "caption": "Good. The ranch bottle is lifted by whichever hand is told to act while the other stays put. Selectivity +0.35 / +0.62 (base model: -0.75 / +0.88); idle hand moves 9 / 8 px."
+  },
+  {
+   "id": "003234_w0",
+   "file": "onehand_003234_w0.mp4",
+   "poster": "onehand_003234_w0.jpg",
+   "caption": "Bad, and partly the test's limitation. In 'right acts' the frozen left hand starts on the vase, stays there, and reads as grasping (selectivity -0.96). In 'left acts' the 'idle' right hand drifts 61 px."
+  },
+  {
+   "id": "003300_w59",
+   "file": "onehand_003300_w59.mp4",
+   "poster": "onehand_003300_w59.jpg",
+   "caption": "Bad. The model does not follow either one-hand instruction: the idle hand moves 127 px and the commanded hand is 106 px off its target."
+  }
+ ]
+}
