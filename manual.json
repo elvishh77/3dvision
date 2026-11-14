@@ -30,9 +30,9 @@
    "detail": "HaMeR/HACO hand metrics + Qwen2.5-VL outcome checklist. Scores real video and the base model."
   },
   {
-   "name": "Full training (2 runs)",
+   "name": "Full training (3 runs)",
    "status": "active",
-   "detail": "v1_K8 (hand/contact-weighted loss) vs v1_K8_plain (plain loss), 10k steps each on 1 GPU."
+   "detail": "v1_K8 (weighted loss) and v1_K8_plain (plain loss) on 1 GPU each here; v1_K8_h100 (weighted, effective batch 8) on 8x H100 at CoreWeave, ~1.2 s/step, ETA ~4 h from 18:40."
   },
   {
    "name": "Checkpoint evals",
@@ -102,6 +102,7 @@
   }
  ],
  "next_actions": [
+  "~22:30: v1_K8_h100 reaches 10k on CoreWeave; score its milestones (needs the eval set up there, or its adapter milestones copied here).",
   "Training jobs start (queue).",
   "Step 2,200: respawn critic-evaluator.",
   "Step 2,500: score both runs; stop rule check (held-out gain > 0 and rising).",
@@ -109,6 +110,10 @@
   "Step 10,000: pick best checkpoint by capped hand error; 3-seed final eval; Phase 1 report."
  ],
  "decisions": [
+  {
+   "date": "2026-11-13",
+   "text": "v1_K8_h100 launched on the CoreWeave cluster: same recipe as v1_K8, 8x H100, batch 8, ~1.2 s/step (~4 h for 10k steps). Its logs live only on CoreWeave, so it is not charted here."
+  },
   {
    "date": "2026-11-13",
    "text": "After a 2-GPU communication hang, both runs moved to 1 GPU each (batch 2 per step, same ~18 h for 10k steps)."
