@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-14T15:17:08+00:00",
+ "generated": "2026-11-14T15:47:12+00:00",
  "runs": [
   {
    "run": "v1_K8_h100",
@@ -24,7 +24,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-14T14:48:03+00:00",
-   "last_log_age_min": 29.1,
+   "last_log_age_min": 59.2,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
@@ -2759,7 +2759,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-14T14:48:03+00:00",
-   "last_log_age_min": 29.1,
+   "last_log_age_min": 59.2,
    "health": "unhealthy",
    "health_reason": "stop rule failed at 5k",
    "errors": [],
