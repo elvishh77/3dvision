@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-14T19:06:51+00:00",
+ "generated": "2026-11-14T19:07:15+00:00",
  "runs": [
   {
    "run": "v1_K8_h100",
@@ -24,7 +24,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-14T14:48:03+00:00",
-   "last_log_age_min": 258.8,
+   "last_log_age_min": 259.2,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
@@ -2759,11 +2759,11 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-14T14:48:03+00:00",
-   "last_log_age_min": 258.8,
-   "health": "unhealthy",
-   "health_reason": "stop rule failed at 5k",
+   "last_log_age_min": 259.2,
+   "health": "done",
+   "health_reason": "reached 10000 steps",
    "errors": [],
-   "stop_rule": "FAIL: stop and debug",
+   "stop_rule": "n/a (control)",
    "last_other_gain": 0.0,
    "eta_finish": "2026-11-14T14:48:03+00:00",
    "milestones": [
@@ -5582,6 +5582,62 @@
    "loss_curve": [],
    "probes": [],
    "latest": null
+  },
+  {
+   "run": "v2_mix_h100",
+   "cluster": "coreweave",
+   "note": "resumed 1x (spot requeue)",
+   "loss_weights": {
+    "w_hand": 1.0,
+    "w_contact": 2.0
+   },
+   "effective_batch": 8,
+   "job": {
+    "job_id": "254601",
+    "state": "FAILED",
+    "reason": "resumed 1x (spot requeue)",
+    "gpus": 8,
+    "gpu_type": "H100 80GB",
+    "est_start": null
+   },
+   "step": 0,
+   "steps_total": 15000,
+   "s_per_step": null,
+   "eta_assumes_ada": false,
+   "peak_mem_gib": null,
+   "last_log": "2026-11-14T14:48:03+00:00",
+   "last_log_age_min": 259.2,
+   "health": "unhealthy",
+   "health_reason": "failed",
+   "errors": [],
+   "stop_rule": "not yet",
+   "last_other_gain": null,
+   "eta_finish": null,
+   "milestones": [
+    {
+     "step": 2500,
+     "saved": false,
+     "eta": null
+    },
+    {
+     "step": 5000,
+     "saved": false,
+     "eta": null
+    },
+    {
+     "step": 7500,
+     "saved": false,
+     "eta": null
+    },
+    {
+     "step": 10000,
+     "saved": false,
+     "eta": null
+    }
+   ],
+   "loss_curve": [],
+   "probes": [],
+   "latest": null
   }
  ],
  "evals": [
@@ -5894,6 +5950,15 @@
    },
    {
     "name": "v2b_K8_h100",
+    "source": "remote",
+    "repo": "git@github.com:elvishh77/3dvision-code.git",
+    "branch": "run-status",
+    "cluster": "coreweave",
+    "gpus": 8,
+    "gpu_type": "H100 80GB"
+   },
+   {
+    "name": "v2_mix_h100",
     "source": "remote",
     "repo": "git@github.com:elvishh77/3dvision-code.git",
     "branch": "run-status",

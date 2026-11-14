@@ -222,6 +222,15 @@
    "cluster": "coreweave",
    "gpus": 8,
    "gpu_type": "H100 80GB"
+  },
+  {
+   "name": "v2_mix_h100",
+   "source": "remote",
+   "repo": "git@github.com:elvishh77/3dvision-code.git",
+   "branch": "run-status",
+   "cluster": "coreweave",
+   "gpus": 8,
+   "gpu_type": "H100 80GB"
   }
  ]
 }

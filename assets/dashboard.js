@@ -10,7 +10,7 @@
     return m >= 0 ? `in ${s}` : `${s} ago`;
   };
   const HEALTH = { healthy: "ok", done: "ok", queued: "info", stalled: "warn", idle: "plain", unhealthy: "bad" };
-  const STOP = { pass: "ok", "on track": "ok", warning: "warn", "not yet": "plain" };
+  const STOP = { pass: "ok", "on track": "ok", warning: "warn", "not yet": "plain", "n/a (control)": "plain" };
 
   function item(cls, t, d, extra) {
     return `<div class="item ${cls}"><div class="t"><span>${esc(t)}</span>${extra || ""}</div><div class="d">${esc(d)}</div></div>`;
