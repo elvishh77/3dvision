@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-14T07:36:15+00:00",
+ "generated": "2026-11-14T07:36:56+00:00",
  "runs": [
   {
    "run": "v1_K8_h100",
@@ -24,7 +24,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-14T04:09:07+00:00",
-   "last_log_age_min": 207.1,
+   "last_log_age_min": 207.8,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
@@ -2735,6 +2735,62 @@
     "grad_norm": 0.3678,
     "lr": 0.0001
    }
+  },
+  {
+   "run": "v1_K8_h100_nocond",
+   "cluster": "coreweave",
+   "note": "waiting for the first status snapshot",
+   "loss_weights": {
+    "w_hand": null,
+    "w_contact": null
+   },
+   "effective_batch": 16,
+   "job": {
+    "job_id": null,
+    "state": "UNKNOWN",
+    "reason": "waiting for the first status snapshot",
+    "gpus": 8,
+    "gpu_type": "H100 80GB",
+    "est_start": null
+   },
+   "step": 0,
+   "steps_total": 10000,
+   "s_per_step": null,
+   "eta_assumes_ada": false,
+   "peak_mem_gib": null,
+   "last_log": null,
+   "last_log_age_min": null,
+   "health": "idle",
+   "health_reason": "waiting for the first status snapshot",
+   "errors": [],
+   "stop_rule": "not yet",
+   "last_other_gain": null,
+   "eta_finish": null,
+   "milestones": [
+    {
+     "step": 2500,
+     "saved": false,
+     "eta": null
+    },
+    {
+     "step": 5000,
+     "saved": false,
+     "eta": null
+    },
+    {
+     "step": 7500,
+     "saved": false,
+     "eta": null
+    },
+    {
+     "step": 10000,
+     "saved": false,
+     "eta": null
+    }
+   ],
+   "loss_curve": [],
+   "probes": [],
+   "latest": null
   }
  ],
  "evals": [
@@ -2813,7 +2869,7 @@
   }
  ],
  "iteration": {
-  "eta": "2026-11-14T07:09:07+00:00",
+  "eta": null,
   "final_eval_overhead_h": 3.0,
   "note": "Iteration = both 10k-step runs + final eval (10k checkpoints, then 3 seeds of the best) + report."
  },
@@ -2849,9 +2905,9 @@
     "detail": "HaMeR/HACO hand metrics + Qwen2.5-VL outcome checklist. Scores real video and the base model."
    },
    {
-    "name": "Full training (CoreWeave)",
-    "status": "done",
-    "detail": "v1_K8_h100 finished 10k steps on 8x H100 at CoreWeave (Nov 13, ~4 h). Milestones copied to unicorn."
+    "name": "Training: no-hand control",
+    "status": "active",
+    "detail": "v1_K8_h100 done (10k). Next: v1_K8_h100_nocond, identical except the adapter never sees the hand trajectory, to separate HOT3D adaptation from hand following."
    },
    {
     "name": "Checkpoint evals",
@@ -2916,12 +2972,17 @@
    }
   ],
   "next_actions": [
+   "model-engineer adds --no_hand_input; lead pushes; CoreWeave launches v1_K8_h100_nocond (~4 h).",
    "3-seed eval of 2.5k and 5k (running) -> pick the best checkpoint.",
    "10k standard eval (re-running) and one-hand test on 10k (critic-evaluator).",
    "Look into two eval artifacts seen in the demos: detector left/right label flips, and per-clip averaging over hands seen for only a frame.",
    "Phase 1 report."
   ],
   "decisions": [
+   {
+    "date": "2026-11-14",
+    "text": "Control run approved: same fine-tune (10k steps, weighted loss) with the hand input zeroed (--no_hand_input), on CoreWeave."
+   },
    {
     "date": "2026-11-14",
     "text": "One-hand test (A2) validated and run: contact selectivity base 0.09 -> trained 10k 0.28; idle hand moves 31.7 -> 9.8 px."
@@ -2989,6 +3050,15 @@
     "branch": "run-status",
     "cluster": "coreweave",
     "job_id": "253409",
+    "gpus": 8,
+    "gpu_type": "H100 80GB"
+   },
+   {
+    "name": "v1_K8_h100_nocond",
+    "source": "remote",
+    "repo": "git@github.com:elvishh77/3dvision-code.git",
+    "branch": "run-status",
+    "cluster": "coreweave",
     "gpus": 8,
     "gpu_type": "H100 80GB"
    }

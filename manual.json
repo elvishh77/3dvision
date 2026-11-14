@@ -30,9 +30,9 @@
    "detail": "HaMeR/HACO hand metrics + Qwen2.5-VL outcome checklist. Scores real video and the base model."
   },
   {
-   "name": "Full training (CoreWeave)",
-   "status": "done",
-   "detail": "v1_K8_h100 finished 10k steps on 8x H100 at CoreWeave (Nov 13, ~4 h). Milestones copied to unicorn."
+   "name": "Training: no-hand control",
+   "status": "active",
+   "detail": "v1_K8_h100 done (10k). Next: v1_K8_h100_nocond, identical except the adapter never sees the hand trajectory, to separate HOT3D adaptation from hand following."
   },
   {
    "name": "Checkpoint evals",
@@ -97,12 +97,17 @@
   }
  ],
  "next_actions": [
+  "model-engineer adds --no_hand_input; lead pushes; CoreWeave launches v1_K8_h100_nocond (~4 h).",
   "3-seed eval of 2.5k and 5k (running) -> pick the best checkpoint.",
   "10k standard eval (re-running) and one-hand test on 10k (critic-evaluator).",
   "Look into two eval artifacts seen in the demos: detector left/right label flips, and per-clip averaging over hands seen for only a frame.",
   "Phase 1 report."
  ],
  "decisions": [
+  {
+   "date": "2026-11-14",
+   "text": "Control run approved: same fine-tune (10k steps, weighted loss) with the hand input zeroed (--no_hand_input), on CoreWeave."
+  },
   {
    "date": "2026-11-14",
    "text": "One-hand test (A2) validated and run: contact selectivity base 0.09 -> trained 10k 0.28; idle hand moves 31.7 -> 9.8 px."
@@ -170,6 +175,15 @@
    "branch": "run-status",
    "cluster": "coreweave",
    "job_id": "253409",
+   "gpus": 8,
+   "gpu_type": "H100 80GB"
+  },
+  {
+   "name": "v1_K8_h100_nocond",
+   "source": "remote",
+   "repo": "git@github.com:elvishh77/3dvision-code.git",
+   "branch": "run-status",
+   "cluster": "coreweave",
    "gpus": 8,
    "gpu_type": "H100 80GB"
   }
