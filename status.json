@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-14T07:39:00+00:00",
+ "generated": "2026-11-14T07:41:01+00:00",
  "runs": [
   {
    "run": "v1_K8_h100",
@@ -24,7 +24,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-14T04:09:07+00:00",
-   "last_log_age_min": 209.9,
+   "last_log_age_min": 211.9,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
@@ -2737,31 +2737,31 @@
    }
   },
   {
-   "run": "v1_K8_h100_nocond",
-   "cluster": "coreweave",
-   "note": "waiting for the first status snapshot",
+   "run": "v1_K8_nocond",
+   "cluster": "unicorn",
+   "note": null,
    "loss_weights": {
     "w_hand": null,
     "w_contact": null
    },
-   "effective_batch": 16,
+   "effective_batch": 2,
    "job": {
     "job_id": null,
-    "state": "UNKNOWN",
-    "reason": "waiting for the first status snapshot",
-    "gpus": 8,
-    "gpu_type": "H100 80GB",
+    "state": "NOT_SUBMITTED",
+    "reason": null,
+    "gpus": null,
+    "gpu_type": null,
     "est_start": null
    },
    "step": 0,
    "steps_total": 10000,
    "s_per_step": null,
-   "eta_assumes_ada": false,
+   "eta_assumes_ada": true,
    "peak_mem_gib": null,
    "last_log": null,
    "last_log_age_min": null,
    "health": "idle",
-   "health_reason": "waiting for the first status snapshot",
+   "health_reason": "not_submitted",
    "errors": [],
    "stop_rule": "not yet",
    "last_other_gain": null,
@@ -2907,7 +2907,7 @@
    {
     "name": "Training: no-hand control",
     "status": "active",
-    "detail": "v1_K8_h100 done (10k). Next: v1_K8_h100_nocond, identical except the adapter never sees the hand trajectory, to separate HOT3D adaptation from hand following."
+    "detail": "v1_K8_nocond on unicorn: 1 GPU, 2 clips/step, 10k steps (= 20k clips, the same as v1_K8_h100 at its 2.5k checkpoint), hand input zeroed (--no_hand_input), loss weighting unchanged. Compare against v1_K8_h100 @ 2.5k."
    },
    {
     "name": "Checkpoint evals",
@@ -2967,13 +2967,17 @@
    }
   ],
   "next_actions": [
-   "model-engineer adds --no_hand_input; lead pushes; CoreWeave launches v1_K8_h100_nocond (~4 h).",
+   "model-engineer adds --no_hand_input; lead launches v1_K8_nocond on unicorn -p gpu (1 GPU, ~17-24 h).",
    "3-seed eval of 2.5k and 5k (running) -> pick the best checkpoint.",
    "10k standard eval (re-running) and one-hand test on 10k (critic-evaluator).",
    "Look into two eval artifacts seen in the demos: detector left/right label flips, and per-clip averaging over hands seen for only a frame.",
    "Phase 1 report."
   ],
   "decisions": [
+   {
+    "date": "2026-11-14",
+    "text": "Control moved to unicorn (user): 1 GPU, batch 2, 10k steps; matched in clips seen to v1_K8_h100 @ 2.5k (an exact batch-8 match would take ~70 h on 1 GPU)."
+   },
    {
     "date": "2026-11-14",
     "text": "Eval amendment A3 approved: hand-windows need >= 5 visible target frames to enter the headline; add a diagnostic left/right mismatch rate instead of re-assigning hands."
@@ -3053,13 +3057,8 @@
     "gpu_type": "H100 80GB"
    },
    {
-    "name": "v1_K8_h100_nocond",
-    "source": "remote",
-    "repo": "git@github.com:elvishh77/3dvision-code.git",
-    "branch": "run-status",
-    "cluster": "coreweave",
-    "gpus": 8,
-    "gpu_type": "H100 80GB"
+    "name": "v1_K8_nocond",
+    "source": "local"
    }
   ]
  }
