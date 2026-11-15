@@ -92,12 +92,34 @@
     if (loaded[key]) return go(loaded[key]);
     fetch(`assets/media/${key}/demo.json?t=` + Date.now(), { cache: "no-store" }).then((r) => r.json()).then((d) => go(loaded[key] = norm(key, d))).catch(() => {});
   }
-  Promise.all(SETS.map((s) => fetch(`assets/media/${s.key}/demo.json`, { method: "HEAD" }).then((r) => (r.ok ? s : null)).catch(() => null))).then((av) => {
-    const sets = av.filter(Boolean);
+  // assets/media/sets.json lists the comparison sets that exist (avoids 404 probes for sets not built yet)
+  fetch("assets/media/sets.json?t=" + Date.now(), { cache: "no-store" }).then((r) => (r.ok ? r.json() : ["demo_all"])).catch(() => ["demo_all"]).then((have) => {
+    const sets = SETS.filter((s) => have.includes(s.key));
     $("all-sets").innerHTML = sets.length > 1 ? `<span class="small muted">Compare:</span>` + sets.map((s, i) =>
       `<button class="pill ${["bg-coral", "bg-sky"][i % 2]} setbtn" data-k="${s.key}">${esc(s.name)}</button>`).join("") : "";
     document.querySelectorAll(".setbtn").forEach((b) => b.addEventListener("click", () => useSet(b.dataset.k)));
     document.querySelectorAll(".sortbtn").forEach((b) => b.addEventListener("click", () => { sortKey = b.dataset.k; render(); }));
     if (sets.length) useSet(sets[0].key);
+  });
+
+  // ---- robot / HRDexDB sets (pushed from CoreWeave; section stays hidden until they exist) ----
+  const RSETS = [{ key: "hrdexdb_robot", name: "Robot hand (zero-shot)" }, { key: "hrdexdb_human", name: "Human hand, held-out objects" }];
+  Promise.all(RSETS.map((s) => fetch(`assets/media/${s.key}/demo.json?t=` + Date.now(), { cache: "no-store" }).then((r) => (r.ok ? r.json() : null)).then((d) => (d ? { ...s, d } : null)).catch(() => null))).then((sets) => {
+    sets = sets.filter(Boolean); if (!sets.length) return;
+    $("robot").style.display = "";
+    const show = (s) => {
+      document.querySelectorAll(".rsetbtn").forEach((b) => (b.style.boxShadow = b.dataset.k === s.key ? "3px 3px 0 #3e3a39" : "none"));
+      const P = s.d.panels || [];
+      $("robot-list").innerHTML = (s.d.items || []).map((it) => `<figure class="demo">
+          <div class="media vs3"><video src="assets/media/${s.key}/${esc(it.id)}.mp4" poster="assets/media/${s.key}/${esc(it.id)}.jpg" muted loop playsinline controls preload="none"></video>
+            <div class="vlabelsN" style="grid-template-columns:repeat(${P.length || 3},1fr)">${P.map((p, i) => `<span class="${i === P.length - 1 ? "ours" : i ? "mid" : ""}">${esc(p.label)}</span>`).join("")}</div></div>
+          <figcaption class="cap"><span class="badge plain">${esc(it.id)}</span> <b>Prompt:</b> ${esc(it.prompt || "")}
+            ${it.psnr_hand ? `<br>Hand-region PSNR: static reference ${(+it.psnr_hand[0]).toFixed(1)} dB · <b>generated ${(+it.psnr_hand[1]).toFixed(1)} dB</b>` : ""}
+            ${it.note ? `<div class="item input" style="margin-top:8px;padding:8px 12px"><div class="d" style="margin:0;color:var(--ink)">${esc(it.note)}</div></div>` : ""}</figcaption></figure>`).join("");
+      $("robot-credit").innerHTML = [s.d.metric_note, s.d.source].filter(Boolean).map(esc).join("<br>");
+    };
+    $("robot-sets").innerHTML = sets.length > 1 ? `<span class="small muted">Show:</span>` + sets.map((s, i) => `<button class="pill ${["bg-sky", "bg-mint"][i % 2]} rsetbtn" data-k="${s.key}">${esc(s.name)}</button>`).join("") : "";
+    document.querySelectorAll(".rsetbtn").forEach((b) => b.addEventListener("click", () => show(sets.find((x) => x.key === b.dataset.k))));
+    show(sets[0]);
   });
 })();

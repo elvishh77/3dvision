@@ -18,7 +18,7 @@
     <a class="brand" href="paper.html"><span data-i="film"></span>HandCtrl Video</a>
     <nav class="nav" aria-label="Sections">
       <a href="#highlights">Highlights</a><a href="#method">How it works</a><a href="#conditioning">Conditioning</a>
-      <a href="#data">Data</a><a href="#results">Results</a><a href="#evaluation">Evaluation</a><a href="#faq">Questions</a><a href="explore.html">Data &amp; model</a><a href="eval.html">Eval</a><a href="demo.html">Demos</a><a href="#citation">Citation</a>
+      <a href="#data">Data</a><a href="#results">Results</a><a href="#robots">Robot hands</a><a href="#evaluation">Evaluation</a><a href="#faq">Questions</a><a href="explore.html">Data &amp; model</a><a href="eval.html">Eval</a><a href="demo.html">Demos</a><a href="#citation">Citation</a>
     </nav>
     <a class="btn ghost" href="index.html">Dashboard</a>
   </div>
@@ -126,6 +126,21 @@
       <div class="table-wrap"><table id="results-table"></table></div>
       <div class="cap">Hand error and PCK compare hands detected in the generated video (HaMeR) with the conditioning trajectory.
         Contact F1 uses HACO on hands that touch something. Task accuracy is a Qwen2.5-VL checklist of the prompt's outcome.</div>
+    </div>
+  </section>
+
+  <section id="robots">
+    <div class="wrap">
+      <div class="sec-head"><span class="ico" data-i="hand"></span><div><h2>Toward robot hands</h2><div class="sub">Zero-shot: the same model driven by a robot hand's joint trajectory</div></div></div>
+      <div class="prose muted"><p>The conditioning is a hand's 3D trajectory and contact, not its appearance. So a dexterous robot hand's forward kinematics
+        (here an Inspire hand on an xArm, from HRDexDB) can fill the same keypoint and surface slots as a human hand. The model was never trained on robot
+        hands; these early, hand-picked results show it can already render the robot following its trajectory, with visible artifacts.</p></div>
+      <figure style="margin:0">
+        <div class="media vs3"><video src="assets/media/hrdexdb_robot/hrdexr-inspire_dftp-yellow_funnel-0_w495.mp4" poster="assets/media/hrdexdb_robot/hrdexr-inspire_dftp-yellow_funnel-0_w495.jpg" muted loop playsinline controls preload="none"></video>
+          <div class="vlabelsN" style="grid-template-columns:repeat(3,1fr)"><span>Real robot</span><span class="mid">Generated</span><span class="ours">Generated + target hand</span></div></div>
+        <figcaption class="cap">Prompt: the yellow funnel is picked up with the right hand and put back down. Object and embodiment unseen in training.
+          <a href="demo.html#robot">More robot and held-out-object clips</a>. HRDexDB (CC BY-NC 4.0), frames resized with overlays.</figcaption>
+      </figure>
     </div>
   </section>
 

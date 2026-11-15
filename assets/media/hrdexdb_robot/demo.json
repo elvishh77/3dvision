@@ -1,0 +1,90 @@
+{
+ "title": "Robot-hand conditioning: Inspire hand on xArm (v2_mix 15k, zero-shot)",
+ "panels": [
+  {
+   "label": "Real robot"
+  },
+  {
+   "label": "Generated"
+  },
+  {
+   "label": "Generated + target hand"
+  }
+ ],
+ "items": [
+  {
+   "id": "hrdexr-inspire_dftp-yellow_funnel-0_w495",
+   "prompt": "First-person view: the yellow funnel is picked up with the right hand and put back down.",
+   "note": "Inspire DFTP robot hand (xArm); the model was never trained on robot hands; object not seen in human training data",
+   "psnr_hand": [
+    8.37,
+    10.68
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_dftp-lotion-3_w270",
+   "prompt": "First-person view: the lotion is picked up with the right hand and put back down.",
+   "note": "Inspire DFTP robot hand (xArm); the model was never trained on robot hands; object seen in human training data",
+   "psnr_hand": [
+    9.64,
+    11.84
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-screwdriver-0_w225",
+   "prompt": "First-person view: the screwdriver is picked up with the right hand and put back down.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object not seen in human training data",
+   "psnr_hand": [
+    11.8,
+    14.51
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-frame_red-0_w270",
+   "prompt": "First-person view: the frame red ends up lifted in the right hand.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object seen in human training data",
+   "psnr_hand": [
+    12.96,
+    14.76
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-metal_measuring_flask-0_w180",
+   "prompt": "First-person view: the metal measuring flask is picked up with the right hand and put back down.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object seen in human training data",
+   "psnr_hand": [
+    12.72,
+    14.43
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-tea_case-0_w135",
+   "prompt": "First-person view: the tea case stays held in the right hand.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object not seen in human training data",
+   "psnr_hand": [
+    10.28,
+    12.27
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-white_candle_holder-0_w225",
+   "prompt": "First-person view: the white candle holder ends up turned in the right hand.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object seen in human training data",
+   "psnr_hand": [
+    11.55,
+    12.73
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-cactus3-0_w180",
+   "prompt": "First-person view: the cactus3 is picked up with the right hand and put back down.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object seen in human training data",
+   "psnr_hand": [
+    10.98,
+    13.7
+   ]
+  }
+ ],
+ "metric_note": "psnr_hand = PSNR (dB) inside the conditioning hand region vs the real video: [first frame repeated, generated]",
+ "source": "HRDexDB dataset (https://huggingface.co/datasets/HRDexDB/HRDexDB), licensed CC BY-NC 4.0 (https://creativecommons.org/licenses/by-nc/4.0/). Frames shown with modifications: cropped and resized, hand-skeleton overlays; the 'Generated' panels are model outputs conditioned on the first frame."
+}

@@ -288,3 +288,4 @@ button.pill { cursor: pointer; font: inherit; font-size: .86rem; }
 .vlabelsN span.mid { background: var(--sky); } .vlabelsN span.ours { background: var(--mint); }
 @media (max-width: 640px) { .vlabelsN span { font-size: .56rem; padding: 0 5px; margin-left: 3px; } }
 .sortbtn, .setbtn { white-space: normal; text-align: left; }
+.cap .badge { white-space: normal; word-break: break-all; }

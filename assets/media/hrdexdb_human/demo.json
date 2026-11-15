@@ -1,0 +1,126 @@
+{
+ "title": "HRDexDB human hands, held-out objects (v2_mix 15k)",
+ "panels": [
+  {
+   "label": "Real"
+  },
+  {
+   "label": "Generated"
+  },
+  {
+   "label": "Generated + target hand"
+  }
+ ],
+ "items": [
+  {
+   "id": "hrdex-yellow_funnel-0_w45",
+   "prompt": "First-person view: the yellow funnel is picked up with the right hand and put back down.",
+   "note": "Human hand; object never seen in training",
+   "psnr_hand": [
+    10.13,
+    19.67
+   ]
+  },
+  {
+   "id": "hrdex-tennis_ball-2_w0",
+   "prompt": "First-person view: the tennis ball is picked up with the right hand and put back down.",
+   "note": "Human hand; object never seen in training",
+   "psnr_hand": [
+    11.7,
+    20.9
+   ]
+  },
+  {
+   "id": "hrdex-screwdriver-2_w0",
+   "prompt": "First-person view: the right hand touches the screwdriver without moving it.",
+   "note": "Human hand; object never seen in training",
+   "psnr_hand": [
+    10.54,
+    19.41
+   ]
+  },
+  {
+   "id": "hrdex-scotch_tape-2_w0",
+   "prompt": "First-person view: the scotch tape is picked up with the right hand and put back down.",
+   "note": "Human hand; object never seen in training",
+   "psnr_hand": [
+    11.29,
+    20.02
+   ]
+  },
+  {
+   "id": "hrdex-balloon_whisk-0_w0",
+   "prompt": "First-person view: the balloon whisk is picked up with the right hand and put back down.",
+   "note": "Human hand; object never seen in training",
+   "psnr_hand": [
+    11.86,
+    19.82
+   ]
+  },
+  {
+   "id": "hrdex-tea_case-2_w0",
+   "prompt": "First-person view: the tea case is picked up with the right hand and put back down.",
+   "note": "Human hand; object never seen in training",
+   "psnr_hand": [
+    11.52,
+    18.58
+   ]
+  },
+  {
+   "id": "hrdex-cactus2-0_w0",
+   "prompt": "First-person view: the cactus2 is picked up with the right hand and put back down.",
+   "note": "Human hand; object never seen in training",
+   "psnr_hand": [
+    10.76,
+    17.75
+   ]
+  },
+  {
+   "id": "hrdex-white_wood_handle_watering_can-3_w0",
+   "prompt": "First-person view: the right hand touches the white wood handle watering can without moving it.",
+   "note": "Human hand; object never seen in training",
+   "psnr_hand": [
+    12.02,
+    16.1
+   ]
+  },
+  {
+   "id": "hrdex-spray_bottle-1_w0",
+   "prompt": "First-person view: the right hand touches the spray bottle without moving it.",
+   "note": "Human hand; object never seen in training",
+   "psnr_hand": [
+    10.89,
+    14.74
+   ]
+  },
+  {
+   "id": "hrdex-clothes_hanger-5_w45",
+   "prompt": "First-person view: the clothes hanger is picked up with the right hand and put back down.",
+   "note": "Human hand; object never seen in training",
+   "psnr_hand": [
+    16.35,
+    19.46
+   ]
+  },
+  {
+   "id": "hrdex-black_holder_with_handle-1_w45",
+   "prompt": "First-person view: the black holder with handle is picked up with the right hand and put back down.",
+   "note": "Human hand; object never seen in training",
+   "psnr_hand": [
+    14.94,
+    17.81
+   ]
+  },
+  {
+   "id": "hrdex-green_cactus_vase-1_w45",
+   "prompt": "First-person view: the green cactus vase is picked up with the right hand and put back down.",
+   "note": "Human hand; object never seen in training",
+   "psnr_hand": [
+    13.36,
+    15.84
+   ]
+  }
+ ],
+ "metric_note": "psnr_hand = PSNR (dB) inside the conditioning hand region vs the real video: [first frame repeated, generated]",
+ "source": "HRDexDB dataset (https://huggingface.co/datasets/HRDexDB/HRDexDB), licensed CC BY-NC 4.0 (https://creativecommons.org/licenses/by-nc/4.0/). Frames shown with modifications: cropped and resized, hand-skeleton overlays; the 'Generated' panels are model outputs conditioned on the first frame."
+}

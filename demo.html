@@ -17,19 +17,32 @@
   <div class="wrap">
     <a class="brand" href="index.html"><span data-i="film"></span>HandCtrl Video</a>
     <nav class="nav" aria-label="Sections">
-      <a href="#qual">What we see</a><a href="#compare">Trained vs base</a><a href="#all">All 32 clips</a><a href="#onehand">One-hand test</a>
+      <a href="#robot">Robot hands</a><a href="#qual">What we see</a><a href="#compare">Trained vs base</a><a href="#all">All 32 clips</a><a href="#onehand">One-hand test</a>
       <a href="index.html">Dashboard</a><a href="eval.html">Eval</a><a href="explore.html">Data &amp; model</a><a href="paper.html">Project page</a>
     </nav>
   </div>
 </header>
 
-<main class="wrap">
+<main class="wrap" style="overflow-x:clip">
   <div class="hero" style="padding-bottom:6px">
     <div class="pills" id="pills"></div>
     <h1>Does it <mark class="hl yellow">follow</mark> the hands?</h1>
     <p class="lead">Held-out clips the model never trained on. Every panel gets the same first frame and prompt. The base model and the
       trained model generate the rest of the video, and the trained model also receives the hand trajectory.</p>
   </div>
+
+  <section id="robot" style="display:none">
+    <div class="sec-head"><span class="ico" data-i="hand"></span><div><h2>From human hands to robot hands</h2>
+      <div class="sub">Zero-shot on HRDexDB: the robot's own joint trajectory (xArm + Inspire hand, forward kinematics) is drawn into the same hand-conditioning volume as a human hand</div></div></div>
+    <div class="grid g3" style="margin-bottom:16px">
+      <div class="card bg-sky-soft"><h3>Same interface, new embodiment</h3><div class="muted small">The robot hand's FK fills the same 21 keypoints and 778 surface points a MANO hand would, with contact = surface within 10 mm of the object. The encoder and model are unchanged.</div></div>
+      <div class="card bg-mint-soft"><h3>Never seen in training</h3><div class="muted small">Model v2_mix (v1 continued on HOT3D + HRDexDB human clips). No robot episodes in training, and 12 objects held out entirely.</div></div>
+      <div class="card bg-coral-soft"><h3>Honest caveats</h3><div class="muted small">Clips are hand-picked. Robot results show artifacts (objects deforming, extra geometry). On the robot clips, hand-region PSNR (12.3 dB) is still just under a static "first frame repeated" reference (12.5 dB).</div></div>
+    </div>
+    <div class="pills" id="robot-sets" style="margin-bottom:12px;align-items:center"></div>
+    <div id="robot-list"></div>
+    <div class="cap" id="robot-credit"></div>
+  </section>
 
   <section id="qual">
     <div class="sec-head"><span class="ico" data-i="flag"></span><div><h2>What we see</h2>
