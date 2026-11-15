@@ -36,8 +36,8 @@
   },
   {
    "name": "Checkpoint evals",
-   "status": "active",
-   "detail": "Scored: v1 32.7 px, v2a 32.3, v2b 32.9, no-hand control 94.1, v2_mix 12.5k 33.9 (1 seed). Running: v2_mix 15k (3 seeds)."
+   "status": "done",
+   "detail": "All scored (A3, 32 held-out clips): v1 32.7 px, v2a 32.3, v2b 32.9, v2_mix 15k 36.9 (3 seeds), no-hand control 94.1, base 100.5, real 15.0."
   },
   {
    "name": "Phase 1 report",
@@ -92,12 +92,16 @@
   }
  ],
  "next_actions": [
-  "v2_mix 15k HOT3D eval (3 seeds) -> does adding HRDexDB human data help or hurt on HOT3D?",
+  "Decide the v2_mix trade-off: mixed data enables robot-hand transfer but costs ~4 px and more jitter on HOT3D; e.g. lower HRDexDB mixing ratio or EMA+cosine for the mix run.",
   "Optional: 3 seeds on v2a 2.5k (best single seed, 28.0 px) to test whether even shorter training is better.",
   "NCCL hang A/B (eager connect, warm-up) -> fix multi-GPU training on CoreWeave and unicorn.",
   "Phase 1 report: hand input works (32.7 vs 94.1 px without it); EMA+cosine = same quality at half the steps; robot-hand transfer shown zero-shot."
  ],
  "decisions": [
+  {
+   "date": "2026-11-15",
+   "text": "v2_mix 15k (v1 + 5k steps on HOT3D + HRDexDB human): 36.9 px, 3 seeds, worse than v1 (32.7) on every seed, and jitter 1.60 vs 1.22. Mixing in third-person HRDexDB data costs some HOT3D egocentric quality while enabling the robot-hand demos."
+  },
   {
    "date": "2026-11-15",
    "text": "v2_mix 12.5k scored 33.9 px on HOT3D (1 seed), in line with v1/v2 - adding HRDexDB human data did not hurt HOT3D so far; 15k pending."

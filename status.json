@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-15T05:29:24+00:00",
+ "generated": "2026-11-15T05:46:12+00:00",
  "runs": [
   {
    "run": "v1_K8_h100",
@@ -24,7 +24,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-15T00:50:34+00:00",
-   "last_log_age_min": 278.8,
+   "last_log_age_min": 295.6,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
@@ -2759,7 +2759,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-15T00:50:34+00:00",
-   "last_log_age_min": 278.8,
+   "last_log_age_min": 295.6,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
@@ -5494,7 +5494,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 42.02,
    "last_log": "2026-11-15T00:50:34+00:00",
-   "last_log_age_min": 278.8,
+   "last_log_age_min": 295.6,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
@@ -6899,7 +6899,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 42.02,
    "last_log": "2026-11-15T00:50:34+00:00",
-   "last_log_age_min": 278.8,
+   "last_log_age_min": 295.6,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
@@ -8304,7 +8304,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-15T00:50:34+00:00",
-   "last_log_age_min": 278.8,
+   "last_log_age_min": 295.6,
    "health": "done",
    "health_reason": "reached 15000 steps",
    "errors": [],
@@ -9820,6 +9820,20 @@
    "epe_position_only": 29.4237
   },
   {
+   "tag": "v2_mix_h100__adapter_step_0015000",
+   "seeds": 3,
+   "updated": "2026-11-15T05:43:18+00:00",
+   "epe_capped": 36.8782,
+   "pck25": 0.7075,
+   "contact_f1_active": 0.702,
+   "idle_vlm_fgr": 0.4325,
+   "jitter_ratio": 1.5978,
+   "task_bacc": 0.8163,
+   "handedness_mismatch_rate": 0.0275,
+   "epe_capped_frameweighted": 33.9218,
+   "epe_position_only": 33.5689
+  },
+  {
    "tag": "v2a_K8_h100__adapter_step_0001250",
    "seeds": 1,
    "updated": "2026-11-15T02:14:22+00:00",
@@ -9932,13 +9946,7 @@
    "epe_position_only": 28.8669
   }
  ],
- "eval_jobs": [
-  {
-   "job_id": "635168",
-   "name": "v2_mix_h100_adapter_step_0015000",
-   "state": "RUNNING"
-  }
- ],
+ "eval_jobs": [],
  "iteration": {
   "eta": "2026-11-15T03:50:34+00:00",
   "final_eval_overhead_h": 3.0,
@@ -9982,8 +9990,8 @@
    },
    {
     "name": "Checkpoint evals",
-    "status": "active",
-    "detail": "Scored: v1 32.7 px, v2a 32.3, v2b 32.9, no-hand control 94.1, v2_mix 12.5k 33.9 (1 seed). Running: v2_mix 15k (3 seeds)."
+    "status": "done",
+    "detail": "All scored (A3, 32 held-out clips): v1 32.7 px, v2a 32.3, v2b 32.9, v2_mix 15k 36.9 (3 seeds), no-hand control 94.1, base 100.5, real 15.0."
    },
    {
     "name": "Phase 1 report",
@@ -10038,12 +10046,16 @@
    }
   ],
   "next_actions": [
-   "v2_mix 15k HOT3D eval (3 seeds) -> does adding HRDexDB human data help or hurt on HOT3D?",
+   "Decide the v2_mix trade-off: mixed data enables robot-hand transfer but costs ~4 px and more jitter on HOT3D; e.g. lower HRDexDB mixing ratio or EMA+cosine for the mix run.",
    "Optional: 3 seeds on v2a 2.5k (best single seed, 28.0 px) to test whether even shorter training is better.",
    "NCCL hang A/B (eager connect, warm-up) -> fix multi-GPU training on CoreWeave and unicorn.",
    "Phase 1 report: hand input works (32.7 vs 94.1 px without it); EMA+cosine = same quality at half the steps; robot-hand transfer shown zero-shot."
   ],
   "decisions": [
+   {
+    "date": "2026-11-15",
+    "text": "v2_mix 15k (v1 + 5k steps on HOT3D + HRDexDB human): 36.9 px, 3 seeds, worse than v1 (32.7) on every seed, and jitter 1.60 vs 1.22. Mixing in third-person HRDexDB data costs some HOT3D egocentric quality while enabling the robot-hand demos."
+   },
    {
     "date": "2026-11-15",
     "text": "v2_mix 12.5k scored 33.9 px on HOT3D (1 seed), in line with v1/v2 - adding HRDexDB human data did not hurt HOT3D so far; 15k pending."
