@@ -48,26 +48,56 @@
         <figcaption class="cap"><span class="badge plain">${esc(it.id)}</span> ${esc(it.caption || "")}</figcaption></figure>`).join("")}</div>`;
   }).catch(() => {});
 
-  // ---- browse all 32 clips ----
-  fetch("assets/media/demo_all/demo.json?t=" + Date.now(), { cache: "no-store" }).then((r) => r.json()).then((d) => {
-    const items = d.items.map((it) => ({ ...it, gain: (it.epe.ctrl ?? 0) - (it.epe.ours ?? 0) }));
-    const f = (v) => (v == null ? "–" : v.toFixed(1));
-    function play(it) {
-      const v = $("all-video"); v.src = `assets/media/demo_all/${it.id}.mp4?v=1`; v.poster = `assets/media/demo_all/${it.id}.jpg?v=1`; v.play().catch(() => {});
-      $("all-cap").innerHTML = `<span class="badge plain">${esc(it.id)}</span> <span class="badge plain">${esc(ACT[it.active] || it.active)}</span> <b>Prompt:</b> ${esc(it.prompt)}<br>
-        Hand error: real ${f(it.epe.real)} · base ${f(it.epe.base)} · no hand input ${f(it.epe.ctrl)} · <b>trained ${f(it.epe.ours)} px</b>`;
-      document.querySelectorAll(".clipitem").forEach((el) => el.classList.toggle("sel", el.dataset.id === it.id));
-    }
-    function render(k) {
-      const s = [...items].sort((a, b) => k === "id" ? a.id.localeCompare(b.id) : k === "gain" ? b.gain - a.gain : (a.epe.ours ?? 999) - (b.epe.ours ?? 999));
-      $("all-list").innerHTML = s.map((it) => `<button class="clipitem" data-id="${esc(it.id)}">
-          <img loading="lazy" src="assets/media/demo_all/${esc(it.id)}.jpg?v=1" alt="">
-          <span class="ci-t"><b>${esc(it.id)}</b> · trained ${f(it.epe.ours)} px · no hand ${f(it.epe.ctrl)} · base ${f(it.epe.base)}</span>
-          <span class="ci-p">${esc(it.prompt)}</span></button>`).join("");
-      document.querySelectorAll(".sortbtn").forEach((b) => (b.style.boxShadow = b.dataset.k === k ? "3px 3px 0 #3e3a39" : "none"));
-      $("all-list").querySelectorAll(".clipitem").forEach((el) => el.addEventListener("click", () => { play(items.find((x) => x.id === el.dataset.id)); $("all-viewer").scrollIntoView({ behavior: "smooth", block: "start" }); }));
-    }
-    document.querySelectorAll(".sortbtn").forEach((b) => b.addEventListener("click", () => render(b.dataset.k)));
-    render("ours"); play([...items].sort((a, b) => (a.epe.ours ?? 999) - (b.epe.ours ?? 999))[0]);
-  }).catch(() => {});
+  // ---- browse all 32 clips (one or more comparison sets) ----
+  const SETS = [{ key: "demo_all", name: "Hand input vs none" }, { key: "demo_v2", name: "v1 vs v2 (EMA + cosine)" }];
+  const DEFAULT_PANELS = [{ label: "Real clip" }, { label: "Base model" }, { label: "Fine-tuned, no hand input" }, { label: "Trained · 10k" }];
+  const loaded = {};
+  let cur = null, sortKey = "last";
+  const fx = (v) => (v == null ? "–" : v.toFixed(1));
+  function norm(key, d) {   // old demo_all/demo.json has epe {real, base, ctrl, ours}; new sets have epe [real, p1, p2, ...]
+    const panels = d.panels || DEFAULT_PANELS;
+    const items = d.items.map((it) => ({ ...it, e: Array.isArray(it.epe) ? it.epe : [it.epe.real, it.epe.base, it.epe.ctrl, it.epe.ours] }));
+    return { key, panels, items };
+  }
+  function labels(panels) {
+    return `<div class="vlabelsN" style="grid-template-columns:repeat(${panels.length},1fr)">${panels.map((p, i) =>
+      `<span class="${i === panels.length - 1 ? "ours" : i === 0 ? "" : "mid"}">${esc(p.label)}</span>`).join("")}</div>`;
+  }
+  function play(it) {
+    const s = cur, v = $("all-video");
+    v.src = `assets/media/${s.key}/${it.id}.mp4?v=2`; v.poster = `assets/media/${s.key}/${it.id}.jpg?v=2`; v.play().catch(() => {});
+    $("all-labels").innerHTML = labels(s.panels);
+    $("all-cap").innerHTML = `<span class="badge plain">${esc(it.id)}</span> <span class="badge plain">${esc(ACT[it.active] || it.active)}</span> <b>Prompt:</b> ${esc(it.prompt)}<br>
+      Hand error: ${s.panels.map((p, i) => (i === s.panels.length - 1 ? `<b>${esc(p.label)} ${fx(it.e[i])} px</b>` : `${esc(p.label)} ${fx(it.e[i])}`)).join(" · ")}`;
+    document.querySelectorAll(".clipitem").forEach((el) => el.classList.toggle("sel", el.dataset.id === it.id));
+  }
+  function render() {
+    const s = cur, L = s.panels.length - 1;
+    const key = (it) => sortKey === "id" ? 0 : sortKey === "gain" ? -((it.e[L - 1] ?? 0) - (it.e[L] ?? 0)) : (it.e[L] ?? 999);
+    const arr = [...s.items].sort((a, b) => sortKey === "id" ? a.id.localeCompare(b.id) : key(a) - key(b));
+    $("all-list").innerHTML = arr.map((it) => `<button class="clipitem" data-id="${esc(it.id)}">
+        <img loading="lazy" src="assets/media/${s.key}/${esc(it.id)}.jpg?v=2" alt="">
+        <span class="ci-t"><b>${esc(it.id)}</b> · ${s.panels.slice(1).map((p, i) => `${esc(p.label)} ${fx(it.e[i + 1])}`).reverse().join(" · ")}</span>
+        <span class="ci-p">${esc(it.prompt)}</span></button>`).join("");
+    $("all-list").querySelectorAll(".clipitem").forEach((el) => el.addEventListener("click", () => {
+      play(s.items.find((x) => x.id === el.dataset.id)); $("all-viewer").scrollIntoView({ behavior: "smooth", block: "start" }); }));
+    document.querySelectorAll(".sortbtn").forEach((b) => (b.style.boxShadow = b.dataset.k === sortKey ? "3px 3px 0 #3e3a39" : "none"));
+    const gb = document.querySelector('.sortbtn[data-k="gain"]');
+    if (gb) gb.textContent = `gain of "${s.panels[L].label}" over "${s.panels[L - 1].label}"`;
+    const lb = document.querySelector('.sortbtn[data-k="last"]'); if (lb) lb.textContent = `${s.panels[L].label} error`;
+  }
+  function useSet(key) {
+    const go = (s) => { cur = s; document.querySelectorAll(".setbtn").forEach((b) => (b.style.boxShadow = b.dataset.k === key ? "3px 3px 0 #3e3a39" : "none"));
+      render(); play([...s.items].sort((a, b) => (a.e[s.panels.length - 1] ?? 999) - (b.e[s.panels.length - 1] ?? 999))[0]); };
+    if (loaded[key]) return go(loaded[key]);
+    fetch(`assets/media/${key}/demo.json?t=` + Date.now(), { cache: "no-store" }).then((r) => r.json()).then((d) => go(loaded[key] = norm(key, d))).catch(() => {});
+  }
+  Promise.all(SETS.map((s) => fetch(`assets/media/${s.key}/demo.json`, { method: "HEAD" }).then((r) => (r.ok ? s : null)).catch(() => null))).then((av) => {
+    const sets = av.filter(Boolean);
+    $("all-sets").innerHTML = sets.length > 1 ? `<span class="small muted">Compare:</span>` + sets.map((s, i) =>
+      `<button class="pill ${["bg-coral", "bg-sky"][i % 2]} setbtn" data-k="${s.key}">${esc(s.name)}</button>`).join("") : "";
+    document.querySelectorAll(".setbtn").forEach((b) => b.addEventListener("click", () => useSet(b.dataset.k)));
+    document.querySelectorAll(".sortbtn").forEach((b) => b.addEventListener("click", () => { sortKey = b.dataset.k; render(); }));
+    if (sets.length) useSet(sets[0].key);
+  });
 })();

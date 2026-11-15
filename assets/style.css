@@ -283,3 +283,8 @@ h3.grp { margin: 28px 0 12px; font-size: 1.35rem; } h3.grp:first-child { margin-
 .clipitem img { width: 100%; display: block; border-radius: 8px; }
 .ci-t { display: block; font-size: .82rem; margin-top: 6px; } .ci-p { display: block; font-size: .78rem; color: var(--ink-2); }
 button.pill { cursor: pointer; font: inherit; font-size: .86rem; }
+.vlabelsN { position: absolute; top: 8px; left: 0; right: 0; display: grid; pointer-events: none; }
+.vlabelsN span { justify-self: start; margin-left: 8px; background: var(--cream); border: 2px solid var(--ink); border-radius: 999px; padding: 0 9px; font-size: .74rem; }
+.vlabelsN span.mid { background: var(--sky); } .vlabelsN span.ours { background: var(--mint); }
+@media (max-width: 640px) { .vlabelsN span { font-size: .56rem; padding: 0 5px; margin-left: 3px; } }
+.sortbtn, .setbtn { white-space: normal; text-align: left; }

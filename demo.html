@@ -53,14 +53,14 @@
 
   <section id="all">
     <div class="sec-head"><span class="ico" data-i="grid"></span><div><h2>Browse all 32 held-out clips</h2>
-      <div class="sub">Every eval clip: real · base · fine-tuned without hand input · trained with hand input (10k, seed 0). Pick a clip to play it.</div></div></div>
+      <div class="sub">Every eval clip (seed 0), with the target hand skeletons on every panel. Choose a comparison, then pick a clip to play it.</div></div></div>
+    <div class="pills" id="all-sets" style="margin-bottom:12px;align-items:center"></div>
     <div class="card" id="all-viewer">
-      <div class="media vs3"><video id="all-video" muted loop playsinline controls preload="metadata"></video>
-        <div class="vlabels4"><span>Real clip</span><span>Base model</span><span class="ctrl">Fine-tuned, no hand input</span><span class="ours">Trained · 10k</span></div></div>
+      <div class="media vs3"><video id="all-video" muted loop playsinline controls preload="metadata"></video><div id="all-labels"></div></div>
       <div class="cap" id="all-cap"></div>
     </div>
     <div class="pills" style="margin:16px 0 10px;align-items:center"><span class="small muted">Sort by:</span>
-      <button class="pill bg-mint sortbtn" data-k="ours">trained error</button>
+      <button class="pill bg-mint sortbtn" data-k="last">trained error</button>
       <button class="pill bg-sky sortbtn" data-k="gain">gain over no-hand control</button>
       <button class="pill bg-yellow sortbtn" data-k="id">clip id</button></div>
     <div class="clipgrid" id="all-list"></div>
