@@ -273,3 +273,13 @@ h3.grp { margin: 28px 0 12px; font-size: 1.35rem; } h3.grp:first-child { margin-
 .vlabels4 span { justify-self: start; margin-left: 8px; background: var(--cream); border: 2px solid var(--ink); border-radius: 999px; padding: 0 9px; font-size: .74rem; }
 .vlabels4 span.ours { background: var(--mint); } .vlabels4 span.ctrl { background: var(--sky); }
 @media (max-width: 640px) { .vlabels4 span { font-size: .56rem; padding: 0 5px; margin-left: 3px; } }
+
+/* browse-all clips */
+.clipgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 760px) { .clipgrid { grid-template-columns: 1fr; } }
+.clipitem { display: block; text-align: left; font: inherit; color: var(--ink); background: var(--card); border: 2px solid var(--ink); border-radius: 14px; padding: 8px; cursor: pointer; }
+.clipitem:hover { transform: translate(-1px, -1px); box-shadow: 3px 3px 0 var(--ink); }
+.clipitem.sel { background: var(--yellow-soft); box-shadow: 3px 3px 0 var(--ink); }
+.clipitem img { width: 100%; display: block; border-radius: 8px; }
+.ci-t { display: block; font-size: .82rem; margin-top: 6px; } .ci-p { display: block; font-size: .78rem; color: var(--ink-2); }
+button.pill { cursor: pointer; font: inherit; font-size: .86rem; }

@@ -47,4 +47,27 @@
           <div class="vlabels3"><span>Both hands act</span><span>Only RIGHT acts</span><span>Only LEFT acts</span></div></div>
         <figcaption class="cap"><span class="badge plain">${esc(it.id)}</span> ${esc(it.caption || "")}</figcaption></figure>`).join("")}</div>`;
   }).catch(() => {});
+
+  // ---- browse all 32 clips ----
+  fetch("assets/media/demo_all/demo.json?t=" + Date.now(), { cache: "no-store" }).then((r) => r.json()).then((d) => {
+    const items = d.items.map((it) => ({ ...it, gain: (it.epe.ctrl ?? 0) - (it.epe.ours ?? 0) }));
+    const f = (v) => (v == null ? "–" : v.toFixed(1));
+    function play(it) {
+      const v = $("all-video"); v.src = `assets/media/demo_all/${it.id}.mp4?v=1`; v.poster = `assets/media/demo_all/${it.id}.jpg?v=1`; v.play().catch(() => {});
+      $("all-cap").innerHTML = `<span class="badge plain">${esc(it.id)}</span> <span class="badge plain">${esc(ACT[it.active] || it.active)}</span> <b>Prompt:</b> ${esc(it.prompt)}<br>
+        Hand error: real ${f(it.epe.real)} · base ${f(it.epe.base)} · no hand input ${f(it.epe.ctrl)} · <b>trained ${f(it.epe.ours)} px</b>`;
+      document.querySelectorAll(".clipitem").forEach((el) => el.classList.toggle("sel", el.dataset.id === it.id));
+    }
+    function render(k) {
+      const s = [...items].sort((a, b) => k === "id" ? a.id.localeCompare(b.id) : k === "gain" ? b.gain - a.gain : (a.epe.ours ?? 999) - (b.epe.ours ?? 999));
+      $("all-list").innerHTML = s.map((it) => `<button class="clipitem" data-id="${esc(it.id)}">
+          <img loading="lazy" src="assets/media/demo_all/${esc(it.id)}.jpg?v=1" alt="">
+          <span class="ci-t"><b>${esc(it.id)}</b> · trained ${f(it.epe.ours)} px · no hand ${f(it.epe.ctrl)} · base ${f(it.epe.base)}</span>
+          <span class="ci-p">${esc(it.prompt)}</span></button>`).join("");
+      document.querySelectorAll(".sortbtn").forEach((b) => (b.style.boxShadow = b.dataset.k === k ? "3px 3px 0 #3e3a39" : "none"));
+      $("all-list").querySelectorAll(".clipitem").forEach((el) => el.addEventListener("click", () => { play(items.find((x) => x.id === el.dataset.id)); $("all-viewer").scrollIntoView({ behavior: "smooth", block: "start" }); }));
+    }
+    document.querySelectorAll(".sortbtn").forEach((b) => b.addEventListener("click", () => render(b.dataset.k)));
+    render("ours"); play([...items].sort((a, b) => (a.epe.ours ?? 999) - (b.epe.ours ?? 999))[0]);
+  }).catch(() => {});
 })();

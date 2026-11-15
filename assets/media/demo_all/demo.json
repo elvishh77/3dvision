@@ -1,0 +1,487 @@
+{
+ "ckpt": "v1_K8_h100__adapter_step_0010000",
+ "ctrl": "v1_K8_h100_nocond__adapter_step_0010000",
+ "summary": "",
+ "items": [
+  {
+   "id": "003214_w59",
+   "group": null,
+   "prompt": "the red spatula ends up moved to the left and farther and turned.",
+   "active": "right",
+   "outcomes": [
+    "moved"
+   ],
+   "epe": {
+    "real": 11.6,
+    "base": 92.6,
+    "ours": 24.9,
+    "ctrl": 73.4
+   }
+  },
+  {
+   "id": "003219_w59",
+   "group": null,
+   "prompt": "the wooden spoon ends up moved farther and turned, and the bowl ends up lifted in the left hand.",
+   "active": "both",
+   "outcomes": [
+    "moved",
+    "lifted"
+   ],
+   "epe": {
+    "real": 8.5,
+    "base": 103.1,
+    "ours": 15.4,
+    "ctrl": 95.6
+   }
+  },
+  {
+   "id": "003230_w0",
+   "group": null,
+   "prompt": "the ranch bottle ends up lifted in both hands and turned.",
+   "active": "both",
+   "outcomes": [
+    "lifted"
+   ],
+   "epe": {
+    "real": 12.6,
+    "base": 123.2,
+    "ours": 27.0,
+    "ctrl": 81.1
+   }
+  },
+  {
+   "id": "003233_w59",
+   "group": null,
+   "prompt": "the vase ends up moved closer and turned.",
+   "active": "left",
+   "outcomes": [
+    "moved"
+   ],
+   "epe": {
+    "real": 25.1,
+    "base": 116.4,
+    "ours": 19.5,
+    "ctrl": 91.5
+   }
+  },
+  {
+   "id": "003234_w0",
+   "group": null,
+   "prompt": "the vase ends up lifted in both hands and turned.",
+   "active": "both",
+   "outcomes": [
+    "lifted"
+   ],
+   "epe": {
+    "real": 26.1,
+    "base": 123.6,
+    "ours": 23.9,
+    "ctrl": 78.5
+   }
+  },
+  {
+   "id": "003241_w59",
+   "group": null,
+   "prompt": "the bamboo plate stays held in the left hand.",
+   "active": "both",
+   "outcomes": [
+    "held"
+   ],
+   "epe": {
+    "real": 67.3,
+    "base": 82.4,
+    "ours": 72.7,
+    "ctrl": 83.8
+   }
+  },
+  {
+   "id": "003244_w59",
+   "group": null,
+   "prompt": "the DVD remote ends up moved to the left.",
+   "active": "right",
+   "outcomes": [
+    "moved"
+   ],
+   "epe": {
+    "real": 7.5,
+    "base": 45.9,
+    "ours": 15.6,
+    "ctrl": 58.7
+   }
+  },
+  {
+   "id": "003245_w0",
+   "group": null,
+   "prompt": "the DVD remote ends up set down to the left and farther and turned.",
+   "active": "left",
+   "outcomes": [
+    "placed"
+   ],
+   "epe": {
+    "real": 27.4,
+    "base": 112.8,
+    "ours": 49.4,
+    "ctrl": 73.9
+   }
+  },
+  {
+   "id": "003247_w0",
+   "group": null,
+   "prompt": "the hands move without touching anything.",
+   "active": "none",
+   "outcomes": [],
+   "epe": {
+    "real": 4.9,
+    "base": 51.8,
+    "ours": 120.5,
+    "ctrl": 62.3
+   }
+  },
+  {
+   "id": "003252_w0",
+   "group": null,
+   "prompt": "the patterned mug ends up moved to the left and farther and turned.",
+   "active": "both",
+   "outcomes": [
+    "moved"
+   ],
+   "epe": {
+    "real": 8.0,
+    "base": 128.0,
+    "ours": 32.0,
+    "ctrl": 105.7
+   }
+  },
+  {
+   "id": "003253_w0",
+   "group": null,
+   "prompt": "the patterned mug ends up moved to the left and farther.",
+   "active": "right",
+   "outcomes": [
+    "moved"
+   ],
+   "epe": {
+    "real": 17.6,
+    "base": 128.0,
+    "ours": 36.8,
+    "ctrl": 100.7
+   }
+  },
+  {
+   "id": "003259_w0",
+   "group": null,
+   "prompt": "the wooden spoon ends up lifted in both hands and turned, and the cellphone ends up set down.",
+   "active": "both",
+   "outcomes": [
+    "lifted",
+    "placed"
+   ],
+   "epe": {
+    "real": 7.9,
+    "base": 127.4,
+    "ours": 12.9,
+    "ctrl": 113.1
+   }
+  },
+  {
+   "id": "003266_w0",
+   "group": null,
+   "prompt": "the tomato sauce can ends up lifted in the left hand and turned.",
+   "active": "left",
+   "outcomes": [
+    "lifted"
+   ],
+   "epe": {
+    "real": 12.0,
+    "base": 127.6,
+    "ours": 56.0,
+    "ctrl": 121.9
+   }
+  },
+  {
+   "id": "003268_w0",
+   "group": null,
+   "prompt": "the mouse ends up set down to the left and farther and turned.",
+   "active": "both",
+   "outcomes": [
+    "placed"
+   ],
+   "epe": {
+    "real": 7.1,
+    "base": 73.3,
+    "ours": 10.0,
+    "ctrl": 90.7
+   }
+  },
+  {
+   "id": "003277_w59",
+   "group": null,
+   "prompt": "the parmesan can ends up set down to the right and farther and turned, and the orange juice carton ends up lifted in the right hand and turned.",
+   "active": "right",
+   "outcomes": [
+    "placed",
+    "lifted"
+   ],
+   "epe": {
+    "real": 8.3,
+    "base": 122.3,
+    "ours": 76.6,
+    "ctrl": 116.1
+   }
+  },
+  {
+   "id": "003279_w59",
+   "group": null,
+   "prompt": "the potato masher ends up lifted in the left hand.",
+   "active": "left",
+   "outcomes": [
+    "lifted"
+   ],
+   "epe": {
+    "real": 8.5,
+    "base": 85.6,
+    "ours": 8.8,
+    "ctrl": 53.5
+   }
+  },
+  {
+   "id": "003280_w59",
+   "group": null,
+   "prompt": "the ranch bottle ends up moved to the left and closer and turned.",
+   "active": "both",
+   "outcomes": [
+    "moved"
+   ],
+   "epe": {
+    "real": 13.7,
+    "base": 109.1,
+    "ours": 26.7,
+    "ctrl": 94.3
+   }
+  },
+  {
+   "id": "003288_w59",
+   "group": null,
+   "prompt": "the red spatula ends up turned in the right hand.",
+   "active": "both",
+   "outcomes": [
+    "rotated"
+   ],
+   "epe": {
+    "real": 6.1,
+    "base": 65.9,
+    "ours": 8.4,
+    "ctrl": 39.9
+   }
+  },
+  {
+   "id": "003300_w59",
+   "group": null,
+   "prompt": "the flask ends up set down to the left and farther and turned.",
+   "active": "both",
+   "outcomes": [
+    "placed"
+   ],
+   "epe": {
+    "real": 15.5,
+    "base": 97.4,
+    "ours": 54.5,
+    "ctrl": 104.6
+   }
+  },
+  {
+   "id": "003302_w0",
+   "group": null,
+   "prompt": "the patterned mug ends up in the left hand and turned.",
+   "active": "both",
+   "outcomes": [
+    "handover"
+   ],
+   "epe": {
+    "real": 12.1,
+    "base": 105.7,
+    "ours": 22.8,
+    "ctrl": 106.4
+   }
+  },
+  {
+   "id": "003305_w59",
+   "group": null,
+   "prompt": "the milk carton ends up turned in both hands.",
+   "active": "both",
+   "outcomes": [
+    "rotated"
+   ],
+   "epe": {
+    "real": 11.5,
+    "base": 108.2,
+    "ours": 35.3,
+    "ctrl": 87.9
+   }
+  },
+  {
+   "id": "003312_w0",
+   "group": null,
+   "prompt": "the toy birdhouse ends up lifted in both hands and turned.",
+   "active": "both",
+   "outcomes": [
+    "lifted"
+   ],
+   "epe": {
+    "real": 29.7,
+    "base": 122.8,
+    "ours": 43.9,
+    "ctrl": 103.4
+   }
+  },
+  {
+   "id": "003325_w59",
+   "group": null,
+   "prompt": "the white mug ends up set down to the left and farther and turned.",
+   "active": "right",
+   "outcomes": [
+    "placed"
+   ],
+   "epe": {
+    "real": 12.3,
+    "base": 123.0,
+    "ours": 31.0,
+    "ctrl": 97.2
+   }
+  },
+  {
+   "id": "003327_w0",
+   "group": null,
+   "prompt": "the pair of Aria glasses ends up lifted in both hands and turned.",
+   "active": "both",
+   "outcomes": [
+    "lifted"
+   ],
+   "epe": {
+    "real": 7.4,
+    "base": 59.8,
+    "ours": 10.1,
+    "ctrl": 55.2
+   }
+  },
+  {
+   "id": "003329_w0",
+   "group": null,
+   "prompt": "the 5 lb dumbbell ends up set down to the left and farther and turned.",
+   "active": "left",
+   "outcomes": [
+    "placed"
+   ],
+   "epe": {
+    "real": 18.4,
+    "base": 117.0,
+    "ours": 46.3,
+    "ctrl": 109.0
+   }
+  },
+  {
+   "id": "003333_w0",
+   "group": null,
+   "prompt": "the toy birdhouse ends up lifted in both hands.",
+   "active": "both",
+   "outcomes": [
+    "lifted"
+   ],
+   "epe": {
+    "real": 10.3,
+    "base": 78.3,
+    "ours": 15.3,
+    "ctrl": 96.4
+   }
+  },
+  {
+   "id": "003341_w0",
+   "group": null,
+   "prompt": "the white mug ends up turned in the right hand.",
+   "active": "right",
+   "outcomes": [
+    "rotated"
+   ],
+   "epe": {
+    "real": 7.3,
+    "base": 110.0,
+    "ours": 10.3,
+    "ctrl": 99.4
+   }
+  },
+  {
+   "id": "003343_w0",
+   "group": null,
+   "prompt": "the cellphone ends up moved to the left and farther.",
+   "active": "both",
+   "outcomes": [
+    "moved"
+   ],
+   "epe": {
+    "real": 12.2,
+    "base": 48.1,
+    "ours": 15.8,
+    "ctrl": 64.0
+   }
+  },
+  {
+   "id": "003345_w59",
+   "group": null,
+   "prompt": "the white mug ends up in the right hand and turned, and the toy puzzle ends up set down farther.",
+   "active": "both",
+   "outcomes": [
+    "handover",
+    "placed"
+   ],
+   "epe": {
+    "real": 10.3,
+    "base": 107.0,
+    "ours": 21.5,
+    "ctrl": 69.6
+   }
+  },
+  {
+   "id": "003347_w59",
+   "group": null,
+   "prompt": "the mouse ends up moved to the left.",
+   "active": "left",
+   "outcomes": [
+    "moved"
+   ],
+   "epe": {
+    "real": 19.9,
+    "base": 115.7,
+    "ours": 23.5,
+    "ctrl": 65.2
+   }
+  },
+  {
+   "id": "003348_w0",
+   "group": null,
+   "prompt": "the hands move without touching anything.",
+   "active": "none",
+   "outcomes": [],
+   "epe": {
+    "real": 6.3,
+    "base": 31.2,
+    "ours": 7.5,
+    "ctrl": 50.3
+   }
+  },
+  {
+   "id": "003363_w0",
+   "group": null,
+   "prompt": "the black holder ends up set down to the right and farther.",
+   "active": "both",
+   "outcomes": [
+    "placed"
+   ],
+   "epe": {
+    "real": 10.3,
+    "base": 117.1,
+    "ours": 39.3,
+    "ctrl": 98.3
+   }
+  }
+ ]
+}

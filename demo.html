@@ -17,7 +17,7 @@
   <div class="wrap">
     <a class="brand" href="index.html"><span data-i="film"></span>HandCtrl Video</a>
     <nav class="nav" aria-label="Sections">
-      <a href="#qual">What we see</a><a href="#compare">Trained vs base</a><a href="#onehand">One-hand test</a>
+      <a href="#qual">What we see</a><a href="#compare">Trained vs base</a><a href="#all">All 32 clips</a><a href="#onehand">One-hand test</a>
       <a href="index.html">Dashboard</a><a href="eval.html">Eval</a><a href="explore.html">Data &amp; model</a><a href="paper.html">Project page</a>
     </nav>
   </div>
@@ -49,6 +49,21 @@
     <div class="cap" style="margin:-4px 0 16px">How to read it: the skeletons are the <b>same on every panel</b>: they are where the hands
       should be. In the real clip the hands sit under them by definition. The question is whether the generated hands do.</div>
     <div id="cmp"></div>
+  </section>
+
+  <section id="all">
+    <div class="sec-head"><span class="ico" data-i="grid"></span><div><h2>Browse all 32 held-out clips</h2>
+      <div class="sub">Every eval clip: real · base · fine-tuned without hand input · trained with hand input (10k, seed 0). Pick a clip to play it.</div></div></div>
+    <div class="card" id="all-viewer">
+      <div class="media vs3"><video id="all-video" muted loop playsinline controls preload="metadata"></video>
+        <div class="vlabels4"><span>Real clip</span><span>Base model</span><span class="ctrl">Fine-tuned, no hand input</span><span class="ours">Trained · 10k</span></div></div>
+      <div class="cap" id="all-cap"></div>
+    </div>
+    <div class="pills" style="margin:16px 0 10px;align-items:center"><span class="small muted">Sort by:</span>
+      <button class="pill bg-mint sortbtn" data-k="ours">trained error</button>
+      <button class="pill bg-sky sortbtn" data-k="gain">gain over no-hand control</button>
+      <button class="pill bg-yellow sortbtn" data-k="id">clip id</button></div>
+    <div class="clipgrid" id="all-list"></div>
   </section>
 
   <section id="onehand">
