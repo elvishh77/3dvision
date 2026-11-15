@@ -100,6 +100,10 @@
  "decisions": [
   {
    "date": "2026-11-14",
+   "text": "v2a/v2b scored (3 seeds at 5k, A3): 32.3 / 32.9 px vs v1 10k 32.7 - a tie at half the steps. EMA + cosine at lr 1e-4 (v2a) gives the smoothest hands (jitter 1.15 vs 1.22). Lower lr (v2b) gives no benefit."
+  },
+  {
+   "date": "2026-11-14",
    "text": "No-hand control scored: 94.1 px hand error (10k, 3 seeds) vs 32.7 with hand input and 100.5 base. Hand following comes from the hand input, not from fine-tuning on HOT3D; fine-tuning only makes videos somewhat more HOT3D-like."
   },
   {

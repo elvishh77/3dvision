@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-15T04:19:32+00:00",
+ "generated": "2026-11-15T04:29:52+00:00",
  "runs": [
   {
    "run": "v1_K8_h100",
@@ -24,7 +24,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-15T00:50:34+00:00",
-   "last_log_age_min": 209.0,
+   "last_log_age_min": 219.3,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
@@ -2759,7 +2759,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-15T00:50:34+00:00",
-   "last_log_age_min": 209.0,
+   "last_log_age_min": 219.3,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
@@ -5494,7 +5494,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 42.02,
    "last_log": "2026-11-15T00:50:34+00:00",
-   "last_log_age_min": 209.0,
+   "last_log_age_min": 219.3,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
@@ -6899,7 +6899,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 42.02,
    "last_log": "2026-11-15T00:50:34+00:00",
-   "last_log_age_min": 209.0,
+   "last_log_age_min": 219.3,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
@@ -8304,7 +8304,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-15T00:50:34+00:00",
-   "last_log_age_min": 209.0,
+   "last_log_age_min": 219.3,
    "health": "done",
    "health_reason": "reached 15000 steps",
    "errors": [],
@@ -9862,6 +9862,20 @@
    "epe_position_only": 27.6117
   },
   {
+   "tag": "v2a_K8_h100__adapter_step_0005000",
+   "seeds": 3,
+   "updated": "2026-11-15T04:26:18+00:00",
+   "epe_capped": 32.3283,
+   "pck25": 0.755,
+   "contact_f1_active": 0.721,
+   "idle_vlm_fgr": 0.3909,
+   "jitter_ratio": 1.1464,
+   "task_bacc": 0.7945,
+   "handedness_mismatch_rate": 0.0301,
+   "epe_capped_frameweighted": 29.6946,
+   "epe_position_only": 28.9984
+  },
+  {
    "tag": "v2b_K8_h100__adapter_step_0001250",
    "seeds": 1,
    "updated": "2026-11-15T02:36:08+00:00",
@@ -9922,11 +9936,6 @@
   {
    "job_id": "635168",
    "name": "v2_mix_h100_adapter_step_0015000",
-   "state": "RUNNING"
-  },
-  {
-   "job_id": "633706",
-   "name": "v2a_K8_h100_adapter_step_0005000",
    "state": "RUNNING"
   }
  ],
@@ -10035,6 +10044,10 @@
    "Phase 1 report: results table, one-hand test, demos, limitations (object identity drift, jitter)."
   ],
   "decisions": [
+   {
+    "date": "2026-11-14",
+    "text": "v2a/v2b scored (3 seeds at 5k, A3): 32.3 / 32.9 px vs v1 10k 32.7 - a tie at half the steps. EMA + cosine at lr 1e-4 (v2a) gives the smoothest hands (jitter 1.15 vs 1.22). Lower lr (v2b) gives no benefit."
+   },
    {
     "date": "2026-11-14",
     "text": "No-hand control scored: 94.1 px hand error (10k, 3 seeds) vs 32.7 with hand input and 100.5 base. Hand following comes from the hand input, not from fine-tuning on HOT3D; fine-tuning only makes videos somewhat more HOT3D-like."
