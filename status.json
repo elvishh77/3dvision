@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-15T03:19:20+00:00",
+ "generated": "2026-11-15T03:49:26+00:00",
  "runs": [
   {
    "run": "v1_K8_h100",
@@ -24,7 +24,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-15T00:50:34+00:00",
-   "last_log_age_min": 148.8,
+   "last_log_age_min": 178.9,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
@@ -2759,7 +2759,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-15T00:50:34+00:00",
-   "last_log_age_min": 148.8,
+   "last_log_age_min": 178.9,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
@@ -5494,7 +5494,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 42.02,
    "last_log": "2026-11-15T00:50:34+00:00",
-   "last_log_age_min": 148.8,
+   "last_log_age_min": 178.9,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
@@ -6899,7 +6899,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 42.02,
    "last_log": "2026-11-15T00:50:34+00:00",
-   "last_log_age_min": 148.8,
+   "last_log_age_min": 178.9,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
@@ -8304,7 +8304,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-15T00:50:34+00:00",
-   "last_log_age_min": 148.8,
+   "last_log_age_min": 178.9,
    "health": "done",
    "health_reason": "reached 15000 steps",
    "errors": [],
@@ -9806,6 +9806,20 @@
    "epe_position_only": 93.541
   },
   {
+   "tag": "v2_mix_h100__adapter_step_0012500",
+   "seeds": 1,
+   "updated": "2026-11-15T03:47:59+00:00",
+   "epe_capped": 33.9332,
+   "pck25": 0.7428,
+   "contact_f1_active": 0.7346,
+   "idle_vlm_fgr": 0.3274,
+   "jitter_ratio": 1.3901,
+   "task_bacc": 0.8425,
+   "handedness_mismatch_rate": 0.0329,
+   "epe_capped_frameweighted": 30.4657,
+   "epe_position_only": 29.4237
+  },
+  {
    "tag": "v2a_K8_h100__adapter_step_0001250",
    "seeds": 1,
    "updated": "2026-11-15T02:14:22+00:00",
@@ -9894,11 +9908,6 @@
   {
    "job_id": "635168",
    "name": "v2_mix_h100_adapter_step_0015000",
-   "state": "RUNNING"
-  },
-  {
-   "job_id": "635132",
-   "name": "v2_mix_h100_adapter_step_0012500",
    "state": "RUNNING"
   },
   {
