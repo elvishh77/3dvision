@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-15T06:50:03+00:00",
+ "generated": "2026-11-15T07:20:14+00:00",
  "runs": [
   {
    "run": "v1_K8_h100",
@@ -24,7 +24,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-15T00:50:34+00:00",
-   "last_log_age_min": 359.5,
+   "last_log_age_min": 389.7,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
@@ -2759,7 +2759,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-15T00:50:34+00:00",
-   "last_log_age_min": 359.5,
+   "last_log_age_min": 389.7,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
@@ -5494,7 +5494,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 42.02,
    "last_log": "2026-11-15T00:50:34+00:00",
-   "last_log_age_min": 359.5,
+   "last_log_age_min": 389.7,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
@@ -6899,7 +6899,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 42.02,
    "last_log": "2026-11-15T00:50:34+00:00",
-   "last_log_age_min": 359.5,
+   "last_log_age_min": 389.7,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
@@ -8304,7 +8304,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-15T00:50:34+00:00",
-   "last_log_age_min": 359.5,
+   "last_log_age_min": 389.7,
    "health": "done",
    "health_reason": "reached 15000 steps",
    "errors": [],
@@ -10011,13 +10011,7 @@
     "since": "2026-11-13"
    }
   ],
-  "blockers": [
-   {
-    "title": "Intermittent multi-GPU hang (NCCL)",
-    "severity": "medium",
-    "detail": "Stall inside NCCL at step 2 (same allreduce on both ranks; one never completes). Not a code mismatch. Testing eager NCCL connect + a startup warm-up (14 smoke runs queued). Single-GPU runs and evals unaffected."
-   }
-  ],
+  "blockers": [],
   "team": [
    {
     "role": "lead",
@@ -10048,10 +10042,14 @@
   "next_actions": [
    "Decide the v2_mix trade-off: mixed data enables robot-hand transfer but costs ~4 px and more jitter on HOT3D; e.g. lower HRDexDB mixing ratio or EMA+cosine for the mix run.",
    "Optional: 3 seeds on v2a 2.5k (best single seed, 28.0 px) to test whether even shorter training is better.",
-   "NCCL hang A/B (eager connect, warm-up) -> fix multi-GPU training on CoreWeave and unicorn.",
+   "Multi-GPU hang fixed (TORCH_NCCL_USE_COMM_NONBLOCKING=0): apply on the next CoreWeave launches; multi-GPU training on unicorn is usable again.",
    "Phase 1 report: hand input works (32.7 vs 94.1 px without it); EMA+cosine = same quality at half the steps; robot-hand transfer shown zero-shot."
   ],
   "decisions": [
+   {
+    "date": "2026-11-15",
+    "text": "Multi-GPU hang root-caused and fixed: a thread race inside NCCL 2.26.2's nonblocking-communicator mode (two threads join the same NCCL worker thread; the second waits forever). Native stack traces from 5 hangs all show the same NCCL frame; it reproduced without our model. Fix: TORCH_NCCL_USE_COMM_NONBLOCKING=0 (blocking communicator). Validation: 13/13 clean runs vs ~50% hangs before, no speed cost."
+   },
    {
     "date": "2026-11-15",
     "text": "v2_mix 15k (v1 + 5k steps on HOT3D + HRDexDB human): 36.9 px, 3 seeds, worse than v1 (32.7) on every seed, and jitter 1.60 vs 1.22. Mixing in third-person HRDexDB data costs some HOT3D egocentric quality while enabling the robot-hand demos."
