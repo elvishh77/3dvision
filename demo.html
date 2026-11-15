@@ -33,20 +33,20 @@
 
   <section id="qual">
     <div class="sec-head"><span class="ico" data-i="flag"></span><div><h2>What we see</h2>
-      <div class="sub">Frames 0, 16, 32 and 48 of six held-out clips across the error range, real · base · trained (10k)</div></div></div>
+      <div class="sub">Frames 0, 16, 32 and 48 of six held-out clips across the error range: real · base · fine-tuned without hand input · trained with hand input (10k)</div></div></div>
     <div class="grid g2" id="qual-sum" style="margin-bottom:18px"></div>
     <div id="qual-items"></div>
   </section>
 
   <section id="compare">
-    <div class="sec-head"><span class="ico" data-i="play"></span><div><h2>Real · base model · trained model</h2>
+    <div class="sec-head"><span class="ico" data-i="play"></span><div><h2>Real · base · no hand input · trained</h2>
       <div class="sub" id="cmp-sub">Click a clip to play it.</div></div></div>
     <div class="legend" style="flex-wrap:wrap;margin-bottom:14px">
       <span><i style="background:#4682ff"></i>target left hand (from the trajectory)</span>
       <span><i style="background:#3cdc3c"></i>target right hand</span>
       <span><i style="background:#fff;border:2px solid #e63c32;border-radius:50%"></i>target says the hand is in contact</span>
     </div>
-    <div class="cap" style="margin:-4px 0 16px">How to read it: the skeletons are the <b>same on all three panels</b>: they are where the hands
+    <div class="cap" style="margin:-4px 0 16px">How to read it: the skeletons are the <b>same on every panel</b>: they are where the hands
       should be. In the real clip the hands sit under them by definition. The question is whether the generated hands do.</div>
     <div id="cmp"></div>
   </section>

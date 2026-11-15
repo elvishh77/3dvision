@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-15T00:18:44+00:00",
+ "generated": "2026-11-15T00:33:38+00:00",
  "runs": [
   {
    "run": "v1_K8_h100",
@@ -23,14 +23,14 @@
    "s_per_step": 1.2,
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
-   "last_log": "2026-11-15T00:09:24+00:00",
-   "last_log_age_min": 9.3,
+   "last_log": "2026-11-15T00:29:27+00:00",
+   "last_log_age_min": 4.2,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
    "stop_rule": "pass",
    "last_other_gain": 0.08467,
-   "eta_finish": "2026-11-15T00:09:24+00:00",
+   "eta_finish": "2026-11-15T00:29:27+00:00",
    "milestones": [
     {
      "step": 2500,
@@ -2758,14 +2758,14 @@
    "s_per_step": 1.21,
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
-   "last_log": "2026-11-15T00:09:24+00:00",
-   "last_log_age_min": 9.3,
+   "last_log": "2026-11-15T00:29:27+00:00",
+   "last_log_age_min": 4.2,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
    "stop_rule": "n/a (control)",
    "last_other_gain": 0.0,
-   "eta_finish": "2026-11-15T00:09:24+00:00",
+   "eta_finish": "2026-11-15T00:29:27+00:00",
    "milestones": [
     {
      "step": 2500,
@@ -5493,14 +5493,14 @@
    "s_per_step": 1.2,
    "eta_assumes_ada": false,
    "peak_mem_gib": 42.02,
-   "last_log": "2026-11-15T00:09:24+00:00",
-   "last_log_age_min": 9.3,
+   "last_log": "2026-11-15T00:29:27+00:00",
+   "last_log_age_min": 4.2,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
    "stop_rule": "pass",
    "last_other_gain": 0.08236,
-   "eta_finish": "2026-11-15T00:09:24+00:00",
+   "eta_finish": "2026-11-15T00:29:27+00:00",
    "milestones": [
     {
      "step": 1250,
@@ -6893,19 +6893,19 @@
     "gpu_type": "H100 80GB",
     "est_start": null
    },
-   "step": 3440,
+   "step": 4360,
    "steps_total": 5000,
    "s_per_step": 1.2,
    "eta_assumes_ada": false,
    "peak_mem_gib": 42.02,
-   "last_log": "2026-11-15T00:09:24+00:00",
-   "last_log_age_min": 9.3,
+   "last_log": "2026-11-15T00:29:27+00:00",
+   "last_log_age_min": 4.2,
    "health": "healthy",
-   "health_reason": "step 3440, 1.2 s/step",
+   "health_reason": "step 4360, 1.2 s/step",
    "errors": [],
    "stop_rule": "on track",
-   "last_other_gain": 0.07622,
-   "eta_finish": "2026-11-15T00:40:39+00:00",
+   "last_other_gain": 0.07765,
+   "eta_finish": "2026-11-15T00:42:15+00:00",
    "milestones": [
     {
      "step": 1250,
@@ -6919,13 +6919,13 @@
     },
     {
      "step": 3750,
-     "saved": false,
-     "eta": "2026-11-15T00:15:36+00:00"
+     "saved": true,
+     "eta": null
     },
     {
      "step": 5000,
      "saved": false,
-     "eta": "2026-11-15T00:40:39+00:00"
+     "eta": "2026-11-15T00:42:15+00:00"
     }
    ],
    "loss_curve": [
@@ -7793,6 +7793,236 @@
      "step": 3440,
      "loss": 0.13035,
      "mse": 0.10969
+    },
+    {
+     "step": 3460,
+     "loss": 0.1196,
+     "mse": 0.09895
+    },
+    {
+     "step": 3480,
+     "loss": 0.13696,
+     "mse": 0.11485
+    },
+    {
+     "step": 3500,
+     "loss": 0.14361,
+     "mse": 0.12143
+    },
+    {
+     "step": 3520,
+     "loss": 0.13735,
+     "mse": 0.11528
+    },
+    {
+     "step": 3540,
+     "loss": 0.13316,
+     "mse": 0.10973
+    },
+    {
+     "step": 3560,
+     "loss": 0.14638,
+     "mse": 0.12368
+    },
+    {
+     "step": 3580,
+     "loss": 0.13232,
+     "mse": 0.11102
+    },
+    {
+     "step": 3600,
+     "loss": 0.12415,
+     "mse": 0.104
+    },
+    {
+     "step": 3620,
+     "loss": 0.13495,
+     "mse": 0.11148
+    },
+    {
+     "step": 3640,
+     "loss": 0.13783,
+     "mse": 0.11512
+    },
+    {
+     "step": 3660,
+     "loss": 0.13991,
+     "mse": 0.11705
+    },
+    {
+     "step": 3680,
+     "loss": 0.11912,
+     "mse": 0.0993
+    },
+    {
+     "step": 3700,
+     "loss": 0.13745,
+     "mse": 0.11469
+    },
+    {
+     "step": 3720,
+     "loss": 0.13749,
+     "mse": 0.11634
+    },
+    {
+     "step": 3740,
+     "loss": 0.13451,
+     "mse": 0.11233
+    },
+    {
+     "step": 3760,
+     "loss": 0.13545,
+     "mse": 0.11402
+    },
+    {
+     "step": 3780,
+     "loss": 0.12312,
+     "mse": 0.1042
+    },
+    {
+     "step": 3800,
+     "loss": 0.13736,
+     "mse": 0.11604
+    },
+    {
+     "step": 3820,
+     "loss": 0.13642,
+     "mse": 0.11565
+    },
+    {
+     "step": 3840,
+     "loss": 0.13345,
+     "mse": 0.10982
+    },
+    {
+     "step": 3860,
+     "loss": 0.13747,
+     "mse": 0.11475
+    },
+    {
+     "step": 3880,
+     "loss": 0.12461,
+     "mse": 0.10429
+    },
+    {
+     "step": 3900,
+     "loss": 0.13365,
+     "mse": 0.11303
+    },
+    {
+     "step": 3920,
+     "loss": 0.15023,
+     "mse": 0.12414
+    },
+    {
+     "step": 3940,
+     "loss": 0.14124,
+     "mse": 0.11809
+    },
+    {
+     "step": 3960,
+     "loss": 0.12428,
+     "mse": 0.10272
+    },
+    {
+     "step": 3980,
+     "loss": 0.13164,
+     "mse": 0.11017
+    },
+    {
+     "step": 4000,
+     "loss": 0.14463,
+     "mse": 0.12099
+    },
+    {
+     "step": 4020,
+     "loss": 0.13072,
+     "mse": 0.10995
+    },
+    {
+     "step": 4040,
+     "loss": 0.12438,
+     "mse": 0.10358
+    },
+    {
+     "step": 4060,
+     "loss": 0.12179,
+     "mse": 0.1037
+    },
+    {
+     "step": 4080,
+     "loss": 0.12749,
+     "mse": 0.10528
+    },
+    {
+     "step": 4100,
+     "loss": 0.11882,
+     "mse": 0.09947
+    },
+    {
+     "step": 4120,
+     "loss": 0.12165,
+     "mse": 0.10203
+    },
+    {
+     "step": 4140,
+     "loss": 0.12383,
+     "mse": 0.10375
+    },
+    {
+     "step": 4160,
+     "loss": 0.13813,
+     "mse": 0.11568
+    },
+    {
+     "step": 4180,
+     "loss": 0.11645,
+     "mse": 0.09665
+    },
+    {
+     "step": 4200,
+     "loss": 0.13016,
+     "mse": 0.11001
+    },
+    {
+     "step": 4220,
+     "loss": 0.12763,
+     "mse": 0.10845
+    },
+    {
+     "step": 4240,
+     "loss": 0.13413,
+     "mse": 0.11026
+    },
+    {
+     "step": 4260,
+     "loss": 0.14559,
+     "mse": 0.12475
+    },
+    {
+     "step": 4280,
+     "loss": 0.14113,
+     "mse": 0.11846
+    },
+    {
+     "step": 4300,
+     "loss": 0.13338,
+     "mse": 0.11192
+    },
+    {
+     "step": 4320,
+     "loss": 0.15446,
+     "mse": 0.12954
+    },
+    {
+     "step": 4340,
+     "loss": 0.11422,
+     "mse": 0.09461
+    },
+    {
+     "step": 4360,
+     "loss": 0.13314,
+     "mse": 0.11365
     }
    ],
    "probes": [
@@ -7851,12 +8081,28 @@
      "shuffle_gain": 0.08839,
      "swap_gain": 0.00081,
      "probe_loss_hand": 0.09538
+    },
+    {
+     "step": 3500,
+     "other_gain": 0.07736,
+     "zero_gain": 0.03619,
+     "shuffle_gain": 0.09143,
+     "swap_gain": 0.00142,
+     "probe_loss_hand": 0.09415
+    },
+    {
+     "step": 4000,
+     "other_gain": 0.07765,
+     "zero_gain": 0.03627,
+     "shuffle_gain": 0.09456,
+     "swap_gain": 0.00158,
+     "probe_loss_hand": 0.09422
     }
    ],
    "latest": {
-    "loss": 0.13035,
-    "grad_norm": 0.3964,
-    "lr": 1.2698785164459253e-05
+    "loss": 0.13314,
+    "grad_norm": 0.2981,
+    "lr": 3.118136287756276e-06
    }
   },
   {
@@ -7881,14 +8127,14 @@
    "s_per_step": 1.2,
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
-   "last_log": "2026-11-15T00:09:24+00:00",
-   "last_log_age_min": 9.3,
+   "last_log": "2026-11-15T00:29:28+00:00",
+   "last_log_age_min": 4.2,
    "health": "done",
    "health_reason": "reached 15000 steps",
    "errors": [],
    "stop_rule": "pass",
    "last_other_gain": 0.07508,
-   "eta_finish": "2026-11-15T00:09:24+00:00",
+   "eta_finish": "2026-11-15T00:29:28+00:00",
    "milestones": [
     {
      "step": 12500,
@@ -9368,17 +9614,25 @@
    "handedness_mismatch_rate": 0.0158,
    "epe_capped_frameweighted": 91.143,
    "epe_position_only": 91.7324
-  }
- ],
- "eval_jobs": [
+  },
   {
-   "job_id": "628250",
-   "name": "v1_K8_h100_nocond_adapter_step_0010000",
-   "state": "RUNNING"
+   "tag": "v1_K8_h100_nocond__adapter_step_0010000",
+   "seeds": 3,
+   "updated": "2026-11-15T00:30:23+00:00",
+   "epe_capped": 94.1282,
+   "pck25": 0.0763,
+   "contact_f1_active": 0.6389,
+   "idle_vlm_fgr": 0.6131,
+   "jitter_ratio": 1.5943,
+   "task_bacc": 0.751,
+   "handedness_mismatch_rate": 0.0066,
+   "epe_capped_frameweighted": 92.31,
+   "epe_position_only": 93.541
   }
  ],
+ "eval_jobs": [],
  "iteration": {
-  "eta": "2026-11-15T03:40:39+00:00",
+  "eta": "2026-11-15T03:42:15+00:00",
   "final_eval_overhead_h": 3.0,
   "note": "Iteration = both 10k-step runs + final eval (10k checkpoints, then 3 seeds of the best) + report."
  },
@@ -9476,12 +9730,16 @@
    }
   ],
   "next_actions": [
-   "Control evals running on unicorn (628246-628250; 10k with 3 seeds) -> 'no hand input' row and demo panel.",
+   "Score v2a / v2b once their milestones are copied to unicorn (watcher launches automatically).",
    "v2a / v2b finish ~1.8 h after 17:15; copy their milestones/ to unicorn for eval.",
    "v1_K8_h100_nocond trains on CoreWeave (job 254316); copy its milestones to unicorn; score them -> HOT3D adaptation vs hand following.",
    "Phase 1 report: results table, one-hand test, demos, limitations (object identity drift, jitter)."
   ],
   "decisions": [
+   {
+    "date": "2026-11-14",
+    "text": "No-hand control scored: 94.1 px hand error (10k, 3 seeds) vs 32.7 with hand input and 100.5 base. Hand following comes from the hand input, not from fine-tuning on HOT3D; fine-tuning only makes videos somewhat more HOT3D-like."
+   },
    {
     "date": "2026-11-14",
     "text": "v2b training on its 7th launch (job 254707, num_workers 2). The early multi-GPU hang is probabilistic (stack: blocking CPU->GPU noise copy vs per-step stop-flag all_reduce); model-engineer is fixing it for future runs."

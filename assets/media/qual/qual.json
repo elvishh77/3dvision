@@ -1,5 +1,5 @@
 {
- "ckpt": "v1_K8_h100 @ 10k steps",
+ "ckpt": "v1_K8_h100 @ 10k vs the no-hand-input control @ 10k",
  "items": [
   {
    "id": "003341_w0",
@@ -21,7 +21,9 @@
      "invented scene",
      "warn"
     ]
-   ]
+   ],
+   "ctrl_epe": 99.4,
+   "ctrl": "A hand reaches in from the side and lifts a different, invented mug toward the camera; no pan, and the real mug is never touched."
   },
   {
    "id": "003288_w59",
@@ -39,7 +41,9 @@
      "object identity drift",
      "bad"
     ]
-   ]
+   ],
+   "ctrl_epe": 39.9,
+   "ctrl": "The hand stays near the spatula and barely moves it; plausible but timid, not the real lift and turn."
   },
   {
    "id": "003343_w0",
@@ -57,7 +61,9 @@
      "object kept",
      "ok"
     ]
-   ]
+   ],
+   "ctrl_epe": 64.0,
+   "ctrl": "Plausible phone handling in HOT3D style, but the grip and hand motion differ from the trajectory."
   },
   {
    "id": "003214_w59",
@@ -75,7 +81,9 @@
      "timid object motion",
      "warn"
     ]
-   ]
+   ],
+   "ctrl_epe": 73.4,
+   "ctrl": "Calm and plausible (no flame): the spatula is moved onto the plate, but by a hand on a different path."
   },
   {
    "id": "003253_w0",
@@ -93,7 +101,9 @@
      "invented scene",
      "warn"
     ]
-   ]
+   ],
+   "ctrl_epe": 100.7,
+   "ctrl": "Tilts the camera the wrong way and invents a cup and saucer; the real table and the hands' path are lost."
   },
   {
    "id": "003266_w0",
@@ -111,12 +121,15 @@
      "object identity drift",
      "bad"
     ]
-   ]
+   ],
+   "ctrl_epe": 121.9,
+   "ctrl": "Starts plausibly, then the sauce turns into a large orange blob held up by both hands, like the base model's hallucination."
   }
  ],
  "summary": {
   "works": [
    "Hands go where and when they are told: pose, grip and timing follow the trajectory.",
+   "The hand input is what makes it follow: the control fine-tuned on the same data without hands stays at 94 px hand error (base 100.5, with hands 32.7).",
    "It stays grounded: the base model often hallucinates (flames, splashing, zooming in) or freezes; the trained model stays close to the real scene.",
    "It infers head motion: when the hands' positions imply the camera must move, it moves the camera."
   ],
@@ -126,6 +139,6 @@
    "Object motion is sometimes timid: hands in the right place, object not all the way there.",
    "Some hands are degraded (blurry fists) and jitterier than real (jitter ratio 1.2-1.35)."
   ],
-  "caveat": "The adapter was trained on HOT3D, so part of 'staying grounded' may come from adapting to this lab's footage rather than from the hand input. A 'trained, no hand input' control would separate the two."
+  "caveat": "Control (same fine-tune, hand input zeroed): its videos look more like HOT3D than the base model's on some clips (calmer, fewer dramatic events), but it still hallucinates (sauce blob, invented mugs) and its hands do not follow the trajectory. So fine-tuning explains part of the realism and none of the hand following."
  }
 }

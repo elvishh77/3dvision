@@ -13,7 +13,7 @@
     if (d.summary) $("cmp-sub").textContent = d.summary + " Click a clip to play it.";
     let lastGroup = null;
     $("cmp").innerHTML = d.items.map((it) => { const head = it.group && it.group !== lastGroup ? `<h3 class="grp">${esc(it.group)}</h3>` : ""; lastGroup = it.group || lastGroup; return head + `<figure class="demo">
-        <div class="media vs3"><video src="assets/media/demo/${it.id}.mp4?v=3" poster="assets/media/demo/${it.id}.jpg?v=3" muted loop playsinline controls preload="none"></video>
+        <div class="media vs3"><video src="assets/media/demo/${it.id}.mp4?v=4" poster="assets/media/demo/${it.id}.jpg?v=4" muted loop playsinline controls preload="none"></video>
           ${d.ctrl ? `<div class="vlabels4"><span>Real clip</span><span>Base model</span><span class="ctrl">Fine-tuned, no hand input</span><span class="ours">Trained · ${esc(s)}</span></div>`
                    : `<div class="vlabels3"><span>Real clip</span><span>Base model</span><span class="ours">Trained · ${esc(s)}</span></div>`}</div>
         <figcaption class="cap"><span class="badge plain">${esc(it.id)}</span> <span class="badge plain">${esc(ACT[it.active] || it.active)}</span>
@@ -31,10 +31,11 @@
     $("qual-items").innerHTML = q.items.map((it) => `<div class="card qitem">
         <div class="qhead"><h3>${esc(it.title)}</h3><span class="badge plain">${esc(it.id)}</span><span class="badge plain">trained hand error ${it.epe.toFixed(1)} px</span>
           ${it.tags.map(([t, c]) => `<span class="badge ${c}">${esc(t)}</span>`).join("")}</div>
-        <div class="media" style="background:#fffcf6;box-shadow:none;border-width:2px"><img loading="lazy" src="assets/media/qual/${it.id}.jpg" alt="${esc(it.title)}: real, base and trained frames"></div>
+        <div class="media" style="background:#fffcf6;box-shadow:none;border-width:2px"><img loading="lazy" src="assets/media/qual/${it.id}.jpg?v=2" alt="${esc(it.title)}: real, base and trained frames"></div>
         <div class="qrows">
           <div><b>Real</b><span>${esc(it.real)}</span></div>
           <div class="bg-coral-soft"><b>Base</b><span>${esc(it.base)}</span></div>
+          ${it.ctrl ? `<div class="bg-sky-soft"><b>No hand input${it.ctrl_epe != null ? ` · ${it.ctrl_epe.toFixed(1)} px` : ""}</b><span>${esc(it.ctrl)}</span></div>` : ""}
           <div class="bg-mint-soft"><b>Trained</b><span>${esc(it.ours)}</span></div>
         </div></div>`).join("");
   }).catch(() => {});

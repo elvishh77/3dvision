@@ -1,6 +1,7 @@
 {
  "ckpt": "v1_K8_h100__adapter_step_0010000",
- "summary": "Final checkpoint: 10k steps (scored under amendment A3). Over all 32 held-out clips the median hand error is 24 px for the trained model vs 112 px for the base model; it beats the base on 31 of 32 clips.",
+ "ctrl": "v1_K8_h100_nocond__adapter_step_0010000",
+ "summary": "Final checkpoint: 10k steps (A3). Median per-clip hand error over the 32 held-out clips (seed 0): trained with hand input 24 px, fine-tuned without hand input 91 px, base model 109 px. The hand input, not the fine-tuning, makes the hands follow.",
  "items": [
   {
    "id": "003279_w59",
@@ -13,9 +14,10 @@
    "epe": {
     "real": 8.5,
     "base": 85.6,
-    "ours": 8.8
+    "ours": 8.8,
+    "ctrl": 53.5
    },
-   "note": "8.8 px vs base 85.6 px: as close as the real clip (8.5 px)."
+   "note": "8.8 px vs base 85.6 px and 53.5 px without hand input: as close as the real clip (8.5 px)."
   },
   {
    "id": "003288_w59",
@@ -28,9 +30,10 @@
    "epe": {
     "real": 6.1,
     "base": 65.9,
-    "ours": 8.4
+    "ours": 8.4,
+    "ctrl": 39.9
    },
-   "note": "8.4 px vs base 65.9 px. The spatula is held by the right hand, mostly out of frame; the visible left hand follows its target closely."
+   "note": "8.4 px (no hand input: 39.9, base 65.9). The spatula is held by the right hand, mostly out of frame; the visible left hand follows its target closely."
   },
   {
    "id": "003341_w0",
@@ -43,9 +46,10 @@
    "epe": {
     "real": 7.3,
     "base": 110.0,
-    "ours": 10.3
+    "ours": 10.3,
+    "ctrl": 99.4
    },
-   "note": "8.5 and 12.1 px for the two hands vs base 110 px: reproduces the camera pan, the grasp and the turn."
+   "note": "10.3 px vs 99.4 without hand input and 110 for base: reproduces the camera pan, the grasp and the turn; the control lifts an invented mug instead."
   },
   {
    "id": "003302_w0",
@@ -58,7 +62,8 @@
    "epe": {
     "real": 12.1,
     "base": 105.7,
-    "ours": 22.8
+    "ours": 22.8,
+    "ctrl": 106.4
    }
   },
   {
@@ -72,7 +77,8 @@
    "epe": {
     "real": 11.6,
     "base": 92.6,
-    "ours": 24.9
+    "ours": 24.9,
+    "ctrl": 73.4
    }
   },
   {
@@ -86,7 +92,8 @@
    "epe": {
     "real": 12.6,
     "base": 123.2,
-    "ours": 27.0
+    "ours": 27.0,
+    "ctrl": 81.1
    }
   },
   {
@@ -100,7 +107,8 @@
    "epe": {
     "real": 15.5,
     "base": 97.4,
-    "ours": 54.5
+    "ours": 54.5,
+    "ctrl": 104.6
    },
    "note": "The left hand drifts (81 px, missed in about half the frames) while the right hand is fine (28 px)."
   },
@@ -115,9 +123,10 @@
    "epe": {
     "real": 12.0,
     "base": 127.6,
-    "ours": 56.0
+    "ours": 56.0,
+    "ctrl": 121.9
    },
-   "note": "A real miss: both hands drift (56 and 55 px), and the can turns into a larger jar."
+   "note": "A real miss: both hands drift (56 and 55 px), and the can turns into a larger jar. The control and base turn the sauce into a large blob."
   },
   {
    "id": "003247_w0",
@@ -128,9 +137,10 @@
    "epe": {
     "real": 4.9,
     "base": 51.8,
-    "ours": 120.5
+    "ours": 120.5,
+    "ctrl": 62.3
    },
-   "note": "Mostly an eval artifact: the generated left hand sits on its target, but the detector labels it a right hand in 45 of 48 frames. A3 now reports this as the left/right mismatch rate."
+   "note": "Mostly an eval artifact: the generated left hand sits on its target, but the detector labels it a right hand in 45 of 48 frames (A3 left/right mismatch). The control scores better here only because its hand is detected as left."
   }
  ]
 }

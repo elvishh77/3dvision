@@ -92,12 +92,16 @@
   }
  ],
  "next_actions": [
-  "Control evals running on unicorn (628246-628250; 10k with 3 seeds) -> 'no hand input' row and demo panel.",
+  "Score v2a / v2b once their milestones are copied to unicorn (watcher launches automatically).",
   "v2a / v2b finish ~1.8 h after 17:15; copy their milestones/ to unicorn for eval.",
   "v1_K8_h100_nocond trains on CoreWeave (job 254316); copy its milestones to unicorn; score them -> HOT3D adaptation vs hand following.",
   "Phase 1 report: results table, one-hand test, demos, limitations (object identity drift, jitter)."
  ],
  "decisions": [
+  {
+   "date": "2026-11-14",
+   "text": "No-hand control scored: 94.1 px hand error (10k, 3 seeds) vs 32.7 with hand input and 100.5 base. Hand following comes from the hand input, not from fine-tuning on HOT3D; fine-tuning only makes videos somewhat more HOT3D-like."
+  },
   {
    "date": "2026-11-14",
    "text": "v2b training on its 7th launch (job 254707, num_workers 2). The early multi-GPU hang is probabilistic (stack: blocking CPU->GPU noise copy vs per-step stop-flag all_reduce); model-engineer is fixing it for future runs."
