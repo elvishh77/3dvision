@@ -65,7 +65,7 @@
   }
   function play(it) {
     const s = cur, v = $("all-video");
-    v.src = `assets/media/${s.key}/${it.id}.mp4?v=2`; v.poster = `assets/media/${s.key}/${it.id}.jpg?v=2`; v.play().catch(() => {});
+    v.src = `assets/media/${s.key}/${it.id}.mp4?v=3`; v.poster = `assets/media/${s.key}/${it.id}.jpg?v=3`; v.play().catch(() => {});
     $("all-labels").innerHTML = labels(s.panels);
     $("all-cap").innerHTML = `<span class="badge plain">${esc(it.id)}</span> <span class="badge plain">${esc(ACT[it.active] || it.active)}</span> <b>Prompt:</b> ${esc(it.prompt)}<br>
       Hand error: ${s.panels.map((p, i) => (i === s.panels.length - 1 ? `<b>${esc(p.label)} ${fx(it.e[i])} px</b>` : `${esc(p.label)} ${fx(it.e[i])}`)).join(" · ")}`;
@@ -76,7 +76,7 @@
     const key = (it) => sortKey === "id" ? 0 : sortKey === "gain" ? -((it.e[L - 1] ?? 0) - (it.e[L] ?? 0)) : (it.e[L] ?? 999);
     const arr = [...s.items].sort((a, b) => sortKey === "id" ? a.id.localeCompare(b.id) : key(a) - key(b));
     $("all-list").innerHTML = arr.map((it) => `<button class="clipitem" data-id="${esc(it.id)}">
-        <img loading="lazy" src="assets/media/${s.key}/${esc(it.id)}.jpg?v=2" alt="">
+        <img loading="lazy" src="assets/media/${s.key}/${esc(it.id)}.jpg?v=3" alt="">
         <span class="ci-t"><b>${esc(it.id)}</b> · ${s.panels.slice(1).map((p, i) => `${esc(p.label)} ${fx(it.e[i + 1])}`).reverse().join(" · ")}</span>
         <span class="ci-p">${esc(it.prompt)}</span></button>`).join("");
     $("all-list").querySelectorAll(".clipitem").forEach((el) => el.addEventListener("click", () => {
