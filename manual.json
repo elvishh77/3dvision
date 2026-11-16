@@ -67,7 +67,7 @@
   {
    "role": "critic-evaluator",
    "state": "active",
-   "detail": "Quality metric done and validated; adding camera input to the eval; will score the v3 camera/LoRA runs."
+   "detail": "Scoring the v3 camera/LoRA checkpoints and the v2_mix_long control on HOT3D (hand + video quality); results appear in the eval table as they finish."
   },
   {
    "role": "data-specialist",
@@ -82,11 +82,11 @@
   {
    "role": "3dvision_gen2",
    "state": "active",
-   "detail": "CoreWeave: v3_mix_cam / v3_mix_lora32 / v3_mix_cam_lora32 submitted (from v2_mix 15k, 5k steps); control v2_mix_long_h100 running."
+   "detail": "CoreWeave: v3 runs and v2_mix_long finished (5k / 25k steps, no hangs); HRDexDB human + robot eval running."
   }
  ],
  "next_actions": [
-  "Quality metric (critic-evaluator), then score the v3 camera/LoRA runs vs the v2_mix_long control on HOT3D and HRDexDB.",
+  "HOT3D eval of v3_mix_cam / v3_mix_lora32 / v3_mix_cam_lora32 (2.5k, 5k) and v2_mix_long (20k, 25k), queued; then compare against the control.",
   "Camera-motion conditioning + LoRA: code on unicorn, 3 fine-tune arms on CoreWeave mix data.",
   "Decide the v2_mix trade-off: mixed data enables robot-hand transfer but costs ~4 px and more jitter on HOT3D; e.g. lower HRDexDB mixing ratio or EMA+cosine for the mix run.",
   "Optional: 3 seeds on v2a 2.5k (best single seed, 28.0 px) to test whether even shorter training is better.",
