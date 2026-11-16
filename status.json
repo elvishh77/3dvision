@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-16T21:59:58+00:00",
+ "generated": "2026-11-16T22:30:10+00:00",
  "runs": [
   {
    "run": "v1_K8_h100",
@@ -24,7 +24,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-16T14:34:37+00:00",
-   "last_log_age_min": 445.4,
+   "last_log_age_min": 475.6,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
@@ -2759,7 +2759,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-16T14:34:37+00:00",
-   "last_log_age_min": 445.4,
+   "last_log_age_min": 475.6,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
@@ -5494,7 +5494,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 42.02,
    "last_log": "2026-11-16T14:34:37+00:00",
-   "last_log_age_min": 445.4,
+   "last_log_age_min": 475.6,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
@@ -6899,7 +6899,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 42.02,
    "last_log": "2026-11-16T14:34:37+00:00",
-   "last_log_age_min": 445.4,
+   "last_log_age_min": 475.6,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
@@ -8304,7 +8304,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-16T14:34:37+00:00",
-   "last_log_age_min": 445.4,
+   "last_log_age_min": 475.6,
    "health": "done",
    "health_reason": "reached 15000 steps",
    "errors": [],
@@ -9686,7 +9686,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-16T14:34:37+00:00",
-   "last_log_age_min": 445.4,
+   "last_log_age_min": 475.6,
    "health": "done",
    "health_reason": "reached 25000 steps",
    "errors": [],
@@ -12408,7 +12408,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.42,
    "last_log": "2026-11-16T14:34:37+00:00",
-   "last_log_age_min": 445.4,
+   "last_log_age_min": 475.6,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
@@ -13813,7 +13813,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 57.19,
    "last_log": "2026-11-16T14:34:37+00:00",
-   "last_log_age_min": 445.4,
+   "last_log_age_min": 475.6,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
@@ -15218,7 +15218,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 57.19,
    "last_log": "2026-11-16T14:34:37+00:00",
-   "last_log_age_min": 445.4,
+   "last_log_age_min": 475.6,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
@@ -17029,7 +17029,12 @@
    "task_bacc": 0.8117,
    "handedness_mismatch_rate": 0.0436,
    "epe_capped_frameweighted": 29.1263,
-   "epe_position_only": 26.2379
+   "epe_position_only": 26.2379,
+   "vlm_artifact": -1.197,
+   "vlm_artifact_late": -1.305,
+   "vlm_artifact_s0": -1.197,
+   "fvd_s0": 544.816,
+   "kvd_s0": 18.786
   },
   {
    "tag": "v3_mix_lora32__adapter_step_0002500",
@@ -17043,24 +17048,24 @@
    "task_bacc": 0.8462,
    "handedness_mismatch_rate": 0.0222,
    "epe_capped_frameweighted": 28.1145,
-   "epe_position_only": 28.0202
+   "epe_position_only": 28.0202,
+   "vlm_artifact": -1.397,
+   "vlm_artifact_late": -1.364,
+   "vlm_artifact_s0": -1.397,
+   "fvd_s0": 561.476,
+   "kvd_s0": 19.264
   }
  ],
  "eval_jobs": [
   {
-   "job_id": "705926",
-   "name": "v2_mix_long_h100__adapter_step_0025000",
-   "state": "PENDING"
-  },
-  {
-   "job_id": "705934",
-   "name": "v3_mix_cam__adapter_step_0005000_nocam",
-   "state": "PENDING"
-  },
-  {
    "job_id": "705918",
    "name": "v3_mix_cam__adapter_step_0005000",
    "state": "PENDING"
+  },
+  {
+   "job_id": "705926",
+   "name": "v2_mix_long_h100__adapter_step_0025000",
+   "state": "RUNNING"
   },
   {
    "job_id": "705924",
@@ -17075,6 +17080,11 @@
   {
    "job_id": "705920",
    "name": "v3_mix_lora32__adapter_step_0005000",
+   "state": "RUNNING"
+  },
+  {
+   "job_id": "705934",
+   "name": "v3_mix_cam__adapter_step_0005000_nocam",
    "state": "RUNNING"
   }
  ],
