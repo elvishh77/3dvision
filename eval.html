@@ -77,6 +77,15 @@
       <tr><td>M4 task accuracy</td><td style="text-align:left">the prompted outcome not happening</td><td>0.83</td><td>0.48 (other clip's outcomes)</td><td>pooled only</td><td style="text-align:left"><span class="badge info">reported for the set</span></td></tr>
       <tr><td>M5 PSNR / LPIPS</td><td style="text-align:left">overall similarity to the real clip</td><td>—</td><td>—</td><td>—</td><td style="text-align:left"><span class="badge plain">optional</span></td></tr>
     </table></div>
+    <h3 style="margin-top:1.5rem">Video quality (added 2026-11-16)</h3>
+    <div class="sub">Hand metrics say nothing about how the rest of the video looks. These were validated on the 32 real clips against 6 corruptions that grow over time (frame 0 untouched): blur, frame shuffle, JPEG, noise, smooth warping, and splicing in another clip.</div>
+    <div class="table-wrap"><table class="wrap-cells">
+      <tr><th>Metric</th><th style="text-align:left">Catches</th><th>Real clip</th><th>Prefers the real clip</th><th style="text-align:left">Role</th></tr>
+      <tr><td><b>Artifact score</b> (VLM log-odds)</td><td style="text-align:left">warped, melted or smeared objects and blur; mean of 4 yes/no questions to Qwen2.5-VL on keyframes and the frame set</td><td>−2.2</td><td>blur 100%, warp 100%, noise 97%, JPEG 91%; real vs generated 84–91%</td><td style="text-align:left"><span class="badge ok">headline for quality</span></td></tr>
+      <tr><td>FVD / KVD (I3D)</td><td style="text-align:left">distance between the set of generated and real videos; reported at seed 0 (96 segments)</td><td>472 / 8.2</td><td>catches shuffle, JPEG, noise; not blur or warp at this sample size</td><td style="text-align:left"><span class="badge info">reported</span></td></tr>
+      <tr><td>Temporal break (optical flow)</td><td style="text-align:left">sudden cuts or jumps between frames</td><td>—</td><td>shuffle 100%, splice 97%</td><td style="text-align:left"><span class="badge warn">diagnostic only</span></td></tr>
+    </table></div>
+    <div class="cap">Caveat: the 4 questions were chosen and validated on the same 32 clips. With 32 clips, differences under about 0.25 in artifact score are within noise.</div>
   </section>
 
   <section id="results">
