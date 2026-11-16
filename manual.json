@@ -82,17 +82,21 @@
   {
    "role": "3dvision_gen2",
    "state": "active",
-   "detail": "CoreWeave: user approved mix+camera, mix+LoRA, mix+camera+LoRA; launches when the code is pushed."
+   "detail": "CoreWeave: v3_mix_cam / v3_mix_lora32 / v3_mix_cam_lora32 submitted (from v2_mix 15k, 5k steps); control v2_mix_long_h100 running."
   }
  ],
  "next_actions": [
-  "Quality metric + sampler sweep (30/50 steps, guidance 3/5/7) on v1 10k.",
+  "Quality metric (critic-evaluator), then score the v3 camera/LoRA runs vs the v2_mix_long control on HOT3D and HRDexDB.",
   "Camera-motion conditioning + LoRA: code on unicorn, 3 fine-tune arms on CoreWeave mix data.",
   "Decide the v2_mix trade-off: mixed data enables robot-hand transfer but costs ~4 px and more jitter on HOT3D; e.g. lower HRDexDB mixing ratio or EMA+cosine for the mix run.",
   "Optional: 3 seeds on v2a 2.5k (best single seed, 28.0 px) to test whether even shorter training is better.",
   "Phase 1 report: hand input works (32.7 vs 94.1 px without it); EMA+cosine = same quality at half the steps; robot-hand transfer shown zero-shot."
  ],
  "decisions": [
+  {
+   "date": "2026-11-16",
+   "text": "Sampler sweep on v1 10k (32 clips, seed 0): 30 or 50 steps x guidance 3/5/7 give hand error 29.4-33.8 px vs 29.7 for the default (30 steps, guidance 5); seed-to-seed spread of the default is 29.7-36.8 px, so no setting is better. Frames look nearly identical. Sampler settings are not the cause of the poor quality; keep 30 steps, guidance 5."
+  },
   {
    "date": "2026-11-16",
    "text": "Video quality diagnosis: training longer won't help (train and held-out loss flat after ~5k steps; whole-frame held-out loss only 9% below base). Causes: HOT3D head motion with no camera input, and a fully frozen base model. Next: add a quality metric, check sampler settings, then camera conditioning + LoRA (CoreWeave, HOT3D + HRDexDB mix). HRDexDB human clips are head-mounted too, with less motion than HOT3D (median 3.5° / 3 cm per window); the Inspire robot clips use a fixed camera."
@@ -275,6 +279,36 @@
    "gpus": 8,
    "gpu_type": "H100 80GB",
    "job_id": "256896"
+  },
+  {
+   "name": "v3_mix_cam",
+   "source": "remote",
+   "repo": "git@github.com:elvishh77/3dvision-code.git",
+   "branch": "run-status",
+   "cluster": "coreweave",
+   "gpus": 8,
+   "gpu_type": "H100 80GB",
+   "job_id": "256933"
+  },
+  {
+   "name": "v3_mix_lora32",
+   "source": "remote",
+   "repo": "git@github.com:elvishh77/3dvision-code.git",
+   "branch": "run-status",
+   "cluster": "coreweave",
+   "gpus": 8,
+   "gpu_type": "H100 80GB",
+   "job_id": "256934"
+  },
+  {
+   "name": "v3_mix_cam_lora32",
+   "source": "remote",
+   "repo": "git@github.com:elvishh77/3dvision-code.git",
+   "branch": "run-status",
+   "cluster": "coreweave",
+   "gpus": 8,
+   "gpu_type": "H100 80GB",
+   "job_id": "256935"
   }
  ]
 }
