@@ -35,13 +35,13 @@
 
   const LABEL = { gt: "Real video (upper bound)", base: "Base model, no hand control" };
   const PRETTY = (t) => { const sw = /^(.*?)_(\d+)k_st(\d+)_g(\d+)$/.exec(t || ""); if (sw) return `${sw[1]} · ${sw[2]}k steps · sampler ${sw[3]} steps, guidance ${sw[4]}`; const m = /^(.*?)_+adapter_step_0*(\d+)(_nocam)?$/.exec(t || ""); return m ? `${m[1]} · ${Number(m[2]) / 1000}k steps${m[3] ? " · camera withheld" : ""}` : t; };
-  const M = [["epe_capped", "Hand error (px) ↓", 1], ["pck25", "PCK@25 ↑", 3], ["contact_f1_active", "Contact F1 ↑", 3], ["task_bacc", "Task acc ↑", 3], ["jitter_ratio", "Jitter (1 = real)", 2], ["vlm_artifact", "Artifacts ↓", 2], ["fvd_s0", "FVD ↓", 0]];
+  const M = [["epe_capped", "Hand error (px) ↓", 1], ["pck25", "PCK@25 ↑", 3], ["contact_f1_active", "Contact F1 ↑", 3], ["task_bacc", "Task acc ↑", 3], ["jitter_ratio", "Jitter (1 = real)", 2], ["vlm_artifact_s0", "Artifacts (seed 0) ↓", 2], ["fvd_s0", "FVD ↓", 0]];
   fetch("status.json?t=" + Date.now(), { cache: "no-store" }).then((r) => r.json()).then((s) => {
     const rows = s.evals.map((e) => `<tr class="${e.tag in LABEL ? "ref" : ""}"><td>${esc(LABEL[e.tag] || PRETTY(e.tag))}</td><td>${e.seeds}</td>${M.map(([k, , d]) => `<td>${f(e[k], d)}</td>`).join("")}</tr>`);
     const trained = s.evals.filter((e) => !(e.tag in LABEL));
     if (!trained.length) rows.push(`<tr><td>Trained checkpoints</td><td colspan="${M.length + 1}" style="text-align:center"><span class="badge warn">waiting for the checkpoint files to reach the eval machine</span></td></tr>`);
     $("res").innerHTML = `<tr><th>Model</th><th>Seeds</th>${M.map((m) => `<th>${m[1]}</th>`).join("")}</tr>` + rows.join("");
-    $("res-note").textContent = "Hand error: a good adapter moves it from ~100 px (base) toward ~15 px (real). Artifacts: VLM artifact score (log-odds, lower is better; real video -2.2). FVD at seed 0 (96 clips x segments; lower is better; real video 472). Pick checkpoints on both: hand error alone hides visual drift.";
+    $("res-note").textContent = "Hand error: a good adapter moves it from ~100 px (base) toward ~15 px (real). Artifacts: VLM artifact score at seed 0, comparable across all rows (log-odds, lower is better; real video -2.2). FVD at seed 0 (96 clips x segments; lower is better; real video 472). Pick checkpoints on both: hand error alone hides visual drift.";
     const r = s.runs[0];
     if (!r) return;
     const last = r.probes[r.probes.length - 1]; const keep = r.probes.filter((p) => p.step === 500 || p.step % 2500 === 0 || p === last);

@@ -116,7 +116,7 @@
   const METRICS = [
     ["epe_capped", "Hand err px ↓", 1, "min"], ["pck25", "PCK@25 ↑", 3, "max"], ["contact_f1_active", "Contact F1 ↑", 3, "max"],
     ["task_bacc", "Task acc ↑", 3, "max"], ["jitter_ratio", "Jitter (1 = real)", 2, null], ["idle_vlm_fgr", "Idle grip ↓", 3, "min"],
-    ["vlm_artifact", "Artifacts ↓", 2, "min"], ["fvd_s0", "FVD ↓", 0, "min"],
+    ["vlm_artifact_s0", "Artifacts (seed 0) ↓", 2, "min"], ["fvd_s0", "FVD ↓", 0, "min"],
   ];
   const LABEL = { gt: "Real video (upper bound)", base: "Base model, no adapter" };
   const PRETTY = (t) => { const sw = /^(.*?)_(\d+)k_st(\d+)_g(\d+)$/.exec(t || ""); if (sw) return `${sw[1]} · ${sw[2]}k steps · sampler ${sw[3]} steps, guidance ${sw[4]}`; const m = /^(.*?)_+adapter_step_0*(\d+)(_nocam)?$/.exec(t || ""); return m ? `${m[1]} · ${Number(m[2]) / 1000}k steps${m[3] ? " · camera withheld" : ""}` : t; };
