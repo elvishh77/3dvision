@@ -67,17 +67,17 @@
   {
    "role": "critic-evaluator",
    "state": "active",
-   "detail": "Adding a video-quality metric (FVD + artifact judge) and scoring all checkpoints plus a sampler-settings sweep."
+   "detail": "Quality metric done and validated; adding camera input to the eval; will score the v3 camera/LoRA runs."
   },
   {
    "role": "data-specialist",
-   "state": "active",
-   "detail": "Computing per-frame camera poses for all HOT3D samples (camera-motion conditioning)."
+   "state": "off",
+   "detail": "Camera trajectories for all HOT3D caches done."
   },
   {
    "role": "model-engineer",
-   "state": "active",
-   "detail": "Adding camera conditioning and LoRA on the base model for the CoreWeave mix runs."
+   "state": "off",
+   "detail": "Camera conditioning + LoRA done (b3b1607)."
   },
   {
    "role": "3dvision_gen2",
@@ -93,6 +93,10 @@
   "Phase 1 report: hand input works (32.7 vs 94.1 px without it); EMA+cosine = same quality at half the steps; robot-hand transfer shown zero-shot."
  ],
  "decisions": [
+  {
+   "date": "2026-11-16",
+   "text": "New video-quality metric (VLM artifact score + FVD/KVD, validated on corrupted ground truth). v1 10k, v1 2.5k and v2a 5k tie; the no-hand control is worse; v2_mix 15k has the worst visual quality of all, worse than the base model, degrading in late frames. The sampler sweep changes neither quality nor hand error."
+  },
   {
    "date": "2026-11-16",
    "text": "Sampler sweep on v1 10k (32 clips, seed 0): 30 or 50 steps x guidance 3/5/7 give hand error 29.4-33.8 px vs 29.7 for the default (30 steps, guidance 5); seed-to-seed spread of the default is 29.7-36.8 px, so no setting is better. Frames look nearly identical. Sampler settings are not the cause of the poor quality; keep 30 steps, guidance 5."
