@@ -7,7 +7,7 @@
   "deadline": "2026-11-13",
   "deadline_note": "First-results target was Nov 13; it slipped because training only started on Nov 13. Final Phase 1 numbers expected around Nov 14 evening."
  },
- "updated_by_lead": "2026-11-13T17:30:00-05:00",
+ "updated_by_lead": "2026-11-16T05:00:00-05:00",
  "stages": [
   {
    "name": "Interface spec",
@@ -62,36 +62,41 @@
   {
    "role": "lead",
    "state": "active",
-   "detail": "Tracking the CoreWeave run on this dashboard; will score milestones once they reach the eval machine."
-  },
-  {
-   "role": "3dvision_gen2",
-   "state": "active",
-   "detail": "Claude session on the CoreWeave cluster: runs v1_K8_h100 and publishes status snapshots to the run-status branch."
+   "detail": "Diagnosed poor video quality (no camera input; frozen base). Wrote the camera-motion spec (interface §10-§11)."
   },
   {
    "role": "critic-evaluator",
    "state": "active",
-   "detail": "A3 applied and all checkpoints rescored; one-hand test on 10k and 2.5k done. Next: score the no-hand control."
-  },
-  {
-   "role": "model-engineer",
-   "state": "off",
-   "detail": "Added --no_hand_input and --ema / --lr_schedule cosine; done."
+   "detail": "Adding a video-quality metric (FVD + artifact judge) and scoring all checkpoints plus a sampler-settings sweep."
   },
   {
    "role": "data-specialist",
-   "state": "off",
-   "detail": "All data work done; not needed for the rest of Phase 1."
+   "state": "active",
+   "detail": "Computing per-frame camera poses for all HOT3D samples (camera-motion conditioning)."
+  },
+  {
+   "role": "model-engineer",
+   "state": "active",
+   "detail": "Adding camera conditioning and LoRA on the base model for the CoreWeave mix runs."
+  },
+  {
+   "role": "3dvision_gen2",
+   "state": "active",
+   "detail": "CoreWeave: user approved mix+camera, mix+LoRA, mix+camera+LoRA; launches when the code is pushed."
   }
  ],
  "next_actions": [
+  "Quality metric + sampler sweep (30/50 steps, guidance 3/5/7) on v1 10k.",
+  "Camera-motion conditioning + LoRA: code on unicorn, 3 fine-tune arms on CoreWeave mix data.",
   "Decide the v2_mix trade-off: mixed data enables robot-hand transfer but costs ~4 px and more jitter on HOT3D; e.g. lower HRDexDB mixing ratio or EMA+cosine for the mix run.",
   "Optional: 3 seeds on v2a 2.5k (best single seed, 28.0 px) to test whether even shorter training is better.",
-  "Multi-GPU hang fixed (TORCH_NCCL_USE_COMM_NONBLOCKING=0): apply on the next CoreWeave launches; multi-GPU training on unicorn is usable again.",
   "Phase 1 report: hand input works (32.7 vs 94.1 px without it); EMA+cosine = same quality at half the steps; robot-hand transfer shown zero-shot."
  ],
  "decisions": [
+  {
+   "date": "2026-11-16",
+   "text": "Video quality diagnosis: training longer won't help (train and held-out loss flat after ~5k steps; whole-frame held-out loss only 9% below base). Causes: HOT3D head motion with no camera input, and a fully frozen base model. Next: add a quality metric, check sampler settings, then camera conditioning + LoRA (CoreWeave, HOT3D + HRDexDB mix). HRDexDB human clips are head-mounted too, with less motion than HOT3D (median 3.5° / 3 cm per window); the Inspire robot clips use a fixed camera."
+  },
   {
    "date": "2026-11-15",
    "text": "Multi-GPU hang root-caused and fixed: a thread race inside NCCL 2.26.2's nonblocking-communicator mode (two threads join the same NCCL worker thread; the second waits forever). Native stack traces from 5 hangs all show the same NCCL frame; it reproduced without our model. Fix: TORCH_NCCL_USE_COMM_NONBLOCKING=0 (blocking communicator). Validation: 13/13 clean runs vs ~50% hangs before, no speed cost."
@@ -260,6 +265,16 @@
    "cluster": "coreweave",
    "gpus": 8,
    "gpu_type": "H100 80GB"
+  },
+  {
+   "name": "v2_mix_long_h100",
+   "source": "remote",
+   "repo": "git@github.com:elvishh77/3dvision-code.git",
+   "branch": "run-status",
+   "cluster": "coreweave",
+   "gpus": 8,
+   "gpu_type": "H100 80GB",
+   "job_id": "256896"
   }
  ]
 }
