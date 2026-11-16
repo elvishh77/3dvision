@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-16T12:26:45+00:00",
+ "generated": "2026-11-16T12:56:56+00:00",
  "runs": [
   {
    "run": "v1_K8_h100",
@@ -23,14 +23,14 @@
    "s_per_step": 1.2,
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
-   "last_log": "2026-11-16T12:22:57+00:00",
+   "last_log": "2026-11-16T12:53:06+00:00",
    "last_log_age_min": 3.8,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
    "stop_rule": "pass",
    "last_other_gain": 0.08467,
-   "eta_finish": "2026-11-16T12:22:57+00:00",
+   "eta_finish": "2026-11-16T12:53:06+00:00",
    "milestones": [
     {
      "step": 2500,
@@ -2758,14 +2758,14 @@
    "s_per_step": 1.21,
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
-   "last_log": "2026-11-16T12:22:57+00:00",
+   "last_log": "2026-11-16T12:53:06+00:00",
    "last_log_age_min": 3.8,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
    "stop_rule": "n/a (control)",
    "last_other_gain": 0.0,
-   "eta_finish": "2026-11-16T12:22:57+00:00",
+   "eta_finish": "2026-11-16T12:53:06+00:00",
    "milestones": [
     {
      "step": 2500,
@@ -5493,14 +5493,14 @@
    "s_per_step": 1.2,
    "eta_assumes_ada": false,
    "peak_mem_gib": 42.02,
-   "last_log": "2026-11-16T12:22:57+00:00",
+   "last_log": "2026-11-16T12:53:06+00:00",
    "last_log_age_min": 3.8,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
    "stop_rule": "pass",
    "last_other_gain": 0.08236,
-   "eta_finish": "2026-11-16T12:22:57+00:00",
+   "eta_finish": "2026-11-16T12:53:06+00:00",
    "milestones": [
     {
      "step": 1250,
@@ -6898,14 +6898,14 @@
    "s_per_step": 1.2,
    "eta_assumes_ada": false,
    "peak_mem_gib": 42.02,
-   "last_log": "2026-11-16T12:22:57+00:00",
+   "last_log": "2026-11-16T12:53:06+00:00",
    "last_log_age_min": 3.8,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
    "stop_rule": "pass",
    "last_other_gain": 0.08045,
-   "eta_finish": "2026-11-16T12:22:57+00:00",
+   "eta_finish": "2026-11-16T12:53:06+00:00",
    "milestones": [
     {
      "step": 1250,
@@ -8303,14 +8303,14 @@
    "s_per_step": 1.2,
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
-   "last_log": "2026-11-16T12:22:57+00:00",
+   "last_log": "2026-11-16T12:53:07+00:00",
    "last_log_age_min": 3.8,
    "health": "done",
    "health_reason": "reached 15000 steps",
    "errors": [],
    "stop_rule": "pass",
    "last_other_gain": 0.07508,
-   "eta_finish": "2026-11-16T12:22:57+00:00",
+   "eta_finish": "2026-11-16T12:53:07+00:00",
    "milestones": [
     {
      "step": 12500,
@@ -9680,19 +9680,19 @@
     "gpu_type": "H100 80GB",
     "est_start": null
    },
-   "step": 21980,
+   "step": 23380,
    "steps_total": 25000,
    "s_per_step": 1.19,
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
-   "last_log": "2026-11-16T12:22:57+00:00",
+   "last_log": "2026-11-16T12:53:07+00:00",
    "last_log_age_min": 3.8,
    "health": "healthy",
-   "health_reason": "step 21980, 1.2 s/step",
+   "health_reason": "step 23380, 1.2 s/step",
    "errors": [],
    "stop_rule": "pass",
-   "last_other_gain": 0.08598,
-   "eta_finish": "2026-11-16T13:22:55+00:00",
+   "last_other_gain": 0.0861,
+   "eta_finish": "2026-11-16T13:25:09+00:00",
    "milestones": [
     {
      "step": 17500,
@@ -9706,13 +9706,13 @@
     },
     {
      "step": 22500,
-     "saved": false,
-     "eta": "2026-11-16T12:33:16+00:00"
+     "saved": true,
+     "eta": null
     },
     {
      "step": 25000,
      "saved": false,
-     "eta": "2026-11-16T13:22:55+00:00"
+     "eta": "2026-11-16T13:25:09+00:00"
     }
    ],
    "loss_curve": [
@@ -11460,6 +11460,356 @@
      "step": 21980,
      "loss": 0.09636,
      "mse": 0.08222
+    },
+    {
+     "step": 22000,
+     "loss": 0.13234,
+     "mse": 0.11241
+    },
+    {
+     "step": 22020,
+     "loss": 0.11155,
+     "mse": 0.09518
+    },
+    {
+     "step": 22040,
+     "loss": 0.13236,
+     "mse": 0.11259
+    },
+    {
+     "step": 22060,
+     "loss": 0.11409,
+     "mse": 0.09712
+    },
+    {
+     "step": 22080,
+     "loss": 0.09929,
+     "mse": 0.08293
+    },
+    {
+     "step": 22100,
+     "loss": 0.09689,
+     "mse": 0.08235
+    },
+    {
+     "step": 22120,
+     "loss": 0.12335,
+     "mse": 0.10466
+    },
+    {
+     "step": 22140,
+     "loss": 0.1016,
+     "mse": 0.08567
+    },
+    {
+     "step": 22160,
+     "loss": 0.11554,
+     "mse": 0.09945
+    },
+    {
+     "step": 22180,
+     "loss": 0.10942,
+     "mse": 0.09318
+    },
+    {
+     "step": 22200,
+     "loss": 0.11225,
+     "mse": 0.09559
+    },
+    {
+     "step": 22220,
+     "loss": 0.12025,
+     "mse": 0.10314
+    },
+    {
+     "step": 22240,
+     "loss": 0.10711,
+     "mse": 0.09059
+    },
+    {
+     "step": 22260,
+     "loss": 0.11586,
+     "mse": 0.09992
+    },
+    {
+     "step": 22280,
+     "loss": 0.10945,
+     "mse": 0.09453
+    },
+    {
+     "step": 22300,
+     "loss": 0.11492,
+     "mse": 0.09727
+    },
+    {
+     "step": 22320,
+     "loss": 0.11454,
+     "mse": 0.09885
+    },
+    {
+     "step": 22340,
+     "loss": 0.10426,
+     "mse": 0.08868
+    },
+    {
+     "step": 22360,
+     "loss": 0.10454,
+     "mse": 0.08913
+    },
+    {
+     "step": 22380,
+     "loss": 0.11202,
+     "mse": 0.09559
+    },
+    {
+     "step": 22400,
+     "loss": 0.11237,
+     "mse": 0.09553
+    },
+    {
+     "step": 22420,
+     "loss": 0.10968,
+     "mse": 0.0933
+    },
+    {
+     "step": 22440,
+     "loss": 0.12198,
+     "mse": 0.1052
+    },
+    {
+     "step": 22460,
+     "loss": 0.10644,
+     "mse": 0.09176
+    },
+    {
+     "step": 22480,
+     "loss": 0.12294,
+     "mse": 0.10481
+    },
+    {
+     "step": 22500,
+     "loss": 0.10187,
+     "mse": 0.08649
+    },
+    {
+     "step": 22520,
+     "loss": 0.12493,
+     "mse": 0.10703
+    },
+    {
+     "step": 22540,
+     "loss": 0.11067,
+     "mse": 0.09356
+    },
+    {
+     "step": 22560,
+     "loss": 0.09915,
+     "mse": 0.08468
+    },
+    {
+     "step": 22580,
+     "loss": 0.10415,
+     "mse": 0.08891
+    },
+    {
+     "step": 22600,
+     "loss": 0.14117,
+     "mse": 0.12123
+    },
+    {
+     "step": 22620,
+     "loss": 0.10269,
+     "mse": 0.08649
+    },
+    {
+     "step": 22640,
+     "loss": 0.14215,
+     "mse": 0.12222
+    },
+    {
+     "step": 22660,
+     "loss": 0.10618,
+     "mse": 0.09038
+    },
+    {
+     "step": 22680,
+     "loss": 0.12325,
+     "mse": 0.1068
+    },
+    {
+     "step": 22700,
+     "loss": 0.12237,
+     "mse": 0.1053
+    },
+    {
+     "step": 22720,
+     "loss": 0.10168,
+     "mse": 0.08617
+    },
+    {
+     "step": 22740,
+     "loss": 0.10577,
+     "mse": 0.0894
+    },
+    {
+     "step": 22760,
+     "loss": 0.11418,
+     "mse": 0.09746
+    },
+    {
+     "step": 22780,
+     "loss": 0.11108,
+     "mse": 0.09561
+    },
+    {
+     "step": 22800,
+     "loss": 0.10336,
+     "mse": 0.08699
+    },
+    {
+     "step": 22820,
+     "loss": 0.10302,
+     "mse": 0.08885
+    },
+    {
+     "step": 22840,
+     "loss": 0.09951,
+     "mse": 0.08408
+    },
+    {
+     "step": 22860,
+     "loss": 0.1246,
+     "mse": 0.10701
+    },
+    {
+     "step": 22880,
+     "loss": 0.12413,
+     "mse": 0.10699
+    },
+    {
+     "step": 22900,
+     "loss": 0.12618,
+     "mse": 0.10941
+    },
+    {
+     "step": 22920,
+     "loss": 0.10606,
+     "mse": 0.08968
+    },
+    {
+     "step": 22940,
+     "loss": 0.10008,
+     "mse": 0.0854
+    },
+    {
+     "step": 22960,
+     "loss": 0.11091,
+     "mse": 0.09346
+    },
+    {
+     "step": 22980,
+     "loss": 0.12689,
+     "mse": 0.10908
+    },
+    {
+     "step": 23000,
+     "loss": 0.09774,
+     "mse": 0.0826
+    },
+    {
+     "step": 23020,
+     "loss": 0.12258,
+     "mse": 0.10349
+    },
+    {
+     "step": 23040,
+     "loss": 0.10396,
+     "mse": 0.08712
+    },
+    {
+     "step": 23060,
+     "loss": 0.13152,
+     "mse": 0.114
+    },
+    {
+     "step": 23080,
+     "loss": 0.11,
+     "mse": 0.09419
+    },
+    {
+     "step": 23100,
+     "loss": 0.13638,
+     "mse": 0.11478
+    },
+    {
+     "step": 23120,
+     "loss": 0.11264,
+     "mse": 0.09879
+    },
+    {
+     "step": 23140,
+     "loss": 0.10431,
+     "mse": 0.09068
+    },
+    {
+     "step": 23160,
+     "loss": 0.11205,
+     "mse": 0.09511
+    },
+    {
+     "step": 23180,
+     "loss": 0.10066,
+     "mse": 0.08414
+    },
+    {
+     "step": 23200,
+     "loss": 0.10933,
+     "mse": 0.09576
+    },
+    {
+     "step": 23220,
+     "loss": 0.11949,
+     "mse": 0.10188
+    },
+    {
+     "step": 23240,
+     "loss": 0.12328,
+     "mse": 0.10509
+    },
+    {
+     "step": 23260,
+     "loss": 0.11156,
+     "mse": 0.09376
+    },
+    {
+     "step": 23280,
+     "loss": 0.10447,
+     "mse": 0.08905
+    },
+    {
+     "step": 23300,
+     "loss": 0.10453,
+     "mse": 0.08795
+    },
+    {
+     "step": 23320,
+     "loss": 0.12035,
+     "mse": 0.1027
+    },
+    {
+     "step": 23340,
+     "loss": 0.12227,
+     "mse": 0.10454
+    },
+    {
+     "step": 23360,
+     "loss": 0.12142,
+     "mse": 0.10554
+    },
+    {
+     "step": 23380,
+     "loss": 0.14002,
+     "mse": 0.11862
     }
    ],
    "probes": [
@@ -11566,11 +11916,35 @@
      "shuffle_gain": 0.11139,
      "swap_gain": 0.00232,
      "probe_loss_hand": 0.0905
+    },
+    {
+     "step": 22000,
+     "other_gain": 0.08759,
+     "zero_gain": 0.04379,
+     "shuffle_gain": 0.11339,
+     "swap_gain": 0.00282,
+     "probe_loss_hand": 0.09389
+    },
+    {
+     "step": 22500,
+     "other_gain": 0.08601,
+     "zero_gain": 0.04204,
+     "shuffle_gain": 0.10801,
+     "swap_gain": 0.00225,
+     "probe_loss_hand": 0.09345
+    },
+    {
+     "step": 23000,
+     "other_gain": 0.0861,
+     "zero_gain": 0.0402,
+     "shuffle_gain": 0.11808,
+     "swap_gain": 0.00216,
+     "probe_loss_hand": 0.09189
     }
    ],
    "latest": {
-    "loss": 0.09636,
-    "grad_norm": 0.1942,
+    "loss": 0.14002,
+    "grad_norm": 0.4391,
     "lr": 0.0001
    }
   },
@@ -11596,14 +11970,14 @@
    "s_per_step": 1.19,
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.42,
-   "last_log": "2026-11-16T12:22:57+00:00",
+   "last_log": "2026-11-16T12:53:07+00:00",
    "last_log_age_min": 3.8,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
    "stop_rule": "pass",
    "last_other_gain": 0.08871,
-   "eta_finish": "2026-11-16T12:22:57+00:00",
+   "eta_finish": "2026-11-16T12:53:07+00:00",
    "milestones": [
     {
      "step": 1250,
@@ -12990,25 +13364,25 @@
    "effective_batch": 8,
    "job": {
     "job_id": "256934",
-    "state": "RUNNING",
+    "state": "COMPLETED",
     "reason": "",
     "gpus": 8,
     "gpu_type": "H100 80GB",
     "est_start": null
    },
-   "step": 4620,
+   "step": 5000,
    "steps_total": 5000,
-   "s_per_step": 1.36,
+   "s_per_step": 1.35,
    "eta_assumes_ada": false,
    "peak_mem_gib": 57.19,
-   "last_log": "2026-11-16T12:22:58+00:00",
+   "last_log": "2026-11-16T12:53:07+00:00",
    "last_log_age_min": 3.8,
-   "health": "healthy",
-   "health_reason": "step 4620, 1.4 s/step",
+   "health": "done",
+   "health_reason": "reached 5000 steps",
    "errors": [],
-   "stop_rule": "on track",
-   "last_other_gain": 0.0982,
-   "eta_finish": "2026-11-16T12:31:33+00:00",
+   "stop_rule": "pass",
+   "last_other_gain": 0.09712,
+   "eta_finish": "2026-11-16T12:53:07+00:00",
    "milestones": [
     {
      "step": 1250,
@@ -13027,8 +13401,8 @@
     },
     {
      "step": 5000,
-     "saved": false,
-     "eta": "2026-11-16T12:31:33+00:00"
+     "saved": true,
+     "eta": null
     }
    ],
    "loss_curve": [
@@ -14191,6 +14565,101 @@
      "step": 4620,
      "loss": 0.11459,
      "mse": 0.0971
+    },
+    {
+     "step": 4640,
+     "loss": 0.1007,
+     "mse": 0.0834
+    },
+    {
+     "step": 4660,
+     "loss": 0.10788,
+     "mse": 0.09106
+    },
+    {
+     "step": 4680,
+     "loss": 0.12793,
+     "mse": 0.10798
+    },
+    {
+     "step": 4700,
+     "loss": 0.11008,
+     "mse": 0.094
+    },
+    {
+     "step": 4720,
+     "loss": 0.10329,
+     "mse": 0.08699
+    },
+    {
+     "step": 4740,
+     "loss": 0.10005,
+     "mse": 0.08472
+    },
+    {
+     "step": 4760,
+     "loss": 0.11567,
+     "mse": 0.0961
+    },
+    {
+     "step": 4780,
+     "loss": 0.10537,
+     "mse": 0.08917
+    },
+    {
+     "step": 4800,
+     "loss": 0.10475,
+     "mse": 0.09004
+    },
+    {
+     "step": 4820,
+     "loss": 0.1145,
+     "mse": 0.0976
+    },
+    {
+     "step": 4840,
+     "loss": 0.10335,
+     "mse": 0.0888
+    },
+    {
+     "step": 4860,
+     "loss": 0.10259,
+     "mse": 0.0862
+    },
+    {
+     "step": 4880,
+     "loss": 0.10637,
+     "mse": 0.09216
+    },
+    {
+     "step": 4900,
+     "loss": 0.11554,
+     "mse": 0.09844
+    },
+    {
+     "step": 4920,
+     "loss": 0.1075,
+     "mse": 0.09207
+    },
+    {
+     "step": 4940,
+     "loss": 0.10193,
+     "mse": 0.08876
+    },
+    {
+     "step": 4960,
+     "loss": 0.104,
+     "mse": 0.08955
+    },
+    {
+     "step": 4980,
+     "loss": 0.10837,
+     "mse": 0.09323
+    },
+    {
+     "step": 5000,
+     "loss": 0.10767,
+     "mse": 0.09263
     }
    ],
    "probes": [
@@ -14273,11 +14742,19 @@
      "shuffle_gain": 0.12252,
      "swap_gain": 0.00186,
      "probe_loss_hand": 0.08804
+    },
+    {
+     "step": 5000,
+     "other_gain": 0.09712,
+     "zero_gain": 0.04268,
+     "shuffle_gain": 0.13179,
+     "swap_gain": 0.002,
+     "probe_loss_hand": 0.08677
     }
    ],
    "latest": {
-    "loss": 0.11459,
-    "grad_norm": 0.1865,
+    "loss": 0.10767,
+    "grad_norm": 0.2151,
     "lr": 0.0001
    }
   },
@@ -14292,25 +14769,25 @@
    "effective_batch": 8,
    "job": {
     "job_id": "256935",
-    "state": "RUNNING",
+    "state": "COMPLETED",
     "reason": "",
     "gpus": 8,
     "gpu_type": "H100 80GB",
     "est_start": null
    },
-   "step": 4520,
+   "step": 5000,
    "steps_total": 5000,
-   "s_per_step": 1.35,
+   "s_per_step": 1.36,
    "eta_assumes_ada": false,
    "peak_mem_gib": 57.19,
-   "last_log": "2026-11-16T12:22:57+00:00",
+   "last_log": "2026-11-16T12:53:07+00:00",
    "last_log_age_min": 3.8,
-   "health": "healthy",
-   "health_reason": "step 4520, 1.4 s/step",
+   "health": "done",
+   "health_reason": "reached 5000 steps",
    "errors": [],
-   "stop_rule": "on track",
-   "last_other_gain": 0.09673,
-   "eta_finish": "2026-11-16T12:33:46+00:00",
+   "stop_rule": "pass",
+   "last_other_gain": 0.09659,
+   "eta_finish": "2026-11-16T12:53:07+00:00",
    "milestones": [
     {
      "step": 1250,
@@ -14329,8 +14806,8 @@
     },
     {
      "step": 5000,
-     "saved": false,
-     "eta": "2026-11-16T12:33:46+00:00"
+     "saved": true,
+     "eta": null
     }
    ],
    "loss_curve": [
@@ -15468,6 +15945,126 @@
      "step": 4520,
      "loss": 0.10801,
      "mse": 0.09259
+    },
+    {
+     "step": 4540,
+     "loss": 0.11014,
+     "mse": 0.09634
+    },
+    {
+     "step": 4560,
+     "loss": 0.12845,
+     "mse": 0.10911
+    },
+    {
+     "step": 4580,
+     "loss": 0.08867,
+     "mse": 0.07524
+    },
+    {
+     "step": 4600,
+     "loss": 0.10819,
+     "mse": 0.09119
+    },
+    {
+     "step": 4620,
+     "loss": 0.11261,
+     "mse": 0.09612
+    },
+    {
+     "step": 4640,
+     "loss": 0.09792,
+     "mse": 0.08113
+    },
+    {
+     "step": 4660,
+     "loss": 0.10251,
+     "mse": 0.08735
+    },
+    {
+     "step": 4680,
+     "loss": 0.12277,
+     "mse": 0.10629
+    },
+    {
+     "step": 4700,
+     "loss": 0.10865,
+     "mse": 0.09139
+    },
+    {
+     "step": 4720,
+     "loss": 0.09978,
+     "mse": 0.08392
+    },
+    {
+     "step": 4740,
+     "loss": 0.09726,
+     "mse": 0.08335
+    },
+    {
+     "step": 4760,
+     "loss": 0.11119,
+     "mse": 0.09323
+    },
+    {
+     "step": 4780,
+     "loss": 0.1019,
+     "mse": 0.08559
+    },
+    {
+     "step": 4800,
+     "loss": 0.10357,
+     "mse": 0.0876
+    },
+    {
+     "step": 4820,
+     "loss": 0.11459,
+     "mse": 0.09739
+    },
+    {
+     "step": 4840,
+     "loss": 0.10101,
+     "mse": 0.08732
+    },
+    {
+     "step": 4860,
+     "loss": 0.09975,
+     "mse": 0.08366
+    },
+    {
+     "step": 4880,
+     "loss": 0.10352,
+     "mse": 0.08816
+    },
+    {
+     "step": 4900,
+     "loss": 0.11486,
+     "mse": 0.09596
+    },
+    {
+     "step": 4920,
+     "loss": 0.10493,
+     "mse": 0.09123
+    },
+    {
+     "step": 4940,
+     "loss": 0.09654,
+     "mse": 0.08351
+    },
+    {
+     "step": 4960,
+     "loss": 0.10224,
+     "mse": 0.08747
+    },
+    {
+     "step": 4980,
+     "loss": 0.10248,
+     "mse": 0.08739
+    },
+    {
+     "step": 5000,
+     "loss": 0.10665,
+     "mse": 0.09151
     }
    ],
    "probes": [
@@ -15550,11 +16147,19 @@
      "shuffle_gain": 0.1228,
      "swap_gain": 0.00151,
      "probe_loss_hand": 0.09028
+    },
+    {
+     "step": 5000,
+     "other_gain": 0.09659,
+     "zero_gain": 0.04712,
+     "shuffle_gain": 0.13219,
+     "swap_gain": 0.00243,
+     "probe_loss_hand": 0.08658
     }
    ],
    "latest": {
-    "loss": 0.10801,
-    "grad_norm": 0.3899,
+    "loss": 0.10665,
+    "grad_norm": 0.1665,
     "lr": 0.0001
    }
   }
@@ -15899,7 +16504,7 @@
  ],
  "eval_jobs": [],
  "iteration": {
-  "eta": "2026-11-16T16:22:55+00:00",
+  "eta": "2026-11-16T16:25:09+00:00",
   "final_eval_overhead_h": 3.0,
   "note": "Iteration = both 10k-step runs + final eval (10k checkpoints, then 3 seeds of the best) + report."
  },
