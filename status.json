@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-16T11:26:26+00:00",
+ "generated": "2026-11-16T11:56:35+00:00",
  "runs": [
   {
    "run": "v1_K8_h100",
@@ -23,14 +23,14 @@
    "s_per_step": 1.2,
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
-   "last_log": "2026-11-16T11:22:42+00:00",
+   "last_log": "2026-11-16T11:52:51+00:00",
    "last_log_age_min": 3.7,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
    "stop_rule": "pass",
    "last_other_gain": 0.08467,
-   "eta_finish": "2026-11-16T11:22:42+00:00",
+   "eta_finish": "2026-11-16T11:52:51+00:00",
    "milestones": [
     {
      "step": 2500,
@@ -2758,14 +2758,14 @@
    "s_per_step": 1.21,
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
-   "last_log": "2026-11-16T11:22:42+00:00",
+   "last_log": "2026-11-16T11:52:51+00:00",
    "last_log_age_min": 3.7,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
    "stop_rule": "n/a (control)",
    "last_other_gain": 0.0,
-   "eta_finish": "2026-11-16T11:22:42+00:00",
+   "eta_finish": "2026-11-16T11:52:51+00:00",
    "milestones": [
     {
      "step": 2500,
@@ -5493,14 +5493,14 @@
    "s_per_step": 1.2,
    "eta_assumes_ada": false,
    "peak_mem_gib": 42.02,
-   "last_log": "2026-11-16T11:22:42+00:00",
+   "last_log": "2026-11-16T11:52:51+00:00",
    "last_log_age_min": 3.7,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
    "stop_rule": "pass",
    "last_other_gain": 0.08236,
-   "eta_finish": "2026-11-16T11:22:42+00:00",
+   "eta_finish": "2026-11-16T11:52:51+00:00",
    "milestones": [
     {
      "step": 1250,
@@ -6898,14 +6898,14 @@
    "s_per_step": 1.2,
    "eta_assumes_ada": false,
    "peak_mem_gib": 42.02,
-   "last_log": "2026-11-16T11:22:42+00:00",
+   "last_log": "2026-11-16T11:52:51+00:00",
    "last_log_age_min": 3.7,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
    "stop_rule": "pass",
    "last_other_gain": 0.08045,
-   "eta_finish": "2026-11-16T11:22:42+00:00",
+   "eta_finish": "2026-11-16T11:52:51+00:00",
    "milestones": [
     {
      "step": 1250,
@@ -8303,14 +8303,14 @@
    "s_per_step": 1.2,
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
-   "last_log": "2026-11-16T11:22:42+00:00",
+   "last_log": "2026-11-16T11:52:51+00:00",
    "last_log_age_min": 3.7,
    "health": "done",
    "health_reason": "reached 15000 steps",
    "errors": [],
    "stop_rule": "pass",
    "last_other_gain": 0.07508,
-   "eta_finish": "2026-11-16T11:22:42+00:00",
+   "eta_finish": "2026-11-16T11:52:51+00:00",
    "milestones": [
     {
      "step": 12500,
@@ -9680,19 +9680,19 @@
     "gpu_type": "H100 80GB",
     "est_start": null
    },
-   "step": 19120,
+   "step": 20540,
    "steps_total": 25000,
    "s_per_step": 1.19,
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
-   "last_log": "2026-11-16T11:22:42+00:00",
+   "last_log": "2026-11-16T11:52:51+00:00",
    "last_log_age_min": 3.7,
    "health": "healthy",
-   "health_reason": "step 19120, 1.2 s/step",
+   "health_reason": "step 20540, 1.2 s/step",
    "errors": [],
    "stop_rule": "pass",
-   "last_other_gain": 0.08827,
-   "eta_finish": "2026-11-16T13:18:49+00:00",
+   "last_other_gain": 0.08745,
+   "eta_finish": "2026-11-16T13:21:18+00:00",
    "milestones": [
     {
      "step": 17500,
@@ -9701,18 +9701,18 @@
     },
     {
      "step": 20000,
-     "saved": false,
-     "eta": "2026-11-16T11:40:04+00:00"
+     "saved": true,
+     "eta": null
     },
     {
      "step": 22500,
      "saved": false,
-     "eta": "2026-11-16T12:29:27+00:00"
+     "eta": "2026-11-16T12:31:43+00:00"
     },
     {
      "step": 25000,
      "saved": false,
-     "eta": "2026-11-16T13:18:49+00:00"
+     "eta": "2026-11-16T13:21:18+00:00"
     }
    ],
    "loss_curve": [
@@ -10745,6 +10745,361 @@
      "step": 19120,
      "loss": 0.10097,
      "mse": 0.08645
+    },
+    {
+     "step": 19140,
+     "loss": 0.12544,
+     "mse": 0.10753
+    },
+    {
+     "step": 19160,
+     "loss": 0.12673,
+     "mse": 0.1085
+    },
+    {
+     "step": 19180,
+     "loss": 0.10547,
+     "mse": 0.08878
+    },
+    {
+     "step": 19200,
+     "loss": 0.10089,
+     "mse": 0.08782
+    },
+    {
+     "step": 19220,
+     "loss": 0.12126,
+     "mse": 0.10366
+    },
+    {
+     "step": 19240,
+     "loss": 0.1139,
+     "mse": 0.09683
+    },
+    {
+     "step": 19260,
+     "loss": 0.10994,
+     "mse": 0.09378
+    },
+    {
+     "step": 19280,
+     "loss": 0.12316,
+     "mse": 0.10529
+    },
+    {
+     "step": 19300,
+     "loss": 0.10076,
+     "mse": 0.08559
+    },
+    {
+     "step": 19320,
+     "loss": 0.11653,
+     "mse": 0.09911
+    },
+    {
+     "step": 19340,
+     "loss": 0.13351,
+     "mse": 0.11501
+    },
+    {
+     "step": 19360,
+     "loss": 0.10755,
+     "mse": 0.09157
+    },
+    {
+     "step": 19380,
+     "loss": 0.11905,
+     "mse": 0.10252
+    },
+    {
+     "step": 19400,
+     "loss": 0.11941,
+     "mse": 0.10373
+    },
+    {
+     "step": 19420,
+     "loss": 0.11313,
+     "mse": 0.09787
+    },
+    {
+     "step": 19440,
+     "loss": 0.10374,
+     "mse": 0.0885
+    },
+    {
+     "step": 19460,
+     "loss": 0.11534,
+     "mse": 0.09898
+    },
+    {
+     "step": 19480,
+     "loss": 0.11763,
+     "mse": 0.10136
+    },
+    {
+     "step": 19500,
+     "loss": 0.10844,
+     "mse": 0.09222
+    },
+    {
+     "step": 19520,
+     "loss": 0.11994,
+     "mse": 0.10293
+    },
+    {
+     "step": 19540,
+     "loss": 0.11522,
+     "mse": 0.09952
+    },
+    {
+     "step": 19560,
+     "loss": 0.12849,
+     "mse": 0.10877
+    },
+    {
+     "step": 19580,
+     "loss": 0.11196,
+     "mse": 0.09631
+    },
+    {
+     "step": 19600,
+     "loss": 0.12021,
+     "mse": 0.10391
+    },
+    {
+     "step": 19620,
+     "loss": 0.13181,
+     "mse": 0.11416
+    },
+    {
+     "step": 19640,
+     "loss": 0.1122,
+     "mse": 0.09574
+    },
+    {
+     "step": 19660,
+     "loss": 0.11047,
+     "mse": 0.09474
+    },
+    {
+     "step": 19680,
+     "loss": 0.11851,
+     "mse": 0.1003
+    },
+    {
+     "step": 19700,
+     "loss": 0.08898,
+     "mse": 0.07529
+    },
+    {
+     "step": 19720,
+     "loss": 0.10751,
+     "mse": 0.09167
+    },
+    {
+     "step": 19740,
+     "loss": 0.14449,
+     "mse": 0.12116
+    },
+    {
+     "step": 19760,
+     "loss": 0.11471,
+     "mse": 0.09797
+    },
+    {
+     "step": 19780,
+     "loss": 0.11273,
+     "mse": 0.09713
+    },
+    {
+     "step": 19800,
+     "loss": 0.1013,
+     "mse": 0.08509
+    },
+    {
+     "step": 19820,
+     "loss": 0.10448,
+     "mse": 0.08894
+    },
+    {
+     "step": 19840,
+     "loss": 0.1159,
+     "mse": 0.09949
+    },
+    {
+     "step": 19860,
+     "loss": 0.10988,
+     "mse": 0.09375
+    },
+    {
+     "step": 19880,
+     "loss": 0.11295,
+     "mse": 0.09707
+    },
+    {
+     "step": 19900,
+     "loss": 0.10723,
+     "mse": 0.09241
+    },
+    {
+     "step": 19920,
+     "loss": 0.12491,
+     "mse": 0.10682
+    },
+    {
+     "step": 19940,
+     "loss": 0.12779,
+     "mse": 0.10906
+    },
+    {
+     "step": 19960,
+     "loss": 0.09934,
+     "mse": 0.0841
+    },
+    {
+     "step": 19980,
+     "loss": 0.12303,
+     "mse": 0.10421
+    },
+    {
+     "step": 20000,
+     "loss": 0.12558,
+     "mse": 0.10639
+    },
+    {
+     "step": 20020,
+     "loss": 0.11324,
+     "mse": 0.09574
+    },
+    {
+     "step": 20040,
+     "loss": 0.10557,
+     "mse": 0.08841
+    },
+    {
+     "step": 20060,
+     "loss": 0.10836,
+     "mse": 0.09141
+    },
+    {
+     "step": 20080,
+     "loss": 0.1162,
+     "mse": 0.09882
+    },
+    {
+     "step": 20100,
+     "loss": 0.10265,
+     "mse": 0.08815
+    },
+    {
+     "step": 20120,
+     "loss": 0.11083,
+     "mse": 0.09391
+    },
+    {
+     "step": 20140,
+     "loss": 0.12125,
+     "mse": 0.10369
+    },
+    {
+     "step": 20160,
+     "loss": 0.10427,
+     "mse": 0.08989
+    },
+    {
+     "step": 20180,
+     "loss": 0.11566,
+     "mse": 0.09925
+    },
+    {
+     "step": 20200,
+     "loss": 0.11129,
+     "mse": 0.09566
+    },
+    {
+     "step": 20220,
+     "loss": 0.11773,
+     "mse": 0.10103
+    },
+    {
+     "step": 20240,
+     "loss": 0.12011,
+     "mse": 0.10307
+    },
+    {
+     "step": 20260,
+     "loss": 0.12269,
+     "mse": 0.10417
+    },
+    {
+     "step": 20280,
+     "loss": 0.09767,
+     "mse": 0.0815
+    },
+    {
+     "step": 20300,
+     "loss": 0.11833,
+     "mse": 0.10094
+    },
+    {
+     "step": 20320,
+     "loss": 0.10348,
+     "mse": 0.08676
+    },
+    {
+     "step": 20340,
+     "loss": 0.10811,
+     "mse": 0.09352
+    },
+    {
+     "step": 20360,
+     "loss": 0.10599,
+     "mse": 0.09151
+    },
+    {
+     "step": 20380,
+     "loss": 0.10258,
+     "mse": 0.0871
+    },
+    {
+     "step": 20400,
+     "loss": 0.09887,
+     "mse": 0.08489
+    },
+    {
+     "step": 20420,
+     "loss": 0.11842,
+     "mse": 0.09965
+    },
+    {
+     "step": 20440,
+     "loss": 0.102,
+     "mse": 0.08574
+    },
+    {
+     "step": 20460,
+     "loss": 0.10344,
+     "mse": 0.08732
+    },
+    {
+     "step": 20480,
+     "loss": 0.1056,
+     "mse": 0.09086
+    },
+    {
+     "step": 20500,
+     "loss": 0.12386,
+     "mse": 0.1059
+    },
+    {
+     "step": 20520,
+     "loss": 0.11576,
+     "mse": 0.09889
+    },
+    {
+     "step": 20540,
+     "loss": 0.10098,
+     "mse": 0.08628
     }
    ],
    "probes": [
@@ -10811,11 +11166,35 @@
      "shuffle_gain": 0.11538,
      "swap_gain": 0.00301,
      "probe_loss_hand": 0.09064
+    },
+    {
+     "step": 19500,
+     "other_gain": 0.09033,
+     "zero_gain": 0.0429,
+     "shuffle_gain": 0.11073,
+     "swap_gain": 0.00235,
+     "probe_loss_hand": 0.09197
+    },
+    {
+     "step": 20000,
+     "other_gain": 0.086,
+     "zero_gain": 0.04269,
+     "shuffle_gain": 0.10338,
+     "swap_gain": 0.00169,
+     "probe_loss_hand": 0.096
+    },
+    {
+     "step": 20500,
+     "other_gain": 0.08745,
+     "zero_gain": 0.04179,
+     "shuffle_gain": 0.10985,
+     "swap_gain": 0.00219,
+     "probe_loss_hand": 0.09287
     }
    ],
    "latest": {
-    "loss": 0.10097,
-    "grad_norm": 0.2485,
+    "loss": 0.10098,
+    "grad_norm": 0.2115,
     "lr": 0.0001
    }
   },
@@ -10836,19 +11215,19 @@
     "gpu_type": "H100 80GB",
     "est_start": null
    },
-   "step": 2460,
+   "step": 3820,
    "steps_total": 5000,
    "s_per_step": 1.19,
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.42,
-   "last_log": "2026-11-16T11:22:42+00:00",
+   "last_log": "2026-11-16T11:52:51+00:00",
    "last_log_age_min": 3.7,
    "health": "healthy",
-   "health_reason": "step 2460, 1.2 s/step",
+   "health_reason": "step 3820, 1.2 s/step",
    "errors": [],
-   "stop_rule": "not yet",
-   "last_other_gain": 0.08286,
-   "eta_finish": "2026-11-16T12:13:12+00:00",
+   "stop_rule": "warning",
+   "last_other_gain": 0.08013,
+   "eta_finish": "2026-11-16T12:16:14+00:00",
    "milestones": [
     {
      "step": 1250,
@@ -10857,18 +11236,18 @@
     },
     {
      "step": 2500,
-     "saved": false,
-     "eta": "2026-11-16T11:23:29+00:00"
+     "saved": true,
+     "eta": null
     },
     {
      "step": 3750,
-     "saved": false,
-     "eta": "2026-11-16T11:48:20+00:00"
+     "saved": true,
+     "eta": null
     },
     {
      "step": 5000,
      "saved": false,
-     "eta": "2026-11-16T12:13:12+00:00"
+     "eta": "2026-11-16T12:16:14+00:00"
     }
    ],
    "loss_curve": [
@@ -11491,6 +11870,346 @@
      "step": 2460,
      "loss": 0.11108,
      "mse": 0.09508
+    },
+    {
+     "step": 2480,
+     "loss": 0.10962,
+     "mse": 0.09243
+    },
+    {
+     "step": 2500,
+     "loss": 0.12143,
+     "mse": 0.10274
+    },
+    {
+     "step": 2520,
+     "loss": 0.11375,
+     "mse": 0.09472
+    },
+    {
+     "step": 2540,
+     "loss": 0.12072,
+     "mse": 0.10357
+    },
+    {
+     "step": 2560,
+     "loss": 0.11035,
+     "mse": 0.09367
+    },
+    {
+     "step": 2580,
+     "loss": 0.10725,
+     "mse": 0.09185
+    },
+    {
+     "step": 2600,
+     "loss": 0.12705,
+     "mse": 0.10928
+    },
+    {
+     "step": 2620,
+     "loss": 0.10459,
+     "mse": 0.08919
+    },
+    {
+     "step": 2640,
+     "loss": 0.10872,
+     "mse": 0.0929
+    },
+    {
+     "step": 2660,
+     "loss": 0.11617,
+     "mse": 0.09894
+    },
+    {
+     "step": 2680,
+     "loss": 0.10511,
+     "mse": 0.08926
+    },
+    {
+     "step": 2700,
+     "loss": 0.09564,
+     "mse": 0.08027
+    },
+    {
+     "step": 2720,
+     "loss": 0.09378,
+     "mse": 0.07917
+    },
+    {
+     "step": 2740,
+     "loss": 0.11363,
+     "mse": 0.09715
+    },
+    {
+     "step": 2760,
+     "loss": 0.10837,
+     "mse": 0.09223
+    },
+    {
+     "step": 2780,
+     "loss": 0.1271,
+     "mse": 0.1082
+    },
+    {
+     "step": 2800,
+     "loss": 0.11285,
+     "mse": 0.09543
+    },
+    {
+     "step": 2820,
+     "loss": 0.11197,
+     "mse": 0.09503
+    },
+    {
+     "step": 2840,
+     "loss": 0.10012,
+     "mse": 0.08516
+    },
+    {
+     "step": 2860,
+     "loss": 0.13275,
+     "mse": 0.11251
+    },
+    {
+     "step": 2880,
+     "loss": 0.13108,
+     "mse": 0.11173
+    },
+    {
+     "step": 2900,
+     "loss": 0.14225,
+     "mse": 0.12264
+    },
+    {
+     "step": 2920,
+     "loss": 0.11257,
+     "mse": 0.09623
+    },
+    {
+     "step": 2940,
+     "loss": 0.12572,
+     "mse": 0.10813
+    },
+    {
+     "step": 2960,
+     "loss": 0.10746,
+     "mse": 0.0917
+    },
+    {
+     "step": 2980,
+     "loss": 0.11452,
+     "mse": 0.09739
+    },
+    {
+     "step": 3000,
+     "loss": 0.11056,
+     "mse": 0.09335
+    },
+    {
+     "step": 3020,
+     "loss": 0.10986,
+     "mse": 0.09311
+    },
+    {
+     "step": 3040,
+     "loss": 0.11138,
+     "mse": 0.09411
+    },
+    {
+     "step": 3060,
+     "loss": 0.11729,
+     "mse": 0.098
+    },
+    {
+     "step": 3080,
+     "loss": 0.10359,
+     "mse": 0.08882
+    },
+    {
+     "step": 3100,
+     "loss": 0.10984,
+     "mse": 0.09197
+    },
+    {
+     "step": 3120,
+     "loss": 0.09352,
+     "mse": 0.0795
+    },
+    {
+     "step": 3140,
+     "loss": 0.11733,
+     "mse": 0.10028
+    },
+    {
+     "step": 3160,
+     "loss": 0.1265,
+     "mse": 0.10702
+    },
+    {
+     "step": 3180,
+     "loss": 0.12412,
+     "mse": 0.10663
+    },
+    {
+     "step": 3200,
+     "loss": 0.12096,
+     "mse": 0.10319
+    },
+    {
+     "step": 3220,
+     "loss": 0.11351,
+     "mse": 0.09662
+    },
+    {
+     "step": 3240,
+     "loss": 0.1144,
+     "mse": 0.0985
+    },
+    {
+     "step": 3260,
+     "loss": 0.10729,
+     "mse": 0.08961
+    },
+    {
+     "step": 3280,
+     "loss": 0.11581,
+     "mse": 0.09906
+    },
+    {
+     "step": 3300,
+     "loss": 0.09878,
+     "mse": 0.08587
+    },
+    {
+     "step": 3320,
+     "loss": 0.11379,
+     "mse": 0.09519
+    },
+    {
+     "step": 3340,
+     "loss": 0.10127,
+     "mse": 0.08601
+    },
+    {
+     "step": 3360,
+     "loss": 0.11136,
+     "mse": 0.09594
+    },
+    {
+     "step": 3380,
+     "loss": 0.13359,
+     "mse": 0.11555
+    },
+    {
+     "step": 3400,
+     "loss": 0.1105,
+     "mse": 0.09435
+    },
+    {
+     "step": 3420,
+     "loss": 0.0959,
+     "mse": 0.08123
+    },
+    {
+     "step": 3440,
+     "loss": 0.11736,
+     "mse": 0.1003
+    },
+    {
+     "step": 3460,
+     "loss": 0.10131,
+     "mse": 0.08628
+    },
+    {
+     "step": 3480,
+     "loss": 0.11407,
+     "mse": 0.09644
+    },
+    {
+     "step": 3500,
+     "loss": 0.10394,
+     "mse": 0.08756
+    },
+    {
+     "step": 3520,
+     "loss": 0.11792,
+     "mse": 0.10102
+    },
+    {
+     "step": 3540,
+     "loss": 0.12457,
+     "mse": 0.10676
+    },
+    {
+     "step": 3560,
+     "loss": 0.10336,
+     "mse": 0.08661
+    },
+    {
+     "step": 3580,
+     "loss": 0.10288,
+     "mse": 0.08623
+    },
+    {
+     "step": 3600,
+     "loss": 0.11413,
+     "mse": 0.09656
+    },
+    {
+     "step": 3620,
+     "loss": 0.1295,
+     "mse": 0.11116
+    },
+    {
+     "step": 3640,
+     "loss": 0.09576,
+     "mse": 0.08064
+    },
+    {
+     "step": 3660,
+     "loss": 0.10308,
+     "mse": 0.08605
+    },
+    {
+     "step": 3680,
+     "loss": 0.1073,
+     "mse": 0.09226
+    },
+    {
+     "step": 3700,
+     "loss": 0.12517,
+     "mse": 0.10802
+    },
+    {
+     "step": 3720,
+     "loss": 0.10798,
+     "mse": 0.09443
+    },
+    {
+     "step": 3740,
+     "loss": 0.1086,
+     "mse": 0.09129
+    },
+    {
+     "step": 3760,
+     "loss": 0.11123,
+     "mse": 0.09379
+    },
+    {
+     "step": 3780,
+     "loss": 0.11567,
+     "mse": 0.09969
+    },
+    {
+     "step": 3800,
+     "loss": 0.10623,
+     "mse": 0.09036
+    },
+    {
+     "step": 3820,
+     "loss": 0.11842,
+     "mse": 0.10135
     }
    ],
    "probes": [
@@ -11533,11 +12252,35 @@
      "shuffle_gain": 0.10437,
      "swap_gain": 0.00235,
      "probe_loss_hand": 0.09442
+    },
+    {
+     "step": 2500,
+     "other_gain": 0.08553,
+     "zero_gain": 0.04199,
+     "shuffle_gain": 0.11282,
+     "swap_gain": 0.0023,
+     "probe_loss_hand": 0.09251
+    },
+    {
+     "step": 3000,
+     "other_gain": 0.08933,
+     "zero_gain": 0.04115,
+     "shuffle_gain": 0.11737,
+     "swap_gain": 0.00286,
+     "probe_loss_hand": 0.09393
+    },
+    {
+     "step": 3500,
+     "other_gain": 0.08013,
+     "zero_gain": 0.04106,
+     "shuffle_gain": 0.10989,
+     "swap_gain": 0.00221,
+     "probe_loss_hand": 0.09219
     }
    ],
    "latest": {
-    "loss": 0.11108,
-    "grad_norm": 0.3899,
+    "loss": 0.11842,
+    "grad_norm": 0.2048,
     "lr": 0.0001
    }
   },
@@ -11558,19 +12301,19 @@
     "gpu_type": "H100 80GB",
     "est_start": null
    },
-   "step": 2160,
+   "step": 3400,
    "steps_total": 5000,
    "s_per_step": 1.35,
    "eta_assumes_ada": false,
    "peak_mem_gib": 57.19,
-   "last_log": "2026-11-16T11:22:42+00:00",
+   "last_log": "2026-11-16T11:52:51+00:00",
    "last_log_age_min": 3.7,
    "health": "healthy",
-   "health_reason": "step 2160, 1.4 s/step",
+   "health_reason": "step 3400, 1.4 s/step",
    "errors": [],
-   "stop_rule": "not yet",
-   "last_other_gain": 0.09447,
-   "eta_finish": "2026-11-16T12:26:45+00:00",
+   "stop_rule": "warning",
+   "last_other_gain": 0.09067,
+   "eta_finish": "2026-11-16T12:28:56+00:00",
    "milestones": [
     {
      "step": 1250,
@@ -11579,18 +12322,18 @@
     },
     {
      "step": 2500,
-     "saved": false,
-     "eta": "2026-11-16T11:30:22+00:00"
+     "saved": true,
+     "eta": null
     },
     {
      "step": 3750,
      "saved": false,
-     "eta": "2026-11-16T11:58:34+00:00"
+     "eta": "2026-11-16T12:00:44+00:00"
     },
     {
      "step": 5000,
      "saved": false,
-     "eta": "2026-11-16T12:26:45+00:00"
+     "eta": "2026-11-16T12:28:56+00:00"
     }
    ],
    "loss_curve": [
@@ -12138,6 +12881,316 @@
      "step": 2160,
      "loss": 0.12507,
      "mse": 0.10986
+    },
+    {
+     "step": 2180,
+     "loss": 0.11982,
+     "mse": 0.10218
+    },
+    {
+     "step": 2200,
+     "loss": 0.11715,
+     "mse": 0.09864
+    },
+    {
+     "step": 2220,
+     "loss": 0.11598,
+     "mse": 0.09841
+    },
+    {
+     "step": 2240,
+     "loss": 0.10969,
+     "mse": 0.09372
+    },
+    {
+     "step": 2260,
+     "loss": 0.09451,
+     "mse": 0.08075
+    },
+    {
+     "step": 2280,
+     "loss": 0.11229,
+     "mse": 0.0963
+    },
+    {
+     "step": 2300,
+     "loss": 0.11973,
+     "mse": 0.10223
+    },
+    {
+     "step": 2320,
+     "loss": 0.11981,
+     "mse": 0.10195
+    },
+    {
+     "step": 2340,
+     "loss": 0.10941,
+     "mse": 0.09274
+    },
+    {
+     "step": 2360,
+     "loss": 0.1102,
+     "mse": 0.09471
+    },
+    {
+     "step": 2380,
+     "loss": 0.11589,
+     "mse": 0.09749
+    },
+    {
+     "step": 2400,
+     "loss": 0.10853,
+     "mse": 0.09282
+    },
+    {
+     "step": 2420,
+     "loss": 0.10894,
+     "mse": 0.09367
+    },
+    {
+     "step": 2440,
+     "loss": 0.11141,
+     "mse": 0.09496
+    },
+    {
+     "step": 2460,
+     "loss": 0.10785,
+     "mse": 0.0925
+    },
+    {
+     "step": 2480,
+     "loss": 0.10719,
+     "mse": 0.09115
+    },
+    {
+     "step": 2500,
+     "loss": 0.12099,
+     "mse": 0.10249
+    },
+    {
+     "step": 2520,
+     "loss": 0.11443,
+     "mse": 0.09615
+    },
+    {
+     "step": 2540,
+     "loss": 0.12082,
+     "mse": 0.10331
+    },
+    {
+     "step": 2560,
+     "loss": 0.11102,
+     "mse": 0.09344
+    },
+    {
+     "step": 2580,
+     "loss": 0.10813,
+     "mse": 0.09114
+    },
+    {
+     "step": 2600,
+     "loss": 0.12478,
+     "mse": 0.10893
+    },
+    {
+     "step": 2620,
+     "loss": 0.1036,
+     "mse": 0.08821
+    },
+    {
+     "step": 2640,
+     "loss": 0.10618,
+     "mse": 0.09165
+    },
+    {
+     "step": 2660,
+     "loss": 0.11346,
+     "mse": 0.09669
+    },
+    {
+     "step": 2680,
+     "loss": 0.10359,
+     "mse": 0.08795
+    },
+    {
+     "step": 2700,
+     "loss": 0.09503,
+     "mse": 0.0801
+    },
+    {
+     "step": 2720,
+     "loss": 0.09331,
+     "mse": 0.07824
+    },
+    {
+     "step": 2740,
+     "loss": 0.11026,
+     "mse": 0.09391
+    },
+    {
+     "step": 2760,
+     "loss": 0.10939,
+     "mse": 0.0917
+    },
+    {
+     "step": 2780,
+     "loss": 0.12416,
+     "mse": 0.10588
+    },
+    {
+     "step": 2800,
+     "loss": 0.10857,
+     "mse": 0.09294
+    },
+    {
+     "step": 2820,
+     "loss": 0.10913,
+     "mse": 0.09289
+    },
+    {
+     "step": 2840,
+     "loss": 0.09801,
+     "mse": 0.08375
+    },
+    {
+     "step": 2860,
+     "loss": 0.12934,
+     "mse": 0.11204
+    },
+    {
+     "step": 2880,
+     "loss": 0.1304,
+     "mse": 0.11122
+    },
+    {
+     "step": 2900,
+     "loss": 0.1423,
+     "mse": 0.12263
+    },
+    {
+     "step": 2920,
+     "loss": 0.11063,
+     "mse": 0.09493
+    },
+    {
+     "step": 2940,
+     "loss": 0.12297,
+     "mse": 0.1074
+    },
+    {
+     "step": 2960,
+     "loss": 0.10661,
+     "mse": 0.08968
+    },
+    {
+     "step": 2980,
+     "loss": 0.11208,
+     "mse": 0.09608
+    },
+    {
+     "step": 3000,
+     "loss": 0.10766,
+     "mse": 0.09218
+    },
+    {
+     "step": 3020,
+     "loss": 0.10792,
+     "mse": 0.09213
+    },
+    {
+     "step": 3040,
+     "loss": 0.10967,
+     "mse": 0.09321
+    },
+    {
+     "step": 3060,
+     "loss": 0.11391,
+     "mse": 0.09697
+    },
+    {
+     "step": 3080,
+     "loss": 0.10299,
+     "mse": 0.08788
+    },
+    {
+     "step": 3100,
+     "loss": 0.10691,
+     "mse": 0.09007
+    },
+    {
+     "step": 3120,
+     "loss": 0.09281,
+     "mse": 0.07941
+    },
+    {
+     "step": 3140,
+     "loss": 0.11568,
+     "mse": 0.0986
+    },
+    {
+     "step": 3160,
+     "loss": 0.12523,
+     "mse": 0.10531
+    },
+    {
+     "step": 3180,
+     "loss": 0.12064,
+     "mse": 0.10442
+    },
+    {
+     "step": 3200,
+     "loss": 0.12108,
+     "mse": 0.10213
+    },
+    {
+     "step": 3220,
+     "loss": 0.11296,
+     "mse": 0.09707
+    },
+    {
+     "step": 3240,
+     "loss": 0.11384,
+     "mse": 0.09775
+    },
+    {
+     "step": 3260,
+     "loss": 0.11026,
+     "mse": 0.09344
+    },
+    {
+     "step": 3280,
+     "loss": 0.115,
+     "mse": 0.09737
+    },
+    {
+     "step": 3300,
+     "loss": 0.09924,
+     "mse": 0.08574
+    },
+    {
+     "step": 3320,
+     "loss": 0.11141,
+     "mse": 0.0957
+    },
+    {
+     "step": 3340,
+     "loss": 0.09989,
+     "mse": 0.08495
+    },
+    {
+     "step": 3360,
+     "loss": 0.11045,
+     "mse": 0.09553
+    },
+    {
+     "step": 3380,
+     "loss": 0.13019,
+     "mse": 0.11409
+    },
+    {
+     "step": 3400,
+     "loss": 0.11101,
+     "mse": 0.09492
     }
    ],
    "probes": [
@@ -12180,11 +13233,27 @@
      "shuffle_gain": 0.12177,
      "swap_gain": 0.00136,
      "probe_loss_hand": 0.08932
+    },
+    {
+     "step": 2500,
+     "other_gain": 0.09256,
+     "zero_gain": 0.04231,
+     "shuffle_gain": 0.12615,
+     "swap_gain": 0.00116,
+     "probe_loss_hand": 0.0915
+    },
+    {
+     "step": 3000,
+     "other_gain": 0.09067,
+     "zero_gain": 0.03916,
+     "shuffle_gain": 0.12474,
+     "swap_gain": 0.00211,
+     "probe_loss_hand": 0.09058
     }
    ],
    "latest": {
-    "loss": 0.12507,
-    "grad_norm": 0.4189,
+    "loss": 0.11101,
+    "grad_norm": 0.2819,
     "lr": 0.0001
    }
   },
@@ -12205,19 +13274,19 @@
     "gpu_type": "H100 80GB",
     "est_start": null
    },
-   "step": 2080,
+   "step": 3320,
    "steps_total": 5000,
    "s_per_step": 1.35,
    "eta_assumes_ada": false,
    "peak_mem_gib": 57.19,
-   "last_log": "2026-11-16T11:22:42+00:00",
+   "last_log": "2026-11-16T11:52:51+00:00",
    "last_log_age_min": 3.7,
    "health": "healthy",
-   "health_reason": "step 2080, 1.3 s/step",
+   "health_reason": "step 3320, 1.3 s/step",
    "errors": [],
-   "stop_rule": "not yet",
-   "last_other_gain": 0.08851,
-   "eta_finish": "2026-11-16T12:28:18+00:00",
+   "stop_rule": "warning",
+   "last_other_gain": 0.08212,
+   "eta_finish": "2026-11-16T12:30:37+00:00",
    "milestones": [
     {
      "step": 1250,
@@ -12226,18 +13295,18 @@
     },
     {
      "step": 2500,
-     "saved": false,
-     "eta": "2026-11-16T11:32:08+00:00"
+     "saved": true,
+     "eta": null
     },
     {
      "step": 3750,
      "saved": false,
-     "eta": "2026-11-16T12:00:13+00:00"
+     "eta": "2026-11-16T12:02:31+00:00"
     },
     {
      "step": 5000,
      "saved": false,
-     "eta": "2026-11-16T12:28:18+00:00"
+     "eta": "2026-11-16T12:30:37+00:00"
     }
    ],
    "loss_curve": [
@@ -12765,6 +13834,316 @@
      "step": 2080,
      "loss": 0.12639,
      "mse": 0.10865
+    },
+    {
+     "step": 2100,
+     "loss": 0.10965,
+     "mse": 0.09291
+    },
+    {
+     "step": 2120,
+     "loss": 0.12121,
+     "mse": 0.10407
+    },
+    {
+     "step": 2140,
+     "loss": 0.10616,
+     "mse": 0.09113
+    },
+    {
+     "step": 2160,
+     "loss": 0.12737,
+     "mse": 0.10914
+    },
+    {
+     "step": 2180,
+     "loss": 0.11996,
+     "mse": 0.10304
+    },
+    {
+     "step": 2200,
+     "loss": 0.11498,
+     "mse": 0.09753
+    },
+    {
+     "step": 2220,
+     "loss": 0.11412,
+     "mse": 0.09711
+    },
+    {
+     "step": 2240,
+     "loss": 0.10803,
+     "mse": 0.09239
+    },
+    {
+     "step": 2260,
+     "loss": 0.0932,
+     "mse": 0.08062
+    },
+    {
+     "step": 2280,
+     "loss": 0.11312,
+     "mse": 0.09635
+    },
+    {
+     "step": 2300,
+     "loss": 0.1165,
+     "mse": 0.0995
+    },
+    {
+     "step": 2320,
+     "loss": 0.11866,
+     "mse": 0.10037
+    },
+    {
+     "step": 2340,
+     "loss": 0.10908,
+     "mse": 0.09222
+    },
+    {
+     "step": 2360,
+     "loss": 0.10625,
+     "mse": 0.09181
+    },
+    {
+     "step": 2380,
+     "loss": 0.11311,
+     "mse": 0.09672
+    },
+    {
+     "step": 2400,
+     "loss": 0.10611,
+     "mse": 0.09109
+    },
+    {
+     "step": 2420,
+     "loss": 0.10911,
+     "mse": 0.09297
+    },
+    {
+     "step": 2440,
+     "loss": 0.11126,
+     "mse": 0.095
+    },
+    {
+     "step": 2460,
+     "loss": 0.10718,
+     "mse": 0.0917
+    },
+    {
+     "step": 2480,
+     "loss": 0.10626,
+     "mse": 0.08958
+    },
+    {
+     "step": 2500,
+     "loss": 0.11809,
+     "mse": 0.09983
+    },
+    {
+     "step": 2520,
+     "loss": 0.11276,
+     "mse": 0.09392
+    },
+    {
+     "step": 2540,
+     "loss": 0.11881,
+     "mse": 0.10191
+    },
+    {
+     "step": 2560,
+     "loss": 0.10843,
+     "mse": 0.09199
+    },
+    {
+     "step": 2580,
+     "loss": 0.10622,
+     "mse": 0.091
+    },
+    {
+     "step": 2600,
+     "loss": 0.1252,
+     "mse": 0.10763
+    },
+    {
+     "step": 2620,
+     "loss": 0.10311,
+     "mse": 0.0879
+    },
+    {
+     "step": 2640,
+     "loss": 0.10783,
+     "mse": 0.0923
+    },
+    {
+     "step": 2660,
+     "loss": 0.11276,
+     "mse": 0.09608
+    },
+    {
+     "step": 2680,
+     "loss": 0.10117,
+     "mse": 0.08592
+    },
+    {
+     "step": 2700,
+     "loss": 0.09304,
+     "mse": 0.07821
+    },
+    {
+     "step": 2720,
+     "loss": 0.09172,
+     "mse": 0.07751
+    },
+    {
+     "step": 2740,
+     "loss": 0.11039,
+     "mse": 0.09432
+    },
+    {
+     "step": 2760,
+     "loss": 0.10544,
+     "mse": 0.08978
+    },
+    {
+     "step": 2780,
+     "loss": 0.12343,
+     "mse": 0.10497
+    },
+    {
+     "step": 2800,
+     "loss": 0.10841,
+     "mse": 0.0916
+    },
+    {
+     "step": 2820,
+     "loss": 0.10836,
+     "mse": 0.09201
+    },
+    {
+     "step": 2840,
+     "loss": 0.09688,
+     "mse": 0.0824
+    },
+    {
+     "step": 2860,
+     "loss": 0.12957,
+     "mse": 0.10978
+    },
+    {
+     "step": 2880,
+     "loss": 0.12876,
+     "mse": 0.10994
+    },
+    {
+     "step": 2900,
+     "loss": 0.13906,
+     "mse": 0.11989
+    },
+    {
+     "step": 2920,
+     "loss": 0.10947,
+     "mse": 0.09352
+    },
+    {
+     "step": 2940,
+     "loss": 0.12364,
+     "mse": 0.10629
+    },
+    {
+     "step": 2960,
+     "loss": 0.10501,
+     "mse": 0.08969
+    },
+    {
+     "step": 2980,
+     "loss": 0.11294,
+     "mse": 0.09612
+    },
+    {
+     "step": 3000,
+     "loss": 0.10843,
+     "mse": 0.09159
+    },
+    {
+     "step": 3020,
+     "loss": 0.10784,
+     "mse": 0.09147
+    },
+    {
+     "step": 3040,
+     "loss": 0.10889,
+     "mse": 0.09202
+    },
+    {
+     "step": 3060,
+     "loss": 0.11436,
+     "mse": 0.09552
+    },
+    {
+     "step": 3080,
+     "loss": 0.10026,
+     "mse": 0.08591
+    },
+    {
+     "step": 3100,
+     "loss": 0.1073,
+     "mse": 0.08991
+    },
+    {
+     "step": 3120,
+     "loss": 0.09271,
+     "mse": 0.07891
+    },
+    {
+     "step": 3140,
+     "loss": 0.1143,
+     "mse": 0.09765
+    },
+    {
+     "step": 3160,
+     "loss": 0.12162,
+     "mse": 0.10284
+    },
+    {
+     "step": 3180,
+     "loss": 0.11712,
+     "mse": 0.10049
+    },
+    {
+     "step": 3200,
+     "loss": 0.11648,
+     "mse": 0.0994
+    },
+    {
+     "step": 3220,
+     "loss": 0.10964,
+     "mse": 0.09337
+    },
+    {
+     "step": 3240,
+     "loss": 0.11072,
+     "mse": 0.09525
+    },
+    {
+     "step": 3260,
+     "loss": 0.10279,
+     "mse": 0.08589
+    },
+    {
+     "step": 3280,
+     "loss": 0.11132,
+     "mse": 0.09522
+    },
+    {
+     "step": 3300,
+     "loss": 0.09421,
+     "mse": 0.08186
+    },
+    {
+     "step": 3320,
+     "loss": 0.10886,
+     "mse": 0.09106
     }
    ],
    "probes": [
@@ -12807,11 +14186,27 @@
      "shuffle_gain": 0.11646,
      "swap_gain": 0.00227,
      "probe_loss_hand": 0.08997
+    },
+    {
+     "step": 2500,
+     "other_gain": 0.09053,
+     "zero_gain": 0.04232,
+     "shuffle_gain": 0.12755,
+     "swap_gain": 0.00249,
+     "probe_loss_hand": 0.09021
+    },
+    {
+     "step": 3000,
+     "other_gain": 0.08212,
+     "zero_gain": 0.04293,
+     "shuffle_gain": 0.10959,
+     "swap_gain": 0.00236,
+     "probe_loss_hand": 0.09204
     }
    ],
    "latest": {
-    "loss": 0.12639,
-    "grad_norm": 0.2286,
+    "loss": 0.10886,
+    "grad_norm": 0.3462,
     "lr": 0.0001
    }
   }
@@ -13156,7 +14551,7 @@
  ],
  "eval_jobs": [],
  "iteration": {
-  "eta": "2026-11-16T16:18:49+00:00",
+  "eta": "2026-11-16T16:21:18+00:00",
   "final_eval_overhead_h": 3.0,
   "note": "Iteration = both 10k-step runs + final eval (10k checkpoints, then 3 seeds of the best) + report."
  },
@@ -13255,6 +14650,10 @@
    "Phase 1 report: hand input works (32.7 vs 94.1 px without it); EMA+cosine = same quality at half the steps; robot-hand transfer shown zero-shot."
   ],
   "decisions": [
+   {
+    "date": "2026-11-16",
+    "text": "v2_mix quality damage builds up with training steps: VLM artifact score vs v1 10k is +0.24 at 12.5k and +0.98 at 15k (worse than base), while hand error stays flat (34 px). Artifacts rise with head rotation in every generated model (rho +0.37 to +0.52, none in real video), but the v2_mix damage is motion-independent. Constant-lr training on the mix drifts; the EMA + cosine recipe (v2a) held quality."
+   },
    {
     "date": "2026-11-16",
     "text": "New video-quality metric (VLM artifact score + FVD/KVD, validated on corrupted ground truth). v1 10k, v1 2.5k and v2a 5k tie; the no-hand control is worse; v2_mix 15k has the worst visual quality of all, worse than the base model, degrading in late frames. The sampler sweep changes neither quality nor hand error."

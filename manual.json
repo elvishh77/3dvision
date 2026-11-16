@@ -95,6 +95,10 @@
  "decisions": [
   {
    "date": "2026-11-16",
+   "text": "v2_mix quality damage builds up with training steps: VLM artifact score vs v1 10k is +0.24 at 12.5k and +0.98 at 15k (worse than base), while hand error stays flat (34 px). Artifacts rise with head rotation in every generated model (rho +0.37 to +0.52, none in real video), but the v2_mix damage is motion-independent. Constant-lr training on the mix drifts; the EMA + cosine recipe (v2a) held quality."
+  },
+  {
+   "date": "2026-11-16",
    "text": "New video-quality metric (VLM artifact score + FVD/KVD, validated on corrupted ground truth). v1 10k, v1 2.5k and v2a 5k tie; the no-hand control is worse; v2_mix 15k has the worst visual quality of all, worse than the base model, degrading in late frames. The sampler sweep changes neither quality nor hand error."
   },
   {
