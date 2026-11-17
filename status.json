@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-17T02:01:17+00:00",
+ "generated": "2026-11-17T02:31:28+00:00",
  "runs": [
   {
    "run": "v1_K8_h100",
@@ -24,7 +24,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-16T14:34:37+00:00",
-   "last_log_age_min": 686.7,
+   "last_log_age_min": 716.9,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
@@ -2759,7 +2759,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-16T14:34:37+00:00",
-   "last_log_age_min": 686.7,
+   "last_log_age_min": 716.9,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
@@ -5494,7 +5494,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 42.02,
    "last_log": "2026-11-16T14:34:37+00:00",
-   "last_log_age_min": 686.7,
+   "last_log_age_min": 716.9,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
@@ -6899,7 +6899,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 42.02,
    "last_log": "2026-11-16T14:34:37+00:00",
-   "last_log_age_min": 686.7,
+   "last_log_age_min": 716.9,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
@@ -8304,7 +8304,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-16T14:34:37+00:00",
-   "last_log_age_min": 686.7,
+   "last_log_age_min": 716.9,
    "health": "done",
    "health_reason": "reached 15000 steps",
    "errors": [],
@@ -9686,7 +9686,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-16T14:34:37+00:00",
-   "last_log_age_min": 686.7,
+   "last_log_age_min": 716.9,
    "health": "done",
    "health_reason": "reached 25000 steps",
    "errors": [],
@@ -12408,7 +12408,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.42,
    "last_log": "2026-11-16T14:34:37+00:00",
-   "last_log_age_min": 686.7,
+   "last_log_age_min": 716.9,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
@@ -13813,7 +13813,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 57.19,
    "last_log": "2026-11-16T14:34:37+00:00",
-   "last_log_age_min": 686.7,
+   "last_log_age_min": 716.9,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
@@ -15218,7 +15218,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 57.19,
    "last_log": "2026-11-16T14:34:37+00:00",
-   "last_log_age_min": 686.7,
+   "last_log_age_min": 716.9,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
@@ -17037,6 +17037,20 @@
    "kvd_s0": 29.692
   },
   {
+   "tag": "v3_mix_cam__adapter_step_0005000",
+   "seeds": 3,
+   "updated": "2026-11-17T02:29:30+00:00",
+   "epe_capped": 29.0084,
+   "pck25": 0.792,
+   "contact_f1_active": 0.6969,
+   "idle_vlm_fgr": 0.3462,
+   "jitter_ratio": 1.1695,
+   "task_bacc": 0.806,
+   "handedness_mismatch_rate": 0.0357,
+   "epe_capped_frameweighted": 27.4664,
+   "epe_position_only": 25.5265
+  },
+  {
    "tag": "v3_mix_cam__adapter_step_0005000_nocam",
    "seeds": 1,
    "updated": "2026-11-16T22:45:45+00:00",
@@ -17133,11 +17147,6 @@
   }
  ],
  "eval_jobs": [
-  {
-   "job_id": "705918",
-   "name": "v3_mix_cam__adapter_step_0005000",
-   "state": "RUNNING"
-  },
   {
    "job_id": "705926",
    "name": "v2_mix_long_h100__adapter_step_0025000",
