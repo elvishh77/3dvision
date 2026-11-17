@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-16T23:30:29+00:00",
+ "generated": "2026-11-17T00:00:38+00:00",
  "runs": [
   {
    "run": "v1_K8_h100",
@@ -24,7 +24,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-16T14:34:37+00:00",
-   "last_log_age_min": 535.9,
+   "last_log_age_min": 566.0,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
@@ -2759,7 +2759,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-16T14:34:37+00:00",
-   "last_log_age_min": 535.9,
+   "last_log_age_min": 566.0,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
@@ -5494,7 +5494,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 42.02,
    "last_log": "2026-11-16T14:34:37+00:00",
-   "last_log_age_min": 535.9,
+   "last_log_age_min": 566.0,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
@@ -6899,7 +6899,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 42.02,
    "last_log": "2026-11-16T14:34:37+00:00",
-   "last_log_age_min": 535.9,
+   "last_log_age_min": 566.0,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
@@ -8304,7 +8304,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-16T14:34:37+00:00",
-   "last_log_age_min": 535.9,
+   "last_log_age_min": 566.0,
    "health": "done",
    "health_reason": "reached 15000 steps",
    "errors": [],
@@ -9686,7 +9686,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
    "last_log": "2026-11-16T14:34:37+00:00",
-   "last_log_age_min": 535.9,
+   "last_log_age_min": 566.0,
    "health": "done",
    "health_reason": "reached 25000 steps",
    "errors": [],
@@ -12408,7 +12408,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.42,
    "last_log": "2026-11-16T14:34:37+00:00",
-   "last_log_age_min": 535.9,
+   "last_log_age_min": 566.0,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
@@ -13813,7 +13813,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 57.19,
    "last_log": "2026-11-16T14:34:37+00:00",
-   "last_log_age_min": 535.9,
+   "last_log_age_min": 566.0,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
@@ -15218,7 +15218,7 @@
    "eta_assumes_ada": false,
    "peak_mem_gib": 57.19,
    "last_log": "2026-11-16T14:34:37+00:00",
-   "last_log_age_min": 535.9,
+   "last_log_age_min": 566.0,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
@@ -17056,6 +17056,20 @@
    "kvd_s0": 18.786
   },
   {
+   "tag": "v3_mix_cam_lora32__adapter_step_0005000",
+   "seeds": 3,
+   "updated": "2026-11-16T23:54:46+00:00",
+   "epe_capped": 28.8292,
+   "pck25": 0.7976,
+   "contact_f1_active": 0.7081,
+   "idle_vlm_fgr": 0.4375,
+   "jitter_ratio": 1.1312,
+   "task_bacc": 0.8253,
+   "handedness_mismatch_rate": 0.0273,
+   "epe_capped_frameweighted": 26.9674,
+   "epe_position_only": 26.1204
+  },
+  {
    "tag": "v3_mix_lora32__adapter_step_0002500",
    "seeds": 1,
    "updated": "2026-11-16T21:48:56+00:00",
@@ -17073,12 +17087,26 @@
    "vlm_artifact_s0": -1.397,
    "fvd_s0": 561.476,
    "kvd_s0": 19.264
+  },
+  {
+   "tag": "v3_mix_lora32__adapter_step_0005000",
+   "seeds": 3,
+   "updated": "2026-11-16T23:48:10+00:00",
+   "epe_capped": 27.8076,
+   "pck25": 0.7993,
+   "contact_f1_active": 0.7329,
+   "idle_vlm_fgr": 0.4038,
+   "jitter_ratio": 1.1714,
+   "task_bacc": 0.847,
+   "handedness_mismatch_rate": 0.0167,
+   "epe_capped_frameweighted": 26.0889,
+   "epe_position_only": 26.0173
   }
  ],
  "eval_jobs": [
   {
-   "job_id": "705918",
-   "name": "v3_mix_cam__adapter_step_0005000",
+   "job_id": "705926",
+   "name": "v2_mix_long_h100__adapter_step_0025000",
    "state": "PENDING"
   },
   {
@@ -17087,19 +17115,9 @@
    "state": "PENDING"
   },
   {
-   "job_id": "705926",
-   "name": "v2_mix_long_h100__adapter_step_0025000",
+   "job_id": "705918",
+   "name": "v3_mix_cam__adapter_step_0005000",
    "state": "PENDING"
-  },
-  {
-   "job_id": "705922",
-   "name": "v3_mix_cam_lora32__adapter_step_0005000",
-   "state": "RUNNING"
-  },
-  {
-   "job_id": "705920",
-   "name": "v3_mix_lora32__adapter_step_0005000",
-   "state": "RUNNING"
   }
  ],
  "iteration": {
