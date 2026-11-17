@@ -67,7 +67,7 @@
   {
    "role": "critic-evaluator",
    "state": "active",
-   "detail": "Scoring the v3 camera/LoRA checkpoints and the v2_mix_long control on HOT3D (hand + video quality); results appear in the eval table as they finish."
+   "detail": "v3 report done: camera is used (view follows the head) and helps hands on high-motion clips; no arm improves visual quality over the control yet."
   },
   {
    "role": "data-specialist",
@@ -86,13 +86,17 @@
   }
  ],
  "next_actions": [
-  "HOT3D eval of v3_mix_cam / v3_mix_lora32 / v3_mix_cam_lora32 (2.5k, 5k) and v2_mix_long (20k, 25k), queued; then compare against the control.",
+  "Decide whether to train the camera arms longer (7.5k/10k milestones; the camera branch was still ramping up at 5k) before picking a winner.",
   "Camera-motion conditioning + LoRA: code on unicorn, 3 fine-tune arms on CoreWeave mix data.",
   "Decide the v2_mix trade-off: mixed data enables robot-hand transfer but costs ~4 px and more jitter on HOT3D; e.g. lower HRDexDB mixing ratio or EMA+cosine for the mix run.",
   "Optional: 3 seeds on v2a 2.5k (best single seed, 28.0 px) to test whether even shorter training is better.",
   "Phase 1 report: hand input works (32.7 vs 94.1 px without it); EMA+cosine = same quality at half the steps; robot-hand transfer shown zero-shot."
  ],
  "decisions": [
+  {
+   "date": "2026-11-16",
+   "text": "Camera / LoRA runs (5k steps from v2_mix 15k) scored on HOT3D. Hands: all three arms beat v1 10k (EPE 27.8-29.0 vs 32.7, significant) and gain ~3-4.5 px and +0.04 PCK over the 25k control; arms are indistinguishable from each other. Visual quality: no arm differs from the 25k control; the camera arms tie v1 10k on artifacts, LoRA alone is worse. The camera input is used (LPIPS to the real video improves by 0.06-0.09; withholding it removes that) and helps hands on high-rotation clips, but does not yet reduce artifacts. Caveat: the control moves as much between its 20k and 25k milestones as the arm effects."
+  },
   {
    "date": "2026-11-16",
    "text": "v2_mix quality damage builds up with training steps: VLM artifact score vs v1 10k is +0.24 at 12.5k and +0.98 at 15k (worse than base), while hand error stays flat (34 px). Artifacts rise with head rotation in every generated model (rho +0.37 to +0.52, none in real video), but the v2_mix damage is motion-independent. Constant-lr training on the mix drifts; the EMA + cosine recipe (v2a) held quality."
