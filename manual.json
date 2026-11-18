@@ -87,7 +87,6 @@
  ],
  "next_actions": [
   "Decide whether to train the camera arms longer (7.5k/10k milestones; the camera branch was still ramping up at 5k) before picking a winner.",
-  "Camera-motion conditioning + LoRA: code on unicorn, 3 fine-tune arms on CoreWeave mix data.",
   "Decide the v2_mix trade-off: mixed data enables robot-hand transfer but costs ~4 px and more jitter on HOT3D; e.g. lower HRDexDB mixing ratio or EMA+cosine for the mix run.",
   "Optional: 3 seeds on v2a 2.5k (best single seed, 28.0 px) to test whether even shorter training is better.",
   "Phase 1 report: hand input works (32.7 vs 94.1 px without it); EMA+cosine = same quality at half the steps; robot-hand transfer shown zero-shot."
