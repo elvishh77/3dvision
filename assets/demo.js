@@ -49,7 +49,10 @@
   }).catch(() => {});
 
   // ---- browse all 32 clips (one or more comparison sets) ----
-  const SETS = [{ key: "demo_all", name: "Hand input vs none" }, { key: "demo_v2", name: "v1 vs v2 (EMA + cosine)" }];
+  const SETS = [{ key: "demo_all", name: "Hand input vs none" }, { key: "demo_v3_cam", name: "Camera input: view follows the head?" },
+    { key: "demo_v3_hands", name: "v1 vs camera + LoRA" }, { key: "onehand_v1", name: "One-hand test · v1" },
+    { key: "onehand_camlora", name: "One-hand test · camera + LoRA" }, { key: "demo_v2", name: "v1 vs v2 (EMA + cosine)" }];
+  const fa = (v) => (v == null ? "–" : v.toFixed(2));
   const DEFAULT_PANELS = [{ label: "Real clip" }, { label: "Base model" }, { label: "Fine-tuned, no hand input" }, { label: "Trained · 10k" }];
   const loaded = {};
   let cur = null, sortKey = "last";
@@ -57,7 +60,7 @@
   function norm(key, d) {   // old demo_all/demo.json has epe {real, base, ctrl, ours}; new sets have epe [real, p1, p2, ...]
     const panels = d.panels || DEFAULT_PANELS;
     const items = d.items.map((it) => ({ ...it, e: Array.isArray(it.epe) ? it.epe : [it.epe.real, it.epe.base, it.epe.ctrl, it.epe.ours] }));
-    return { key, panels, items };
+    return { key, panels, items, kind: d.kind || "compare" };
   }
   function labels(panels) {
     return `<div class="vlabelsN" style="grid-template-columns:repeat(${panels.length},1fr)">${panels.map((p, i) =>
@@ -68,16 +71,20 @@
     v.src = `assets/media/${s.key}/${it.id}.mp4?v=3`; v.poster = `assets/media/${s.key}/${it.id}.jpg?v=3`; v.play().catch(() => {});
     $("all-labels").innerHTML = labels(s.panels);
     $("all-cap").innerHTML = `<span class="badge plain">${esc(it.id)}</span> <span class="badge plain">${esc(ACT[it.active] || it.active)}</span> <b>Prompt:</b> ${esc(it.prompt)}<br>
-      Hand error: ${s.panels.map((p, i) => (i === s.panels.length - 1 ? `<b>${esc(p.label)} ${fx(it.e[i])} px</b>` : `${esc(p.label)} ${fx(it.e[i])}`)).join(" · ")}`;
+      ${s.kind === "onehand" ? "Green dots = commanded hand · red skeleton = hand detected in the generated video" :
+        `Hand error (px): ${s.panels.map((p, i) => (i === s.panels.length - 1 ? `<b>${esc(p.label)} ${fx(it.e[i])}</b>` : `${esc(p.label)} ${fx(it.e[i])}`)).join(" · ")}<br>
+      Artifact score (lower is better; real video ≈ −2.2): ${s.panels.slice(1).map((p, i) => `${esc(p.label)} ${fa(it.art ? it.art[i + 1] : null)}`).join(" · ")}`}
+      <br>Head rotation over the clip: ${it.rot == null ? "–" : `${it.rot}° total, ${it.rot_max}° max from frame 0`}`;
     document.querySelectorAll(".clipitem").forEach((el) => el.classList.toggle("sel", el.dataset.id === it.id));
   }
   function render() {
     const s = cur, L = s.panels.length - 1;
-    const key = (it) => sortKey === "id" ? 0 : sortKey === "gain" ? -((it.e[L - 1] ?? 0) - (it.e[L] ?? 0)) : (it.e[L] ?? 999);
+    const key = (it) => sortKey === "id" ? 0 : sortKey === "gain" ? -((it.e[L - 1] ?? 0) - (it.e[L] ?? 0))
+      : sortKey === "rot" ? -(it.rot ?? -1) : sortKey === "art" ? ((it.art && it.art[L]) ?? 999) : (it.e[L] ?? 999);
     const arr = [...s.items].sort((a, b) => sortKey === "id" ? a.id.localeCompare(b.id) : key(a) - key(b));
     $("all-list").innerHTML = arr.map((it) => `<button class="clipitem" data-id="${esc(it.id)}">
         <img loading="lazy" src="assets/media/${s.key}/${esc(it.id)}.jpg?v=3" alt="">
-        <span class="ci-t"><b>${esc(it.id)}</b> · ${s.panels.slice(1).map((p, i) => `${esc(p.label)} ${fx(it.e[i + 1])}`).reverse().join(" · ")}</span>
+        <span class="ci-t"><b>${esc(it.id)}</b> · ${s.kind === "onehand" ? "" : s.panels.slice(1).map((p, i) => `${esc(p.label)} ${fx(it.e[i + 1])}`).reverse().join(" · ") + " · "}head ${it.rot == null ? "–" : it.rot + "°"}</span>
         <span class="ci-p">${esc(it.prompt)}</span></button>`).join("");
     $("all-list").querySelectorAll(".clipitem").forEach((el) => el.addEventListener("click", () => {
       play(s.items.find((x) => x.id === el.dataset.id)); $("all-viewer").scrollIntoView({ behavior: "smooth", block: "start" }); }));
@@ -96,7 +103,7 @@
   fetch("assets/media/sets.json?t=" + Date.now(), { cache: "no-store" }).then((r) => (r.ok ? r.json() : ["demo_all"])).catch(() => ["demo_all"]).then((have) => {
     const sets = SETS.filter((s) => have.includes(s.key));
     $("all-sets").innerHTML = sets.length > 1 ? `<span class="small muted">Compare:</span>` + sets.map((s, i) =>
-      `<button class="pill ${["bg-coral", "bg-sky"][i % 2]} setbtn" data-k="${s.key}">${esc(s.name)}</button>`).join("") : "";
+      `<button class="pill ${["bg-coral", "bg-sky", "bg-mint", "bg-yellow"][i % 4]} setbtn" data-k="${s.key}">${esc(s.name)}</button>`).join("") : "";
     document.querySelectorAll(".setbtn").forEach((b) => b.addEventListener("click", () => useSet(b.dataset.k)));
     document.querySelectorAll(".sortbtn").forEach((b) => b.addEventListener("click", () => { sortKey = b.dataset.k; render(); }));
     if (sets.length) useSet(sets[0].key);
