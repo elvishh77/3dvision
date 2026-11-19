@@ -110,7 +110,8 @@
   });
 
   // ---- robot / HRDexDB sets (pushed from CoreWeave; section stays hidden until they exist) ----
-  const RSETS = [{ key: "hrdexdb_robot", name: "Robot hand (zero-shot)" }, { key: "hrdexdb_human", name: "Human hand, held-out objects" }];
+  const RSETS = [{ key: "hrdexdb_robot", name: "Robot hand (zero-shot), mix 15k" }, { key: "hrdexdb_human", name: "Human hand, held-out objects, mix 15k" },
+    { key: "hrdexdb_robot_camlora", name: "Robot hand, camera + LoRA" }, { key: "hrdexdb_human_camlora", name: "Human hand, camera + LoRA" }];
   Promise.all(RSETS.map((s) => fetch(`assets/media/${s.key}/demo.json?t=` + Date.now(), { cache: "no-store" }).then((r) => (r.ok ? r.json() : null)).then((d) => (d ? { ...s, d } : null)).catch(() => null))).then((sets) => {
     sets = sets.filter(Boolean); if (!sets.length) return;
     $("robot").style.display = "";
