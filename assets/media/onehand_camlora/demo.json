@@ -1,0 +1,234 @@
+{
+ "title": "One-hand test \u00b7 camera + LoRA",
+ "kind": "onehand",
+ "tag": "v3_mix_cam_lora32__adapter_step_0005000",
+ "panels": [
+  {
+   "label": "Both hands act"
+  },
+  {
+   "label": "Only right acts"
+  },
+  {
+   "label": "Only left acts"
+  }
+ ],
+ "items": [
+  {
+   "id": "003219_w59",
+   "active": "both",
+   "prompt": "the wooden spoon ends up moved farther and turned, and the bowl ends up lifted in the left hand.",
+   "epe": [
+    null,
+    null,
+    null
+   ],
+   "rot": 75,
+   "rot_max": 39
+  },
+  {
+   "id": "003230_w0",
+   "active": "both",
+   "prompt": "the ranch bottle ends up lifted in both hands and turned.",
+   "epe": [
+    null,
+    null,
+    null
+   ],
+   "rot": 103,
+   "rot_max": 44
+  },
+  {
+   "id": "003234_w0",
+   "active": "both",
+   "prompt": "the vase ends up lifted in both hands and turned.",
+   "epe": [
+    null,
+    null,
+    null
+   ],
+   "rot": 44,
+   "rot_max": 14
+  },
+  {
+   "id": "003241_w59",
+   "active": "both",
+   "prompt": "the bamboo plate stays held in the left hand.",
+   "epe": [
+    null,
+    null,
+    null
+   ],
+   "rot": 9,
+   "rot_max": 3
+  },
+  {
+   "id": "003252_w0",
+   "active": "both",
+   "prompt": "the patterned mug ends up moved to the left and farther and turned.",
+   "epe": [
+    null,
+    null,
+    null
+   ],
+   "rot": 107,
+   "rot_max": 64
+  },
+  {
+   "id": "003259_w0",
+   "active": "both",
+   "prompt": "the wooden spoon ends up lifted in both hands and turned, and the cellphone ends up set down.",
+   "epe": [
+    null,
+    null,
+    null
+   ],
+   "rot": 56,
+   "rot_max": 44
+  },
+  {
+   "id": "003268_w0",
+   "active": "both",
+   "prompt": "the mouse ends up set down to the left and farther and turned.",
+   "epe": [
+    null,
+    null,
+    null
+   ],
+   "rot": 34,
+   "rot_max": 13
+  },
+  {
+   "id": "003280_w59",
+   "active": "both",
+   "prompt": "the ranch bottle ends up moved to the left and closer and turned.",
+   "epe": [
+    null,
+    null,
+    null
+   ],
+   "rot": 57,
+   "rot_max": 43
+  },
+  {
+   "id": "003288_w59",
+   "active": "both",
+   "prompt": "the red spatula ends up turned in the right hand.",
+   "epe": [
+    null,
+    null,
+    null
+   ],
+   "rot": 13,
+   "rot_max": 7
+  },
+  {
+   "id": "003300_w59",
+   "active": "both",
+   "prompt": "the flask ends up set down to the left and farther and turned.",
+   "epe": [
+    null,
+    null,
+    null
+   ],
+   "rot": 35,
+   "rot_max": 23
+  },
+  {
+   "id": "003302_w0",
+   "active": "both",
+   "prompt": "the patterned mug ends up in the left hand and turned.",
+   "epe": [
+    null,
+    null,
+    null
+   ],
+   "rot": 115,
+   "rot_max": 73
+  },
+  {
+   "id": "003305_w59",
+   "active": "both",
+   "prompt": "the milk carton ends up turned in both hands.",
+   "epe": [
+    null,
+    null,
+    null
+   ],
+   "rot": 49,
+   "rot_max": 14
+  },
+  {
+   "id": "003312_w0",
+   "active": "both",
+   "prompt": "the toy birdhouse ends up lifted in both hands and turned.",
+   "epe": [
+    null,
+    null,
+    null
+   ],
+   "rot": 63,
+   "rot_max": 32
+  },
+  {
+   "id": "003327_w0",
+   "active": "both",
+   "prompt": "the pair of Aria glasses ends up lifted in both hands and turned.",
+   "epe": [
+    null,
+    null,
+    null
+   ],
+   "rot": 136,
+   "rot_max": 119
+  },
+  {
+   "id": "003333_w0",
+   "active": "both",
+   "prompt": "the toy birdhouse ends up lifted in both hands.",
+   "epe": [
+    null,
+    null,
+    null
+   ],
+   "rot": 34,
+   "rot_max": 21
+  },
+  {
+   "id": "003343_w0",
+   "active": "both",
+   "prompt": "the cellphone ends up moved to the left and farther.",
+   "epe": [
+    null,
+    null,
+    null
+   ],
+   "rot": 17,
+   "rot_max": 6
+  },
+  {
+   "id": "003345_w59",
+   "active": "both",
+   "prompt": "the white mug ends up in the right hand and turned, and the toy puzzle ends up set down farther.",
+   "epe": [
+    null,
+    null,
+    null
+   ],
+   "rot": 56,
+   "rot_max": 18
+  },
+  {
+   "id": "003363_w0",
+   "active": "both",
+   "prompt": "the black holder ends up set down to the right and farther.",
+   "epe": [
+    null,
+    null,
+    null
+   ],
+   "rot": 85,
+   "rot_max": 46
+  }
+ ]
+}
