@@ -7,7 +7,7 @@
   "deadline": "2026-11-13",
   "deadline_note": "First-results target was Nov 13; it slipped because training only started on Nov 13. Final Phase 1 numbers expected around Nov 14 evening."
  },
- "updated_by_lead": "2026-11-16T05:00:00-05:00",
+ "updated_by_lead": "2026-11-27T00:30:00-05:00",
  "stages": [
   {
    "name": "Interface spec",
@@ -40,14 +40,24 @@
    "detail": "All scored (A3, 32 held-out clips): v1 32.7 px, v2a 32.3, v2b 32.9, v2_mix 15k 36.9 (3 seeds), no-hand control 94.1, base 100.5, real 15.0."
   },
   {
+   "name": "Camera + LoRA (v3)",
+   "status": "done",
+   "detail": "Plücker camera input and LoRA r32 on the base (5k): HOT3D hand error ~28 px vs 33 for v1, image quality ties the no-camera control; HRDexDB hand-region PSNR +1.8 dB."
+  },
+  {
+   "name": "Scale-up: Wan2.2 I2V-A14B",
+   "status": "in progress",
+   "detail": "Plain A14B on HOT3D: video quality at our 1.3B adapters' level without fine-tuning (FVD 582 vs 903 for the 1.3B base), no hand control (99.7 px). Hand adapter v4 (K=4, high-noise expert, 5k steps, 8x H100) trained; HRDexDB/SharpaDex PSNR done, HOT3D hand eval waiting for the checkpoints."
+  },
+  {
    "name": "Phase 1 report",
    "status": "todo",
    "detail": "Best checkpoint x 3 seeds vs base model and real video; sample videos."
   },
   {
    "name": "Phase 2: robot hands",
-   "status": "todo",
-   "detail": "Format reserved in interface.md section 6; data source not chosen yet."
+   "status": "in progress",
+   "detail": "HRDexDB (xArm + Inspire hand, human hands) and SharpaDex (bimanual Sharpa Wave hands) are drawn into the same hand volume via forward kinematics. Inspire clips are zero-shot for every model; see the demo page."
   }
  ],
  "needs_input": [
@@ -55,6 +65,11 @@
    "title": "Paper page: title and authors",
    "detail": "The paper-style page uses a working title and 'Authors TBD'. Send the title and author list when ready.",
    "since": "2026-11-13"
+  },
+  {
+   "title": "Copy the A14B adapter checkpoints to unicorn",
+   "detail": "v4_a14b_high_K4 milestones 1250 / 2500 / 3750 / 5000 (3.1 GB each, eval copies) are on CoreWeave. The HOT3D eval starts automatically when they arrive; 5000 first.",
+   "since": "2026-11-26"
   }
  ],
  "blockers": [],
@@ -86,10 +101,10 @@
   }
  ],
  "next_actions": [
-  "Decide whether to train the camera arms longer (7.5k/10k milestones; the camera branch was still ramping up at 5k) before picking a winner.",
-  "Decide the v2_mix trade-off: mixed data enables robot-hand transfer but costs ~4 px and more jitter on HOT3D; e.g. lower HRDexDB mixing ratio or EMA+cosine for the mix run.",
-  "Optional: 3 seeds on v2a 2.5k (best single seed, 28.0 px) to test whether even shorter training is better.",
-  "Phase 1 report: hand input works (32.7 vs 94.1 px without it); EMA+cosine = same quality at half the steps; robot-hand transfer shown zero-shot."
+  "HOT3D eval of the A14B adapter milestones (hand error, one-hand test, artifact score) paired against plain A14B.",
+  "Decide the next A14B run: add the camera input (it drove the 1.3B HRDexDB gains), and/or an adapter on the low-noise expert.",
+  "A14B adapter does not yet separate left from right hand (L/R swap probe ~0): check it in the one-hand test.",
+  "Phase 1 report: hand input works (32.7 vs 94.1 px without it); camera + LoRA best on 1.3B; A14B gives better base video quality."
  ],
  "decisions": [
   {
@@ -227,6 +242,14 @@
   {
    "date": "2026-11-06",
    "text": "Base model Wan2.1-Fun-V1.1-1.3B-InP; 512x512, 49 frames @ 16 fps; human hands only in Phase 1."
+  },
+  {
+   "date": "2026-11-13",
+   "text": "No new training on the lab partition; training runs on CoreWeave (8x H100)."
+  },
+  {
+   "date": "2026-11-25",
+   "text": "Scale the base model to Wan2.2 I2V-A14B (two 14B experts). Training on CoreWeave, HOT3D eval on the Cornell cluster."
   }
  ],
  "final_eval_overhead_h": 3.0,
@@ -320,6 +343,16 @@
    "gpus": 8,
    "gpu_type": "H100 80GB",
    "job_id": "256935"
+  },
+  {
+   "name": "v4_a14b_high_K4",
+   "source": "remote",
+   "repo": "git@github.com:elvishh77/3dvision-code.git",
+   "branch": "run-status",
+   "cluster": "coreweave",
+   "gpus": 8,
+   "gpu_type": "H100 80GB",
+   "job_id": "300026"
   }
  ]
 }
