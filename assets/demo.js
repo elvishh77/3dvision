@@ -131,6 +131,9 @@
     };
     $("robot-sets").innerHTML = sets.length > 1 ? `<span class="small muted">Show:</span>` + sets.map((s, i) => `<button class="pill ${["bg-sky", "bg-mint", "bg-yellow"][i % 3]} rsetbtn" data-k="${s.key}">${esc(s.name)}</button>`).join("") : "";
     document.querySelectorAll(".rsetbtn").forEach((b) => b.addEventListener("click", () => show(sets.find((x) => x.key === b.dataset.k))));
-    show(sets[0]);
+    const want = new URLSearchParams(location.search).get("set");   // deep link: demo.html?set=<key>
+    const first = sets.find((x) => x.key === want);
+    show(first || sets[0]);
+    if (first) $("robot").scrollIntoView();
   });
 })();
