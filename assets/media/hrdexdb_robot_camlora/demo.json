@@ -1,0 +1,451 @@
+{
+ "title": "Robot-hand conditioning: Inspire hand on xArm (camera + LoRA, v3_mix_cam_lora32 5k, zero-shot), all 48 eval clips",
+ "panels": [
+  {
+   "label": "Real robot"
+  },
+  {
+   "label": "Generated"
+  },
+  {
+   "label": "Generated + target hand"
+  }
+ ],
+ "items": [
+  {
+   "id": "hrdexr-inspire_dftp-balloon_whisk-0_w405",
+   "prompt": "First-person view: the balloon whisk ends up lifted in the right hand.",
+   "note": "Inspire DFTP robot hand (xArm); the model was never trained on robot hands; object not seen in human training data; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    8.56,
+    12.17
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_dftp-black_holder_with_handle-0_w360",
+   "prompt": "First-person view: the black holder with handle is picked up with the right hand and put back down.",
+   "note": "Inspire DFTP robot hand (xArm); the model was never trained on robot hands; object not seen in human training data; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    8.71,
+    9.06
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_dftp-cactus2-0_w225",
+   "prompt": "First-person view: the cactus2 is picked up with the right hand and put back down.",
+   "note": "Inspire DFTP robot hand (xArm); the model was never trained on robot hands; object not seen in human training data; hand check: generated hand does NOT stay robotic: human skin / a human hand appears",
+   "psnr_hand": [
+    13.72,
+    14.57
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_dftp-cactus3-1_w630",
+   "prompt": "First-person view: the cactus3 is picked up with the right hand and put back down.",
+   "note": "Inspire DFTP robot hand (xArm); the model was never trained on robot hands; object seen with human hands in training; hand check: generated hand does NOT stay robotic: human skin / a human hand appears",
+   "psnr_hand": [
+    9.08,
+    10.45
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_dftp-clothes_hanger-1_w360",
+   "prompt": "First-person view: the clothes hanger is picked up with the right hand and put back down.",
+   "note": "Inspire DFTP robot hand (xArm); the model was never trained on robot hands; object not seen in human training data; hand check: generated hand mostly robotic; possible human-skin artifacts (unclear at review size)",
+   "psnr_hand": [
+    13.56,
+    14.15
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_dftp-frame_red-0_w225",
+   "prompt": "First-person view: the frame red is picked up with the right hand and put back down.",
+   "note": "Inspire DFTP robot hand (xArm); the model was never trained on robot hands; object seen with human hands in training; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    11.06,
+    11.86
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_dftp-french_mustard-1_w315",
+   "prompt": "First-person view: the french mustard is picked up with the right hand and put back down.",
+   "note": "Inspire DFTP robot hand (xArm); the model was never trained on robot hands; object seen with human hands in training; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    12.39,
+    13.5
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_dftp-frog_bowl-0_w405",
+   "prompt": "First-person view: the frog bowl is picked up with the right hand and put back down.",
+   "note": "Inspire DFTP robot hand (xArm); the model was never trained on robot hands; object seen with human hands in training; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    12.85,
+    12.41
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_dftp-green_cactus_vase-1_w450",
+   "prompt": "First-person view: the green cactus vase is picked up with the right hand and put back down.",
+   "note": "Inspire DFTP robot hand (xArm); the model was never trained on robot hands; object not seen in human training data; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    9.99,
+    10.64
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_dftp-jja_ramen-0_w225",
+   "prompt": "First-person view: the jja ramen is picked up with the right hand and put back down.",
+   "note": "Inspire DFTP robot hand (xArm); the model was never trained on robot hands; object seen with human hands in training; hand check: generated hand mostly robotic; possible human-skin artifacts (unclear at review size)",
+   "psnr_hand": [
+    13.93,
+    14.18
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_dftp-lotion-3_w270",
+   "prompt": "First-person view: the lotion is picked up with the right hand and put back down.",
+   "note": "Inspire DFTP robot hand (xArm); the model was never trained on robot hands; object seen with human hands in training; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    9.64,
+    11.99
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_dftp-metal_measuring_flask-2_w630",
+   "prompt": "First-person view: the metal measuring flask is picked up with the right hand and put back down.",
+   "note": "Inspire DFTP robot hand (xArm); the model was never trained on robot hands; object seen with human hands in training; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    10.47,
+    10.29
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_dftp-mug_holder-0_w315",
+   "prompt": "First-person view: the mug holder is picked up with the right hand and put back down.",
+   "note": "Inspire DFTP robot hand (xArm); the model was never trained on robot hands; object seen with human hands in training; hand check: generated hand does NOT stay robotic: human skin / a human hand appears",
+   "psnr_hand": [
+    10.91,
+    8.31
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_dftp-pepper_tuna-1_w450",
+   "prompt": "First-person view: the pepper tuna is picked up with the right hand and put back down.",
+   "note": "Inspire DFTP robot hand (xArm); the model was never trained on robot hands; object seen with human hands in training; hand check: generated hand mostly robotic; possible human-skin artifacts (unclear at review size)",
+   "psnr_hand": [
+    10.92,
+    14.56
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_dftp-plastic_elephant_jug-2_w495",
+   "prompt": "First-person view: the plastic elephant jug is picked up with the right hand and put back down.",
+   "note": "Inspire DFTP robot hand (xArm); the model was never trained on robot hands; object seen with human hands in training; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    12.47,
+    12.46
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_dftp-rectangular_frying_pan-4_w360",
+   "prompt": "First-person view: the rectangular frying pan is picked up with the right hand and put back down.",
+   "note": "Inspire DFTP robot hand (xArm); the model was never trained on robot hands; object seen with human hands in training; hand check: generated hand does NOT stay robotic: human skin / a human hand appears",
+   "psnr_hand": [
+    11.85,
+    9.93
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_dftp-scotch_tape-0_w360",
+   "prompt": "First-person view: the scotch tape stays held in the right hand.",
+   "note": "Inspire DFTP robot hand (xArm); the model was never trained on robot hands; object not seen in human training data; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    17.75,
+    13.58
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_dftp-screwdriver-0_w450",
+   "prompt": "First-person view: the screwdriver is picked up with the right hand and put back down.",
+   "note": "Inspire DFTP robot hand (xArm); the model was never trained on robot hands; object not seen in human training data; hand check: generated hand does NOT stay robotic: human skin / a human hand appears",
+   "psnr_hand": [
+    12.63,
+    11.4
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_dftp-spray_bottle-2_w270",
+   "prompt": "First-person view: the spray bottle is picked up with the right hand and put back down.",
+   "note": "Inspire DFTP robot hand (xArm); the model was never trained on robot hands; object not seen in human training data; hand check: generated hand does NOT stay robotic: human skin / a human hand appears",
+   "psnr_hand": [
+    9.42,
+    12.12
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_dftp-tea_case-0_w180",
+   "prompt": "First-person view: the tea case is picked up with the right hand and put back down.",
+   "note": "Inspire DFTP robot hand (xArm); the model was never trained on robot hands; object not seen in human training data; hand check: generated hand does NOT stay robotic: human skin / a human hand appears",
+   "psnr_hand": [
+    10.89,
+    7.84
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_dftp-tennis_ball-0_w315",
+   "prompt": "First-person view: the tennis ball ends up moved to the right and turned.",
+   "note": "Inspire DFTP robot hand (xArm); the model was never trained on robot hands; object not seen in human training data; hand check: generated hand does NOT stay robotic: human skin / a human hand appears",
+   "psnr_hand": [
+    11.07,
+    8.14
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_dftp-white_candle_holder-0_w270",
+   "prompt": "First-person view: the white candle holder is picked up with the right hand and put back down.",
+   "note": "Inspire DFTP robot hand (xArm); the model was never trained on robot hands; object seen with human hands in training; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    10.35,
+    10.89
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_dftp-white_wood_handle_watering_can-0_w945",
+   "prompt": "First-person view: the white wood handle watering can ends up lifted in the right hand.",
+   "note": "Inspire DFTP robot hand (xArm); the model was never trained on robot hands; object not seen in human training data; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    10.32,
+    16.72
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_dftp-yellow_funnel-0_w495",
+   "prompt": "First-person view: the yellow funnel is picked up with the right hand and put back down.",
+   "note": "Inspire DFTP robot hand (xArm); the model was never trained on robot hands; object not seen in human training data; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    8.37,
+    10.14
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-balloon_whisk-0_w405",
+   "prompt": "First-person view: the balloon whisk ends up moved to the right.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object not seen in human training data; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    11.51,
+    14.52
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-black_holder_with_handle-4_w630",
+   "prompt": "First-person view: the black holder with handle is picked up with the right hand and put back down.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object not seen in human training data; hand check: generated hand does NOT stay robotic: human skin / a human hand appears",
+   "psnr_hand": [
+    21.78,
+    19.0
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-cactus2-0_w180",
+   "prompt": "First-person view: the cactus2 is picked up with the right hand and put back down.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object not seen in human training data; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    13.18,
+    14.35
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-cactus3-0_w180",
+   "prompt": "First-person view: the cactus3 is picked up with the right hand and put back down.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object seen with human hands in training; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    10.98,
+    13.2
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-clothes_hanger-0_w360",
+   "prompt": "First-person view: the clothes hanger is picked up with the right hand and put back down.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object not seen in human training data; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    17.78,
+    14.76
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-frame_red-0_w270",
+   "prompt": "First-person view: the frame red ends up lifted in the right hand.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object seen with human hands in training; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    12.96,
+    14.69
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-french_mustard-3_w225",
+   "prompt": "First-person view: the french mustard is picked up with the right hand and put back down.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object seen with human hands in training; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    12.24,
+    13.98
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-frog_bowl-0_w180",
+   "prompt": "First-person view: the frog bowl is picked up with the right hand and put back down.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object seen with human hands in training; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    14.57,
+    13.96
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-green_cactus_vase-1_w675",
+   "prompt": "First-person view: the green cactus vase is picked up with the right hand and put back down.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object not seen in human training data; hand check: generated hand does NOT stay robotic: human skin / a human hand appears",
+   "psnr_hand": [
+    17.51,
+    15.46
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-jja_ramen-0_w90",
+   "prompt": "First-person view: the right hand touches the jja ramen without moving it.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object seen with human hands in training; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    9.6,
+    10.71
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-lotion-0_w225",
+   "prompt": "First-person view: the lotion is picked up with the right hand and put back down.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object seen with human hands in training; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    15.43,
+    16.23
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-metal_measuring_flask-0_w180",
+   "prompt": "First-person view: the metal measuring flask is picked up with the right hand and put back down.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object seen with human hands in training; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    12.72,
+    14.92
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-mug_holder-0_w135",
+   "prompt": "First-person view: the right hand touches the mug holder without moving it.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object seen with human hands in training; hand check: generated hand does NOT stay robotic: human skin / a human hand appears",
+   "psnr_hand": [
+    9.83,
+    12.92
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-pepper_tuna-2_w225",
+   "prompt": "First-person view: the pepper tuna is picked up with the right hand and put back down.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object seen with human hands in training; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    9.3,
+    10.07
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-plastic_elephant_jug-0_w405",
+   "prompt": "First-person view: the plastic elephant jug stays held in the right hand.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object seen with human hands in training; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    14.57,
+    15.5
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-rectangular_frying_pan-0_w180",
+   "prompt": "First-person view: the rectangular frying pan stays held in the right hand.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object seen with human hands in training; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    13.45,
+    11.91
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-scotch_tape-0_w270",
+   "prompt": "First-person view: the scotch tape is picked up with the right hand and put back down.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object not seen in human training data; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    16.72,
+    13.26
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-screwdriver-0_w225",
+   "prompt": "First-person view: the screwdriver is picked up with the right hand and put back down.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object not seen in human training data; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    11.8,
+    14.17
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-spray_bottle-0_w225",
+   "prompt": "First-person view: the spray bottle is picked up with the right hand and put back down.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object not seen in human training data; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    18.4,
+    17.71
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-tea_case-0_w135",
+   "prompt": "First-person view: the tea case stays held in the right hand.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object not seen in human training data; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    10.28,
+    13.48
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-tennis_ball-0_w270",
+   "prompt": "First-person view: the tennis ball is picked up with the right hand and put back down.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object not seen in human training data; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    13.51,
+    12.21
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-white_candle_holder-0_w225",
+   "prompt": "First-person view: the white candle holder ends up turned in the right hand.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object seen with human hands in training; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    11.55,
+    12.46
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-white_wood_handle_watering_can-5_w315",
+   "prompt": "First-person view: the white wood handle watering can stays held in the right hand.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object not seen in human training data; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    16.21,
+    17.23
+   ]
+  },
+  {
+   "id": "hrdexr-inspire_f1-yellow_funnel-2_w495",
+   "prompt": "First-person view: the yellow funnel is picked up with the right hand and put back down.",
+   "note": "Inspire F1 robot hand (xArm); the model was never trained on robot hands; object not seen in human training data; hand check: generated hand stays robotic",
+   "psnr_hand": [
+    13.1,
+    13.39
+   ]
+  }
+ ],
+ "metric_note": "psnr_hand = PSNR (dB) inside the conditioning hand region vs the real video: [first frame repeated, generated]",
+ "source": "HRDexDB dataset (https://huggingface.co/datasets/HRDexDB/HRDexDB), licensed CC BY-NC 4.0 (https://creativecommons.org/licenses/by-nc/4.0/). Frames shown with modifications: cropped and resized, hand-skeleton overlays; the 'Generated' panels are model outputs conditioned on the first frame.",
+ "review_note": "Hand check = visual review of 4 frames per clip (frames 0/16/32/47) at 256 px; a quick screen, not a frame-by-frame review."
+}

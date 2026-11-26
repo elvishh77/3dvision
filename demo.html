@@ -33,12 +33,19 @@
 
   <section id="robot" style="display:none">
     <div class="sec-head"><span class="ico" data-i="hand"></span><div><h2>From human hands to robot hands</h2>
-      <div class="sub">Zero-shot on HRDexDB: the robot's own joint trajectory (xArm + Inspire hand, forward kinematics) is drawn into the same hand-conditioning volume as a human hand</div></div></div>
+      <div class="sub">HRDexDB (xArm + Inspire hand, and human hands) and SharpaDex (bimanual Sharpa Wave hands): the robot's own joint trajectory (forward kinematics) is drawn into the same hand-conditioning volume as a human hand</div></div></div>
     <div class="grid g3" style="margin-bottom:16px">
-      <div class="card bg-sky-soft"><h3>Same interface, new embodiment</h3><div class="muted small">The robot hand's FK fills the same 21 keypoints and 778 surface points a MANO hand would, with contact = surface within 10 mm of the object. The encoder and model are unchanged.</div></div>
-      <div class="card bg-mint-soft"><h3>Never seen in training</h3><div class="muted small">Model v2_mix (v1 continued on HOT3D + HRDexDB human clips). No robot episodes in training, and 12 objects held out entirely.</div></div>
-      <div class="card bg-coral-soft"><h3>Honest caveats</h3><div class="muted small">Clips are hand-picked. Robot results show artifacts (objects deforming, extra geometry). On the robot clips, hand-region PSNR (12.3 dB) is still just under a static "first frame repeated" reference (12.5 dB).</div></div>
+      <div class="card bg-sky-soft"><h3>Same interface, new embodiment</h3><div class="muted small">The robot hand's FK fills the same 21 keypoints and 778 surface points a MANO hand would, with contact = surface within 10 mm of the object. The encoder is unchanged.</div></div>
+      <div class="card bg-mint-soft"><h3>What each model saw</h3><div class="muted small"><b>1.3B models</b> (mix 15k, camera + LoRA): HOT3D + HRDexDB human clips, no robot data. <b>Wan2.2 A14B adapter</b> (v4, 5k steps, high-noise expert only, no camera): HOT3D + HRDexDB human + SharpaDex robot episodes (episodes 390-409 held out). No model ever saw the Inspire hand, and 12 HRDexDB objects are held out entirely.</div></div>
+      <div class="card bg-coral-soft"><h3>Honest caveats</h3><div class="muted small">Seed 0. The A14B and camera + LoRA sets show every eval clip, unpicked; the "mix 15k" sets are hand-picked. Robot clips show artifacts (deforming objects, extra geometry). PSNR rewards matching the head motion: the camera + LoRA model is given the camera path, the A14B adapter is not.</div></div>
     </div>
+    <div class="table-wrap" style="margin-bottom:8px"><table>
+      <tr><th>Hand-region PSNR (dB, mean, seed 0)</th><th>First frame repeated</th><th>1.3B base</th><th>1.3B camera + LoRA</th><th>Plain Wan2.2 A14B</th><th>A14B + hand adapter</th></tr>
+      <tr><td>SharpaDex held-out (130 clips)</td><td>10.8</td><td>&ndash;</td><td>12.5</td><td>7.8</td><td class="best"><span>13.1</span></td></tr>
+      <tr><td>HRDexDB human (35 clips)</td><td>&ndash;</td><td>10.8</td><td class="best"><span>19.5</span></td><td>11.7</td><td>17.4</td></tr>
+      <tr><td>HRDexDB Inspire robot (48 clips)</td><td>12.5</td><td>&ndash;</td><td>13.0</td><td>9.9</td><td class="best"><span>13.3</span></td></tr>
+    </table></div>
+    <div class="cap" style="margin-bottom:16px">The 1.3B camera + LoRA model never trained on SharpaDex. Paired A14B adapter minus camera + LoRA, hand region: human &minus;2.1 &plusmn; 0.2 dB (A14B better on 1 of 35 clips), Inspire robot +0.4 &plusmn; 0.2 dB.</div>
     <div class="pills" id="robot-sets" style="margin-bottom:12px;align-items:center"></div>
     <div id="robot-list"></div>
     <div class="cap" id="robot-credit"></div>

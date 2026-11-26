@@ -110,15 +110,18 @@
   });
 
   // ---- robot / HRDexDB sets (pushed from CoreWeave; section stays hidden until they exist) ----
-  const RSETS = [{ key: "hrdexdb_robot", name: "Robot hand (zero-shot), mix 15k" }, { key: "hrdexdb_human", name: "Human hand, held-out objects, mix 15k" },
-    { key: "hrdexdb_robot_camlora", name: "Robot hand, camera + LoRA" }, { key: "hrdexdb_human_camlora", name: "Human hand, camera + LoRA" }];
+  const RSETS = [{ key: "hrdexdb_robot_a14b", name: "Inspire robot hand · Wan2.2 A14B adapter" },
+    { key: "sharpadex_heldout_a14b", name: "SharpaDex held-out · Wan2.2 A14B adapter" },
+    { key: "hrdexdb_human_a14b", name: "Human hand · Wan2.2 A14B adapter" },
+    { key: "hrdexdb_robot_camlora", name: "Inspire robot hand · 1.3B camera + LoRA" }, { key: "hrdexdb_human_camlora", name: "Human hand · 1.3B camera + LoRA" },
+    { key: "hrdexdb_robot", name: "Inspire robot hand · 1.3B mix 15k (picked)" }, { key: "hrdexdb_human", name: "Human hand · 1.3B mix 15k (picked)" }];
   Promise.all(RSETS.map((s) => fetch(`assets/media/${s.key}/demo.json?t=` + Date.now(), { cache: "no-store" }).then((r) => (r.ok ? r.json() : null)).then((d) => (d ? { ...s, d } : null)).catch(() => null))).then((sets) => {
     sets = sets.filter(Boolean); if (!sets.length) return;
     $("robot").style.display = "";
     const show = (s) => {
       document.querySelectorAll(".rsetbtn").forEach((b) => (b.style.boxShadow = b.dataset.k === s.key ? "3px 3px 0 #3e3a39" : "none"));
       const P = s.d.panels || [];
-      $("robot-list").innerHTML = (s.d.items || []).map((it) => `<figure class="demo">
+      $("robot-list").innerHTML = (s.d.title ? `<div class="cap" style="margin:0 0 12px"><b>${esc(s.d.title)}</b></div>` : "") + (s.d.items || []).map((it) => `<figure class="demo">
           <div class="media vs3"><video src="assets/media/${s.key}/${esc(it.id)}.mp4" poster="assets/media/${s.key}/${esc(it.id)}.jpg" muted loop playsinline controls preload="none"></video>
             <div class="vlabelsN" style="grid-template-columns:repeat(${P.length || 3},1fr)">${P.map((p, i) => `<span class="${i === P.length - 1 ? "ours" : i ? "mid" : ""}">${esc(p.label)}</span>`).join("")}</div></div>
           <figcaption class="cap"><span class="badge plain">${esc(it.id)}</span> <b>Prompt:</b> ${esc(it.prompt || "")}
@@ -126,7 +129,7 @@
             ${it.note ? `<div class="item input" style="margin-top:8px;padding:8px 12px"><div class="d" style="margin:0;color:var(--ink)">${esc(it.note)}</div></div>` : ""}</figcaption></figure>`).join("");
       $("robot-credit").innerHTML = [s.d.metric_note, s.d.source].filter(Boolean).map(esc).join("<br>");
     };
-    $("robot-sets").innerHTML = sets.length > 1 ? `<span class="small muted">Show:</span>` + sets.map((s, i) => `<button class="pill ${["bg-sky", "bg-mint"][i % 2]} rsetbtn" data-k="${s.key}">${esc(s.name)}</button>`).join("") : "";
+    $("robot-sets").innerHTML = sets.length > 1 ? `<span class="small muted">Show:</span>` + sets.map((s, i) => `<button class="pill ${["bg-sky", "bg-mint", "bg-yellow"][i % 3]} rsetbtn" data-k="${s.key}">${esc(s.name)}</button>`).join("") : "";
     document.querySelectorAll(".rsetbtn").forEach((b) => b.addEventListener("click", () => show(sets.find((x) => x.key === b.dataset.k))));
     show(sets[0]);
   });
