@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>SharpaDex Held-out Eval</title>
+<meta name="description" content="Held-out SharpaDex robot episodes: PSNR of plain Wan2.2 A14B, the 1.3B camera + LoRA model and the A14B hand adapter, with side-by-side videos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Huninn&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 20px; }
+  .tile .big { font-size: 2rem; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .chartbox { position: relative; }
+  .chartbox svg { width: 100%; height: auto; display: block; }
+  .chartbox .tip { position: absolute; pointer-events: none; background: var(--card); border: 2px solid var(--ink); border-radius: 12px;
+    padding: 8px 11px; font-size: .82rem; box-shadow: var(--shadow-sm); display: none; white-space: nowrap; z-index: 2; }
+  .chartbox .tip b { font-variant-numeric: tabular-nums; }
+  .legend-row { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: .85rem; margin: 0 0 10px; color: var(--ink); }
+  .legend-row svg { width: 18px; height: 12px; vertical-align: middle; margin-right: 5px; }
+  details.tv summary { cursor: pointer; margin: 10px 0; color: var(--ink-2); font-size: .9rem; }
+  .media.vs4 { position: relative; }
+  td.num, th.num { text-align: right; }
+</style>
+<script src="assets/icons.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html"><span data-i="film"></span>HandCtrl Video</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#summary">Summary</a><a href="#episodes">Per episode</a><a href="#steps">By task step</a><a href="#clips">Videos</a>
+      <a href="index.html">Dashboard</a><a href="demo.html">Demos</a><a href="eval.html">Eval</a><a href="paper.html">Project page</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" style="overflow-x:clip">
+  <div class="hero" style="padding-bottom:6px">
+    <h1>SharpaDex: <mark class="hl yellow">held-out</mark> robot episodes</h1>
+    <p class="lead">A bimanual robot (two Sharpa Wave hands) assembles gears. Episodes 390-409 were held out of training: 130 clips of
+      49 frames. Every model gets the real first frame and prompt; the hand adapter also gets the robot's hand trajectory
+      (forward kinematics drawn into the same volume as a human hand).</p>
+  </div>
+
+  <section id="summary">
+    <div class="sec-head"><span class="ico" data-i="flag"></span><div><h2>Summary</h2>
+      <div class="sub">PSNR (dB) of each generated video against the real one, frames 1-48. Higher is closer to what the robot really did.</div></div></div>
+    <div class="tiles" id="tiles"></div>
+    <div class="table-wrap" style="margin-bottom:10px"><table id="mean-table"></table></div>
+    <div class="table-wrap" style="margin-bottom:10px"><table id="paired-table"></table></div>
+    <div class="cap" id="paired-cap"></div>
+  </section>
+
+  <section id="episodes">
+    <div class="sec-head"><span class="ico" data-i="grid"></span><div><h2>Per held-out episode</h2>
+      <div class="sub">Mean hand-region PSNR over each episode's clips (5-9 clips per episode). Hover an episode for the values.</div></div></div>
+    <div class="card">
+      <div class="legend-row" id="ep-legend"></div>
+      <div class="chartbox" id="ep-chart"></div>
+      <details class="tv"><summary>Show as a table</summary><div class="table-wrap"><table id="ep-table"></table></div></details>
+    </div>
+  </section>
+
+  <section id="steps">
+    <div class="sec-head"><span class="ico" data-i="hand"></span><div><h2>By task step</h2>
+      <div class="sub">Hand-region PSNR (dB), grouped by what happens in the clip. Steps come from the prompt; many clips span two or three steps.</div></div></div>
+    <div class="table-wrap"><table id="step-table"></table></div>
+  </section>
+
+  <section id="clips">
+    <div class="sec-head"><span class="ico" data-i="play"></span><div><h2>Side by side</h2>
+      <div class="sub">24 of the 130 held-out clips, seed 0, not hand-picked. The target hand skeleton is drawn on every panel. Click a video to play it.</div></div></div>
+    <div id="clip-list"></div>
+  </section>
+
+  <section id="caveats">
+    <div class="sec-head"><span class="ico" data-i="flag"></span><div><h2>Caveats</h2></div></div>
+    <div class="card bg-coral-soft"><ul class="small" id="notes" style="margin:0;padding-left:20px"></ul></div>
+    <div class="cap" id="source" style="margin-top:12px"></div>
+  </section>
+</main>
+<footer class="wrap"><span class="sunset" data-i="sunset"></span>Videos: 49 frames at 16 fps, 384 px per panel. PSNR is computed by the CoreWeave eval (eval/run_xembodiment_eval.py).</footer>
+<script src="assets/sharpadex.js"></script>
+</body>
+</html>

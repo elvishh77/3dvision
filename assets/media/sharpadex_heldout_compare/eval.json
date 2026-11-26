@@ -1,0 +1,5252 @@
+{
+ "title": "SharpaDex held-out evaluation (episodes 390-409, 130 windows of 49 frames, seed 0)",
+ "models": {
+  "static": "First frame repeated",
+  "camlora": "Wan2.1 1.3B camera + LoRA (v3_mix_cam_lora32 5k; never trained on SharpaDex)",
+  "base_a14b": "Plain Wan2.2 I2V-A14B (no hand input)",
+  "a14b_v4": "Wan2.2 I2V-A14B + high-noise hand adapter (v4_a14b_high_K4 5k)"
+ },
+ "metrics": {
+  "psnr": "PSNR (dB) vs the real video over frames >= 1, full frame",
+  "psnr_hand": "same, inside the dilated conditioning hand silhouette",
+  "psnr_outside": "same, outside it"
+ },
+ "notes": [
+  "Only PSNR was computed: no SSIM / LPIPS, and no hand-pose estimator applies to these robot hands.",
+  "The generated videos have not been reviewed by eye clip by clip (no hand check).",
+  "ci95: cluster bootstrap over the 20 held-out episodes, 10000 resamples.",
+  "steps come from the prompt (frame-aligned subtask captions covered by the window); all with the right hand.",
+  "One sample per clip (seed 0). 1.3B samples with 30 steps / CFG 5.0, A14B with 40 steps / CFG 3.5 (each model's default)."
+ ],
+ "summary": {
+  "n_clips": 130,
+  "n_episodes": 20,
+  "mean": {
+   "static": {
+    "psnr": 14.708,
+    "psnr_hand": 10.768,
+    "psnr_outside": 15.071
+   },
+   "camlora": {
+    "psnr": 15.212,
+    "psnr_hand": 12.469,
+    "psnr_outside": 15.408
+   },
+   "base_a14b": {
+    "psnr": 10.054,
+    "psnr_hand": 7.774,
+    "psnr_outside": 10.204
+   },
+   "a14b_v4": {
+    "psnr": 18.731,
+    "psnr_hand": 13.109,
+    "psnr_outside": 19.337
+   }
+  },
+  "paired": {
+   "a14b_v4_minus_base_a14b": {
+    "psnr": {
+     "mean_diff": 8.677,
+     "ci95": [
+      8.462,
+      8.885
+     ],
+     "wins": 130,
+     "n": 130
+    },
+    "psnr_hand": {
+     "mean_diff": 5.335,
+     "ci95": [
+      5.187,
+      5.47
+     ],
+     "wins": 130,
+     "n": 130
+    },
+    "psnr_outside": {
+     "mean_diff": 9.133,
+     "ci95": [
+      8.896,
+      9.365
+     ],
+     "wins": 130,
+     "n": 130
+    }
+   },
+   "a14b_v4_minus_camlora": {
+    "psnr": {
+     "mean_diff": 3.519,
+     "ci95": [
+      3.326,
+      3.726
+     ],
+     "wins": 129,
+     "n": 130
+    },
+    "psnr_hand": {
+     "mean_diff": 0.64,
+     "ci95": [
+      0.479,
+      0.803
+     ],
+     "wins": 93,
+     "n": 130
+    },
+    "psnr_outside": {
+     "mean_diff": 3.93,
+     "ci95": [
+      3.71,
+      4.163
+     ],
+     "wins": 129,
+     "n": 130
+    }
+   },
+   "a14b_v4_minus_static": {
+    "psnr": {
+     "mean_diff": 4.023,
+     "ci95": [
+      3.783,
+      4.274
+     ],
+     "wins": 128,
+     "n": 130
+    },
+    "psnr_hand": {
+     "mean_diff": 2.341,
+     "ci95": [
+      2.193,
+      2.497
+     ],
+     "wins": 125,
+     "n": 130
+    },
+    "psnr_outside": {
+     "mean_diff": 4.266,
+     "ci95": [
+      4.002,
+      4.544
+     ],
+     "wins": 128,
+     "n": 130
+    }
+   }
+  },
+  "by_step": {
+   "insert 1 + pick 2": {
+    "n": 7,
+    "static": {
+     "psnr": 16.04,
+     "psnr_hand": 10.967,
+     "psnr_outside": 16.519
+    },
+    "camlora": {
+     "psnr": 16.351,
+     "psnr_hand": 12.59,
+     "psnr_outside": 16.643
+    },
+    "base_a14b": {
+     "psnr": 10.607,
+     "psnr_hand": 8.057,
+     "psnr_outside": 10.777
+    },
+    "a14b_v4": {
+     "psnr": 19.863,
+     "psnr_hand": 14.04,
+     "psnr_outside": 20.495
+    }
+   },
+   "insert 1 + pick 2 + insert 2": {
+    "n": 1,
+    "static": {
+     "psnr": 15.714,
+     "psnr_hand": 10.574,
+     "psnr_outside": 16.187
+    },
+    "camlora": {
+     "psnr": 16.086,
+     "psnr_hand": 12.851,
+     "psnr_outside": 16.311
+    },
+    "base_a14b": {
+     "psnr": 10.429,
+     "psnr_hand": 8.032,
+     "psnr_outside": 10.578
+    },
+    "a14b_v4": {
+     "psnr": 18.975,
+     "psnr_hand": 12.173,
+     "psnr_outside": 19.798
+    }
+   },
+   "insert 2": {
+    "n": 2,
+    "static": {
+     "psnr": 18.01,
+     "psnr_hand": 11.938,
+     "psnr_outside": 18.716
+    },
+    "camlora": {
+     "psnr": 17.447,
+     "psnr_hand": 13.346,
+     "psnr_outside": 17.8
+    },
+    "base_a14b": {
+     "psnr": 8.887,
+     "psnr_hand": 7.332,
+     "psnr_outside": 8.985
+    },
+    "a14b_v4": {
+     "psnr": 19.596,
+     "psnr_hand": 13.787,
+     "psnr_outside": 20.283
+    }
+   },
+   "insert 2 + pick 3": {
+    "n": 17,
+    "static": {
+     "psnr": 16.262,
+     "psnr_hand": 11.331,
+     "psnr_outside": 16.739
+    },
+    "camlora": {
+     "psnr": 16.129,
+     "psnr_hand": 12.979,
+     "psnr_outside": 16.372
+    },
+    "base_a14b": {
+     "psnr": 11.012,
+     "psnr_hand": 7.966,
+     "psnr_outside": 11.232
+    },
+    "a14b_v4": {
+     "psnr": 19.259,
+     "psnr_hand": 13.808,
+     "psnr_outside": 19.832
+    }
+   },
+   "insert 3": {
+    "n": 10,
+    "static": {
+     "psnr": 14.106,
+     "psnr_hand": 10.633,
+     "psnr_outside": 14.393
+    },
+    "camlora": {
+     "psnr": 15.249,
+     "psnr_hand": 12.297,
+     "psnr_outside": 15.474
+    },
+    "base_a14b": {
+     "psnr": 9.132,
+     "psnr_hand": 7.571,
+     "psnr_outside": 9.235
+    },
+    "a14b_v4": {
+     "psnr": 18.965,
+     "psnr_hand": 13.105,
+     "psnr_outside": 19.65
+    }
+   },
+   "pick 1": {
+    "n": 22,
+    "static": {
+     "psnr": 9.64,
+     "psnr_hand": 9.269,
+     "psnr_outside": 9.684
+    },
+    "camlora": {
+     "psnr": 12.013,
+     "psnr_hand": 10.309,
+     "psnr_outside": 12.119
+    },
+    "base_a14b": {
+     "psnr": 8.547,
+     "psnr_hand": 7.262,
+     "psnr_outside": 8.622
+    },
+    "a14b_v4": {
+     "psnr": 16.333,
+     "psnr_hand": 10.044,
+     "psnr_outside": 17.088
+    }
+   },
+   "pick 1 + insert 1": {
+    "n": 9,
+    "static": {
+     "psnr": 16.414,
+     "psnr_hand": 11.327,
+     "psnr_outside": 16.872
+    },
+    "camlora": {
+     "psnr": 16.282,
+     "psnr_hand": 12.913,
+     "psnr_outside": 16.523
+    },
+    "base_a14b": {
+     "psnr": 10.506,
+     "psnr_hand": 7.977,
+     "psnr_outside": 10.662
+    },
+    "a14b_v4": {
+     "psnr": 20.221,
+     "psnr_hand": 14.055,
+     "psnr_outside": 20.884
+    }
+   },
+   "pick 1 + insert 1 + pick 2": {
+    "n": 11,
+    "static": {
+     "psnr": 15.822,
+     "psnr_hand": 11.29,
+     "psnr_outside": 16.204
+    },
+    "camlora": {
+     "psnr": 15.562,
+     "psnr_hand": 12.81,
+     "psnr_outside": 15.743
+    },
+    "base_a14b": {
+     "psnr": 10.824,
+     "psnr_hand": 7.929,
+     "psnr_outside": 11.016
+    },
+    "a14b_v4": {
+     "psnr": 19.479,
+     "psnr_hand": 13.421,
+     "psnr_outside": 20.151
+    }
+   },
+   "pick 2": {
+    "n": 9,
+    "static": {
+     "psnr": 15.514,
+     "psnr_hand": 10.429,
+     "psnr_outside": 15.992
+    },
+    "camlora": {
+     "psnr": 16.257,
+     "psnr_hand": 12.848,
+     "psnr_outside": 16.509
+    },
+    "base_a14b": {
+     "psnr": 10.205,
+     "psnr_hand": 7.907,
+     "psnr_outside": 10.349
+    },
+    "a14b_v4": {
+     "psnr": 18.942,
+     "psnr_hand": 13.845,
+     "psnr_outside": 19.444
+    }
+   },
+   "pick 2 + insert 2": {
+    "n": 17,
+    "static": {
+     "psnr": 16.005,
+     "psnr_hand": 10.902,
+     "psnr_outside": 16.49
+    },
+    "camlora": {
+     "psnr": 16.029,
+     "psnr_hand": 13.079,
+     "psnr_outside": 16.236
+    },
+    "base_a14b": {
+     "psnr": 10.073,
+     "psnr_hand": 7.81,
+     "psnr_outside": 10.216
+    },
+    "a14b_v4": {
+     "psnr": 18.91,
+     "psnr_hand": 13.711,
+     "psnr_outside": 19.423
+    }
+   },
+   "pick 2 + insert 2 + pick 3": {
+    "n": 2,
+    "static": {
+     "psnr": 15.821,
+     "psnr_hand": 11.531,
+     "psnr_outside": 16.184
+    },
+    "camlora": {
+     "psnr": 15.035,
+     "psnr_hand": 12.809,
+     "psnr_outside": 15.177
+    },
+    "base_a14b": {
+     "psnr": 10.431,
+     "psnr_hand": 7.644,
+     "psnr_outside": 10.62
+    },
+    "a14b_v4": {
+     "psnr": 19.581,
+     "psnr_hand": 13.602,
+     "psnr_outside": 20.248
+    }
+   },
+   "pick 3": {
+    "n": 3,
+    "static": {
+     "psnr": 14.068,
+     "psnr_hand": 9.479,
+     "psnr_outside": 14.487
+    },
+    "camlora": {
+     "psnr": 15.251,
+     "psnr_hand": 12.433,
+     "psnr_outside": 15.451
+    },
+    "base_a14b": {
+     "psnr": 9.441,
+     "psnr_hand": 7.645,
+     "psnr_outside": 9.553
+    },
+    "a14b_v4": {
+     "psnr": 18.295,
+     "psnr_hand": 13.829,
+     "psnr_outside": 18.692
+    }
+   },
+   "pick 3 + insert 3": {
+    "n": 20,
+    "static": {
+     "psnr": 15.555,
+     "psnr_hand": 11.443,
+     "psnr_outside": 15.915
+    },
+    "camlora": {
+     "psnr": 15.442,
+     "psnr_hand": 13.243,
+     "psnr_outside": 15.586
+    },
+    "base_a14b": {
+     "psnr": 10.608,
+     "psnr_hand": 7.972,
+     "psnr_outside": 10.787
+    },
+    "a14b_v4": {
+     "psnr": 18.962,
+     "psnr_hand": 13.943,
+     "psnr_outside": 19.454
+    }
+   }
+  }
+ },
+ "clips": [
+  {
+   "id": "sharpa-gears-390_w0",
+   "episode": 390,
+   "window_offset": 0,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand.",
+   "hand_area_frac": 0.04666,
+   "static": {
+    "psnr": 8.767,
+    "psnr_hand": 8.905,
+    "psnr_outside": 8.76
+   },
+   "camlora": {
+    "psnr": 12.069,
+    "psnr_hand": 10.275,
+    "psnr_outside": 12.179
+   },
+   "base_a14b": {
+    "psnr": 8.197,
+    "psnr_hand": 7.128,
+    "psnr_outside": 8.257
+   },
+   "a14b_v4": {
+    "psnr": 16.32,
+    "psnr_hand": 9.654,
+    "psnr_outside": 17.172
+   }
+  },
+  {
+   "id": "sharpa-gears-390_w184",
+   "episode": 390,
+   "window_offset": 184,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 1
+    },
+    {
+     "action": "pick",
+     "gear": 2
+    }
+   ],
+   "step_label": "insert 1 + pick 2",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the first gear onto the base with the right hand, then picks up the second gear from the table with the right hand.",
+   "hand_area_frac": 0.04418,
+   "static": {
+    "psnr": 16.283,
+    "psnr_hand": 10.796,
+    "psnr_outside": 16.825
+   },
+   "camlora": {
+    "psnr": 16.011,
+    "psnr_hand": 12.51,
+    "psnr_outside": 16.268
+   },
+   "base_a14b": {
+    "psnr": 10.347,
+    "psnr_hand": 8.08,
+    "psnr_outside": 10.487
+   },
+   "a14b_v4": {
+    "psnr": 20.208,
+    "psnr_hand": 13.11,
+    "psnr_outside": 21.127
+   }
+  },
+  {
+   "id": "sharpa-gears-390_w276",
+   "episode": 390,
+   "window_offset": 276,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 2
+    },
+    {
+     "action": "insert",
+     "gear": 2
+    },
+    {
+     "action": "pick",
+     "gear": 3
+    }
+   ],
+   "step_label": "pick 2 + insert 2 + pick 3",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand, then inserts the second gear onto the base with the right hand, then picks up the third gear from the table with the right hand.",
+   "hand_area_frac": 0.04484,
+   "static": {
+    "psnr": 15.267,
+    "psnr_hand": 11.198,
+    "psnr_outside": 15.596
+   },
+   "camlora": {
+    "psnr": 14.352,
+    "psnr_hand": 12.49,
+    "psnr_outside": 14.462
+   },
+   "base_a14b": {
+    "psnr": 10.31,
+    "psnr_hand": 7.626,
+    "psnr_outside": 10.487
+   },
+   "a14b_v4": {
+    "psnr": 19.421,
+    "psnr_hand": 13.955,
+    "psnr_outside": 19.968
+   }
+  },
+  {
+   "id": "sharpa-gears-390_w368",
+   "episode": 390,
+   "window_offset": 368,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 3
+    },
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "pick 3 + insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the third gear from the table with the right hand, then inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.04464,
+   "static": {
+    "psnr": 13.422,
+    "psnr_hand": 9.139,
+    "psnr_outside": 13.777
+   },
+   "camlora": {
+    "psnr": 14.518,
+    "psnr_hand": 13.227,
+    "psnr_outside": 14.589
+   },
+   "base_a14b": {
+    "psnr": 10.158,
+    "psnr_hand": 7.372,
+    "psnr_outside": 10.345
+   },
+   "a14b_v4": {
+    "psnr": 17.69,
+    "psnr_hand": 13.807,
+    "psnr_outside": 17.994
+   }
+  },
+  {
+   "id": "sharpa-gears-390_w460",
+   "episode": 390,
+   "window_offset": 460,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.04834,
+   "static": {
+    "psnr": 12.115,
+    "psnr_hand": 9.31,
+    "psnr_outside": 12.32
+   },
+   "camlora": {
+    "psnr": 13.544,
+    "psnr_hand": 10.349,
+    "psnr_outside": 13.791
+   },
+   "base_a14b": {
+    "psnr": 10.093,
+    "psnr_hand": 7.755,
+    "psnr_outside": 10.254
+   },
+   "a14b_v4": {
+    "psnr": 17.656,
+    "psnr_hand": 11.584,
+    "psnr_outside": 18.387
+   }
+  },
+  {
+   "id": "sharpa-gears-390_w92",
+   "episode": 390,
+   "window_offset": 92,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    },
+    {
+     "action": "insert",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1 + insert 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand, then inserts the first gear onto the base with the right hand.",
+   "hand_area_frac": 0.0412,
+   "static": {
+    "psnr": 15.924,
+    "psnr_hand": 11.485,
+    "psnr_outside": 16.269
+   },
+   "camlora": {
+    "psnr": 16.311,
+    "psnr_hand": 12.529,
+    "psnr_outside": 16.578
+   },
+   "base_a14b": {
+    "psnr": 11.234,
+    "psnr_hand": 8.467,
+    "psnr_outside": 11.404
+   },
+   "a14b_v4": {
+    "psnr": 20.402,
+    "psnr_hand": 13.625,
+    "psnr_outside": 21.167
+   }
+  },
+  {
+   "id": "sharpa-gears-391_w0",
+   "episode": 391,
+   "window_offset": 0,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand.",
+   "hand_area_frac": 0.04592,
+   "static": {
+    "psnr": 8.855,
+    "psnr_hand": 8.702,
+    "psnr_outside": 8.863
+   },
+   "camlora": {
+    "psnr": 11.945,
+    "psnr_hand": 10.078,
+    "psnr_outside": 12.059
+   },
+   "base_a14b": {
+    "psnr": 8.66,
+    "psnr_hand": 7.161,
+    "psnr_outside": 8.748
+   },
+   "a14b_v4": {
+    "psnr": 15.787,
+    "psnr_hand": 9.505,
+    "psnr_outside": 16.526
+   }
+  },
+  {
+   "id": "sharpa-gears-391_w184",
+   "episode": 391,
+   "window_offset": 184,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 2
+    },
+    {
+     "action": "insert",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 2 + insert 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand, then inserts the second gear onto the base with the right hand.",
+   "hand_area_frac": 0.04279,
+   "static": {
+    "psnr": 15.463,
+    "psnr_hand": 9.606,
+    "psnr_outside": 16.056
+   },
+   "camlora": {
+    "psnr": 16.068,
+    "psnr_hand": 12.706,
+    "psnr_outside": 16.301
+   },
+   "base_a14b": {
+    "psnr": 9.375,
+    "psnr_hand": 7.457,
+    "psnr_outside": 9.484
+   },
+   "a14b_v4": {
+    "psnr": 17.882,
+    "psnr_hand": 14.379,
+    "psnr_outside": 18.13
+   }
+  },
+  {
+   "id": "sharpa-gears-391_w276",
+   "episode": 391,
+   "window_offset": 276,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 2
+    },
+    {
+     "action": "pick",
+     "gear": 3
+    }
+   ],
+   "step_label": "insert 2 + pick 3",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the second gear onto the base with the right hand, then picks up the third gear from the table with the right hand.",
+   "hand_area_frac": 0.04484,
+   "static": {
+    "psnr": 16.614,
+    "psnr_hand": 10.991,
+    "psnr_outside": 17.191
+   },
+   "camlora": {
+    "psnr": 16.306,
+    "psnr_hand": 12.944,
+    "psnr_outside": 16.551
+   },
+   "base_a14b": {
+    "psnr": 11.469,
+    "psnr_hand": 8.07,
+    "psnr_outside": 11.718
+   },
+   "a14b_v4": {
+    "psnr": 19.073,
+    "psnr_hand": 12.926,
+    "psnr_outside": 19.76
+   }
+  },
+  {
+   "id": "sharpa-gears-391_w368",
+   "episode": 391,
+   "window_offset": 368,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 3
+    },
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "pick 3 + insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the third gear from the table with the right hand, then inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.04433,
+   "static": {
+    "psnr": 16.36,
+    "psnr_hand": 13.249,
+    "psnr_outside": 16.577
+   },
+   "camlora": {
+    "psnr": 14.897,
+    "psnr_hand": 13.452,
+    "psnr_outside": 14.977
+   },
+   "base_a14b": {
+    "psnr": 10.614,
+    "psnr_hand": 8.15,
+    "psnr_outside": 10.771
+   },
+   "a14b_v4": {
+    "psnr": 19.578,
+    "psnr_hand": 15.096,
+    "psnr_outside": 19.958
+   }
+  },
+  {
+   "id": "sharpa-gears-391_w92",
+   "episode": 391,
+   "window_offset": 92,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    },
+    {
+     "action": "insert",
+     "gear": 1
+    },
+    {
+     "action": "pick",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 1 + insert 1 + pick 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand, then inserts the first gear onto the base with the right hand, then picks up the second gear from the table with the right hand.",
+   "hand_area_frac": 0.042,
+   "static": {
+    "psnr": 17.534,
+    "psnr_hand": 12.25,
+    "psnr_outside": 18.012
+   },
+   "camlora": {
+    "psnr": 16.063,
+    "psnr_hand": 12.954,
+    "psnr_outside": 16.267
+   },
+   "base_a14b": {
+    "psnr": 11.579,
+    "psnr_hand": 7.949,
+    "psnr_outside": 11.835
+   },
+   "a14b_v4": {
+    "psnr": 19.387,
+    "psnr_hand": 13.924,
+    "psnr_outside": 19.895
+   }
+  },
+  {
+   "id": "sharpa-gears-392_w0",
+   "episode": 392,
+   "window_offset": 0,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand.",
+   "hand_area_frac": 0.0471,
+   "static": {
+    "psnr": 8.962,
+    "psnr_hand": 9.018,
+    "psnr_outside": 8.96
+   },
+   "camlora": {
+    "psnr": 11.227,
+    "psnr_hand": 9.421,
+    "psnr_outside": 11.339
+   },
+   "base_a14b": {
+    "psnr": 7.958,
+    "psnr_hand": 6.743,
+    "psnr_outside": 8.027
+   },
+   "a14b_v4": {
+    "psnr": 15.316,
+    "psnr_hand": 9.772,
+    "psnr_outside": 15.91
+   }
+  },
+  {
+   "id": "sharpa-gears-392_w184",
+   "episode": 392,
+   "window_offset": 184,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 1
+    },
+    {
+     "action": "pick",
+     "gear": 2
+    }
+   ],
+   "step_label": "insert 1 + pick 2",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the first gear onto the base with the right hand, then picks up the second gear from the table with the right hand.",
+   "hand_area_frac": 0.04547,
+   "static": {
+    "psnr": 15.879,
+    "psnr_hand": 11.16,
+    "psnr_outside": 16.306
+   },
+   "camlora": {
+    "psnr": 16.375,
+    "psnr_hand": 12.87,
+    "psnr_outside": 16.64
+   },
+   "base_a14b": {
+    "psnr": 10.284,
+    "psnr_hand": 7.752,
+    "psnr_outside": 10.451
+   },
+   "a14b_v4": {
+    "psnr": 18.804,
+    "psnr_hand": 14.62,
+    "psnr_outside": 19.152
+   }
+  },
+  {
+   "id": "sharpa-gears-392_w276",
+   "episode": 392,
+   "window_offset": 276,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand.",
+   "hand_area_frac": 0.04449,
+   "static": {
+    "psnr": 17.057,
+    "psnr_hand": 12.213,
+    "psnr_outside": 17.493
+   },
+   "camlora": {
+    "psnr": 15.556,
+    "psnr_hand": 12.759,
+    "psnr_outside": 15.742
+   },
+   "base_a14b": {
+    "psnr": 10.713,
+    "psnr_hand": 8.127,
+    "psnr_outside": 10.881
+   },
+   "a14b_v4": {
+    "psnr": 19.068,
+    "psnr_hand": 13.449,
+    "psnr_outside": 19.64
+   }
+  },
+  {
+   "id": "sharpa-gears-392_w368",
+   "episode": 392,
+   "window_offset": 368,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand.",
+   "hand_area_frac": 0.04739,
+   "static": {
+    "psnr": 14.097,
+    "psnr_hand": 9.19,
+    "psnr_outside": 14.575
+   },
+   "camlora": {
+    "psnr": 14.99,
+    "psnr_hand": 11.599,
+    "psnr_outside": 15.254
+   },
+   "base_a14b": {
+    "psnr": 9.69,
+    "psnr_hand": 7.915,
+    "psnr_outside": 9.801
+   },
+   "a14b_v4": {
+    "psnr": 17.179,
+    "psnr_hand": 14.151,
+    "psnr_outside": 17.402
+   }
+  },
+  {
+   "id": "sharpa-gears-392_w460",
+   "episode": 392,
+   "window_offset": 460,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 2
+    },
+    {
+     "action": "insert",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 2 + insert 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand, then inserts the second gear onto the base with the right hand.",
+   "hand_area_frac": 0.04715,
+   "static": {
+    "psnr": 15.356,
+    "psnr_hand": 10.234,
+    "psnr_outside": 15.87
+   },
+   "camlora": {
+    "psnr": 14.464,
+    "psnr_hand": 11.323,
+    "psnr_outside": 14.698
+   },
+   "base_a14b": {
+    "psnr": 9.854,
+    "psnr_hand": 7.898,
+    "psnr_outside": 9.978
+   },
+   "a14b_v4": {
+    "psnr": 17.702,
+    "psnr_hand": 12.912,
+    "psnr_outside": 18.158
+   }
+  },
+  {
+   "id": "sharpa-gears-392_w552",
+   "episode": 392,
+   "window_offset": 552,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 2
+    },
+    {
+     "action": "pick",
+     "gear": 3
+    }
+   ],
+   "step_label": "insert 2 + pick 3",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the second gear onto the base with the right hand, then picks up the third gear from the table with the right hand.",
+   "hand_area_frac": 0.04714,
+   "static": {
+    "psnr": 15.344,
+    "psnr_hand": 11.169,
+    "psnr_outside": 15.706
+   },
+   "camlora": {
+    "psnr": 15.729,
+    "psnr_hand": 12.184,
+    "psnr_outside": 16.009
+   },
+   "base_a14b": {
+    "psnr": 10.308,
+    "psnr_hand": 7.599,
+    "psnr_outside": 10.498
+   },
+   "a14b_v4": {
+    "psnr": 18.7,
+    "psnr_hand": 13.409,
+    "psnr_outside": 19.244
+   }
+  },
+  {
+   "id": "sharpa-gears-392_w644",
+   "episode": 392,
+   "window_offset": 644,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 3
+    },
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "pick 3 + insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the third gear from the table with the right hand, then inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.0466,
+   "static": {
+    "psnr": 17.58,
+    "psnr_hand": 14.443,
+    "psnr_outside": 17.811
+   },
+   "camlora": {
+    "psnr": 16.427,
+    "psnr_hand": 13.978,
+    "psnr_outside": 16.591
+   },
+   "base_a14b": {
+    "psnr": 11.755,
+    "psnr_hand": 8.689,
+    "psnr_outside": 11.978
+   },
+   "a14b_v4": {
+    "psnr": 18.682,
+    "psnr_hand": 14.911,
+    "psnr_outside": 18.986
+   }
+  },
+  {
+   "id": "sharpa-gears-392_w92",
+   "episode": 392,
+   "window_offset": 92,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    },
+    {
+     "action": "insert",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1 + insert 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand, then inserts the first gear onto the base with the right hand.",
+   "hand_area_frac": 0.04255,
+   "static": {
+    "psnr": 18.338,
+    "psnr_hand": 12.689,
+    "psnr_outside": 18.887
+   },
+   "camlora": {
+    "psnr": 17.556,
+    "psnr_hand": 13.075,
+    "psnr_outside": 17.919
+   },
+   "base_a14b": {
+    "psnr": 11.266,
+    "psnr_hand": 8.561,
+    "psnr_outside": 11.436
+   },
+   "a14b_v4": {
+    "psnr": 21.874,
+    "psnr_hand": 15.191,
+    "psnr_outside": 22.645
+   }
+  },
+  {
+   "id": "sharpa-gears-393_w0",
+   "episode": 393,
+   "window_offset": 0,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand.",
+   "hand_area_frac": 0.04781,
+   "static": {
+    "psnr": 8.812,
+    "psnr_hand": 9.19,
+    "psnr_outside": 8.793
+   },
+   "camlora": {
+    "psnr": 10.984,
+    "psnr_hand": 10.03,
+    "psnr_outside": 11.038
+   },
+   "base_a14b": {
+    "psnr": 8.282,
+    "psnr_hand": 7.157,
+    "psnr_outside": 8.347
+   },
+   "a14b_v4": {
+    "psnr": 16.3,
+    "psnr_hand": 9.752,
+    "psnr_outside": 17.144
+   }
+  },
+  {
+   "id": "sharpa-gears-393_w184",
+   "episode": 393,
+   "window_offset": 184,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 2
+    },
+    {
+     "action": "insert",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 2 + insert 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand, then inserts the second gear onto the base with the right hand.",
+   "hand_area_frac": 0.04571,
+   "static": {
+    "psnr": 15.541,
+    "psnr_hand": 9.787,
+    "psnr_outside": 16.158
+   },
+   "camlora": {
+    "psnr": 15.959,
+    "psnr_hand": 12.818,
+    "psnr_outside": 16.185
+   },
+   "base_a14b": {
+    "psnr": 9.857,
+    "psnr_hand": 7.544,
+    "psnr_outside": 10.006
+   },
+   "a14b_v4": {
+    "psnr": 18.915,
+    "psnr_hand": 13.356,
+    "psnr_outside": 19.492
+   }
+  },
+  {
+   "id": "sharpa-gears-393_w276",
+   "episode": 393,
+   "window_offset": 276,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 2
+    },
+    {
+     "action": "pick",
+     "gear": 3
+    }
+   ],
+   "step_label": "insert 2 + pick 3",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the second gear onto the base with the right hand, then picks up the third gear from the table with the right hand.",
+   "hand_area_frac": 0.04739,
+   "static": {
+    "psnr": 16.113,
+    "psnr_hand": 11.019,
+    "psnr_outside": 16.624
+   },
+   "camlora": {
+    "psnr": 15.096,
+    "psnr_hand": 12.43,
+    "psnr_outside": 15.283
+   },
+   "base_a14b": {
+    "psnr": 10.538,
+    "psnr_hand": 7.562,
+    "psnr_outside": 10.757
+   },
+   "a14b_v4": {
+    "psnr": 20.749,
+    "psnr_hand": 14.515,
+    "psnr_outside": 21.502
+   }
+  },
+  {
+   "id": "sharpa-gears-393_w368",
+   "episode": 393,
+   "window_offset": 368,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 3
+    },
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "pick 3 + insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the third gear from the table with the right hand, then inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.04533,
+   "static": {
+    "psnr": 17.887,
+    "psnr_hand": 12.012,
+    "psnr_outside": 18.523
+   },
+   "camlora": {
+    "psnr": 17.079,
+    "psnr_hand": 14.187,
+    "psnr_outside": 17.279
+   },
+   "base_a14b": {
+    "psnr": 10.921,
+    "psnr_hand": 8.224,
+    "psnr_outside": 11.103
+   },
+   "a14b_v4": {
+    "psnr": 20.657,
+    "psnr_hand": 15.706,
+    "psnr_outside": 21.12
+   }
+  },
+  {
+   "id": "sharpa-gears-393_w460",
+   "episode": 393,
+   "window_offset": 460,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.04908,
+   "static": {
+    "psnr": 13.704,
+    "psnr_hand": 9.965,
+    "psnr_outside": 14.021
+   },
+   "camlora": {
+    "psnr": 14.884,
+    "psnr_hand": 11.601,
+    "psnr_outside": 15.145
+   },
+   "base_a14b": {
+    "psnr": 8.013,
+    "psnr_hand": 6.767,
+    "psnr_outside": 8.088
+   },
+   "a14b_v4": {
+    "psnr": 18.059,
+    "psnr_hand": 12.268,
+    "psnr_outside": 18.736
+   }
+  },
+  {
+   "id": "sharpa-gears-393_w92",
+   "episode": 393,
+   "window_offset": 92,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    },
+    {
+     "action": "insert",
+     "gear": 1
+    },
+    {
+     "action": "pick",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 1 + insert 1 + pick 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand, then inserts the first gear onto the base with the right hand, then picks up the second gear from the table with the right hand.",
+   "hand_area_frac": 0.04461,
+   "static": {
+    "psnr": 15.989,
+    "psnr_hand": 11.329,
+    "psnr_outside": 16.398
+   },
+   "camlora": {
+    "psnr": 15.703,
+    "psnr_hand": 12.736,
+    "psnr_outside": 15.906
+   },
+   "base_a14b": {
+    "psnr": 10.954,
+    "psnr_hand": 7.67,
+    "psnr_outside": 11.19
+   },
+   "a14b_v4": {
+    "psnr": 19.846,
+    "psnr_hand": 12.674,
+    "psnr_outside": 20.797
+   }
+  },
+  {
+   "id": "sharpa-gears-394_w0",
+   "episode": 394,
+   "window_offset": 0,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand.",
+   "hand_area_frac": 0.04616,
+   "static": {
+    "psnr": 8.934,
+    "psnr_hand": 8.672,
+    "psnr_outside": 8.947
+   },
+   "camlora": {
+    "psnr": 11.932,
+    "psnr_hand": 10.492,
+    "psnr_outside": 12.015
+   },
+   "base_a14b": {
+    "psnr": 8.27,
+    "psnr_hand": 7.163,
+    "psnr_outside": 8.331
+   },
+   "a14b_v4": {
+    "psnr": 16.109,
+    "psnr_hand": 10.38,
+    "psnr_outside": 16.726
+   }
+  },
+  {
+   "id": "sharpa-gears-394_w184",
+   "episode": 394,
+   "window_offset": 184,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 1
+    },
+    {
+     "action": "pick",
+     "gear": 2
+    }
+   ],
+   "step_label": "insert 1 + pick 2",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the first gear onto the base with the right hand, then picks up the second gear from the table with the right hand.",
+   "hand_area_frac": 0.04379,
+   "static": {
+    "psnr": 16.063,
+    "psnr_hand": 10.583,
+    "psnr_outside": 16.599
+   },
+   "camlora": {
+    "psnr": 15.897,
+    "psnr_hand": 11.511,
+    "psnr_outside": 16.259
+   },
+   "base_a14b": {
+    "psnr": 11.105,
+    "psnr_hand": 8.027,
+    "psnr_outside": 11.315
+   },
+   "a14b_v4": {
+    "psnr": 20.336,
+    "psnr_hand": 14.55,
+    "psnr_outside": 20.929
+   }
+  },
+  {
+   "id": "sharpa-gears-394_w276",
+   "episode": 394,
+   "window_offset": 276,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 2
+    },
+    {
+     "action": "insert",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 2 + insert 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand, then inserts the second gear onto the base with the right hand.",
+   "hand_area_frac": 0.04304,
+   "static": {
+    "psnr": 19.2,
+    "psnr_hand": 15.175,
+    "psnr_outside": 19.509
+   },
+   "camlora": {
+    "psnr": 18.812,
+    "psnr_hand": 14.561,
+    "psnr_outside": 19.149
+   },
+   "base_a14b": {
+    "psnr": 9.893,
+    "psnr_hand": 7.389,
+    "psnr_outside": 10.048
+   },
+   "a14b_v4": {
+    "psnr": 20.462,
+    "psnr_hand": 14.404,
+    "psnr_outside": 21.099
+   }
+  },
+  {
+   "id": "sharpa-gears-394_w368",
+   "episode": 394,
+   "window_offset": 368,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 2
+    },
+    {
+     "action": "pick",
+     "gear": 3
+    }
+   ],
+   "step_label": "insert 2 + pick 3",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the second gear onto the base with the right hand, then picks up the third gear from the table with the right hand.",
+   "hand_area_frac": 0.04561,
+   "static": {
+    "psnr": 17.717,
+    "psnr_hand": 13.007,
+    "psnr_outside": 18.143
+   },
+   "camlora": {
+    "psnr": 15.746,
+    "psnr_hand": 12.123,
+    "psnr_outside": 16.025
+   },
+   "base_a14b": {
+    "psnr": 10.054,
+    "psnr_hand": 7.571,
+    "psnr_outside": 10.217
+   },
+   "a14b_v4": {
+    "psnr": 19.774,
+    "psnr_hand": 13.111,
+    "psnr_outside": 20.603
+   }
+  },
+  {
+   "id": "sharpa-gears-394_w460",
+   "episode": 394,
+   "window_offset": 460,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 3
+    },
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "pick 3 + insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the third gear from the table with the right hand, then inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.04441,
+   "static": {
+    "psnr": 16.921,
+    "psnr_hand": 12.999,
+    "psnr_outside": 17.228
+   },
+   "camlora": {
+    "psnr": 15.437,
+    "psnr_hand": 12.223,
+    "psnr_outside": 15.664
+   },
+   "base_a14b": {
+    "psnr": 9.543,
+    "psnr_hand": 7.842,
+    "psnr_outside": 9.641
+   },
+   "a14b_v4": {
+    "psnr": 18.979,
+    "psnr_hand": 15.319,
+    "psnr_outside": 19.254
+   }
+  },
+  {
+   "id": "sharpa-gears-394_w552",
+   "episode": 394,
+   "window_offset": 552,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.04845,
+   "static": {
+    "psnr": 12.904,
+    "psnr_hand": 10.114,
+    "psnr_outside": 13.108
+   },
+   "camlora": {
+    "psnr": 15.071,
+    "psnr_hand": 11.677,
+    "psnr_outside": 15.341
+   },
+   "base_a14b": {
+    "psnr": 8.514,
+    "psnr_hand": 7.337,
+    "psnr_outside": 8.583
+   },
+   "a14b_v4": {
+    "psnr": 18.336,
+    "psnr_hand": 12.774,
+    "psnr_outside": 18.953
+   }
+  },
+  {
+   "id": "sharpa-gears-394_w92",
+   "episode": 394,
+   "window_offset": 92,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    },
+    {
+     "action": "insert",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1 + insert 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand, then inserts the first gear onto the base with the right hand.",
+   "hand_area_frac": 0.04168,
+   "static": {
+    "psnr": 16.783,
+    "psnr_hand": 11.69,
+    "psnr_outside": 17.226
+   },
+   "camlora": {
+    "psnr": 16.281,
+    "psnr_hand": 13.086,
+    "psnr_outside": 16.491
+   },
+   "base_a14b": {
+    "psnr": 11.247,
+    "psnr_hand": 8.209,
+    "psnr_outside": 11.443
+   },
+   "a14b_v4": {
+    "psnr": 20.841,
+    "psnr_hand": 13.566,
+    "psnr_outside": 21.75
+   }
+  },
+  {
+   "id": "sharpa-gears-395_w0",
+   "episode": 395,
+   "window_offset": 0,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand.",
+   "hand_area_frac": 0.04703,
+   "static": {
+    "psnr": 8.876,
+    "psnr_hand": 8.93,
+    "psnr_outside": 8.874
+   },
+   "camlora": {
+    "psnr": 11.443,
+    "psnr_hand": 9.98,
+    "psnr_outside": 11.53
+   },
+   "base_a14b": {
+    "psnr": 8.399,
+    "psnr_hand": 7.063,
+    "psnr_outside": 8.477
+   },
+   "a14b_v4": {
+    "psnr": 15.707,
+    "psnr_hand": 9.412,
+    "psnr_outside": 16.47
+   }
+  },
+  {
+   "id": "sharpa-gears-395_w184",
+   "episode": 395,
+   "window_offset": 184,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 2
+    },
+    {
+     "action": "insert",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 2 + insert 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand, then inserts the second gear onto the base with the right hand.",
+   "hand_area_frac": 0.04506,
+   "static": {
+    "psnr": 14.665,
+    "psnr_hand": 9.93,
+    "psnr_outside": 15.09
+   },
+   "camlora": {
+    "psnr": 16.692,
+    "psnr_hand": 12.346,
+    "psnr_outside": 17.059
+   },
+   "base_a14b": {
+    "psnr": 10.6,
+    "psnr_hand": 7.791,
+    "psnr_outside": 10.791
+   },
+   "a14b_v4": {
+    "psnr": 18.821,
+    "psnr_hand": 12.927,
+    "psnr_outside": 19.457
+   }
+  },
+  {
+   "id": "sharpa-gears-395_w276",
+   "episode": 395,
+   "window_offset": 276,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 2
+    },
+    {
+     "action": "pick",
+     "gear": 3
+    }
+   ],
+   "step_label": "insert 2 + pick 3",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the second gear onto the base with the right hand, then picks up the third gear from the table with the right hand.",
+   "hand_area_frac": 0.04646,
+   "static": {
+    "psnr": 14.603,
+    "psnr_hand": 9.847,
+    "psnr_outside": 15.046
+   },
+   "camlora": {
+    "psnr": 15.557,
+    "psnr_hand": 13.233,
+    "psnr_outside": 15.709
+   },
+   "base_a14b": {
+    "psnr": 10.575,
+    "psnr_hand": 7.988,
+    "psnr_outside": 10.751
+   },
+   "a14b_v4": {
+    "psnr": 17.911,
+    "psnr_hand": 13.149,
+    "psnr_outside": 18.355
+   }
+  },
+  {
+   "id": "sharpa-gears-395_w368",
+   "episode": 395,
+   "window_offset": 368,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 3
+    },
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "pick 3 + insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the third gear from the table with the right hand, then inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.0467,
+   "static": {
+    "psnr": 14.392,
+    "psnr_hand": 9.393,
+    "psnr_outside": 14.878
+   },
+   "camlora": {
+    "psnr": 14.856,
+    "psnr_hand": 12.444,
+    "psnr_outside": 15.017
+   },
+   "base_a14b": {
+    "psnr": 10.242,
+    "psnr_hand": 7.49,
+    "psnr_outside": 10.435
+   },
+   "a14b_v4": {
+    "psnr": 17.941,
+    "psnr_hand": 13.255,
+    "psnr_outside": 18.375
+   }
+  },
+  {
+   "id": "sharpa-gears-395_w460",
+   "episode": 395,
+   "window_offset": 460,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.04811,
+   "static": {
+    "psnr": 17.337,
+    "psnr_hand": 12.126,
+    "psnr_outside": 17.878
+   },
+   "camlora": {
+    "psnr": 16.014,
+    "psnr_hand": 12.887,
+    "psnr_outside": 16.252
+   },
+   "base_a14b": {
+    "psnr": 8.574,
+    "psnr_hand": 7.634,
+    "psnr_outside": 8.627
+   },
+   "a14b_v4": {
+    "psnr": 21.449,
+    "psnr_hand": 15.057,
+    "psnr_outside": 22.256
+   }
+  },
+  {
+   "id": "sharpa-gears-395_w92",
+   "episode": 395,
+   "window_offset": 92,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    },
+    {
+     "action": "insert",
+     "gear": 1
+    },
+    {
+     "action": "pick",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 1 + insert 1 + pick 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand, then inserts the first gear onto the base with the right hand, then picks up the second gear from the table with the right hand.",
+   "hand_area_frac": 0.04356,
+   "static": {
+    "psnr": 15.489,
+    "psnr_hand": 10.258,
+    "psnr_outside": 15.978
+   },
+   "camlora": {
+    "psnr": 15.306,
+    "psnr_hand": 12.221,
+    "psnr_outside": 15.516
+   },
+   "base_a14b": {
+    "psnr": 10.933,
+    "psnr_hand": 7.773,
+    "psnr_outside": 11.15
+   },
+   "a14b_v4": {
+    "psnr": 20.062,
+    "psnr_hand": 14.584,
+    "psnr_outside": 20.593
+   }
+  },
+  {
+   "id": "sharpa-gears-396_w0",
+   "episode": 396,
+   "window_offset": 0,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand.",
+   "hand_area_frac": 0.04649,
+   "static": {
+    "psnr": 8.892,
+    "psnr_hand": 8.882,
+    "psnr_outside": 8.893
+   },
+   "camlora": {
+    "psnr": 12.029,
+    "psnr_hand": 10.56,
+    "psnr_outside": 12.115
+   },
+   "base_a14b": {
+    "psnr": 8.403,
+    "psnr_hand": 7.32,
+    "psnr_outside": 8.463
+   },
+   "a14b_v4": {
+    "psnr": 16.311,
+    "psnr_hand": 9.96,
+    "psnr_outside": 17.076
+   }
+  },
+  {
+   "id": "sharpa-gears-396_w184",
+   "episode": 396,
+   "window_offset": 184,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 2
+    },
+    {
+     "action": "insert",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 2 + insert 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand, then inserts the second gear onto the base with the right hand.",
+   "hand_area_frac": 0.04485,
+   "static": {
+    "psnr": 15.645,
+    "psnr_hand": 9.747,
+    "psnr_outside": 16.278
+   },
+   "camlora": {
+    "psnr": 16.034,
+    "psnr_hand": 12.898,
+    "psnr_outside": 16.256
+   },
+   "base_a14b": {
+    "psnr": 10.135,
+    "psnr_hand": 7.764,
+    "psnr_outside": 10.286
+   },
+   "a14b_v4": {
+    "psnr": 18.876,
+    "psnr_hand": 14.454,
+    "psnr_outside": 19.253
+   }
+  },
+  {
+   "id": "sharpa-gears-396_w276",
+   "episode": 396,
+   "window_offset": 276,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 2
+    },
+    {
+     "action": "pick",
+     "gear": 3
+    }
+   ],
+   "step_label": "insert 2 + pick 3",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the second gear onto the base with the right hand, then picks up the third gear from the table with the right hand.",
+   "hand_area_frac": 0.04683,
+   "static": {
+    "psnr": 16.529,
+    "psnr_hand": 11.791,
+    "psnr_outside": 16.973
+   },
+   "camlora": {
+    "psnr": 16.542,
+    "psnr_hand": 13.284,
+    "psnr_outside": 16.787
+   },
+   "base_a14b": {
+    "psnr": 10.746,
+    "psnr_hand": 7.796,
+    "psnr_outside": 10.958
+   },
+   "a14b_v4": {
+    "psnr": 19.816,
+    "psnr_hand": 14.487,
+    "psnr_outside": 20.363
+   }
+  },
+  {
+   "id": "sharpa-gears-396_w368",
+   "episode": 396,
+   "window_offset": 368,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 3
+    },
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "pick 3 + insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the third gear from the table with the right hand, then inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.04618,
+   "static": {
+    "psnr": 16.75,
+    "psnr_hand": 14.632,
+    "psnr_outside": 16.884
+   },
+   "camlora": {
+    "psnr": 16.785,
+    "psnr_hand": 13.97,
+    "psnr_outside": 16.981
+   },
+   "base_a14b": {
+    "psnr": 9.875,
+    "psnr_hand": 7.825,
+    "psnr_outside": 10.003
+   },
+   "a14b_v4": {
+    "psnr": 19.13,
+    "psnr_hand": 14.07,
+    "psnr_outside": 19.621
+   }
+  },
+  {
+   "id": "sharpa-gears-396_w460",
+   "episode": 396,
+   "window_offset": 460,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.04922,
+   "static": {
+    "psnr": 13.026,
+    "psnr_hand": 10.296,
+    "psnr_outside": 13.227
+   },
+   "camlora": {
+    "psnr": 14.574,
+    "psnr_hand": 11.6,
+    "psnr_outside": 14.801
+   },
+   "base_a14b": {
+    "psnr": 8.116,
+    "psnr_hand": 7.355,
+    "psnr_outside": 8.159
+   },
+   "a14b_v4": {
+    "psnr": 19.122,
+    "psnr_hand": 12.717,
+    "psnr_outside": 19.955
+   }
+  },
+  {
+   "id": "sharpa-gears-396_w92",
+   "episode": 396,
+   "window_offset": 92,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    },
+    {
+     "action": "insert",
+     "gear": 1
+    },
+    {
+     "action": "pick",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 1 + insert 1 + pick 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand, then inserts the first gear onto the base with the right hand, then picks up the second gear from the table with the right hand.",
+   "hand_area_frac": 0.04343,
+   "static": {
+    "psnr": 15.907,
+    "psnr_hand": 11.213,
+    "psnr_outside": 16.309
+   },
+   "camlora": {
+    "psnr": 15.206,
+    "psnr_hand": 12.329,
+    "psnr_outside": 15.395
+   },
+   "base_a14b": {
+    "psnr": 10.442,
+    "psnr_hand": 7.926,
+    "psnr_outside": 10.6
+   },
+   "a14b_v4": {
+    "psnr": 18.616,
+    "psnr_hand": 13.056,
+    "psnr_outside": 19.161
+   }
+  },
+  {
+   "id": "sharpa-gears-397_w0",
+   "episode": 397,
+   "window_offset": 0,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand.",
+   "hand_area_frac": 0.04692,
+   "static": {
+    "psnr": 8.697,
+    "psnr_hand": 8.887,
+    "psnr_outside": 8.687
+   },
+   "camlora": {
+    "psnr": 11.238,
+    "psnr_hand": 9.628,
+    "psnr_outside": 11.335
+   },
+   "base_a14b": {
+    "psnr": 8.456,
+    "psnr_hand": 6.818,
+    "psnr_outside": 8.555
+   },
+   "a14b_v4": {
+    "psnr": 15.905,
+    "psnr_hand": 9.795,
+    "psnr_outside": 16.62
+   }
+  },
+  {
+   "id": "sharpa-gears-397_w184",
+   "episode": 397,
+   "window_offset": 184,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 1
+    },
+    {
+     "action": "pick",
+     "gear": 2
+    },
+    {
+     "action": "insert",
+     "gear": 2
+    }
+   ],
+   "step_label": "insert 1 + pick 2 + insert 2",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the first gear onto the base with the right hand, then picks up the second gear from the table with the right hand, then inserts the second gear onto the base with the right hand.",
+   "hand_area_frac": 0.04355,
+   "static": {
+    "psnr": 15.714,
+    "psnr_hand": 10.574,
+    "psnr_outside": 16.187
+   },
+   "camlora": {
+    "psnr": 16.086,
+    "psnr_hand": 12.851,
+    "psnr_outside": 16.311
+   },
+   "base_a14b": {
+    "psnr": 10.429,
+    "psnr_hand": 8.032,
+    "psnr_outside": 10.578
+   },
+   "a14b_v4": {
+    "psnr": 18.975,
+    "psnr_hand": 12.173,
+    "psnr_outside": 19.798
+   }
+  },
+  {
+   "id": "sharpa-gears-397_w276",
+   "episode": 397,
+   "window_offset": 276,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 2
+    },
+    {
+     "action": "pick",
+     "gear": 3
+    }
+   ],
+   "step_label": "insert 2 + pick 3",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the second gear onto the base with the right hand, then picks up the third gear from the table with the right hand.",
+   "hand_area_frac": 0.04406,
+   "static": {
+    "psnr": 16.045,
+    "psnr_hand": 11.798,
+    "psnr_outside": 16.391
+   },
+   "camlora": {
+    "psnr": 15.626,
+    "psnr_hand": 12.602,
+    "psnr_outside": 15.832
+   },
+   "base_a14b": {
+    "psnr": 10.72,
+    "psnr_hand": 7.581,
+    "psnr_outside": 10.938
+   },
+   "a14b_v4": {
+    "psnr": 19.487,
+    "psnr_hand": 13.685,
+    "psnr_outside": 20.088
+   }
+  },
+  {
+   "id": "sharpa-gears-397_w368",
+   "episode": 397,
+   "window_offset": 368,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 3
+    },
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "pick 3 + insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the third gear from the table with the right hand, then inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.04469,
+   "static": {
+    "psnr": 14.733,
+    "psnr_hand": 10.58,
+    "psnr_outside": 15.072
+   },
+   "camlora": {
+    "psnr": 15.437,
+    "psnr_hand": 13.192,
+    "psnr_outside": 15.577
+   },
+   "base_a14b": {
+    "psnr": 10.396,
+    "psnr_hand": 7.902,
+    "psnr_outside": 10.556
+   },
+   "a14b_v4": {
+    "psnr": 19.309,
+    "psnr_hand": 13.708,
+    "psnr_outside": 19.879
+   }
+  },
+  {
+   "id": "sharpa-gears-397_w460",
+   "episode": 397,
+   "window_offset": 460,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.04639,
+   "static": {
+    "psnr": 15.874,
+    "psnr_hand": 11.677,
+    "psnr_outside": 16.233
+   },
+   "camlora": {
+    "psnr": 15.314,
+    "psnr_hand": 12.712,
+    "psnr_outside": 15.491
+   },
+   "base_a14b": {
+    "psnr": 10.762,
+    "psnr_hand": 7.874,
+    "psnr_outside": 10.967
+   },
+   "a14b_v4": {
+    "psnr": 20.064,
+    "psnr_hand": 14.033,
+    "psnr_outside": 20.751
+   }
+  },
+  {
+   "id": "sharpa-gears-397_w92",
+   "episode": 397,
+   "window_offset": 92,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    },
+    {
+     "action": "insert",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1 + insert 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand, then inserts the first gear onto the base with the right hand.",
+   "hand_area_frac": 0.04268,
+   "static": {
+    "psnr": 15.879,
+    "psnr_hand": 10.688,
+    "psnr_outside": 16.349
+   },
+   "camlora": {
+    "psnr": 15.771,
+    "psnr_hand": 13.841,
+    "psnr_outside": 15.881
+   },
+   "base_a14b": {
+    "psnr": 10.079,
+    "psnr_hand": 7.741,
+    "psnr_outside": 10.22
+   },
+   "a14b_v4": {
+    "psnr": 21.703,
+    "psnr_hand": 16.306,
+    "psnr_outside": 22.208
+   }
+  },
+  {
+   "id": "sharpa-gears-398_w0",
+   "episode": 398,
+   "window_offset": 0,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand.",
+   "hand_area_frac": 0.04582,
+   "static": {
+    "psnr": 8.961,
+    "psnr_hand": 8.455,
+    "psnr_outside": 8.986
+   },
+   "camlora": {
+    "psnr": 12.406,
+    "psnr_hand": 10.162,
+    "psnr_outside": 12.549
+   },
+   "base_a14b": {
+    "psnr": 8.627,
+    "psnr_hand": 7.713,
+    "psnr_outside": 8.676
+   },
+   "a14b_v4": {
+    "psnr": 16.131,
+    "psnr_hand": 9.889,
+    "psnr_outside": 16.857
+   }
+  },
+  {
+   "id": "sharpa-gears-398_w184",
+   "episode": 398,
+   "window_offset": 184,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 1
+    },
+    {
+     "action": "pick",
+     "gear": 2
+    }
+   ],
+   "step_label": "insert 1 + pick 2",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the first gear onto the base with the right hand, then picks up the second gear from the table with the right hand.",
+   "hand_area_frac": 0.04409,
+   "static": {
+    "psnr": 17.233,
+    "psnr_hand": 11.573,
+    "psnr_outside": 17.806
+   },
+   "camlora": {
+    "psnr": 16.635,
+    "psnr_hand": 12.043,
+    "psnr_outside": 17.029
+   },
+   "base_a14b": {
+    "psnr": 11.246,
+    "psnr_hand": 8.407,
+    "psnr_outside": 11.435
+   },
+   "a14b_v4": {
+    "psnr": 19.931,
+    "psnr_hand": 13.385,
+    "psnr_outside": 20.699
+   }
+  },
+  {
+   "id": "sharpa-gears-398_w276",
+   "episode": 398,
+   "window_offset": 276,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand.",
+   "hand_area_frac": 0.04259,
+   "static": {
+    "psnr": 18.356,
+    "psnr_hand": 13.065,
+    "psnr_outside": 18.843
+   },
+   "camlora": {
+    "psnr": 17.587,
+    "psnr_hand": 13.762,
+    "psnr_outside": 17.869
+   },
+   "base_a14b": {
+    "psnr": 10.625,
+    "psnr_hand": 8.102,
+    "psnr_outside": 10.78
+   },
+   "a14b_v4": {
+    "psnr": 19.43,
+    "psnr_hand": 12.733,
+    "psnr_outside": 20.206
+   }
+  },
+  {
+   "id": "sharpa-gears-398_w368",
+   "episode": 398,
+   "window_offset": 368,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 2
+    },
+    {
+     "action": "insert",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 2 + insert 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand, then inserts the second gear onto the base with the right hand.",
+   "hand_area_frac": 0.04525,
+   "static": {
+    "psnr": 14.126,
+    "psnr_hand": 9.643,
+    "psnr_outside": 14.515
+   },
+   "camlora": {
+    "psnr": 15.342,
+    "psnr_hand": 12.393,
+    "psnr_outside": 15.546
+   },
+   "base_a14b": {
+    "psnr": 9.986,
+    "psnr_hand": 8.222,
+    "psnr_outside": 10.091
+   },
+   "a14b_v4": {
+    "psnr": 16.98,
+    "psnr_hand": 12.715,
+    "psnr_outside": 17.338
+   }
+  },
+  {
+   "id": "sharpa-gears-398_w460",
+   "episode": 398,
+   "window_offset": 460,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 2
+    },
+    {
+     "action": "pick",
+     "gear": 3
+    }
+   ],
+   "step_label": "insert 2 + pick 3",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the second gear onto the base with the right hand, then picks up the third gear from the table with the right hand.",
+   "hand_area_frac": 0.04582,
+   "static": {
+    "psnr": 14.795,
+    "psnr_hand": 10.206,
+    "psnr_outside": 15.205
+   },
+   "camlora": {
+    "psnr": 15.014,
+    "psnr_hand": 11.591,
+    "psnr_outside": 15.271
+   },
+   "base_a14b": {
+    "psnr": 10.54,
+    "psnr_hand": 7.143,
+    "psnr_outside": 10.795
+   },
+   "a14b_v4": {
+    "psnr": 18.973,
+    "psnr_hand": 14.192,
+    "psnr_outside": 19.413
+   }
+  },
+  {
+   "id": "sharpa-gears-398_w552",
+   "episode": 398,
+   "window_offset": 552,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 3
+    },
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "pick 3 + insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the third gear from the table with the right hand, then inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.04513,
+   "static": {
+    "psnr": 14.258,
+    "psnr_hand": 9.623,
+    "psnr_outside": 14.668
+   },
+   "camlora": {
+    "psnr": 15.332,
+    "psnr_hand": 12.965,
+    "psnr_outside": 15.484
+   },
+   "base_a14b": {
+    "psnr": 10.18,
+    "psnr_hand": 8.039,
+    "psnr_outside": 10.313
+   },
+   "a14b_v4": {
+    "psnr": 17.996,
+    "psnr_hand": 13.635,
+    "psnr_outside": 18.366
+   }
+  },
+  {
+   "id": "sharpa-gears-398_w644",
+   "episode": 398,
+   "window_offset": 644,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.04682,
+   "static": {
+    "psnr": 15.472,
+    "psnr_hand": 12.049,
+    "psnr_outside": 15.736
+   },
+   "camlora": {
+    "psnr": 16.125,
+    "psnr_hand": 13.871,
+    "psnr_outside": 16.273
+   },
+   "base_a14b": {
+    "psnr": 7.681,
+    "psnr_hand": 7.303,
+    "psnr_outside": 7.701
+   },
+   "a14b_v4": {
+    "psnr": 19.666,
+    "psnr_hand": 14.217,
+    "psnr_outside": 20.236
+   }
+  },
+  {
+   "id": "sharpa-gears-398_w92",
+   "episode": 398,
+   "window_offset": 92,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    },
+    {
+     "action": "insert",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1 + insert 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand, then inserts the first gear onto the base with the right hand.",
+   "hand_area_frac": 0.04251,
+   "static": {
+    "psnr": 14.532,
+    "psnr_hand": 9.461,
+    "psnr_outside": 14.981
+   },
+   "camlora": {
+    "psnr": 16.227,
+    "psnr_hand": 13.067,
+    "psnr_outside": 16.438
+   },
+   "base_a14b": {
+    "psnr": 10.576,
+    "psnr_hand": 7.633,
+    "psnr_outside": 10.767
+   },
+   "a14b_v4": {
+    "psnr": 20.741,
+    "psnr_hand": 14.362,
+    "psnr_outside": 21.439
+   }
+  },
+  {
+   "id": "sharpa-gears-399_w0",
+   "episode": 399,
+   "window_offset": 0,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand.",
+   "hand_area_frac": 0.04704,
+   "static": {
+    "psnr": 8.659,
+    "psnr_hand": 8.941,
+    "psnr_outside": 8.645
+   },
+   "camlora": {
+    "psnr": 11.472,
+    "psnr_hand": 9.787,
+    "psnr_outside": 11.575
+   },
+   "base_a14b": {
+    "psnr": 8.175,
+    "psnr_hand": 7.073,
+    "psnr_outside": 8.238
+   },
+   "a14b_v4": {
+    "psnr": 16.724,
+    "psnr_hand": 9.717,
+    "psnr_outside": 17.685
+   }
+  },
+  {
+   "id": "sharpa-gears-399_w184",
+   "episode": 399,
+   "window_offset": 184,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    },
+    {
+     "action": "insert",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1 + insert 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand, then inserts the first gear onto the base with the right hand.",
+   "hand_area_frac": 0.0439,
+   "static": {
+    "psnr": 15.264,
+    "psnr_hand": 9.535,
+    "psnr_outside": 15.849
+   },
+   "camlora": {
+    "psnr": 16.6,
+    "psnr_hand": 12.469,
+    "psnr_outside": 16.929
+   },
+   "base_a14b": {
+    "psnr": 9.662,
+    "psnr_hand": 7.646,
+    "psnr_outside": 9.782
+   },
+   "a14b_v4": {
+    "psnr": 18.166,
+    "psnr_hand": 12.322,
+    "psnr_outside": 18.773
+   }
+  },
+  {
+   "id": "sharpa-gears-399_w276",
+   "episode": 399,
+   "window_offset": 276,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 1
+    },
+    {
+     "action": "pick",
+     "gear": 2
+    }
+   ],
+   "step_label": "insert 1 + pick 2",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the first gear onto the base with the right hand, then picks up the second gear from the table with the right hand.",
+   "hand_area_frac": 0.04569,
+   "static": {
+    "psnr": 16.189,
+    "psnr_hand": 11.41,
+    "psnr_outside": 16.627
+   },
+   "camlora": {
+    "psnr": 16.557,
+    "psnr_hand": 13.088,
+    "psnr_outside": 16.819
+   },
+   "base_a14b": {
+    "psnr": 11.599,
+    "psnr_hand": 8.138,
+    "psnr_outside": 11.861
+   },
+   "a14b_v4": {
+    "psnr": 20.832,
+    "psnr_hand": 15.333,
+    "psnr_outside": 21.396
+   }
+  },
+  {
+   "id": "sharpa-gears-399_w368",
+   "episode": 399,
+   "window_offset": 368,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand.",
+   "hand_area_frac": 0.04374,
+   "static": {
+    "psnr": 16.645,
+    "psnr_hand": 11.281,
+    "psnr_outside": 17.158
+   },
+   "camlora": {
+    "psnr": 16.591,
+    "psnr_hand": 13.71,
+    "psnr_outside": 16.782
+   },
+   "base_a14b": {
+    "psnr": 9.728,
+    "psnr_hand": 7.881,
+    "psnr_outside": 9.835
+   },
+   "a14b_v4": {
+    "psnr": 20.919,
+    "psnr_hand": 15.36,
+    "psnr_outside": 21.468
+   }
+  },
+  {
+   "id": "sharpa-gears-399_w460",
+   "episode": 399,
+   "window_offset": 460,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 2
+    },
+    {
+     "action": "insert",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 2 + insert 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand, then inserts the second gear onto the base with the right hand.",
+   "hand_area_frac": 0.04449,
+   "static": {
+    "psnr": 19.376,
+    "psnr_hand": 13.13,
+    "psnr_outside": 20.079
+   },
+   "camlora": {
+    "psnr": 16.469,
+    "psnr_hand": 13.23,
+    "psnr_outside": 16.699
+   },
+   "base_a14b": {
+    "psnr": 10.199,
+    "psnr_hand": 7.833,
+    "psnr_outside": 10.348
+   },
+   "a14b_v4": {
+    "psnr": 18.99,
+    "psnr_hand": 14.425,
+    "psnr_outside": 19.384
+   }
+  },
+  {
+   "id": "sharpa-gears-399_w552",
+   "episode": 399,
+   "window_offset": 552,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 2
+    },
+    {
+     "action": "pick",
+     "gear": 3
+    }
+   ],
+   "step_label": "insert 2 + pick 3",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the second gear onto the base with the right hand, then picks up the third gear from the table with the right hand.",
+   "hand_area_frac": 0.04609,
+   "static": {
+    "psnr": 17.633,
+    "psnr_hand": 11.785,
+    "psnr_outside": 18.275
+   },
+   "camlora": {
+    "psnr": 15.881,
+    "psnr_hand": 12.284,
+    "psnr_outside": 16.16
+   },
+   "base_a14b": {
+    "psnr": 10.66,
+    "psnr_hand": 8.028,
+    "psnr_outside": 10.838
+   },
+   "a14b_v4": {
+    "psnr": 19.025,
+    "psnr_hand": 13.579,
+    "psnr_outside": 19.585
+   }
+  },
+  {
+   "id": "sharpa-gears-399_w644",
+   "episode": 399,
+   "window_offset": 644,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 3
+    },
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "pick 3 + insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the third gear from the table with the right hand, then inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.04577,
+   "static": {
+    "psnr": 16.973,
+    "psnr_hand": 11.241,
+    "psnr_outside": 17.586
+   },
+   "camlora": {
+    "psnr": 16.26,
+    "psnr_hand": 13.16,
+    "psnr_outside": 16.482
+   },
+   "base_a14b": {
+    "psnr": 11.54,
+    "psnr_hand": 7.953,
+    "psnr_outside": 11.816
+   },
+   "a14b_v4": {
+    "psnr": 20.174,
+    "psnr_hand": 14.154,
+    "psnr_outside": 20.849
+   }
+  },
+  {
+   "id": "sharpa-gears-399_w92",
+   "episode": 399,
+   "window_offset": 92,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand.",
+   "hand_area_frac": 0.04381,
+   "static": {
+    "psnr": 16.036,
+    "psnr_hand": 10.869,
+    "psnr_outside": 16.516
+   },
+   "camlora": {
+    "psnr": 16.118,
+    "psnr_hand": 13.368,
+    "psnr_outside": 16.298
+   },
+   "base_a14b": {
+    "psnr": 10.188,
+    "psnr_hand": 7.965,
+    "psnr_outside": 10.323
+   },
+   "a14b_v4": {
+    "psnr": 19.788,
+    "psnr_hand": 12.563,
+    "psnr_outside": 20.736
+   }
+  },
+  {
+   "id": "sharpa-gears-400_w0",
+   "episode": 400,
+   "window_offset": 0,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand.",
+   "hand_area_frac": 0.04773,
+   "static": {
+    "psnr": 8.768,
+    "psnr_hand": 9.203,
+    "psnr_outside": 8.747
+   },
+   "camlora": {
+    "psnr": 11.393,
+    "psnr_hand": 9.701,
+    "psnr_outside": 11.498
+   },
+   "base_a14b": {
+    "psnr": 9.429,
+    "psnr_hand": 7.894,
+    "psnr_outside": 9.523
+   },
+   "a14b_v4": {
+    "psnr": 15.734,
+    "psnr_hand": 9.625,
+    "psnr_outside": 16.463
+   }
+  },
+  {
+   "id": "sharpa-gears-400_w184",
+   "episode": 400,
+   "window_offset": 184,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand.",
+   "hand_area_frac": 0.04486,
+   "static": {
+    "psnr": 15.835,
+    "psnr_hand": 10.025,
+    "psnr_outside": 16.449
+   },
+   "camlora": {
+    "psnr": 17.291,
+    "psnr_hand": 12.977,
+    "psnr_outside": 17.652
+   },
+   "base_a14b": {
+    "psnr": 10.892,
+    "psnr_hand": 7.873,
+    "psnr_outside": 11.101
+   },
+   "a14b_v4": {
+    "psnr": 19.735,
+    "psnr_hand": 14.349,
+    "psnr_outside": 20.268
+   }
+  },
+  {
+   "id": "sharpa-gears-400_w276",
+   "episode": 400,
+   "window_offset": 276,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 2
+    },
+    {
+     "action": "insert",
+     "gear": 2
+    },
+    {
+     "action": "pick",
+     "gear": 3
+    }
+   ],
+   "step_label": "pick 2 + insert 2 + pick 3",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand, then inserts the second gear onto the base with the right hand, then picks up the third gear from the table with the right hand.",
+   "hand_area_frac": 0.04583,
+   "static": {
+    "psnr": 16.375,
+    "psnr_hand": 11.864,
+    "psnr_outside": 16.773
+   },
+   "camlora": {
+    "psnr": 15.717,
+    "psnr_hand": 13.129,
+    "psnr_outside": 15.891
+   },
+   "base_a14b": {
+    "psnr": 10.551,
+    "psnr_hand": 7.662,
+    "psnr_outside": 10.753
+   },
+   "a14b_v4": {
+    "psnr": 19.74,
+    "psnr_hand": 13.25,
+    "psnr_outside": 20.529
+   }
+  },
+  {
+   "id": "sharpa-gears-400_w368",
+   "episode": 400,
+   "window_offset": 368,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 3
+    }
+   ],
+   "step_label": "pick 3",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the third gear from the table with the right hand.",
+   "hand_area_frac": 0.04659,
+   "static": {
+    "psnr": 14.763,
+    "psnr_hand": 9.464,
+    "psnr_outside": 15.302
+   },
+   "camlora": {
+    "psnr": 15.701,
+    "psnr_hand": 12.94,
+    "psnr_outside": 15.893
+   },
+   "base_a14b": {
+    "psnr": 9.994,
+    "psnr_hand": 7.454,
+    "psnr_outside": 10.166
+   },
+   "a14b_v4": {
+    "psnr": 18.256,
+    "psnr_hand": 13.63,
+    "psnr_outside": 18.679
+   }
+  },
+  {
+   "id": "sharpa-gears-400_w460",
+   "episode": 400,
+   "window_offset": 460,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 3
+    },
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "pick 3 + insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the third gear from the table with the right hand, then inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.04678,
+   "static": {
+    "psnr": 17.174,
+    "psnr_hand": 13.685,
+    "psnr_outside": 17.445
+   },
+   "camlora": {
+    "psnr": 16.887,
+    "psnr_hand": 15.48,
+    "psnr_outside": 16.969
+   },
+   "base_a14b": {
+    "psnr": 10.142,
+    "psnr_hand": 7.836,
+    "psnr_outside": 10.294
+   },
+   "a14b_v4": {
+    "psnr": 19.965,
+    "psnr_hand": 14.005,
+    "psnr_outside": 20.643
+   }
+  },
+  {
+   "id": "sharpa-gears-400_w552",
+   "episode": 400,
+   "window_offset": 552,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.05007,
+   "static": {
+    "psnr": 13.15,
+    "psnr_hand": 10.186,
+    "psnr_outside": 13.38
+   },
+   "camlora": {
+    "psnr": 15.986,
+    "psnr_hand": 12.497,
+    "psnr_outside": 16.278
+   },
+   "base_a14b": {
+    "psnr": 8.94,
+    "psnr_hand": 8.172,
+    "psnr_outside": 8.984
+   },
+   "a14b_v4": {
+    "psnr": 17.963,
+    "psnr_hand": 12.834,
+    "psnr_outside": 18.513
+   }
+  },
+  {
+   "id": "sharpa-gears-400_w92",
+   "episode": 400,
+   "window_offset": 92,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    },
+    {
+     "action": "insert",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1 + insert 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand, then inserts the first gear onto the base with the right hand.",
+   "hand_area_frac": 0.0438,
+   "static": {
+    "psnr": 15.44,
+    "psnr_hand": 10.302,
+    "psnr_outside": 15.916
+   },
+   "camlora": {
+    "psnr": 15.327,
+    "psnr_hand": 12.816,
+    "psnr_outside": 15.486
+   },
+   "base_a14b": {
+    "psnr": 9.9,
+    "psnr_hand": 7.644,
+    "psnr_outside": 10.038
+   },
+   "a14b_v4": {
+    "psnr": 18.514,
+    "psnr_hand": 12.962,
+    "psnr_outside": 19.063
+   }
+  },
+  {
+   "id": "sharpa-gears-401_w0",
+   "episode": 401,
+   "window_offset": 0,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand.",
+   "hand_area_frac": 0.04691,
+   "static": {
+    "psnr": 8.813,
+    "psnr_hand": 8.926,
+    "psnr_outside": 8.807
+   },
+   "camlora": {
+    "psnr": 11.688,
+    "psnr_hand": 9.911,
+    "psnr_outside": 11.797
+   },
+   "base_a14b": {
+    "psnr": 8.353,
+    "psnr_hand": 7.214,
+    "psnr_outside": 8.418
+   },
+   "a14b_v4": {
+    "psnr": 16.125,
+    "psnr_hand": 9.871,
+    "psnr_outside": 16.874
+   }
+  },
+  {
+   "id": "sharpa-gears-401_w184",
+   "episode": 401,
+   "window_offset": 184,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand.",
+   "hand_area_frac": 0.04468,
+   "static": {
+    "psnr": 14.856,
+    "psnr_hand": 9.95,
+    "psnr_outside": 15.303
+   },
+   "camlora": {
+    "psnr": 16.758,
+    "psnr_hand": 12.484,
+    "psnr_outside": 17.113
+   },
+   "base_a14b": {
+    "psnr": 10.214,
+    "psnr_hand": 7.894,
+    "psnr_outside": 10.36
+   },
+   "a14b_v4": {
+    "psnr": 19.155,
+    "psnr_hand": 12.709,
+    "psnr_outside": 19.91
+   }
+  },
+  {
+   "id": "sharpa-gears-401_w276",
+   "episode": 401,
+   "window_offset": 276,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 2
+    },
+    {
+     "action": "insert",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 2 + insert 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand, then inserts the second gear onto the base with the right hand.",
+   "hand_area_frac": 0.04476,
+   "static": {
+    "psnr": 15.632,
+    "psnr_hand": 11.522,
+    "psnr_outside": 15.966
+   },
+   "camlora": {
+    "psnr": 15.822,
+    "psnr_hand": 12.582,
+    "psnr_outside": 16.054
+   },
+   "base_a14b": {
+    "psnr": 10.122,
+    "psnr_hand": 7.52,
+    "psnr_outside": 10.292
+   },
+   "a14b_v4": {
+    "psnr": 18.571,
+    "psnr_hand": 11.943,
+    "psnr_outside": 19.374
+   }
+  },
+  {
+   "id": "sharpa-gears-401_w368",
+   "episode": 401,
+   "window_offset": 368,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 2
+    },
+    {
+     "action": "pick",
+     "gear": 3
+    }
+   ],
+   "step_label": "insert 2 + pick 3",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the second gear onto the base with the right hand, then picks up the third gear from the table with the right hand.",
+   "hand_area_frac": 0.04586,
+   "static": {
+    "psnr": 16.553,
+    "psnr_hand": 10.987,
+    "psnr_outside": 17.133
+   },
+   "camlora": {
+    "psnr": 18.013,
+    "psnr_hand": 13.771,
+    "psnr_outside": 18.373
+   },
+   "base_a14b": {
+    "psnr": 11.31,
+    "psnr_hand": 8.019,
+    "psnr_outside": 11.553
+   },
+   "a14b_v4": {
+    "psnr": 19.068,
+    "psnr_hand": 13.089,
+    "psnr_outside": 19.734
+   }
+  },
+  {
+   "id": "sharpa-gears-401_w460",
+   "episode": 401,
+   "window_offset": 460,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 3
+    },
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "pick 3 + insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the third gear from the table with the right hand, then inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.04687,
+   "static": {
+    "psnr": 13.709,
+    "psnr_hand": 9.094,
+    "psnr_outside": 14.134
+   },
+   "camlora": {
+    "psnr": 15.467,
+    "psnr_hand": 12.837,
+    "psnr_outside": 15.648
+   },
+   "base_a14b": {
+    "psnr": 10.558,
+    "psnr_hand": 8.055,
+    "psnr_outside": 10.728
+   },
+   "a14b_v4": {
+    "psnr": 17.969,
+    "psnr_hand": 13.549,
+    "psnr_outside": 18.364
+   }
+  },
+  {
+   "id": "sharpa-gears-401_w552",
+   "episode": 401,
+   "window_offset": 552,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.04763,
+   "static": {
+    "psnr": 14.367,
+    "psnr_hand": 10.78,
+    "psnr_outside": 14.655
+   },
+   "camlora": {
+    "psnr": 15.319,
+    "psnr_hand": 13.69,
+    "psnr_outside": 15.419
+   },
+   "base_a14b": {
+    "psnr": 10.168,
+    "psnr_hand": 7.695,
+    "psnr_outside": 10.338
+   },
+   "a14b_v4": {
+    "psnr": 19.396,
+    "psnr_hand": 13.505,
+    "psnr_outside": 20.072
+   }
+  },
+  {
+   "id": "sharpa-gears-401_w92",
+   "episode": 401,
+   "window_offset": 92,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    },
+    {
+     "action": "insert",
+     "gear": 1
+    },
+    {
+     "action": "pick",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 1 + insert 1 + pick 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand, then inserts the first gear onto the base with the right hand, then picks up the second gear from the table with the right hand.",
+   "hand_area_frac": 0.04305,
+   "static": {
+    "psnr": 16.006,
+    "psnr_hand": 11.765,
+    "psnr_outside": 16.342
+   },
+   "camlora": {
+    "psnr": 16.198,
+    "psnr_hand": 13.524,
+    "psnr_outside": 16.367
+   },
+   "base_a14b": {
+    "psnr": 10.673,
+    "psnr_hand": 8.22,
+    "psnr_outside": 10.823
+   },
+   "a14b_v4": {
+    "psnr": 19.945,
+    "psnr_hand": 14.166,
+    "psnr_outside": 20.526
+   }
+  },
+  {
+   "id": "sharpa-gears-402_w0",
+   "episode": 402,
+   "window_offset": 0,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand.",
+   "hand_area_frac": 0.04675,
+   "static": {
+    "psnr": 8.917,
+    "psnr_hand": 8.934,
+    "psnr_outside": 8.916
+   },
+   "camlora": {
+    "psnr": 12.236,
+    "psnr_hand": 10.297,
+    "psnr_outside": 12.357
+   },
+   "base_a14b": {
+    "psnr": 8.259,
+    "psnr_hand": 7.153,
+    "psnr_outside": 8.321
+   },
+   "a14b_v4": {
+    "psnr": 16.666,
+    "psnr_hand": 9.956,
+    "psnr_outside": 17.533
+   }
+  },
+  {
+   "id": "sharpa-gears-402_w184",
+   "episode": 402,
+   "window_offset": 184,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 1
+    },
+    {
+     "action": "pick",
+     "gear": 2
+    }
+   ],
+   "step_label": "insert 1 + pick 2",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the first gear onto the base with the right hand, then picks up the second gear from the table with the right hand.",
+   "hand_area_frac": 0.04454,
+   "static": {
+    "psnr": 15.961,
+    "psnr_hand": 10.74,
+    "psnr_outside": 16.46
+   },
+   "camlora": {
+    "psnr": 17.078,
+    "psnr_hand": 13.86,
+    "psnr_outside": 17.306
+   },
+   "base_a14b": {
+    "psnr": 10.02,
+    "psnr_hand": 7.651,
+    "psnr_outside": 10.17
+   },
+   "a14b_v4": {
+    "psnr": 19.837,
+    "psnr_hand": 13.888,
+    "psnr_outside": 20.476
+   }
+  },
+  {
+   "id": "sharpa-gears-402_w276",
+   "episode": 402,
+   "window_offset": 276,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 2
+    },
+    {
+     "action": "insert",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 2 + insert 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand, then inserts the second gear onto the base with the right hand.",
+   "hand_area_frac": 0.04447,
+   "static": {
+    "psnr": 17.689,
+    "psnr_hand": 12.813,
+    "psnr_outside": 18.129
+   },
+   "camlora": {
+    "psnr": 15.543,
+    "psnr_hand": 13.242,
+    "psnr_outside": 15.687
+   },
+   "base_a14b": {
+    "psnr": 10.668,
+    "psnr_hand": 7.565,
+    "psnr_outside": 10.884
+   },
+   "a14b_v4": {
+    "psnr": 20.376,
+    "psnr_hand": 14.808,
+    "psnr_outside": 20.937
+   }
+  },
+  {
+   "id": "sharpa-gears-402_w368",
+   "episode": 402,
+   "window_offset": 368,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 2
+    }
+   ],
+   "step_label": "insert 2",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the second gear onto the base with the right hand.",
+   "hand_area_frac": 0.04574,
+   "static": {
+    "psnr": 16.187,
+    "psnr_hand": 10.881,
+    "psnr_outside": 16.716
+   },
+   "camlora": {
+    "psnr": 17.847,
+    "psnr_hand": 12.853,
+    "psnr_outside": 18.321
+   },
+   "base_a14b": {
+    "psnr": 7.996,
+    "psnr_hand": 7.33,
+    "psnr_outside": 8.031
+   },
+   "a14b_v4": {
+    "psnr": 18.787,
+    "psnr_hand": 14.356,
+    "psnr_outside": 19.173
+   }
+  },
+  {
+   "id": "sharpa-gears-402_w460",
+   "episode": 402,
+   "window_offset": 460,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 2
+    }
+   ],
+   "step_label": "insert 2",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the second gear onto the base with the right hand.",
+   "hand_area_frac": 0.04586,
+   "static": {
+    "psnr": 19.833,
+    "psnr_hand": 12.994,
+    "psnr_outside": 20.716
+   },
+   "camlora": {
+    "psnr": 17.046,
+    "psnr_hand": 13.839,
+    "psnr_outside": 17.28
+   },
+   "base_a14b": {
+    "psnr": 9.778,
+    "psnr_hand": 7.333,
+    "psnr_outside": 9.939
+   },
+   "a14b_v4": {
+    "psnr": 20.406,
+    "psnr_hand": 13.219,
+    "psnr_outside": 21.393
+   }
+  },
+  {
+   "id": "sharpa-gears-402_w552",
+   "episode": 402,
+   "window_offset": 552,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 2
+    },
+    {
+     "action": "pick",
+     "gear": 3
+    }
+   ],
+   "step_label": "insert 2 + pick 3",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the second gear onto the base with the right hand, then picks up the third gear from the table with the right hand.",
+   "hand_area_frac": 0.04692,
+   "static": {
+    "psnr": 18.191,
+    "psnr_hand": 13.0,
+    "psnr_outside": 18.714
+   },
+   "camlora": {
+    "psnr": 15.714,
+    "psnr_hand": 13.352,
+    "psnr_outside": 15.871
+   },
+   "base_a14b": {
+    "psnr": 12.252,
+    "psnr_hand": 8.587,
+    "psnr_outside": 12.545
+   },
+   "a14b_v4": {
+    "psnr": 20.509,
+    "psnr_hand": 14.162,
+    "psnr_outside": 21.283
+   }
+  },
+  {
+   "id": "sharpa-gears-402_w644",
+   "episode": 402,
+   "window_offset": 644,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 3
+    },
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "pick 3 + insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the third gear from the table with the right hand, then inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.04728,
+   "static": {
+    "psnr": 15.74,
+    "psnr_hand": 11.981,
+    "psnr_outside": 16.047
+   },
+   "camlora": {
+    "psnr": 16.547,
+    "psnr_hand": 13.535,
+    "psnr_outside": 16.769
+   },
+   "base_a14b": {
+    "psnr": 10.927,
+    "psnr_hand": 8.308,
+    "psnr_outside": 11.109
+   },
+   "a14b_v4": {
+    "psnr": 19.048,
+    "psnr_hand": 13.565,
+    "psnr_outside": 19.632
+   }
+  },
+  {
+   "id": "sharpa-gears-402_w736",
+   "episode": 402,
+   "window_offset": 736,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.04908,
+   "static": {
+    "psnr": 13.115,
+    "psnr_hand": 9.822,
+    "psnr_outside": 13.377
+   },
+   "camlora": {
+    "psnr": 15.656,
+    "psnr_hand": 12.091,
+    "psnr_outside": 15.951
+   },
+   "base_a14b": {
+    "psnr": 10.462,
+    "psnr_hand": 7.819,
+    "psnr_outside": 10.654
+   },
+   "a14b_v4": {
+    "psnr": 17.941,
+    "psnr_hand": 12.064,
+    "psnr_outside": 18.637
+   }
+  },
+  {
+   "id": "sharpa-gears-402_w92",
+   "episode": 402,
+   "window_offset": 92,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    },
+    {
+     "action": "insert",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1 + insert 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand, then inserts the first gear onto the base with the right hand.",
+   "hand_area_frac": 0.04228,
+   "static": {
+    "psnr": 19.543,
+    "psnr_hand": 14.331,
+    "psnr_outside": 20.012
+   },
+   "camlora": {
+    "psnr": 17.563,
+    "psnr_hand": 13.152,
+    "psnr_outside": 17.915
+   },
+   "base_a14b": {
+    "psnr": 10.45,
+    "psnr_hand": 8.04,
+    "psnr_outside": 10.595
+   },
+   "a14b_v4": {
+    "psnr": 20.539,
+    "psnr_hand": 15.38,
+    "psnr_outside": 21.0
+   }
+  },
+  {
+   "id": "sharpa-gears-403_w0",
+   "episode": 403,
+   "window_offset": 0,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand.",
+   "hand_area_frac": 0.04728,
+   "static": {
+    "psnr": 8.629,
+    "psnr_hand": 9.0,
+    "psnr_outside": 8.612
+   },
+   "camlora": {
+    "psnr": 10.953,
+    "psnr_hand": 9.697,
+    "psnr_outside": 11.025
+   },
+   "base_a14b": {
+    "psnr": 8.297,
+    "psnr_hand": 6.951,
+    "psnr_outside": 8.376
+   },
+   "a14b_v4": {
+    "psnr": 15.884,
+    "psnr_hand": 9.678,
+    "psnr_outside": 16.629
+   }
+  },
+  {
+   "id": "sharpa-gears-403_w184",
+   "episode": 403,
+   "window_offset": 184,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    },
+    {
+     "action": "insert",
+     "gear": 1
+    },
+    {
+     "action": "pick",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 1 + insert 1 + pick 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand, then inserts the first gear onto the base with the right hand, then picks up the second gear from the table with the right hand.",
+   "hand_area_frac": 0.04392,
+   "static": {
+    "psnr": 14.739,
+    "psnr_hand": 9.44,
+    "psnr_outside": 15.244
+   },
+   "camlora": {
+    "psnr": 15.878,
+    "psnr_hand": 12.431,
+    "psnr_outside": 16.126
+   },
+   "base_a14b": {
+    "psnr": 11.06,
+    "psnr_hand": 7.774,
+    "psnr_outside": 11.292
+   },
+   "a14b_v4": {
+    "psnr": 18.34,
+    "psnr_hand": 12.571,
+    "psnr_outside": 18.933
+   }
+  },
+  {
+   "id": "sharpa-gears-403_w276",
+   "episode": 403,
+   "window_offset": 276,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 2
+    },
+    {
+     "action": "insert",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 2 + insert 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand, then inserts the second gear onto the base with the right hand.",
+   "hand_area_frac": 0.04328,
+   "static": {
+    "psnr": 15.536,
+    "psnr_hand": 9.803,
+    "psnr_outside": 16.112
+   },
+   "camlora": {
+    "psnr": 15.64,
+    "psnr_hand": 12.144,
+    "psnr_outside": 15.89
+   },
+   "base_a14b": {
+    "psnr": 10.169,
+    "psnr_hand": 7.679,
+    "psnr_outside": 10.324
+   },
+   "a14b_v4": {
+    "psnr": 19.265,
+    "psnr_hand": 13.581,
+    "psnr_outside": 19.831
+   }
+  },
+  {
+   "id": "sharpa-gears-403_w368",
+   "episode": 403,
+   "window_offset": 368,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 2
+    },
+    {
+     "action": "pick",
+     "gear": 3
+    }
+   ],
+   "step_label": "insert 2 + pick 3",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the second gear onto the base with the right hand, then picks up the third gear from the table with the right hand.",
+   "hand_area_frac": 0.04605,
+   "static": {
+    "psnr": 16.228,
+    "psnr_hand": 10.686,
+    "psnr_outside": 16.806
+   },
+   "camlora": {
+    "psnr": 16.559,
+    "psnr_hand": 12.861,
+    "psnr_outside": 16.85
+   },
+   "base_a14b": {
+    "psnr": 11.987,
+    "psnr_hand": 8.202,
+    "psnr_outside": 12.288
+   },
+   "a14b_v4": {
+    "psnr": 20.402,
+    "psnr_hand": 14.822,
+    "psnr_outside": 20.987
+   }
+  },
+  {
+   "id": "sharpa-gears-403_w460",
+   "episode": 403,
+   "window_offset": 460,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 3
+    },
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "pick 3 + insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the third gear from the table with the right hand, then inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.04504,
+   "static": {
+    "psnr": 16.209,
+    "psnr_hand": 11.647,
+    "psnr_outside": 16.607
+   },
+   "camlora": {
+    "psnr": 14.777,
+    "psnr_hand": 13.167,
+    "psnr_outside": 14.87
+   },
+   "base_a14b": {
+    "psnr": 10.767,
+    "psnr_hand": 8.037,
+    "psnr_outside": 10.95
+   },
+   "a14b_v4": {
+    "psnr": 19.265,
+    "psnr_hand": 14.012,
+    "psnr_outside": 19.776
+   }
+  },
+  {
+   "id": "sharpa-gears-403_w92",
+   "episode": 403,
+   "window_offset": 92,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand.",
+   "hand_area_frac": 0.04134,
+   "static": {
+    "psnr": 20.27,
+    "psnr_hand": 14.088,
+    "psnr_outside": 20.904
+   },
+   "camlora": {
+    "psnr": 17.391,
+    "psnr_hand": 12.881,
+    "psnr_outside": 17.747
+   },
+   "base_a14b": {
+    "psnr": 11.168,
+    "psnr_hand": 8.204,
+    "psnr_outside": 11.356
+   },
+   "a14b_v4": {
+    "psnr": 19.145,
+    "psnr_hand": 13.59,
+    "psnr_outside": 19.66
+   }
+  },
+  {
+   "id": "sharpa-gears-404_w0",
+   "episode": 404,
+   "window_offset": 0,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand.",
+   "hand_area_frac": 0.0469,
+   "static": {
+    "psnr": 8.712,
+    "psnr_hand": 8.925,
+    "psnr_outside": 8.702
+   },
+   "camlora": {
+    "psnr": 11.481,
+    "psnr_hand": 9.751,
+    "psnr_outside": 11.587
+   },
+   "base_a14b": {
+    "psnr": 8.275,
+    "psnr_hand": 7.391,
+    "psnr_outside": 8.323
+   },
+   "a14b_v4": {
+    "psnr": 16.086,
+    "psnr_hand": 9.923,
+    "psnr_outside": 16.813
+   }
+  },
+  {
+   "id": "sharpa-gears-404_w184",
+   "episode": 404,
+   "window_offset": 184,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand.",
+   "hand_area_frac": 0.04487,
+   "static": {
+    "psnr": 14.762,
+    "psnr_hand": 9.562,
+    "psnr_outside": 15.262
+   },
+   "camlora": {
+    "psnr": 15.927,
+    "psnr_hand": 13.048,
+    "psnr_outside": 16.123
+   },
+   "base_a14b": {
+    "psnr": 10.167,
+    "psnr_hand": 7.696,
+    "psnr_outside": 10.326
+   },
+   "a14b_v4": {
+    "psnr": 18.99,
+    "psnr_hand": 14.233,
+    "psnr_outside": 19.417
+   }
+  },
+  {
+   "id": "sharpa-gears-404_w276",
+   "episode": 404,
+   "window_offset": 276,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 2
+    },
+    {
+     "action": "insert",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 2 + insert 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand, then inserts the second gear onto the base with the right hand.",
+   "hand_area_frac": 0.04337,
+   "static": {
+    "psnr": 15.531,
+    "psnr_hand": 10.814,
+    "psnr_outside": 15.936
+   },
+   "camlora": {
+    "psnr": 15.555,
+    "psnr_hand": 14.161,
+    "psnr_outside": 15.63
+   },
+   "base_a14b": {
+    "psnr": 10.019,
+    "psnr_hand": 7.895,
+    "psnr_outside": 10.145
+   },
+   "a14b_v4": {
+    "psnr": 19.551,
+    "psnr_hand": 14.743,
+    "psnr_outside": 19.969
+   }
+  },
+  {
+   "id": "sharpa-gears-404_w368",
+   "episode": 404,
+   "window_offset": 368,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 2
+    },
+    {
+     "action": "pick",
+     "gear": 3
+    }
+   ],
+   "step_label": "insert 2 + pick 3",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the second gear onto the base with the right hand, then picks up the third gear from the table with the right hand.",
+   "hand_area_frac": 0.04631,
+   "static": {
+    "psnr": 16.75,
+    "psnr_hand": 12.073,
+    "psnr_outside": 17.179
+   },
+   "camlora": {
+    "psnr": 14.884,
+    "psnr_hand": 12.828,
+    "psnr_outside": 15.013
+   },
+   "base_a14b": {
+    "psnr": 12.566,
+    "psnr_hand": 9.054,
+    "psnr_outside": 12.837
+   },
+   "a14b_v4": {
+    "psnr": 19.859,
+    "psnr_hand": 14.367,
+    "psnr_outside": 20.432
+   }
+  },
+  {
+   "id": "sharpa-gears-404_w460",
+   "episode": 404,
+   "window_offset": 460,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 3
+    },
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "pick 3 + insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the third gear from the table with the right hand, then inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.04623,
+   "static": {
+    "psnr": 15.834,
+    "psnr_hand": 11.081,
+    "psnr_outside": 16.274
+   },
+   "camlora": {
+    "psnr": 15.24,
+    "psnr_hand": 13.382,
+    "psnr_outside": 15.354
+   },
+   "base_a14b": {
+    "psnr": 11.171,
+    "psnr_hand": 8.286,
+    "psnr_outside": 11.374
+   },
+   "a14b_v4": {
+    "psnr": 18.609,
+    "psnr_hand": 13.506,
+    "psnr_outside": 19.108
+   }
+  },
+  {
+   "id": "sharpa-gears-404_w92",
+   "episode": 404,
+   "window_offset": 92,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    },
+    {
+     "action": "insert",
+     "gear": 1
+    },
+    {
+     "action": "pick",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 1 + insert 1 + pick 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand, then inserts the first gear onto the base with the right hand, then picks up the second gear from the table with the right hand.",
+   "hand_area_frac": 0.04315,
+   "static": {
+    "psnr": 16.423,
+    "psnr_hand": 11.964,
+    "psnr_outside": 16.789
+   },
+   "camlora": {
+    "psnr": 15.772,
+    "psnr_hand": 12.539,
+    "psnr_outside": 15.994
+   },
+   "base_a14b": {
+    "psnr": 11.036,
+    "psnr_hand": 7.919,
+    "psnr_outside": 11.247
+   },
+   "a14b_v4": {
+    "psnr": 20.677,
+    "psnr_hand": 13.267,
+    "psnr_outside": 21.663
+   }
+  },
+  {
+   "id": "sharpa-gears-405_w0",
+   "episode": 405,
+   "window_offset": 0,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand.",
+   "hand_area_frac": 0.04597,
+   "static": {
+    "psnr": 8.691,
+    "psnr_hand": 8.858,
+    "psnr_outside": 8.684
+   },
+   "camlora": {
+    "psnr": 11.275,
+    "psnr_hand": 10.569,
+    "psnr_outside": 11.312
+   },
+   "base_a14b": {
+    "psnr": 8.314,
+    "psnr_hand": 7.233,
+    "psnr_outside": 8.374
+   },
+   "a14b_v4": {
+    "psnr": 16.072,
+    "psnr_hand": 9.722,
+    "psnr_outside": 16.827
+   }
+  },
+  {
+   "id": "sharpa-gears-405_w184",
+   "episode": 405,
+   "window_offset": 184,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 2
+    },
+    {
+     "action": "insert",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 2 + insert 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand, then inserts the second gear onto the base with the right hand.",
+   "hand_area_frac": 0.04299,
+   "static": {
+    "psnr": 15.003,
+    "psnr_hand": 10.032,
+    "psnr_outside": 15.442
+   },
+   "camlora": {
+    "psnr": 15.25,
+    "psnr_hand": 12.395,
+    "psnr_outside": 15.435
+   },
+   "base_a14b": {
+    "psnr": 10.027,
+    "psnr_hand": 8.311,
+    "psnr_outside": 10.123
+   },
+   "a14b_v4": {
+    "psnr": 18.464,
+    "psnr_hand": 14.464,
+    "psnr_outside": 18.769
+   }
+  },
+  {
+   "id": "sharpa-gears-405_w276",
+   "episode": 405,
+   "window_offset": 276,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 2
+    },
+    {
+     "action": "pick",
+     "gear": 3
+    }
+   ],
+   "step_label": "insert 2 + pick 3",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the second gear onto the base with the right hand, then picks up the third gear from the table with the right hand.",
+   "hand_area_frac": 0.04488,
+   "static": {
+    "psnr": 16.305,
+    "psnr_hand": 11.1,
+    "psnr_outside": 16.805
+   },
+   "camlora": {
+    "psnr": 17.161,
+    "psnr_hand": 13.906,
+    "psnr_outside": 17.395
+   },
+   "base_a14b": {
+    "psnr": 10.78,
+    "psnr_hand": 8.058,
+    "psnr_outside": 10.962
+   },
+   "a14b_v4": {
+    "psnr": 19.473,
+    "psnr_hand": 13.796,
+    "psnr_outside": 20.061
+   }
+  },
+  {
+   "id": "sharpa-gears-405_w368",
+   "episode": 405,
+   "window_offset": 368,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 3
+    },
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "pick 3 + insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the third gear from the table with the right hand, then inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.04475,
+   "static": {
+    "psnr": 15.828,
+    "psnr_hand": 11.365,
+    "psnr_outside": 16.209
+   },
+   "camlora": {
+    "psnr": 14.695,
+    "psnr_hand": 12.474,
+    "psnr_outside": 14.833
+   },
+   "base_a14b": {
+    "psnr": 10.803,
+    "psnr_hand": 7.629,
+    "psnr_outside": 11.027
+   },
+   "a14b_v4": {
+    "psnr": 18.928,
+    "psnr_hand": 13.59,
+    "psnr_outside": 19.451
+   }
+  },
+  {
+   "id": "sharpa-gears-405_w92",
+   "episode": 405,
+   "window_offset": 92,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    },
+    {
+     "action": "insert",
+     "gear": 1
+    },
+    {
+     "action": "pick",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 1 + insert 1 + pick 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand, then inserts the first gear onto the base with the right hand, then picks up the second gear from the table with the right hand.",
+   "hand_area_frac": 0.04197,
+   "static": {
+    "psnr": 15.567,
+    "psnr_hand": 11.717,
+    "psnr_outside": 15.847
+   },
+   "camlora": {
+    "psnr": 15.048,
+    "psnr_hand": 13.204,
+    "psnr_outside": 15.15
+   },
+   "base_a14b": {
+    "psnr": 10.183,
+    "psnr_hand": 7.906,
+    "psnr_outside": 10.317
+   },
+   "a14b_v4": {
+    "psnr": 19.884,
+    "psnr_hand": 14.027,
+    "psnr_outside": 20.464
+   }
+  },
+  {
+   "id": "sharpa-gears-406_w0",
+   "episode": 406,
+   "window_offset": 0,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand.",
+   "hand_area_frac": 0.04707,
+   "static": {
+    "psnr": 8.82,
+    "psnr_hand": 9.102,
+    "psnr_outside": 8.807
+   },
+   "camlora": {
+    "psnr": 11.672,
+    "psnr_hand": 10.171,
+    "psnr_outside": 11.761
+   },
+   "base_a14b": {
+    "psnr": 8.089,
+    "psnr_hand": 7.057,
+    "psnr_outside": 8.147
+   },
+   "a14b_v4": {
+    "psnr": 15.716,
+    "psnr_hand": 9.968,
+    "psnr_outside": 16.352
+   }
+  },
+  {
+   "id": "sharpa-gears-406_w184",
+   "episode": 406,
+   "window_offset": 184,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 2
+    },
+    {
+     "action": "insert",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 2 + insert 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand, then inserts the second gear onto the base with the right hand.",
+   "hand_area_frac": 0.04347,
+   "static": {
+    "psnr": 15.811,
+    "psnr_hand": 10.285,
+    "psnr_outside": 16.35
+   },
+   "camlora": {
+    "psnr": 16.096,
+    "psnr_hand": 13.189,
+    "psnr_outside": 16.288
+   },
+   "base_a14b": {
+    "psnr": 9.481,
+    "psnr_hand": 7.75,
+    "psnr_outside": 9.579
+   },
+   "a14b_v4": {
+    "psnr": 18.674,
+    "psnr_hand": 14.143,
+    "psnr_outside": 19.053
+   }
+  },
+  {
+   "id": "sharpa-gears-406_w276",
+   "episode": 406,
+   "window_offset": 276,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 2
+    },
+    {
+     "action": "pick",
+     "gear": 3
+    }
+   ],
+   "step_label": "insert 2 + pick 3",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the second gear onto the base with the right hand, then picks up the third gear from the table with the right hand.",
+   "hand_area_frac": 0.04514,
+   "static": {
+    "psnr": 15.333,
+    "psnr_hand": 11.159,
+    "psnr_outside": 15.678
+   },
+   "camlora": {
+    "psnr": 14.714,
+    "psnr_hand": 13.686,
+    "psnr_outside": 14.769
+   },
+   "base_a14b": {
+    "psnr": 10.732,
+    "psnr_hand": 7.781,
+    "psnr_outside": 10.936
+   },
+   "a14b_v4": {
+    "psnr": 17.197,
+    "psnr_hand": 13.113,
+    "psnr_outside": 17.53
+   }
+  },
+  {
+   "id": "sharpa-gears-406_w368",
+   "episode": 406,
+   "window_offset": 368,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 3
+    },
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "pick 3 + insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the third gear from the table with the right hand, then inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.04538,
+   "static": {
+    "psnr": 14.271,
+    "psnr_hand": 12.156,
+    "psnr_outside": 14.403
+   },
+   "camlora": {
+    "psnr": 15.005,
+    "psnr_hand": 13.758,
+    "psnr_outside": 15.074
+   },
+   "base_a14b": {
+    "psnr": 10.715,
+    "psnr_hand": 7.766,
+    "psnr_outside": 10.921
+   },
+   "a14b_v4": {
+    "psnr": 18.404,
+    "psnr_hand": 13.78,
+    "psnr_outside": 18.816
+   }
+  },
+  {
+   "id": "sharpa-gears-406_w92",
+   "episode": 406,
+   "window_offset": 92,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    },
+    {
+     "action": "insert",
+     "gear": 1
+    },
+    {
+     "action": "pick",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 1 + insert 1 + pick 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand, then inserts the first gear onto the base with the right hand, then picks up the second gear from the table with the right hand.",
+   "hand_area_frac": 0.0427,
+   "static": {
+    "psnr": 15.484,
+    "psnr_hand": 11.093,
+    "psnr_outside": 15.836
+   },
+   "camlora": {
+    "psnr": 15.558,
+    "psnr_hand": 13.036,
+    "psnr_outside": 15.714
+   },
+   "base_a14b": {
+    "psnr": 10.692,
+    "psnr_hand": 7.794,
+    "psnr_outside": 10.88
+   },
+   "a14b_v4": {
+    "psnr": 19.136,
+    "psnr_hand": 13.345,
+    "psnr_outside": 19.714
+   }
+  },
+  {
+   "id": "sharpa-gears-407_w0",
+   "episode": 407,
+   "window_offset": 0,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand.",
+   "hand_area_frac": 0.04592,
+   "static": {
+    "psnr": 8.699,
+    "psnr_hand": 8.785,
+    "psnr_outside": 8.695
+   },
+   "camlora": {
+    "psnr": 11.517,
+    "psnr_hand": 10.344,
+    "psnr_outside": 11.582
+   },
+   "base_a14b": {
+    "psnr": 8.248,
+    "psnr_hand": 7.162,
+    "psnr_outside": 8.308
+   },
+   "a14b_v4": {
+    "psnr": 16.366,
+    "psnr_hand": 9.816,
+    "psnr_outside": 17.172
+   }
+  },
+  {
+   "id": "sharpa-gears-407_w184",
+   "episode": 407,
+   "window_offset": 184,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand.",
+   "hand_area_frac": 0.04212,
+   "static": {
+    "psnr": 14.713,
+    "psnr_hand": 9.614,
+    "psnr_outside": 15.162
+   },
+   "camlora": {
+    "psnr": 16.222,
+    "psnr_hand": 13.07,
+    "psnr_outside": 16.43
+   },
+   "base_a14b": {
+    "psnr": 10.091,
+    "psnr_hand": 7.806,
+    "psnr_outside": 10.226
+   },
+   "a14b_v4": {
+    "psnr": 18.229,
+    "psnr_hand": 14.339,
+    "psnr_outside": 18.515
+   }
+  },
+  {
+   "id": "sharpa-gears-407_w276",
+   "episode": 407,
+   "window_offset": 276,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 2
+    },
+    {
+     "action": "insert",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 2 + insert 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand, then inserts the second gear onto the base with the right hand.",
+   "hand_area_frac": 0.04338,
+   "static": {
+    "psnr": 14.196,
+    "psnr_hand": 9.495,
+    "psnr_outside": 14.599
+   },
+   "camlora": {
+    "psnr": 15.406,
+    "psnr_hand": 13.855,
+    "psnr_outside": 15.491
+   },
+   "base_a14b": {
+    "psnr": 9.68,
+    "psnr_hand": 8.271,
+    "psnr_outside": 9.756
+   },
+   "a14b_v4": {
+    "psnr": 18.012,
+    "psnr_hand": 12.907,
+    "psnr_outside": 18.477
+   }
+  },
+  {
+   "id": "sharpa-gears-407_w368",
+   "episode": 407,
+   "window_offset": 368,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 2
+    },
+    {
+     "action": "pick",
+     "gear": 3
+    }
+   ],
+   "step_label": "insert 2 + pick 3",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the second gear onto the base with the right hand, then picks up the third gear from the table with the right hand.",
+   "hand_area_frac": 0.04378,
+   "static": {
+    "psnr": 18.67,
+    "psnr_hand": 12.102,
+    "psnr_outside": 19.437
+   },
+   "camlora": {
+    "psnr": 20.334,
+    "psnr_hand": 14.367,
+    "psnr_outside": 20.964
+   },
+   "base_a14b": {
+    "psnr": 11.335,
+    "psnr_hand": 8.013,
+    "psnr_outside": 11.57
+   },
+   "a14b_v4": {
+    "psnr": 20.122,
+    "psnr_hand": 14.794,
+    "psnr_outside": 20.629
+   }
+  },
+  {
+   "id": "sharpa-gears-407_w460",
+   "episode": 407,
+   "window_offset": 460,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 3
+    }
+   ],
+   "step_label": "pick 3",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the third gear from the table with the right hand.",
+   "hand_area_frac": 0.04388,
+   "static": {
+    "psnr": 13.89,
+    "psnr_hand": 9.127,
+    "psnr_outside": 14.307
+   },
+   "camlora": {
+    "psnr": 14.751,
+    "psnr_hand": 12.598,
+    "psnr_outside": 14.88
+   },
+   "base_a14b": {
+    "psnr": 9.352,
+    "psnr_hand": 7.496,
+    "psnr_outside": 9.46
+   },
+   "a14b_v4": {
+    "psnr": 17.538,
+    "psnr_hand": 13.588,
+    "psnr_outside": 17.844
+   }
+  },
+  {
+   "id": "sharpa-gears-407_w552",
+   "episode": 407,
+   "window_offset": 552,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 3
+    },
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "pick 3 + insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the third gear from the table with the right hand, then inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.04487,
+   "static": {
+    "psnr": 14.026,
+    "psnr_hand": 11.145,
+    "psnr_outside": 14.222
+   },
+   "camlora": {
+    "psnr": 14.738,
+    "psnr_hand": 12.972,
+    "psnr_outside": 14.841
+   },
+   "base_a14b": {
+    "psnr": 10.518,
+    "psnr_hand": 8.222,
+    "psnr_outside": 10.662
+   },
+   "a14b_v4": {
+    "psnr": 18.469,
+    "psnr_hand": 13.031,
+    "psnr_outside": 19.011
+   }
+  },
+  {
+   "id": "sharpa-gears-407_w92",
+   "episode": 407,
+   "window_offset": 92,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    },
+    {
+     "action": "insert",
+     "gear": 1
+    },
+    {
+     "action": "pick",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 1 + insert 1 + pick 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand, then inserts the first gear onto the base with the right hand, then picks up the second gear from the table with the right hand.",
+   "hand_area_frac": 0.04211,
+   "static": {
+    "psnr": 15.037,
+    "psnr_hand": 11.389,
+    "psnr_outside": 15.296
+   },
+   "camlora": {
+    "psnr": 15.446,
+    "psnr_hand": 13.767,
+    "psnr_outside": 15.537
+   },
+   "base_a14b": {
+    "psnr": 10.803,
+    "psnr_hand": 8.614,
+    "psnr_outside": 10.929
+   },
+   "a14b_v4": {
+    "psnr": 18.057,
+    "psnr_hand": 13.574,
+    "psnr_outside": 18.416
+   }
+  },
+  {
+   "id": "sharpa-gears-408_w0",
+   "episode": 408,
+   "window_offset": 0,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand.",
+   "hand_area_frac": 0.04666,
+   "static": {
+    "psnr": 8.593,
+    "psnr_hand": 9.18,
+    "psnr_outside": 8.566
+   },
+   "camlora": {
+    "psnr": 11.004,
+    "psnr_hand": 9.919,
+    "psnr_outside": 11.065
+   },
+   "base_a14b": {
+    "psnr": 8.134,
+    "psnr_hand": 7.321,
+    "psnr_outside": 8.177
+   },
+   "a14b_v4": {
+    "psnr": 15.436,
+    "psnr_hand": 9.264,
+    "psnr_outside": 16.162
+   }
+  },
+  {
+   "id": "sharpa-gears-408_w184",
+   "episode": 408,
+   "window_offset": 184,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 1
+    },
+    {
+     "action": "pick",
+     "gear": 2
+    }
+   ],
+   "step_label": "insert 1 + pick 2",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the first gear onto the base with the right hand, then picks up the second gear from the table with the right hand.",
+   "hand_area_frac": 0.04449,
+   "static": {
+    "psnr": 14.669,
+    "psnr_hand": 10.505,
+    "psnr_outside": 15.007
+   },
+   "camlora": {
+    "psnr": 15.905,
+    "psnr_hand": 12.246,
+    "psnr_outside": 16.181
+   },
+   "base_a14b": {
+    "psnr": 9.651,
+    "psnr_hand": 8.346,
+    "psnr_outside": 9.722
+   },
+   "a14b_v4": {
+    "psnr": 19.096,
+    "psnr_hand": 13.391,
+    "psnr_outside": 19.684
+   }
+  },
+  {
+   "id": "sharpa-gears-408_w276",
+   "episode": 408,
+   "window_offset": 276,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 2
+    },
+    {
+     "action": "insert",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 2 + insert 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand, then inserts the second gear onto the base with the right hand.",
+   "hand_area_frac": 0.04386,
+   "static": {
+    "psnr": 16.098,
+    "psnr_hand": 11.216,
+    "psnr_outside": 16.533
+   },
+   "camlora": {
+    "psnr": 16.226,
+    "psnr_hand": 14.189,
+    "psnr_outside": 16.347
+   },
+   "base_a14b": {
+    "psnr": 10.832,
+    "psnr_hand": 7.765,
+    "psnr_outside": 11.042
+   },
+   "a14b_v4": {
+    "psnr": 19.957,
+    "psnr_hand": 13.635,
+    "psnr_outside": 20.666
+   }
+  },
+  {
+   "id": "sharpa-gears-408_w368",
+   "episode": 408,
+   "window_offset": 368,
+   "steps": [
+    {
+     "action": "insert",
+     "gear": 2
+    },
+    {
+     "action": "pick",
+     "gear": 3
+    }
+   ],
+   "step_label": "insert 2 + pick 3",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the second gear onto the base with the right hand, then picks up the third gear from the table with the right hand.",
+   "hand_area_frac": 0.04707,
+   "static": {
+    "psnr": 13.029,
+    "psnr_hand": 9.915,
+    "psnr_outside": 13.26
+   },
+   "camlora": {
+    "psnr": 15.318,
+    "psnr_hand": 13.189,
+    "psnr_outside": 15.456
+   },
+   "base_a14b": {
+    "psnr": 10.637,
+    "psnr_hand": 8.374,
+    "psnr_outside": 10.787
+   },
+   "a14b_v4": {
+    "psnr": 17.266,
+    "psnr_hand": 13.543,
+    "psnr_outside": 17.568
+   }
+  },
+  {
+   "id": "sharpa-gears-408_w460",
+   "episode": 408,
+   "window_offset": 460,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 3
+    },
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "pick 3 + insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the third gear from the table with the right hand, then inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.04642,
+   "static": {
+    "psnr": 14.333,
+    "psnr_hand": 10.058,
+    "psnr_outside": 14.702
+   },
+   "camlora": {
+    "psnr": 13.885,
+    "psnr_hand": 11.753,
+    "psnr_outside": 14.021
+   },
+   "base_a14b": {
+    "psnr": 11.84,
+    "psnr_hand": 8.65,
+    "psnr_outside": 12.076
+   },
+   "a14b_v4": {
+    "psnr": 18.624,
+    "psnr_hand": 12.372,
+    "psnr_outside": 19.364
+   }
+  },
+  {
+   "id": "sharpa-gears-408_w92",
+   "episode": 408,
+   "window_offset": 92,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    },
+    {
+     "action": "insert",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1 + insert 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand, then inserts the first gear onto the base with the right hand.",
+   "hand_area_frac": 0.04213,
+   "static": {
+    "psnr": 16.026,
+    "psnr_hand": 11.762,
+    "psnr_outside": 16.358
+   },
+   "camlora": {
+    "psnr": 14.901,
+    "psnr_hand": 12.182,
+    "psnr_outside": 15.071
+   },
+   "base_a14b": {
+    "psnr": 10.137,
+    "psnr_hand": 7.849,
+    "psnr_outside": 10.272
+   },
+   "a14b_v4": {
+    "psnr": 19.211,
+    "psnr_hand": 12.783,
+    "psnr_outside": 19.913
+   }
+  },
+  {
+   "id": "sharpa-gears-409_w0",
+   "episode": 409,
+   "window_offset": 0,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    }
+   ],
+   "step_label": "pick 1",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand.",
+   "hand_area_frac": 0.04779,
+   "static": {
+    "psnr": 8.716,
+    "psnr_hand": 9.465,
+    "psnr_outside": 8.681
+   },
+   "camlora": {
+    "psnr": 10.805,
+    "psnr_hand": 9.772,
+    "psnr_outside": 10.864
+   },
+   "base_a14b": {
+    "psnr": 7.856,
+    "psnr_hand": 6.878,
+    "psnr_outside": 7.912
+   },
+   "a14b_v4": {
+    "psnr": 15.69,
+    "psnr_hand": 9.148,
+    "psnr_outside": 16.531
+   }
+  },
+  {
+   "id": "sharpa-gears-409_w184",
+   "episode": 409,
+   "window_offset": 184,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand.",
+   "hand_area_frac": 0.04546,
+   "static": {
+    "psnr": 13.307,
+    "psnr_hand": 8.96,
+    "psnr_outside": 13.679
+   },
+   "camlora": {
+    "psnr": 15.39,
+    "psnr_hand": 12.22,
+    "psnr_outside": 15.618
+   },
+   "base_a14b": {
+    "psnr": 9.721,
+    "psnr_hand": 7.871,
+    "psnr_outside": 9.833
+   },
+   "a14b_v4": {
+    "psnr": 17.774,
+    "psnr_hand": 13.281,
+    "psnr_outside": 18.167
+   }
+  },
+  {
+   "id": "sharpa-gears-409_w276",
+   "episode": 409,
+   "window_offset": 276,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 2
+    },
+    {
+     "action": "insert",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 2 + insert 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand, then inserts the second gear onto the base with the right hand.",
+   "hand_area_frac": 0.0448,
+   "static": {
+    "psnr": 17.222,
+    "psnr_hand": 12.108,
+    "psnr_outside": 17.705
+   },
+   "camlora": {
+    "psnr": 17.109,
+    "psnr_hand": 14.318,
+    "psnr_outside": 17.296
+   },
+   "base_a14b": {
+    "psnr": 10.35,
+    "psnr_hand": 8.11,
+    "psnr_outside": 10.489
+   },
+   "a14b_v4": {
+    "psnr": 19.98,
+    "psnr_hand": 13.299,
+    "psnr_outside": 20.798
+   }
+  },
+  {
+   "id": "sharpa-gears-409_w368",
+   "episode": 409,
+   "window_offset": 368,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 3
+    }
+   ],
+   "step_label": "pick 3",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the third gear from the table with the right hand.",
+   "hand_area_frac": 0.04725,
+   "static": {
+    "psnr": 13.551,
+    "psnr_hand": 9.845,
+    "psnr_outside": 13.852
+   },
+   "camlora": {
+    "psnr": 15.3,
+    "psnr_hand": 11.762,
+    "psnr_outside": 15.579
+   },
+   "base_a14b": {
+    "psnr": 8.976,
+    "psnr_hand": 7.986,
+    "psnr_outside": 9.032
+   },
+   "a14b_v4": {
+    "psnr": 19.09,
+    "psnr_hand": 14.268,
+    "psnr_outside": 19.552
+   }
+  },
+  {
+   "id": "sharpa-gears-409_w460",
+   "episode": 409,
+   "window_offset": 460,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 3
+    },
+    {
+     "action": "insert",
+     "gear": 3
+    }
+   ],
+   "step_label": "pick 3 + insert 3",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the third gear from the table with the right hand, then inserts the third gear onto the base with the right hand.",
+   "hand_area_frac": 0.04662,
+   "static": {
+    "psnr": 14.694,
+    "psnr_hand": 9.328,
+    "psnr_outside": 15.246
+   },
+   "camlora": {
+    "psnr": 14.578,
+    "psnr_hand": 12.712,
+    "psnr_outside": 14.694
+   },
+   "base_a14b": {
+    "psnr": 9.493,
+    "psnr_hand": 7.167,
+    "psnr_outside": 9.646
+   },
+   "a14b_v4": {
+    "psnr": 19.817,
+    "psnr_hand": 13.791,
+    "psnr_outside": 20.508
+   }
+  },
+  {
+   "id": "sharpa-gears-409_w92",
+   "episode": 409,
+   "window_offset": 92,
+   "steps": [
+    {
+     "action": "pick",
+     "gear": 1
+    },
+    {
+     "action": "insert",
+     "gear": 1
+    },
+    {
+     "action": "pick",
+     "gear": 2
+    }
+   ],
+   "step_label": "pick 1 + insert 1 + pick 2",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand, then inserts the first gear onto the base with the right hand, then picks up the second gear from the table with the right hand.",
+   "hand_area_frac": 0.04457,
+   "static": {
+    "psnr": 15.865,
+    "psnr_hand": 11.773,
+    "psnr_outside": 16.194
+   },
+   "camlora": {
+    "psnr": 15.008,
+    "psnr_hand": 12.164,
+    "psnr_outside": 15.2
+   },
+   "base_a14b": {
+    "psnr": 10.706,
+    "psnr_hand": 7.669,
+    "psnr_outside": 10.916
+   },
+   "a14b_v4": {
+    "psnr": 20.316,
+    "psnr_hand": 12.448,
+    "psnr_outside": 21.501
+   }
+  }
+ ],
+ "source": "SharpaDex v1.0 dataset (https://huggingface.co/datasets/Sharpa-Robotics/SharpaDex-v1.0), licensed CC BY-NC 4.0 (https://creativecommons.org/licenses/by-nc/4.0/). Frames shown with modifications: resized, hand-skeleton overlays; the generated panels are model outputs conditioned on the first frame."
+}

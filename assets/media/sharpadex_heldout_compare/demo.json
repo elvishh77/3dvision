@@ -1,0 +1,285 @@
+{
+ "title": "SharpaDex held-out episodes: plain Wan2.2 A14B vs 1.3B camera + LoRA vs Wan2.2 A14B hand adapter, 24 of 130 eval clips",
+ "panels": [
+  {
+   "label": "Real robot"
+  },
+  {
+   "label": "Plain Wan2.2 A14B"
+  },
+  {
+   "label": "Wan2.1 1.3B camera + LoRA"
+  },
+  {
+   "label": "Wan2.2 A14B + hand adapter"
+  }
+ ],
+ "items": [
+  {
+   "id": "sharpa-gears-390_w0",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand.",
+   "note": "Held-out episode 390; pick 1",
+   "psnr_hand": [
+    8.905,
+    7.128,
+    10.275,
+    9.654
+   ]
+  },
+  {
+   "id": "sharpa-gears-390_w92",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand, then inserts the first gear onto the base with the right hand.",
+   "note": "Held-out episode 390; pick 1 + insert 1",
+   "psnr_hand": [
+    11.485,
+    8.467,
+    12.529,
+    13.625
+   ]
+  },
+  {
+   "id": "sharpa-gears-391_w92",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand, then inserts the first gear onto the base with the right hand, then picks up the second gear from the table with the right hand.",
+   "note": "Held-out episode 391; pick 1 + insert 1 + pick 2",
+   "psnr_hand": [
+    12.25,
+    7.949,
+    12.954,
+    13.924
+   ]
+  },
+  {
+   "id": "sharpa-gears-392_w460",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand, then inserts the second gear onto the base with the right hand.",
+   "note": "Held-out episode 392; pick 2 + insert 2",
+   "psnr_hand": [
+    10.234,
+    7.898,
+    11.323,
+    12.912
+   ]
+  },
+  {
+   "id": "sharpa-gears-393_w184",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand, then inserts the second gear onto the base with the right hand.",
+   "note": "Held-out episode 393; pick 2 + insert 2",
+   "psnr_hand": [
+    9.787,
+    7.544,
+    12.818,
+    13.356
+   ]
+  },
+  {
+   "id": "sharpa-gears-394_w0",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand.",
+   "note": "Held-out episode 394; pick 1",
+   "psnr_hand": [
+    8.672,
+    7.163,
+    10.492,
+    10.38
+   ]
+  },
+  {
+   "id": "sharpa-gears-394_w552",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the third gear onto the base with the right hand.",
+   "note": "Held-out episode 394; insert 3",
+   "psnr_hand": [
+    10.114,
+    7.337,
+    11.677,
+    12.774
+   ]
+  },
+  {
+   "id": "sharpa-gears-395_w368",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the third gear from the table with the right hand, then inserts the third gear onto the base with the right hand.",
+   "note": "Held-out episode 395; pick 3 + insert 3",
+   "psnr_hand": [
+    9.393,
+    7.49,
+    12.444,
+    13.255
+   ]
+  },
+  {
+   "id": "sharpa-gears-396_w276",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the second gear onto the base with the right hand, then picks up the third gear from the table with the right hand.",
+   "note": "Held-out episode 396; insert 2 + pick 3",
+   "psnr_hand": [
+    11.791,
+    7.796,
+    13.284,
+    14.487
+   ]
+  },
+  {
+   "id": "sharpa-gears-397_w184",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the first gear onto the base with the right hand, then picks up the second gear from the table with the right hand, then inserts the second gear onto the base with the right hand.",
+   "note": "Held-out episode 397; insert 1 + pick 2 + insert 2",
+   "psnr_hand": [
+    10.574,
+    8.032,
+    12.851,
+    12.173
+   ]
+  },
+  {
+   "id": "sharpa-gears-398_w0",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand.",
+   "note": "Held-out episode 398; pick 1",
+   "psnr_hand": [
+    8.455,
+    7.713,
+    10.162,
+    9.889
+   ]
+  },
+  {
+   "id": "sharpa-gears-398_w552",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the third gear from the table with the right hand, then inserts the third gear onto the base with the right hand.",
+   "note": "Held-out episode 398; pick 3 + insert 3",
+   "psnr_hand": [
+    9.623,
+    8.039,
+    12.965,
+    13.635
+   ]
+  },
+  {
+   "id": "sharpa-gears-399_w276",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the first gear onto the base with the right hand, then picks up the second gear from the table with the right hand.",
+   "note": "Held-out episode 399; insert 1 + pick 2",
+   "psnr_hand": [
+    11.41,
+    8.138,
+    13.088,
+    15.333
+   ]
+  },
+  {
+   "id": "sharpa-gears-399_w92",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand.",
+   "note": "Held-out episode 399; pick 1",
+   "psnr_hand": [
+    10.869,
+    7.965,
+    13.368,
+    12.563
+   ]
+  },
+  {
+   "id": "sharpa-gears-400_w460",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the third gear from the table with the right hand, then inserts the third gear onto the base with the right hand.",
+   "note": "Held-out episode 400; pick 3 + insert 3",
+   "psnr_hand": [
+    13.685,
+    7.836,
+    15.48,
+    14.005
+   ]
+  },
+  {
+   "id": "sharpa-gears-401_w276",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the second gear from the table with the right hand, then inserts the second gear onto the base with the right hand.",
+   "note": "Held-out episode 401; pick 2 + insert 2",
+   "psnr_hand": [
+    11.522,
+    7.52,
+    12.582,
+    11.943
+   ]
+  },
+  {
+   "id": "sharpa-gears-402_w0",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand.",
+   "note": "Held-out episode 402; pick 1",
+   "psnr_hand": [
+    8.934,
+    7.153,
+    10.297,
+    9.956
+   ]
+  },
+  {
+   "id": "sharpa-gears-402_w552",
+   "prompt": "First-person view: a robot with two dexterous hands inserts the second gear onto the base with the right hand, then picks up the third gear from the table with the right hand.",
+   "note": "Held-out episode 402; insert 2 + pick 3",
+   "psnr_hand": [
+    13.0,
+    8.587,
+    13.352,
+    14.162
+   ]
+  },
+  {
+   "id": "sharpa-gears-403_w184",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand, then inserts the first gear onto the base with the right hand, then picks up the second gear from the table with the right hand.",
+   "note": "Held-out episode 403; pick 1 + insert 1 + pick 2",
+   "psnr_hand": [
+    9.44,
+    7.774,
+    12.431,
+    12.571
+   ]
+  },
+  {
+   "id": "sharpa-gears-404_w0",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand.",
+   "note": "Held-out episode 404; pick 1",
+   "psnr_hand": [
+    8.925,
+    7.391,
+    9.751,
+    9.923
+   ]
+  },
+  {
+   "id": "sharpa-gears-404_w92",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand, then inserts the first gear onto the base with the right hand, then picks up the second gear from the table with the right hand.",
+   "note": "Held-out episode 404; pick 1 + insert 1 + pick 2",
+   "psnr_hand": [
+    11.964,
+    7.919,
+    12.539,
+    13.267
+   ]
+  },
+  {
+   "id": "sharpa-gears-405_w92",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand, then inserts the first gear onto the base with the right hand, then picks up the second gear from the table with the right hand.",
+   "note": "Held-out episode 405; pick 1 + insert 1 + pick 2",
+   "psnr_hand": [
+    11.717,
+    7.906,
+    13.204,
+    14.027
+   ]
+  },
+  {
+   "id": "sharpa-gears-406_w92",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the first gear from the table with the right hand, then inserts the first gear onto the base with the right hand, then picks up the second gear from the table with the right hand.",
+   "note": "Held-out episode 406; pick 1 + insert 1 + pick 2",
+   "psnr_hand": [
+    11.093,
+    7.794,
+    13.036,
+    13.345
+   ]
+  },
+  {
+   "id": "sharpa-gears-407_w460",
+   "prompt": "First-person view: a robot with two dexterous hands picks up the third gear from the table with the right hand.",
+   "note": "Held-out episode 407; pick 3",
+   "psnr_hand": [
+    9.127,
+    7.496,
+    12.598,
+    13.588
+   ]
+  }
+ ],
+ "metric_note": "psnr_hand = PSNR (dB) inside the conditioning hand region vs the real video: [first frame repeated, plain A14B, 1.3B camera + LoRA, A14B adapter]. The target hand skeleton is drawn on every panel.",
+ "source": "SharpaDex v1.0 dataset (https://huggingface.co/datasets/Sharpa-Robotics/SharpaDex-v1.0), licensed CC BY-NC 4.0 (https://creativecommons.org/licenses/by-nc/4.0/). Frames shown with modifications: resized, hand-skeleton overlays; the generated panels are model outputs conditioned on the first frame."
+}

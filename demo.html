@@ -18,7 +18,7 @@
     <a class="brand" href="index.html"><span data-i="film"></span>HandCtrl Video</a>
     <nav class="nav" aria-label="Sections">
       <a href="#robot">Robot hands</a><a href="#qual">What we see</a><a href="#compare">Trained vs base</a><a href="#all">All 32 clips</a><a href="#onehand">One-hand test</a>
-      <a href="index.html">Dashboard</a><a href="eval.html">Eval</a><a href="explore.html">Data &amp; model</a><a href="paper.html">Project page</a>
+      <a href="sharpadex.html">SharpaDex eval</a><a href="index.html">Dashboard</a><a href="eval.html">Eval</a><a href="explore.html">Data &amp; model</a><a href="paper.html">Project page</a>
     </nav>
   </div>
 </header>
@@ -46,6 +46,7 @@
       <tr><td>HRDexDB Inspire robot (48 clips)</td><td>12.5</td><td>&ndash;</td><td>13.0</td><td>9.9</td><td class="best"><span>13.3</span></td></tr>
     </table></div>
     <div class="cap" style="margin-bottom:16px">The 1.3B camera + LoRA model never trained on SharpaDex. Paired A14B adapter minus camera + LoRA, hand region: human &minus;2.1 &plusmn; 0.2 dB (A14B better on 1 of 35 clips), Inspire robot +0.4 &plusmn; 0.2 dB.</div>
+    <div class="cap" style="margin-bottom:14px"><b><a href="sharpadex.html">Full SharpaDex eval →</a></b> all 130 held-out clips, per-episode chart, per-step breakdown and 4-way side-by-side videos (plain A14B · 1.3B camera + LoRA · A14B adapter).</div>
     <div class="pills" id="robot-sets" style="margin-bottom:12px;align-items:center"></div>
     <div id="robot-list"></div>
     <div class="cap" id="robot-credit"></div>
