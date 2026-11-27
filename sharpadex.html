@@ -15,6 +15,7 @@
   .tile .big { font-size: 2rem; font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
   .chartbox { position: relative; }
   .chartbox svg { width: 100%; height: auto; display: block; }
+  @media (max-width: 700px) { .chartbox { overflow-x: auto; } .chartbox svg { min-width: 640px; } }
   .chartbox .tip { position: absolute; pointer-events: none; background: var(--card); border: 2px solid var(--ink); border-radius: 12px;
     padding: 8px 11px; font-size: .82rem; box-shadow: var(--shadow-sm); display: none; white-space: nowrap; z-index: 2; }
   .chartbox .tip b { font-variant-numeric: tabular-nums; }
@@ -31,7 +32,7 @@
   <div class="wrap">
     <a class="brand" href="index.html"><span data-i="film"></span>HandCtrl Video</a>
     <nav class="nav" aria-label="Sections">
-      <a href="#summary">Summary</a><a href="#episodes">Per episode</a><a href="#steps">By task step</a><a href="#clips">Videos</a>
+      <a href="#summary">Summary</a><a href="#episodes">Per episode</a><a href="#steps">By task step</a><a href="#length">Training length</a><a href="#clips">Videos</a>
       <a href="index.html">Dashboard</a><a href="demo.html">Demos</a><a href="eval.html">Eval</a><a href="paper.html">Project page</a>
     </nav>
   </div>
@@ -68,6 +69,17 @@
     <div class="sec-head"><span class="ico" data-i="hand"></span><div><h2>By task step</h2>
       <div class="sub">Hand-region PSNR (dB), grouped by what happens in the clip. Steps come from the prompt; many clips span two or three steps.</div></div></div>
     <div class="table-wrap"><table id="step-table"></table></div>
+  </section>
+
+  <section id="length" style="display:none">
+    <div class="sec-head"><span class="ico" data-i="flag"></span><div><h2>Does training longer help?</h2>
+      <div class="sub">The A14B hand adapter's saved checkpoints at 1,250 / 2,500 / 3,750 / 5,000 steps, same 130 clips and seed. Change in PSNR since step 1,250.</div></div></div>
+    <div class="card">
+      <div class="chartbox" id="len-chart"></div>
+      <details class="tv"><summary>Show as a table</summary><div class="table-wrap"><table id="len-abs"></table></div></details>
+    </div>
+    <div class="table-wrap" style="margin-top:14px"><table id="len-table"></table></div>
+    <div class="cap" id="len-cap" style="margin-top:8px"></div>
   </section>
 
   <section id="clips">

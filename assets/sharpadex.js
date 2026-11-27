@@ -107,6 +107,62 @@
           return !x.ref && val === best ? `<td class="best"><span>${f1(val)}</span></td>` : `<td${x.ref ? ' class="muted"' : ""}>${f1(val)}</td>`; }).join("")}
           <td>${sgn(mean(cs.map((c) => c.a14b_v4.psnr_hand - c.camlora.psnr_hand)))}</td></tr>`; }).join("");
 
+    // ---- training-length curve (v4 milestones), change since the first milestone
+    const SC = S.step_curve;
+    if (SC && SC.keys && SC.keys.every((k) => S.mean[k])) {
+      $("length").style.display = "";
+      const LM = [{ m: "psnr_hand", label: "Hand region", color: "#2a78d6", w: 3 },
+                  { m: "psnr", label: "Full frame", color: "#3e3a39", w: 2 },
+                  { m: "psnr_outside", label: "Outside hands", color: "#6b6463", w: 2, dash: "6 4" }];
+      const st = SC.steps, base = (m) => S.mean[SC.keys[0]][m];
+      const dv = (k, m) => S.mean[k][m] - base(m);
+      const vals = LM.flatMap((l) => SC.keys.map((k) => dv(k, l.m)));
+      const W2 = 820, H2 = 280, L2 = 70, R2 = 130, T2 = 14, B2 = 40;
+      const ya = Math.min(0, ...vals) - 0.1, yb = Math.max(...vals) + 0.15;
+      const XS = (s) => L2 + (W2 - L2 - R2) * (s - st[0]) / (st[st.length - 1] - st[0]), YS = (v) => T2 + (H2 - T2 - B2) * (1 - (v - ya) / (yb - ya));
+      let gg = "";
+      for (let t = Math.ceil(ya * 4) / 4; t <= yb; t += 0.25)
+        gg += `<line x1="${L2}" x2="${W2 - R2}" y1="${YS(t)}" y2="${YS(t)}" stroke="var(--grid)" stroke-width="${Math.abs(t) < 1e-9 ? 2 : 1}"/>` +
+              `<text x="${L2 - 8}" y="${YS(t) + 4}" text-anchor="end" font-size="11" fill="var(--ink-2)">${t > 0 ? "+" : ""}${t.toFixed(2)}</text>`;
+      st.forEach((s) => { gg += `<text x="${XS(s)}" y="${H2 - B2 + 16}" text-anchor="middle" font-size="11" fill="var(--ink-2)">${s.toLocaleString()}</text>`; });
+      gg += `<text x="${L2 + (W2 - L2 - R2) / 2}" y="${H2 - 6}" text-anchor="middle" font-size="11" fill="var(--ink-2)">training step</text>`;
+      gg += `<text x="13" y="${T2 + (H2 - T2 - B2) / 2}" transform="rotate(-90 13 ${T2 + (H2 - T2 - B2) / 2})" text-anchor="middle" font-size="11" fill="var(--ink-2)">PSNR change since 1,250 (dB)</text>`;
+      let ln = "";
+      LM.forEach((l) => {
+        const pts = SC.keys.map((k, i) => [XS(st[i]), YS(dv(k, l.m))]);
+        ln += `<polyline points="${pts.map((p) => p.join(",")).join(" ")}" fill="none" stroke="${l.color}" stroke-width="${l.w}" ${l.dash ? `stroke-dasharray="${l.dash}"` : ""} stroke-linejoin="round" stroke-linecap="round"/>` +
+              pts.map((p) => `<circle cx="${p[0]}" cy="${p[1]}" r="4.5" fill="${l.color}" stroke="var(--card)" stroke-width="2"/>`).join("");
+      });
+      const ends = LM.map((l) => ({ l, y: YS(dv(SC.keys[SC.keys.length - 1], l.m)) })).sort((a, b) => a.y - b.y);
+      for (let k = 1; k < ends.length; k++) if (ends[k].y - ends[k - 1].y < 15) ends[k].y = ends[k - 1].y + 15;
+      const elab = ends.map(({ l, y }) => `<text x="${W2 - R2 + 12}" y="${y + 4}" font-size="11.5" fill="var(--ink)">${l.label}</text>`).join("");
+      const hit2 = st.map((s, i) => `<rect class="hit2" data-i="${i}" x="${XS(s) - 40}" y="${T2}" width="80" height="${H2 - T2 - B2}" fill="transparent"/>`).join("");
+      $("len-chart").innerHTML = `<svg viewBox="0 0 ${W2} ${H2}" role="img" aria-label="PSNR change versus training step for full frame, hand region and outside hands">${gg}${ln}${elab}${hit2}</svg><div class="tip" id="len-tip"></div>`;
+      const tip2 = $("len-tip");
+      $("len-chart").querySelectorAll(".hit2").forEach((h) => {
+        h.addEventListener("mousemove", (ev) => { const i = +h.dataset.i, k = SC.keys[i], box = $("len-chart").getBoundingClientRect();
+          tip2.innerHTML = `<div><b>Step ${st[i].toLocaleString()}</b></div>` + LM.map((l) => `<div>${l.label}: <b>${f1(S.mean[k][l.m])}</b> dB (${sgn(dv(k, l.m))})</div>`).join("");
+          tip2.style.display = "block"; const tw = tip2.offsetWidth;
+          tip2.style.left = Math.min(ev.clientX - box.left + 14, box.width - tw - 4) + "px"; tip2.style.top = Math.max(0, ev.clientY - box.top - 20) + "px"; });
+        h.addEventListener("mouseleave", () => { tip2.style.display = "none"; });
+      });
+      $("len-abs").innerHTML = `<tr><th>Step</th>${LM.map((l) => `<th>${l.label} (dB)</th>`).join("")}</tr>` +
+        SC.keys.map((k, i) => `<tr><td>${st[i].toLocaleString()}</td>${LM.map((l) => `<td>${(+S.mean[k][l.m]).toFixed(2)}</td>`).join("")}</tr>`).join("");
+      // step-to-step paired changes (keys are "later_minus_earlier", except the last pair which is stored as 3750 - 5000)
+      const pairs = [];
+      for (let i = 1; i < SC.keys.length; i++) {
+        const a = SC.keys[i - 1], b = SC.keys[i];
+        let d = P[`${b}_minus_${a}`], flip = false;
+        if (!d) { d = P[`${a}_minus_${b}`]; flip = true; }
+        if (d) pairs.push({ from: st[i - 1], to: st[i], d, flip });
+      }
+      const cell = (x, flip) => { const m = flip ? -x.mean_diff : x.mean_diff, lo = flip ? -x.ci95[1] : x.ci95[0], hi = flip ? -x.ci95[0] : x.ci95[1];
+        const sig = lo > 0 || hi < 0; return `<td${sig ? "" : ' style="color:var(--ink-2);opacity:.6"'}>${sgn(m)} <span class="muted small">[${sgn(lo)}, ${sgn(hi)}]</span></td>`; };
+      $("len-table").innerHTML = `<tr><th>Paired change (later minus earlier)</th>${LM.map((l) => `<th>${l.label}</th>`).join("")}</tr>` +
+        pairs.map((p) => `<tr><td>${p.from.toLocaleString()} → ${p.to.toLocaleString()}</td>${LM.map((l) => cell(p.d[l.m], p.flip)).join("")}</tr>`).join("");
+      $("len-cap").textContent = "95% CI: bootstrap over the 20 held-out episodes. Greyed = the interval includes 0. The full-frame gain after 3,750 comes from outside the hands (scene and background); hand-region PSNR stops improving at 3,750. Same trend as the 1.3B model on HOT3D, where hand error stopped improving after about 2,500 steps.";
+    }
+
     // ---- side-by-side videos
     const byId = Object.fromEntries(clips.map((c) => [c.id, c]));
     const PL = V.panels || [];
