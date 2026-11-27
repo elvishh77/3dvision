@@ -1,0 +1,1895 @@
+{
+ "title": "HRDexDB step curve for v4_a14b_high_K4 (seed 0; ci95 = clip bootstrap)",
+ "human": {
+  "mean": {
+   "a14b_v4_1250": {
+    "psnr": 18.969,
+    "psnr_hand": 16.31,
+    "psnr_outside": 19.305
+   },
+   "a14b_v4_2500": {
+    "psnr": 19.34,
+    "psnr_hand": 16.582,
+    "psnr_outside": 19.687
+   },
+   "a14b_v4_3750": {
+    "psnr": 19.41,
+    "psnr_hand": 16.763,
+    "psnr_outside": 19.766
+   },
+   "a14b_v4": {
+    "psnr": 20.202,
+    "psnr_hand": 17.394,
+    "psnr_outside": 20.572
+   }
+  },
+  "paired": {
+   "a14b_v4_2500_minus_a14b_v4_1250": {
+    "psnr": {
+     "mean_diff": 0.371,
+     "ci95": [
+      -0.134,
+      0.929
+     ],
+     "wins": 22,
+     "n": 35
+    },
+    "psnr_hand": {
+     "mean_diff": 0.273,
+     "ci95": [
+      -0.067,
+      0.626
+     ],
+     "wins": 23,
+     "n": 35
+    }
+   },
+   "a14b_v4_3750_minus_a14b_v4_2500": {
+    "psnr": {
+     "mean_diff": 0.07,
+     "ci95": [
+      -0.431,
+      0.519
+     ],
+     "wins": 20,
+     "n": 35
+    },
+    "psnr_hand": {
+     "mean_diff": 0.181,
+     "ci95": [
+      -0.056,
+      0.411
+     ],
+     "wins": 24,
+     "n": 35
+    }
+   },
+   "a14b_v4_minus_a14b_v4_3750": {
+    "psnr": {
+     "mean_diff": 0.792,
+     "ci95": [
+      0.332,
+      1.25
+     ],
+     "wins": 23,
+     "n": 35
+    },
+    "psnr_hand": {
+     "mean_diff": 0.63,
+     "ci95": [
+      0.326,
+      0.931
+     ],
+     "wins": 27,
+     "n": 35
+    }
+   },
+   "a14b_v4_minus_a14b_v4_2500": {
+    "psnr": {
+     "mean_diff": 0.863,
+     "ci95": [
+      0.377,
+      1.319
+     ],
+     "wins": 26,
+     "n": 35
+    },
+    "psnr_hand": {
+     "mean_diff": 0.812,
+     "ci95": [
+      0.474,
+      1.129
+     ],
+     "wins": 31,
+     "n": 35
+    }
+   }
+  },
+  "per_clip": {
+   "a14b_v4_1250": {
+    "hrdex-balloon_whisk-0_w0": {
+     "psnr": 21.992,
+     "psnr_hand": 20.194,
+     "psnr_outside": 22.112
+    },
+    "hrdex-balloon_whisk-2_w0": {
+     "psnr": 18.81,
+     "psnr_hand": 18.861,
+     "psnr_outside": 18.808
+    },
+    "hrdex-black_holder_with_handle-0_w45": {
+     "psnr": 16.576,
+     "psnr_hand": 13.386,
+     "psnr_outside": 16.77
+    },
+    "hrdex-black_holder_with_handle-1_w45": {
+     "psnr": 18.129,
+     "psnr_hand": 15.973,
+     "psnr_outside": 18.243
+    },
+    "hrdex-cactus2-0_w0": {
+     "psnr": 17.861,
+     "psnr_hand": 14.973,
+     "psnr_outside": 18.186
+    },
+    "hrdex-cactus2-1_w45": {
+     "psnr": 16.92,
+     "psnr_hand": 14.887,
+     "psnr_outside": 17.108
+    },
+    "hrdex-cactus3-0_w45": {
+     "psnr": 16.766,
+     "psnr_hand": 14.509,
+     "psnr_outside": 16.911
+    },
+    "hrdex-clothes_hanger-5_w45": {
+     "psnr": 21.166,
+     "psnr_hand": 18.33,
+     "psnr_outside": 21.35
+    },
+    "hrdex-frame_red-0_w0": {
+     "psnr": 17.072,
+     "psnr_hand": 14.194,
+     "psnr_outside": 17.358
+    },
+    "hrdex-french_mustard-2_w0": {
+     "psnr": 16.658,
+     "psnr_hand": 16.528,
+     "psnr_outside": 16.666
+    },
+    "hrdex-frog_bowl-1_w0": {
+     "psnr": 16.71,
+     "psnr_hand": 15.105,
+     "psnr_outside": 16.81
+    },
+    "hrdex-green_cactus_vase-0_w0": {
+     "psnr": 16.392,
+     "psnr_hand": 13.506,
+     "psnr_outside": 16.665
+    },
+    "hrdex-green_cactus_vase-1_w45": {
+     "psnr": 17.613,
+     "psnr_hand": 14.032,
+     "psnr_outside": 17.942
+    },
+    "hrdex-jja_ramen-0_w0": {
+     "psnr": 21.922,
+     "psnr_hand": 15.772,
+     "psnr_outside": 23.287
+    },
+    "hrdex-lotion-1_w45": {
+     "psnr": 22.479,
+     "psnr_hand": 14.151,
+     "psnr_outside": 25.105
+    },
+    "hrdex-metal_measuring_flask-0_w0": {
+     "psnr": 18.125,
+     "psnr_hand": 15.806,
+     "psnr_outside": 18.288
+    },
+    "hrdex-mug_holder-0_w45": {
+     "psnr": 22.342,
+     "psnr_hand": 17.55,
+     "psnr_outside": 23.012
+    },
+    "hrdex-pepper_tuna-0_w0": {
+     "psnr": 21.424,
+     "psnr_hand": 18.353,
+     "psnr_outside": 21.795
+    },
+    "hrdex-plastic_elephant_jug-0_w0": {
+     "psnr": 21.225,
+     "psnr_hand": 18.982,
+     "psnr_outside": 21.43
+    },
+    "hrdex-rectangular_frying_pan-0_w0": {
+     "psnr": 15.745,
+     "psnr_hand": 17.74,
+     "psnr_outside": 15.657
+    },
+    "hrdex-scotch_tape-1_w45": {
+     "psnr": 19.1,
+     "psnr_hand": 16.335,
+     "psnr_outside": 19.289
+    },
+    "hrdex-scotch_tape-2_w0": {
+     "psnr": 17.804,
+     "psnr_hand": 17.396,
+     "psnr_outside": 17.833
+    },
+    "hrdex-screwdriver-0_w0": {
+     "psnr": 21.653,
+     "psnr_hand": 18.029,
+     "psnr_outside": 21.992
+    },
+    "hrdex-screwdriver-2_w0": {
+     "psnr": 16.303,
+     "psnr_hand": 17.447,
+     "psnr_outside": 16.236
+    },
+    "hrdex-spray_bottle-0_w0": {
+     "psnr": 18.038,
+     "psnr_hand": 12.359,
+     "psnr_outside": 18.856
+    },
+    "hrdex-spray_bottle-1_w0": {
+     "psnr": 16.317,
+     "psnr_hand": 13.641,
+     "psnr_outside": 16.578
+    },
+    "hrdex-tea_case-0_w0": {
+     "psnr": 19.516,
+     "psnr_hand": 15.369,
+     "psnr_outside": 19.883
+    },
+    "hrdex-tea_case-2_w0": {
+     "psnr": 20.566,
+     "psnr_hand": 16.867,
+     "psnr_outside": 21.023
+    },
+    "hrdex-tennis_ball-0_w45": {
+     "psnr": 22.166,
+     "psnr_hand": 18.203,
+     "psnr_outside": 22.542
+    },
+    "hrdex-tennis_ball-2_w0": {
+     "psnr": 22.156,
+     "psnr_hand": 19.155,
+     "psnr_outside": 22.468
+    },
+    "hrdex-white_candle_holder-2_w0": {
+     "psnr": 18.99,
+     "psnr_hand": 17.085,
+     "psnr_outside": 19.183
+    },
+    "hrdex-white_wood_handle_watering_can-1_w0": {
+     "psnr": 17.254,
+     "psnr_hand": 14.587,
+     "psnr_outside": 17.608
+    },
+    "hrdex-white_wood_handle_watering_can-3_w0": {
+     "psnr": 18.986,
+     "psnr_hand": 16.0,
+     "psnr_outside": 19.262
+    },
+    "hrdex-yellow_funnel-0_w45": {
+     "psnr": 19.766,
+     "psnr_hand": 19.08,
+     "psnr_outside": 19.812
+    },
+    "hrdex-yellow_funnel-1_w45": {
+     "psnr": 19.386,
+     "psnr_hand": 16.45,
+     "psnr_outside": 19.614
+    }
+   },
+   "a14b_v4_2500": {
+    "hrdex-balloon_whisk-0_w0": {
+     "psnr": 19.842,
+     "psnr_hand": 18.334,
+     "psnr_outside": 19.939
+    },
+    "hrdex-balloon_whisk-2_w0": {
+     "psnr": 21.682,
+     "psnr_hand": 18.911,
+     "psnr_outside": 21.892
+    },
+    "hrdex-black_holder_with_handle-0_w45": {
+     "psnr": 14.891,
+     "psnr_hand": 14.042,
+     "psnr_outside": 14.929
+    },
+    "hrdex-black_holder_with_handle-1_w45": {
+     "psnr": 19.6,
+     "psnr_hand": 19.052,
+     "psnr_outside": 19.623
+    },
+    "hrdex-cactus2-0_w0": {
+     "psnr": 18.762,
+     "psnr_hand": 16.375,
+     "psnr_outside": 19.012
+    },
+    "hrdex-cactus2-1_w45": {
+     "psnr": 16.632,
+     "psnr_hand": 14.882,
+     "psnr_outside": 16.789
+    },
+    "hrdex-cactus3-0_w45": {
+     "psnr": 18.837,
+     "psnr_hand": 17.244,
+     "psnr_outside": 18.931
+    },
+    "hrdex-clothes_hanger-5_w45": {
+     "psnr": 21.418,
+     "psnr_hand": 19.009,
+     "psnr_outside": 21.565
+    },
+    "hrdex-frame_red-0_w0": {
+     "psnr": 17.595,
+     "psnr_hand": 14.834,
+     "psnr_outside": 17.865
+    },
+    "hrdex-french_mustard-2_w0": {
+     "psnr": 21.429,
+     "psnr_hand": 18.654,
+     "psnr_outside": 21.672
+    },
+    "hrdex-frog_bowl-1_w0": {
+     "psnr": 18.818,
+     "psnr_hand": 15.246,
+     "psnr_outside": 19.109
+    },
+    "hrdex-green_cactus_vase-0_w0": {
+     "psnr": 14.147,
+     "psnr_hand": 12.463,
+     "psnr_outside": 14.281
+    },
+    "hrdex-green_cactus_vase-1_w45": {
+     "psnr": 15.517,
+     "psnr_hand": 14.539,
+     "psnr_outside": 15.579
+    },
+    "hrdex-jja_ramen-0_w0": {
+     "psnr": 22.095,
+     "psnr_hand": 17.144,
+     "psnr_outside": 22.976
+    },
+    "hrdex-lotion-1_w45": {
+     "psnr": 21.876,
+     "psnr_hand": 13.703,
+     "psnr_outside": 24.356
+    },
+    "hrdex-metal_measuring_flask-0_w0": {
+     "psnr": 17.38,
+     "psnr_hand": 16.289,
+     "psnr_outside": 17.445
+    },
+    "hrdex-mug_holder-0_w45": {
+     "psnr": 22.57,
+     "psnr_hand": 17.129,
+     "psnr_outside": 23.418
+    },
+    "hrdex-pepper_tuna-0_w0": {
+     "psnr": 22.042,
+     "psnr_hand": 16.221,
+     "psnr_outside": 23.147
+    },
+    "hrdex-plastic_elephant_jug-0_w0": {
+     "psnr": 21.188,
+     "psnr_hand": 17.993,
+     "psnr_outside": 21.524
+    },
+    "hrdex-rectangular_frying_pan-0_w0": {
+     "psnr": 16.032,
+     "psnr_hand": 16.959,
+     "psnr_outside": 15.986
+    },
+    "hrdex-scotch_tape-1_w45": {
+     "psnr": 20.517,
+     "psnr_hand": 16.492,
+     "psnr_outside": 20.845
+    },
+    "hrdex-scotch_tape-2_w0": {
+     "psnr": 17.934,
+     "psnr_hand": 18.295,
+     "psnr_outside": 17.911
+    },
+    "hrdex-screwdriver-0_w0": {
+     "psnr": 21.86,
+     "psnr_hand": 18.191,
+     "psnr_outside": 22.206
+    },
+    "hrdex-screwdriver-2_w0": {
+     "psnr": 21.284,
+     "psnr_hand": 17.475,
+     "psnr_outside": 21.716
+    },
+    "hrdex-spray_bottle-0_w0": {
+     "psnr": 18.189,
+     "psnr_hand": 12.805,
+     "psnr_outside": 18.927
+    },
+    "hrdex-spray_bottle-1_w0": {
+     "psnr": 16.246,
+     "psnr_hand": 13.484,
+     "psnr_outside": 16.519
+    },
+    "hrdex-tea_case-0_w0": {
+     "psnr": 19.341,
+     "psnr_hand": 15.951,
+     "psnr_outside": 19.61
+    },
+    "hrdex-tea_case-2_w0": {
+     "psnr": 19.874,
+     "psnr_hand": 16.483,
+     "psnr_outside": 20.274
+    },
+    "hrdex-tennis_ball-0_w45": {
+     "psnr": 20.841,
+     "psnr_hand": 18.849,
+     "psnr_outside": 20.985
+    },
+    "hrdex-tennis_ball-2_w0": {
+     "psnr": 23.176,
+     "psnr_hand": 20.079,
+     "psnr_outside": 23.503
+    },
+    "hrdex-white_candle_holder-2_w0": {
+     "psnr": 20.383,
+     "psnr_hand": 17.573,
+     "psnr_outside": 20.707
+    },
+    "hrdex-white_wood_handle_watering_can-1_w0": {
+     "psnr": 17.346,
+     "psnr_hand": 15.071,
+     "psnr_outside": 17.631
+    },
+    "hrdex-white_wood_handle_watering_can-3_w0": {
+     "psnr": 17.328,
+     "psnr_hand": 15.564,
+     "psnr_outside": 17.466
+    },
+    "hrdex-yellow_funnel-0_w45": {
+     "psnr": 19.775,
+     "psnr_hand": 19.118,
+     "psnr_outside": 19.819
+    },
+    "hrdex-yellow_funnel-1_w45": {
+     "psnr": 20.45,
+     "psnr_hand": 15.916,
+     "psnr_outside": 20.895
+    }
+   },
+   "a14b_v4_3750": {
+    "hrdex-balloon_whisk-0_w0": {
+     "psnr": 21.12,
+     "psnr_hand": 18.466,
+     "psnr_outside": 21.318
+    },
+    "hrdex-balloon_whisk-2_w0": {
+     "psnr": 21.442,
+     "psnr_hand": 18.636,
+     "psnr_outside": 21.655
+    },
+    "hrdex-black_holder_with_handle-0_w45": {
+     "psnr": 14.421,
+     "psnr_hand": 12.639,
+     "psnr_outside": 14.51
+    },
+    "hrdex-black_holder_with_handle-1_w45": {
+     "psnr": 21.025,
+     "psnr_hand": 18.136,
+     "psnr_outside": 21.193
+    },
+    "hrdex-cactus2-0_w0": {
+     "psnr": 18.917,
+     "psnr_hand": 16.565,
+     "psnr_outside": 19.162
+    },
+    "hrdex-cactus2-1_w45": {
+     "psnr": 17.137,
+     "psnr_hand": 15.585,
+     "psnr_outside": 17.272
+    },
+    "hrdex-cactus3-0_w45": {
+     "psnr": 18.899,
+     "psnr_hand": 16.749,
+     "psnr_outside": 19.036
+    },
+    "hrdex-clothes_hanger-5_w45": {
+     "psnr": 22.668,
+     "psnr_hand": 19.414,
+     "psnr_outside": 22.89
+    },
+    "hrdex-frame_red-0_w0": {
+     "psnr": 16.867,
+     "psnr_hand": 15.915,
+     "psnr_outside": 16.94
+    },
+    "hrdex-french_mustard-2_w0": {
+     "psnr": 21.1,
+     "psnr_hand": 17.5,
+     "psnr_outside": 21.456
+    },
+    "hrdex-frog_bowl-1_w0": {
+     "psnr": 18.005,
+     "psnr_hand": 16.086,
+     "psnr_outside": 18.129
+    },
+    "hrdex-green_cactus_vase-0_w0": {
+     "psnr": 14.579,
+     "psnr_hand": 12.751,
+     "psnr_outside": 14.729
+    },
+    "hrdex-green_cactus_vase-1_w45": {
+     "psnr": 17.302,
+     "psnr_hand": 14.245,
+     "psnr_outside": 17.562
+    },
+    "hrdex-jja_ramen-0_w0": {
+     "psnr": 23.931,
+     "psnr_hand": 18.229,
+     "psnr_outside": 25.094
+    },
+    "hrdex-lotion-1_w45": {
+     "psnr": 22.734,
+     "psnr_hand": 14.262,
+     "psnr_outside": 25.505
+    },
+    "hrdex-metal_measuring_flask-0_w0": {
+     "psnr": 16.333,
+     "psnr_hand": 15.288,
+     "psnr_outside": 16.395
+    },
+    "hrdex-mug_holder-0_w45": {
+     "psnr": 23.335,
+     "psnr_hand": 17.157,
+     "psnr_outside": 24.434
+    },
+    "hrdex-pepper_tuna-0_w0": {
+     "psnr": 22.882,
+     "psnr_hand": 16.506,
+     "psnr_outside": 24.227
+    },
+    "hrdex-plastic_elephant_jug-0_w0": {
+     "psnr": 16.149,
+     "psnr_hand": 18.367,
+     "psnr_outside": 16.031
+    },
+    "hrdex-rectangular_frying_pan-0_w0": {
+     "psnr": 17.511,
+     "psnr_hand": 17.415,
+     "psnr_outside": 17.516
+    },
+    "hrdex-scotch_tape-1_w45": {
+     "psnr": 19.537,
+     "psnr_hand": 16.699,
+     "psnr_outside": 19.732
+    },
+    "hrdex-scotch_tape-2_w0": {
+     "psnr": 17.721,
+     "psnr_hand": 17.815,
+     "psnr_outside": 17.715
+    },
+    "hrdex-screwdriver-0_w0": {
+     "psnr": 22.543,
+     "psnr_hand": 19.442,
+     "psnr_outside": 22.812
+    },
+    "hrdex-screwdriver-2_w0": {
+     "psnr": 18.984,
+     "psnr_hand": 18.923,
+     "psnr_outside": 18.989
+    },
+    "hrdex-spray_bottle-0_w0": {
+     "psnr": 18.171,
+     "psnr_hand": 12.58,
+     "psnr_outside": 18.965
+    },
+    "hrdex-spray_bottle-1_w0": {
+     "psnr": 16.364,
+     "psnr_hand": 13.539,
+     "psnr_outside": 16.645
+    },
+    "hrdex-tea_case-0_w0": {
+     "psnr": 19.977,
+     "psnr_hand": 17.022,
+     "psnr_outside": 20.197
+    },
+    "hrdex-tea_case-2_w0": {
+     "psnr": 20.35,
+     "psnr_hand": 16.87,
+     "psnr_outside": 20.766
+    },
+    "hrdex-tennis_ball-0_w45": {
+     "psnr": 22.659,
+     "psnr_hand": 19.04,
+     "psnr_outside": 22.985
+    },
+    "hrdex-tennis_ball-2_w0": {
+     "psnr": 22.836,
+     "psnr_hand": 20.087,
+     "psnr_outside": 23.112
+    },
+    "hrdex-white_candle_holder-2_w0": {
+     "psnr": 20.827,
+     "psnr_hand": 18.337,
+     "psnr_outside": 21.101
+    },
+    "hrdex-white_wood_handle_watering_can-1_w0": {
+     "psnr": 16.449,
+     "psnr_hand": 14.563,
+     "psnr_outside": 16.673
+    },
+    "hrdex-white_wood_handle_watering_can-3_w0": {
+     "psnr": 19.465,
+     "psnr_hand": 16.271,
+     "psnr_outside": 19.769
+    },
+    "hrdex-yellow_funnel-0_w45": {
+     "psnr": 16.773,
+     "psnr_hand": 18.564,
+     "psnr_outside": 16.683
+    },
+    "hrdex-yellow_funnel-1_w45": {
+     "psnr": 20.351,
+     "psnr_hand": 17.049,
+     "psnr_outside": 20.621
+    }
+   },
+   "a14b_v4": {
+    "hrdex-balloon_whisk-0_w0": {
+     "psnr": 22.257,
+     "psnr_hand": 18.885,
+     "psnr_outside": 22.537
+    },
+    "hrdex-balloon_whisk-2_w0": {
+     "psnr": 23.869,
+     "psnr_hand": 20.005,
+     "psnr_outside": 24.21
+    },
+    "hrdex-black_holder_with_handle-0_w45": {
+     "psnr": 17.527,
+     "psnr_hand": 14.911,
+     "psnr_outside": 17.674
+    },
+    "hrdex-black_holder_with_handle-1_w45": {
+     "psnr": 18.597,
+     "psnr_hand": 16.762,
+     "psnr_outside": 18.69
+    },
+    "hrdex-cactus2-0_w0": {
+     "psnr": 18.435,
+     "psnr_hand": 16.444,
+     "psnr_outside": 18.632
+    },
+    "hrdex-cactus2-1_w45": {
+     "psnr": 17.693,
+     "psnr_hand": 15.461,
+     "psnr_outside": 17.906
+    },
+    "hrdex-cactus3-0_w45": {
+     "psnr": 18.076,
+     "psnr_hand": 17.411,
+     "psnr_outside": 18.111
+    },
+    "hrdex-clothes_hanger-5_w45": {
+     "psnr": 21.624,
+     "psnr_hand": 18.617,
+     "psnr_outside": 21.823
+    },
+    "hrdex-frame_red-0_w0": {
+     "psnr": 18.682,
+     "psnr_hand": 16.934,
+     "psnr_outside": 18.83
+    },
+    "hrdex-french_mustard-2_w0": {
+     "psnr": 20.589,
+     "psnr_hand": 17.83,
+     "psnr_outside": 20.831
+    },
+    "hrdex-frog_bowl-1_w0": {
+     "psnr": 20.215,
+     "psnr_hand": 17.375,
+     "psnr_outside": 20.423
+    },
+    "hrdex-green_cactus_vase-0_w0": {
+     "psnr": 14.361,
+     "psnr_hand": 13.203,
+     "psnr_outside": 14.447
+    },
+    "hrdex-green_cactus_vase-1_w45": {
+     "psnr": 19.452,
+     "psnr_hand": 15.033,
+     "psnr_outside": 19.912
+    },
+    "hrdex-jja_ramen-0_w0": {
+     "psnr": 23.768,
+     "psnr_hand": 17.235,
+     "psnr_outside": 25.333
+    },
+    "hrdex-lotion-1_w45": {
+     "psnr": 23.113,
+     "psnr_hand": 14.602,
+     "psnr_outside": 25.925
+    },
+    "hrdex-metal_measuring_flask-0_w0": {
+     "psnr": 19.632,
+     "psnr_hand": 16.852,
+     "psnr_outside": 19.84
+    },
+    "hrdex-mug_holder-0_w45": {
+     "psnr": 24.155,
+     "psnr_hand": 17.691,
+     "psnr_outside": 25.367
+    },
+    "hrdex-pepper_tuna-0_w0": {
+     "psnr": 22.742,
+     "psnr_hand": 18.478,
+     "psnr_outside": 23.362
+    },
+    "hrdex-plastic_elephant_jug-0_w0": {
+     "psnr": 17.454,
+     "psnr_hand": 18.672,
+     "psnr_outside": 17.382
+    },
+    "hrdex-rectangular_frying_pan-0_w0": {
+     "psnr": 16.631,
+     "psnr_hand": 17.975,
+     "psnr_outside": 16.568
+    },
+    "hrdex-scotch_tape-1_w45": {
+     "psnr": 21.056,
+     "psnr_hand": 18.386,
+     "psnr_outside": 21.236
+    },
+    "hrdex-scotch_tape-2_w0": {
+     "psnr": 21.007,
+     "psnr_hand": 19.616,
+     "psnr_outside": 21.119
+    },
+    "hrdex-screwdriver-0_w0": {
+     "psnr": 21.723,
+     "psnr_hand": 19.842,
+     "psnr_outside": 21.861
+    },
+    "hrdex-screwdriver-2_w0": {
+     "psnr": 20.187,
+     "psnr_hand": 17.853,
+     "psnr_outside": 20.401
+    },
+    "hrdex-spray_bottle-0_w0": {
+     "psnr": 17.701,
+     "psnr_hand": 14.436,
+     "psnr_outside": 18.023
+    },
+    "hrdex-spray_bottle-1_w0": {
+     "psnr": 16.999,
+     "psnr_hand": 15.174,
+     "psnr_outside": 17.157
+    },
+    "hrdex-tea_case-0_w0": {
+     "psnr": 20.873,
+     "psnr_hand": 17.161,
+     "psnr_outside": 21.181
+    },
+    "hrdex-tea_case-2_w0": {
+     "psnr": 20.614,
+     "psnr_hand": 18.892,
+     "psnr_outside": 20.774
+    },
+    "hrdex-tennis_ball-0_w45": {
+     "psnr": 22.542,
+     "psnr_hand": 19.901,
+     "psnr_outside": 22.749
+    },
+    "hrdex-tennis_ball-2_w0": {
+     "psnr": 25.106,
+     "psnr_hand": 20.146,
+     "psnr_outside": 25.805
+    },
+    "hrdex-white_candle_holder-2_w0": {
+     "psnr": 21.966,
+     "psnr_hand": 17.984,
+     "psnr_outside": 22.514
+    },
+    "hrdex-white_wood_handle_watering_can-1_w0": {
+     "psnr": 18.441,
+     "psnr_hand": 15.381,
+     "psnr_outside": 18.873
+    },
+    "hrdex-white_wood_handle_watering_can-3_w0": {
+     "psnr": 19.649,
+     "psnr_hand": 16.707,
+     "psnr_outside": 19.919
+    },
+    "hrdex-yellow_funnel-0_w45": {
+     "psnr": 19.595,
+     "psnr_hand": 18.435,
+     "psnr_outside": 19.678
+    },
+    "hrdex-yellow_funnel-1_w45": {
+     "psnr": 20.755,
+     "psnr_hand": 18.489,
+     "psnr_outside": 20.916
+    }
+   }
+  }
+ },
+ "inspire_robot": {
+  "mean": {
+   "a14b_v4_1250": {
+    "psnr": 18.915,
+    "psnr_hand": 12.353,
+    "psnr_outside": 20.857
+   },
+   "a14b_v4_2500": {
+    "psnr": 19.359,
+    "psnr_hand": 13.14,
+    "psnr_outside": 21.018
+   },
+   "a14b_v4_3750": {
+    "psnr": 18.693,
+    "psnr_hand": 12.392,
+    "psnr_outside": 20.525
+   },
+   "a14b_v4": {
+    "psnr": 19.064,
+    "psnr_hand": 13.341,
+    "psnr_outside": 20.412
+   }
+  },
+  "paired": {
+   "a14b_v4_2500_minus_a14b_v4_1250": {
+    "psnr": {
+     "mean_diff": 0.444,
+     "ci95": [
+      0.077,
+      0.836
+     ],
+     "wins": 28,
+     "n": 48
+    },
+    "psnr_hand": {
+     "mean_diff": 0.788,
+     "ci95": [
+      0.291,
+      1.391
+     ],
+     "wins": 32,
+     "n": 48
+    }
+   },
+   "a14b_v4_3750_minus_a14b_v4_2500": {
+    "psnr": {
+     "mean_diff": -0.666,
+     "ci95": [
+      -1.271,
+      -0.149
+     ],
+     "wins": 22,
+     "n": 48
+    },
+    "psnr_hand": {
+     "mean_diff": -0.748,
+     "ci95": [
+      -1.241,
+      -0.316
+     ],
+     "wins": 16,
+     "n": 48
+    }
+   },
+   "a14b_v4_minus_a14b_v4_3750": {
+    "psnr": {
+     "mean_diff": 0.371,
+     "ci95": [
+      -0.229,
+      0.993
+     ],
+     "wins": 26,
+     "n": 48
+    },
+    "psnr_hand": {
+     "mean_diff": 0.949,
+     "ci95": [
+      0.379,
+      1.585
+     ],
+     "wins": 30,
+     "n": 48
+    }
+   },
+   "a14b_v4_minus_a14b_v4_2500": {
+    "psnr": {
+     "mean_diff": -0.294,
+     "ci95": [
+      -1.078,
+      0.425
+     ],
+     "wins": 28,
+     "n": 48
+    },
+    "psnr_hand": {
+     "mean_diff": 0.201,
+     "ci95": [
+      -0.389,
+      0.858
+     ],
+     "wins": 20,
+     "n": 48
+    }
+   }
+  },
+  "per_clip": {
+   "a14b_v4_1250": {
+    "hrdexr-inspire_dftp-balloon_whisk-0_w405": {
+     "psnr": 14.81,
+     "psnr_hand": 7.44,
+     "psnr_outside": 18.356
+    },
+    "hrdexr-inspire_dftp-black_holder_with_handle-0_w360": {
+     "psnr": 13.49,
+     "psnr_hand": 9.921,
+     "psnr_outside": 14.127
+    },
+    "hrdexr-inspire_dftp-cactus2-0_w225": {
+     "psnr": 18.914,
+     "psnr_hand": 13.481,
+     "psnr_outside": 20.395
+    },
+    "hrdexr-inspire_dftp-cactus3-1_w630": {
+     "psnr": 15.864,
+     "psnr_hand": 7.913,
+     "psnr_outside": 21.427
+    },
+    "hrdexr-inspire_dftp-clothes_hanger-1_w360": {
+     "psnr": 20.858,
+     "psnr_hand": 15.886,
+     "psnr_outside": 21.631
+    },
+    "hrdexr-inspire_dftp-frame_red-0_w225": {
+     "psnr": 17.674,
+     "psnr_hand": 11.754,
+     "psnr_outside": 20.046
+    },
+    "hrdexr-inspire_dftp-french_mustard-1_w315": {
+     "psnr": 20.158,
+     "psnr_hand": 14.133,
+     "psnr_outside": 22.026
+    },
+    "hrdexr-inspire_dftp-frog_bowl-0_w405": {
+     "psnr": 17.847,
+     "psnr_hand": 9.245,
+     "psnr_outside": 20.695
+    },
+    "hrdexr-inspire_dftp-green_cactus_vase-1_w450": {
+     "psnr": 14.304,
+     "psnr_hand": 9.712,
+     "psnr_outside": 15.744
+    },
+    "hrdexr-inspire_dftp-jja_ramen-0_w225": {
+     "psnr": 17.925,
+     "psnr_hand": 12.735,
+     "psnr_outside": 19.092
+    },
+    "hrdexr-inspire_dftp-lotion-3_w270": {
+     "psnr": 18.328,
+     "psnr_hand": 10.684,
+     "psnr_outside": 21.241
+    },
+    "hrdexr-inspire_dftp-metal_measuring_flask-2_w630": {
+     "psnr": 17.599,
+     "psnr_hand": 12.201,
+     "psnr_outside": 18.538
+    },
+    "hrdexr-inspire_dftp-mug_holder-0_w315": {
+     "psnr": 15.339,
+     "psnr_hand": 5.772,
+     "psnr_outside": 22.47
+    },
+    "hrdexr-inspire_dftp-pepper_tuna-1_w450": {
+     "psnr": 16.465,
+     "psnr_hand": 7.081,
+     "psnr_outside": 21.112
+    },
+    "hrdexr-inspire_dftp-plastic_elephant_jug-2_w495": {
+     "psnr": 16.845,
+     "psnr_hand": 9.537,
+     "psnr_outside": 19.201
+    },
+    "hrdexr-inspire_dftp-rectangular_frying_pan-4_w360": {
+     "psnr": 16.786,
+     "psnr_hand": 9.146,
+     "psnr_outside": 19.154
+    },
+    "hrdexr-inspire_dftp-scotch_tape-0_w360": {
+     "psnr": 16.854,
+     "psnr_hand": 7.106,
+     "psnr_outside": 21.475
+    },
+    "hrdexr-inspire_dftp-screwdriver-0_w450": {
+     "psnr": 17.088,
+     "psnr_hand": 7.654,
+     "psnr_outside": 20.698
+    },
+    "hrdexr-inspire_dftp-spray_bottle-2_w270": {
+     "psnr": 14.055,
+     "psnr_hand": 6.697,
+     "psnr_outside": 19.26
+    },
+    "hrdexr-inspire_dftp-tea_case-0_w180": {
+     "psnr": 14.877,
+     "psnr_hand": 6.741,
+     "psnr_outside": 20.228
+    },
+    "hrdexr-inspire_dftp-tennis_ball-0_w315": {
+     "psnr": 15.885,
+     "psnr_hand": 11.854,
+     "psnr_outside": 16.373
+    },
+    "hrdexr-inspire_dftp-white_candle_holder-0_w270": {
+     "psnr": 15.163,
+     "psnr_hand": 9.898,
+     "psnr_outside": 16.705
+    },
+    "hrdexr-inspire_dftp-white_wood_handle_watering_can-0_w945": {
+     "psnr": 19.49,
+     "psnr_hand": 14.16,
+     "psnr_outside": 22.353
+    },
+    "hrdexr-inspire_dftp-yellow_funnel-0_w495": {
+     "psnr": 18.289,
+     "psnr_hand": 11.026,
+     "psnr_outside": 20.587
+    },
+    "hrdexr-inspire_f1-balloon_whisk-0_w405": {
+     "psnr": 19.437,
+     "psnr_hand": 14.026,
+     "psnr_outside": 20.177
+    },
+    "hrdexr-inspire_f1-black_holder_with_handle-4_w630": {
+     "psnr": 23.425,
+     "psnr_hand": 19.707,
+     "psnr_outside": 23.711
+    },
+    "hrdexr-inspire_f1-cactus2-0_w180": {
+     "psnr": 20.435,
+     "psnr_hand": 13.337,
+     "psnr_outside": 22.005
+    },
+    "hrdexr-inspire_f1-cactus3-0_w180": {
+     "psnr": 19.59,
+     "psnr_hand": 13.041,
+     "psnr_outside": 20.723
+    },
+    "hrdexr-inspire_f1-clothes_hanger-0_w360": {
+     "psnr": 21.63,
+     "psnr_hand": 16.533,
+     "psnr_outside": 22.3
+    },
+    "hrdexr-inspire_f1-frame_red-0_w270": {
+     "psnr": 23.727,
+     "psnr_hand": 15.061,
+     "psnr_outside": 25.655
+    },
+    "hrdexr-inspire_f1-french_mustard-3_w225": {
+     "psnr": 19.362,
+     "psnr_hand": 10.519,
+     "psnr_outside": 21.082
+    },
+    "hrdexr-inspire_f1-frog_bowl-0_w180": {
+     "psnr": 22.723,
+     "psnr_hand": 14.364,
+     "psnr_outside": 24.085
+    },
+    "hrdexr-inspire_f1-green_cactus_vase-1_w675": {
+     "psnr": 22.47,
+     "psnr_hand": 17.055,
+     "psnr_outside": 23.341
+    },
+    "hrdexr-inspire_f1-jja_ramen-0_w90": {
+     "psnr": 17.713,
+     "psnr_hand": 11.183,
+     "psnr_outside": 18.74
+    },
+    "hrdexr-inspire_f1-lotion-0_w225": {
+     "psnr": 23.744,
+     "psnr_hand": 17.67,
+     "psnr_outside": 24.473
+    },
+    "hrdexr-inspire_f1-metal_measuring_flask-0_w180": {
+     "psnr": 17.661,
+     "psnr_hand": 13.582,
+     "psnr_outside": 17.899
+    },
+    "hrdexr-inspire_f1-mug_holder-0_w135": {
+     "psnr": 17.211,
+     "psnr_hand": 12.621,
+     "psnr_outside": 17.595
+    },
+    "hrdexr-inspire_f1-pepper_tuna-2_w225": {
+     "psnr": 21.13,
+     "psnr_hand": 13.006,
+     "psnr_outside": 23.059
+    },
+    "hrdexr-inspire_f1-plastic_elephant_jug-0_w405": {
+     "psnr": 18.978,
+     "psnr_hand": 15.806,
+     "psnr_outside": 19.186
+    },
+    "hrdexr-inspire_f1-rectangular_frying_pan-0_w180": {
+     "psnr": 18.799,
+     "psnr_hand": 12.381,
+     "psnr_outside": 19.696
+    },
+    "hrdexr-inspire_f1-scotch_tape-0_w270": {
+     "psnr": 21.185,
+     "psnr_hand": 13.222,
+     "psnr_outside": 22.908
+    },
+    "hrdexr-inspire_f1-screwdriver-0_w225": {
+     "psnr": 21.002,
+     "psnr_hand": 14.655,
+     "psnr_outside": 21.988
+    },
+    "hrdexr-inspire_f1-spray_bottle-0_w225": {
+     "psnr": 22.152,
+     "psnr_hand": 18.707,
+     "psnr_outside": 22.39
+    },
+    "hrdexr-inspire_f1-tea_case-0_w135": {
+     "psnr": 22.13,
+     "psnr_hand": 14.286,
+     "psnr_outside": 24.057
+    },
+    "hrdexr-inspire_f1-tennis_ball-0_w270": {
+     "psnr": 22.063,
+     "psnr_hand": 14.238,
+     "psnr_outside": 23.521
+    },
+    "hrdexr-inspire_f1-white_candle_holder-0_w225": {
+     "psnr": 20.717,
+     "psnr_hand": 14.307,
+     "psnr_outside": 22.103
+    },
+    "hrdexr-inspire_f1-white_wood_handle_watering_can-5_w315": {
+     "psnr": 24.037,
+     "psnr_hand": 17.423,
+     "psnr_outside": 24.687
+    },
+    "hrdexr-inspire_f1-yellow_funnel-2_w495": {
+     "psnr": 21.701,
+     "psnr_hand": 14.426,
+     "psnr_outside": 22.808
+    }
+   },
+   "a14b_v4_2500": {
+    "hrdexr-inspire_dftp-balloon_whisk-0_w405": {
+     "psnr": 18.576,
+     "psnr_hand": 12.95,
+     "psnr_outside": 20.328
+    },
+    "hrdexr-inspire_dftp-black_holder_with_handle-0_w360": {
+     "psnr": 13.037,
+     "psnr_hand": 10.411,
+     "psnr_outside": 13.441
+    },
+    "hrdexr-inspire_dftp-cactus2-0_w225": {
+     "psnr": 20.221,
+     "psnr_hand": 15.018,
+     "psnr_outside": 21.576
+    },
+    "hrdexr-inspire_dftp-cactus3-1_w630": {
+     "psnr": 17.364,
+     "psnr_hand": 12.876,
+     "psnr_outside": 18.611
+    },
+    "hrdexr-inspire_dftp-clothes_hanger-1_w360": {
+     "psnr": 18.193,
+     "psnr_hand": 15.249,
+     "psnr_outside": 18.526
+    },
+    "hrdexr-inspire_dftp-frame_red-0_w225": {
+     "psnr": 17.774,
+     "psnr_hand": 12.18,
+     "psnr_outside": 19.85
+    },
+    "hrdexr-inspire_dftp-french_mustard-1_w315": {
+     "psnr": 20.69,
+     "psnr_hand": 13.901,
+     "psnr_outside": 23.203
+    },
+    "hrdexr-inspire_dftp-frog_bowl-0_w405": {
+     "psnr": 16.685,
+     "psnr_hand": 11.296,
+     "psnr_outside": 17.596
+    },
+    "hrdexr-inspire_dftp-green_cactus_vase-1_w450": {
+     "psnr": 14.134,
+     "psnr_hand": 11.001,
+     "psnr_outside": 14.885
+    },
+    "hrdexr-inspire_dftp-jja_ramen-0_w225": {
+     "psnr": 17.532,
+     "psnr_hand": 13.392,
+     "psnr_outside": 18.306
+    },
+    "hrdexr-inspire_dftp-lotion-3_w270": {
+     "psnr": 18.401,
+     "psnr_hand": 10.431,
+     "psnr_outside": 21.724
+    },
+    "hrdexr-inspire_dftp-metal_measuring_flask-2_w630": {
+     "psnr": 16.739,
+     "psnr_hand": 12.176,
+     "psnr_outside": 17.427
+    },
+    "hrdexr-inspire_dftp-mug_holder-0_w315": {
+     "psnr": 14.815,
+     "psnr_hand": 6.095,
+     "psnr_outside": 19.323
+    },
+    "hrdexr-inspire_dftp-pepper_tuna-1_w450": {
+     "psnr": 19.934,
+     "psnr_hand": 16.715,
+     "psnr_outside": 20.363
+    },
+    "hrdexr-inspire_dftp-plastic_elephant_jug-2_w495": {
+     "psnr": 20.978,
+     "psnr_hand": 13.947,
+     "psnr_outside": 23.103
+    },
+    "hrdexr-inspire_dftp-rectangular_frying_pan-4_w360": {
+     "psnr": 17.743,
+     "psnr_hand": 10.309,
+     "psnr_outside": 19.937
+    },
+    "hrdexr-inspire_dftp-scotch_tape-0_w360": {
+     "psnr": 17.628,
+     "psnr_hand": 7.464,
+     "psnr_outside": 23.295
+    },
+    "hrdexr-inspire_dftp-screwdriver-0_w450": {
+     "psnr": 16.782,
+     "psnr_hand": 8.002,
+     "psnr_outside": 19.586
+    },
+    "hrdexr-inspire_dftp-spray_bottle-2_w270": {
+     "psnr": 14.476,
+     "psnr_hand": 7.042,
+     "psnr_outside": 19.908
+    },
+    "hrdexr-inspire_dftp-tea_case-0_w180": {
+     "psnr": 14.407,
+     "psnr_hand": 6.616,
+     "psnr_outside": 18.897
+    },
+    "hrdexr-inspire_dftp-tennis_ball-0_w315": {
+     "psnr": 17.656,
+     "psnr_hand": 12.713,
+     "psnr_outside": 18.348
+    },
+    "hrdexr-inspire_dftp-white_candle_holder-0_w270": {
+     "psnr": 16.731,
+     "psnr_hand": 12.836,
+     "psnr_outside": 17.613
+    },
+    "hrdexr-inspire_dftp-white_wood_handle_watering_can-0_w945": {
+     "psnr": 19.969,
+     "psnr_hand": 14.728,
+     "psnr_outside": 22.719
+    },
+    "hrdexr-inspire_dftp-yellow_funnel-0_w495": {
+     "psnr": 17.365,
+     "psnr_hand": 11.403,
+     "psnr_outside": 18.791
+    },
+    "hrdexr-inspire_f1-balloon_whisk-0_w405": {
+     "psnr": 19.67,
+     "psnr_hand": 12.966,
+     "psnr_outside": 20.821
+    },
+    "hrdexr-inspire_f1-black_holder_with_handle-4_w630": {
+     "psnr": 23.077,
+     "psnr_hand": 21.577,
+     "psnr_outside": 23.163
+    },
+    "hrdexr-inspire_f1-cactus2-0_w180": {
+     "psnr": 22.097,
+     "psnr_hand": 13.611,
+     "psnr_outside": 24.657
+    },
+    "hrdexr-inspire_f1-cactus3-0_w180": {
+     "psnr": 20.986,
+     "psnr_hand": 13.882,
+     "psnr_outside": 22.351
+    },
+    "hrdexr-inspire_f1-clothes_hanger-0_w360": {
+     "psnr": 20.981,
+     "psnr_hand": 15.848,
+     "psnr_outside": 21.659
+    },
+    "hrdexr-inspire_f1-frame_red-0_w270": {
+     "psnr": 23.714,
+     "psnr_hand": 15.232,
+     "psnr_outside": 25.527
+    },
+    "hrdexr-inspire_f1-french_mustard-3_w225": {
+     "psnr": 19.543,
+     "psnr_hand": 11.068,
+     "psnr_outside": 21.071
+    },
+    "hrdexr-inspire_f1-frog_bowl-0_w180": {
+     "psnr": 21.274,
+     "psnr_hand": 13.739,
+     "psnr_outside": 22.324
+    },
+    "hrdexr-inspire_f1-green_cactus_vase-1_w675": {
+     "psnr": 23.092,
+     "psnr_hand": 17.084,
+     "psnr_outside": 24.165
+    },
+    "hrdexr-inspire_f1-jja_ramen-0_w90": {
+     "psnr": 17.735,
+     "psnr_hand": 11.147,
+     "psnr_outside": 18.782
+    },
+    "hrdexr-inspire_f1-lotion-0_w225": {
+     "psnr": 26.568,
+     "psnr_hand": 16.564,
+     "psnr_outside": 29.218
+    },
+    "hrdexr-inspire_f1-metal_measuring_flask-0_w180": {
+     "psnr": 19.688,
+     "psnr_hand": 14.876,
+     "psnr_outside": 20.001
+    },
+    "hrdexr-inspire_f1-mug_holder-0_w135": {
+     "psnr": 18.54,
+     "psnr_hand": 13.475,
+     "psnr_outside": 18.996
+    },
+    "hrdexr-inspire_f1-pepper_tuna-2_w225": {
+     "psnr": 20.884,
+     "psnr_hand": 12.066,
+     "psnr_outside": 23.342
+    },
+    "hrdexr-inspire_f1-plastic_elephant_jug-0_w405": {
+     "psnr": 18.54,
+     "psnr_hand": 15.4,
+     "psnr_outside": 18.745
+    },
+    "hrdexr-inspire_f1-rectangular_frying_pan-0_w180": {
+     "psnr": 19.456,
+     "psnr_hand": 14.529,
+     "psnr_outside": 19.994
+    },
+    "hrdexr-inspire_f1-scotch_tape-0_w270": {
+     "psnr": 23.317,
+     "psnr_hand": 14.146,
+     "psnr_outside": 25.934
+    },
+    "hrdexr-inspire_f1-screwdriver-0_w225": {
+     "psnr": 20.239,
+     "psnr_hand": 12.818,
+     "psnr_outside": 21.649
+    },
+    "hrdexr-inspire_f1-spray_bottle-0_w225": {
+     "psnr": 20.913,
+     "psnr_hand": 17.284,
+     "psnr_outside": 21.171
+    },
+    "hrdexr-inspire_f1-tea_case-0_w135": {
+     "psnr": 21.43,
+     "psnr_hand": 13.462,
+     "psnr_outside": 23.443
+    },
+    "hrdexr-inspire_f1-tennis_ball-0_w270": {
+     "psnr": 22.374,
+     "psnr_hand": 14.921,
+     "psnr_outside": 23.664
+    },
+    "hrdexr-inspire_f1-white_candle_holder-0_w225": {
+     "psnr": 21.044,
+     "psnr_hand": 14.146,
+     "psnr_outside": 22.69
+    },
+    "hrdexr-inspire_f1-white_wood_handle_watering_can-5_w315": {
+     "psnr": 23.865,
+     "psnr_hand": 17.602,
+     "psnr_outside": 24.447
+    },
+    "hrdexr-inspire_f1-yellow_funnel-2_w495": {
+     "psnr": 22.357,
+     "psnr_hand": 14.545,
+     "psnr_outside": 23.675
+    }
+   },
+   "a14b_v4_3750": {
+    "hrdexr-inspire_dftp-balloon_whisk-0_w405": {
+     "psnr": 16.753,
+     "psnr_hand": 10.807,
+     "psnr_outside": 18.74
+    },
+    "hrdexr-inspire_dftp-black_holder_with_handle-0_w360": {
+     "psnr": 12.918,
+     "psnr_hand": 9.139,
+     "psnr_outside": 13.616
+    },
+    "hrdexr-inspire_dftp-cactus2-0_w225": {
+     "psnr": 20.223,
+     "psnr_hand": 14.331,
+     "psnr_outside": 21.987
+    },
+    "hrdexr-inspire_dftp-cactus3-1_w630": {
+     "psnr": 15.762,
+     "psnr_hand": 7.817,
+     "psnr_outside": 21.308
+    },
+    "hrdexr-inspire_dftp-clothes_hanger-1_w360": {
+     "psnr": 19.23,
+     "psnr_hand": 14.494,
+     "psnr_outside": 19.938
+    },
+    "hrdexr-inspire_dftp-frame_red-0_w225": {
+     "psnr": 15.572,
+     "psnr_hand": 12.575,
+     "psnr_outside": 16.247
+    },
+    "hrdexr-inspire_dftp-french_mustard-1_w315": {
+     "psnr": 20.738,
+     "psnr_hand": 14.657,
+     "psnr_outside": 22.647
+    },
+    "hrdexr-inspire_dftp-frog_bowl-0_w405": {
+     "psnr": 17.979,
+     "psnr_hand": 10.096,
+     "psnr_outside": 20.168
+    },
+    "hrdexr-inspire_dftp-green_cactus_vase-1_w450": {
+     "psnr": 13.818,
+     "psnr_hand": 8.813,
+     "psnr_outside": 15.527
+    },
+    "hrdexr-inspire_dftp-jja_ramen-0_w225": {
+     "psnr": 17.938,
+     "psnr_hand": 13.513,
+     "psnr_outside": 18.805
+    },
+    "hrdexr-inspire_dftp-lotion-3_w270": {
+     "psnr": 18.893,
+     "psnr_hand": 10.866,
+     "psnr_outside": 22.295
+    },
+    "hrdexr-inspire_dftp-metal_measuring_flask-2_w630": {
+     "psnr": 17.683,
+     "psnr_hand": 12.321,
+     "psnr_outside": 18.61
+    },
+    "hrdexr-inspire_dftp-mug_holder-0_w315": {
+     "psnr": 14.758,
+     "psnr_hand": 5.9,
+     "psnr_outside": 19.573
+    },
+    "hrdexr-inspire_dftp-pepper_tuna-1_w450": {
+     "psnr": 17.595,
+     "psnr_hand": 9.143,
+     "psnr_outside": 20.725
+    },
+    "hrdexr-inspire_dftp-plastic_elephant_jug-2_w495": {
+     "psnr": 20.838,
+     "psnr_hand": 14.742,
+     "psnr_outside": 22.346
+    },
+    "hrdexr-inspire_dftp-rectangular_frying_pan-4_w360": {
+     "psnr": 18.566,
+     "psnr_hand": 10.662,
+     "psnr_outside": 21.178
+    },
+    "hrdexr-inspire_dftp-scotch_tape-0_w360": {
+     "psnr": 16.647,
+     "psnr_hand": 7.357,
+     "psnr_outside": 20.433
+    },
+    "hrdexr-inspire_dftp-screwdriver-0_w450": {
+     "psnr": 16.24,
+     "psnr_hand": 7.12,
+     "psnr_outside": 19.429
+    },
+    "hrdexr-inspire_dftp-spray_bottle-2_w270": {
+     "psnr": 14.856,
+     "psnr_hand": 8.624,
+     "psnr_outside": 17.893
+    },
+    "hrdexr-inspire_dftp-tea_case-0_w180": {
+     "psnr": 15.647,
+     "psnr_hand": 6.763,
+     "psnr_outside": 24.363
+    },
+    "hrdexr-inspire_dftp-tennis_ball-0_w315": {
+     "psnr": 14.179,
+     "psnr_hand": 7.51,
+     "psnr_outside": 15.447
+    },
+    "hrdexr-inspire_dftp-white_candle_holder-0_w270": {
+     "psnr": 16.837,
+     "psnr_hand": 12.712,
+     "psnr_outside": 17.809
+    },
+    "hrdexr-inspire_dftp-white_wood_handle_watering_can-0_w945": {
+     "psnr": 18.726,
+     "psnr_hand": 13.382,
+     "psnr_outside": 21.608
+    },
+    "hrdexr-inspire_dftp-yellow_funnel-0_w495": {
+     "psnr": 17.99,
+     "psnr_hand": 11.507,
+     "psnr_outside": 19.715
+    },
+    "hrdexr-inspire_f1-balloon_whisk-0_w405": {
+     "psnr": 19.811,
+     "psnr_hand": 13.093,
+     "psnr_outside": 20.966
+    },
+    "hrdexr-inspire_f1-black_holder_with_handle-4_w630": {
+     "psnr": 17.909,
+     "psnr_hand": 21.571,
+     "psnr_outside": 17.794
+    },
+    "hrdexr-inspire_f1-cactus2-0_w180": {
+     "psnr": 21.385,
+     "psnr_hand": 12.578,
+     "psnr_outside": 24.268
+    },
+    "hrdexr-inspire_f1-cactus3-0_w180": {
+     "psnr": 19.542,
+     "psnr_hand": 12.802,
+     "psnr_outside": 20.75
+    },
+    "hrdexr-inspire_f1-clothes_hanger-0_w360": {
+     "psnr": 19.876,
+     "psnr_hand": 12.809,
+     "psnr_outside": 21.193
+    },
+    "hrdexr-inspire_f1-frame_red-0_w270": {
+     "psnr": 22.674,
+     "psnr_hand": 14.172,
+     "psnr_outside": 24.499
+    },
+    "hrdexr-inspire_f1-french_mustard-3_w225": {
+     "psnr": 19.689,
+     "psnr_hand": 10.861,
+     "psnr_outside": 21.4
+    },
+    "hrdexr-inspire_f1-frog_bowl-0_w180": {
+     "psnr": 21.808,
+     "psnr_hand": 13.252,
+     "psnr_outside": 23.258
+    },
+    "hrdexr-inspire_f1-green_cactus_vase-1_w675": {
+     "psnr": 22.391,
+     "psnr_hand": 17.193,
+     "psnr_outside": 23.197
+    },
+    "hrdexr-inspire_f1-jja_ramen-0_w90": {
+     "psnr": 17.969,
+     "psnr_hand": 11.629,
+     "psnr_outside": 18.933
+    },
+    "hrdexr-inspire_f1-lotion-0_w225": {
+     "psnr": 23.883,
+     "psnr_hand": 15.635,
+     "psnr_outside": 25.358
+    },
+    "hrdexr-inspire_f1-metal_measuring_flask-0_w180": {
+     "psnr": 17.096,
+     "psnr_hand": 15.147,
+     "psnr_outside": 17.181
+    },
+    "hrdexr-inspire_f1-mug_holder-0_w135": {
+     "psnr": 21.029,
+     "psnr_hand": 12.897,
+     "psnr_outside": 22.268
+    },
+    "hrdexr-inspire_f1-pepper_tuna-2_w225": {
+     "psnr": 18.128,
+     "psnr_hand": 10.353,
+     "psnr_outside": 19.842
+    },
+    "hrdexr-inspire_f1-plastic_elephant_jug-0_w405": {
+     "psnr": 18.072,
+     "psnr_hand": 15.35,
+     "psnr_outside": 18.24
+    },
+    "hrdexr-inspire_f1-rectangular_frying_pan-0_w180": {
+     "psnr": 20.207,
+     "psnr_hand": 12.991,
+     "psnr_outside": 21.371
+    },
+    "hrdexr-inspire_f1-scotch_tape-0_w270": {
+     "psnr": 13.94,
+     "psnr_hand": 12.978,
+     "psnr_outside": 14.008
+    },
+    "hrdexr-inspire_f1-screwdriver-0_w225": {
+     "psnr": 22.092,
+     "psnr_hand": 14.303,
+     "psnr_outside": 23.686
+    },
+    "hrdexr-inspire_f1-spray_bottle-0_w225": {
+     "psnr": 21.307,
+     "psnr_hand": 16.423,
+     "psnr_outside": 21.725
+    },
+    "hrdexr-inspire_f1-tea_case-0_w135": {
+     "psnr": 21.204,
+     "psnr_hand": 13.118,
+     "psnr_outside": 23.302
+    },
+    "hrdexr-inspire_f1-tennis_ball-0_w270": {
+     "psnr": 18.379,
+     "psnr_hand": 14.793,
+     "psnr_outside": 18.705
+    },
+    "hrdexr-inspire_f1-white_candle_holder-0_w225": {
+     "psnr": 21.729,
+     "psnr_hand": 14.062,
+     "psnr_outside": 23.891
+    },
+    "hrdexr-inspire_f1-white_wood_handle_watering_can-5_w315": {
+     "psnr": 24.523,
+     "psnr_hand": 18.181,
+     "psnr_outside": 25.12
+    },
+    "hrdexr-inspire_f1-yellow_funnel-2_w495": {
+     "psnr": 22.232,
+     "psnr_hand": 13.795,
+     "psnr_outside": 23.843
+    }
+   },
+   "a14b_v4": {
+    "hrdexr-inspire_dftp-balloon_whisk-0_w405": {
+     "psnr": 18.801,
+     "psnr_hand": 12.092,
+     "psnr_outside": 21.489
+    },
+    "hrdexr-inspire_dftp-black_holder_with_handle-0_w360": {
+     "psnr": 12.561,
+     "psnr_hand": 9.713,
+     "psnr_outside": 13.014
+    },
+    "hrdexr-inspire_dftp-cactus2-0_w225": {
+     "psnr": 19.929,
+     "psnr_hand": 13.856,
+     "psnr_outside": 21.82
+    },
+    "hrdexr-inspire_dftp-cactus3-1_w630": {
+     "psnr": 17.965,
+     "psnr_hand": 12.767,
+     "psnr_outside": 19.629
+    },
+    "hrdexr-inspire_dftp-clothes_hanger-1_w360": {
+     "psnr": 18.687,
+     "psnr_hand": 12.654,
+     "psnr_outside": 19.817
+    },
+    "hrdexr-inspire_dftp-frame_red-0_w225": {
+     "psnr": 19.014,
+     "psnr_hand": 12.951,
+     "psnr_outside": 21.531
+    },
+    "hrdexr-inspire_dftp-french_mustard-1_w315": {
+     "psnr": 20.739,
+     "psnr_hand": 13.735,
+     "psnr_outside": 23.475
+    },
+    "hrdexr-inspire_dftp-frog_bowl-0_w405": {
+     "psnr": 18.875,
+     "psnr_hand": 11.088,
+     "psnr_outside": 20.99
+    },
+    "hrdexr-inspire_dftp-green_cactus_vase-1_w450": {
+     "psnr": 15.147,
+     "psnr_hand": 11.99,
+     "psnr_outside": 15.906
+    },
+    "hrdexr-inspire_dftp-jja_ramen-0_w225": {
+     "psnr": 17.604,
+     "psnr_hand": 13.123,
+     "psnr_outside": 18.491
+    },
+    "hrdexr-inspire_dftp-lotion-3_w270": {
+     "psnr": 19.911,
+     "psnr_hand": 12.832,
+     "psnr_outside": 22.252
+    },
+    "hrdexr-inspire_dftp-metal_measuring_flask-2_w630": {
+     "psnr": 17.899,
+     "psnr_hand": 12.519,
+     "psnr_outside": 18.831
+    },
+    "hrdexr-inspire_dftp-mug_holder-0_w315": {
+     "psnr": 19.441,
+     "psnr_hand": 13.072,
+     "psnr_outside": 21.205
+    },
+    "hrdexr-inspire_dftp-pepper_tuna-1_w450": {
+     "psnr": 21.585,
+     "psnr_hand": 15.31,
+     "psnr_outside": 22.996
+    },
+    "hrdexr-inspire_dftp-plastic_elephant_jug-2_w495": {
+     "psnr": 19.956,
+     "psnr_hand": 13.542,
+     "psnr_outside": 21.651
+    },
+    "hrdexr-inspire_dftp-rectangular_frying_pan-4_w360": {
+     "psnr": 19.264,
+     "psnr_hand": 14.805,
+     "psnr_outside": 20.004
+    },
+    "hrdexr-inspire_dftp-scotch_tape-0_w360": {
+     "psnr": 20.966,
+     "psnr_hand": 14.699,
+     "psnr_outside": 22.222
+    },
+    "hrdexr-inspire_dftp-screwdriver-0_w450": {
+     "psnr": 18.456,
+     "psnr_hand": 11.105,
+     "psnr_outside": 20.142
+    },
+    "hrdexr-inspire_dftp-spray_bottle-2_w270": {
+     "psnr": 16.575,
+     "psnr_hand": 11.728,
+     "psnr_outside": 18.267
+    },
+    "hrdexr-inspire_dftp-tea_case-0_w180": {
+     "psnr": 16.272,
+     "psnr_hand": 8.01,
+     "psnr_outside": 22.006
+    },
+    "hrdexr-inspire_dftp-tennis_ball-0_w315": {
+     "psnr": 13.461,
+     "psnr_hand": 7.647,
+     "psnr_outside": 14.407
+    },
+    "hrdexr-inspire_dftp-white_candle_holder-0_w270": {
+     "psnr": 17.904,
+     "psnr_hand": 14.2,
+     "psnr_outside": 18.715
+    },
+    "hrdexr-inspire_dftp-white_wood_handle_watering_can-0_w945": {
+     "psnr": 19.238,
+     "psnr_hand": 14.212,
+     "psnr_outside": 21.73
+    },
+    "hrdexr-inspire_dftp-yellow_funnel-0_w495": {
+     "psnr": 18.893,
+     "psnr_hand": 11.514,
+     "psnr_outside": 21.293
+    },
+    "hrdexr-inspire_f1-balloon_whisk-0_w405": {
+     "psnr": 19.565,
+     "psnr_hand": 12.161,
+     "psnr_outside": 21.019
+    },
+    "hrdexr-inspire_f1-black_holder_with_handle-4_w630": {
+     "psnr": 24.407,
+     "psnr_hand": 20.41,
+     "psnr_outside": 24.728
+    },
+    "hrdexr-inspire_f1-cactus2-0_w180": {
+     "psnr": 20.511,
+     "psnr_hand": 13.719,
+     "psnr_outside": 21.925
+    },
+    "hrdexr-inspire_f1-cactus3-0_w180": {
+     "psnr": 19.527,
+     "psnr_hand": 12.42,
+     "psnr_outside": 20.894
+    },
+    "hrdexr-inspire_f1-clothes_hanger-0_w360": {
+     "psnr": 19.619,
+     "psnr_hand": 13.842,
+     "psnr_outside": 20.471
+    },
+    "hrdexr-inspire_f1-frame_red-0_w270": {
+     "psnr": 22.511,
+     "psnr_hand": 14.393,
+     "psnr_outside": 24.117
+    },
+    "hrdexr-inspire_f1-french_mustard-3_w225": {
+     "psnr": 21.151,
+     "psnr_hand": 12.503,
+     "psnr_outside": 22.765
+    },
+    "hrdexr-inspire_f1-frog_bowl-0_w180": {
+     "psnr": 15.883,
+     "psnr_hand": 14.553,
+     "psnr_outside": 15.955
+    },
+    "hrdexr-inspire_f1-green_cactus_vase-1_w675": {
+     "psnr": 21.047,
+     "psnr_hand": 16.061,
+     "psnr_outside": 21.793
+    },
+    "hrdexr-inspire_f1-jja_ramen-0_w90": {
+     "psnr": 18.336,
+     "psnr_hand": 10.908,
+     "psnr_outside": 19.718
+    },
+    "hrdexr-inspire_f1-lotion-0_w225": {
+     "psnr": 22.749,
+     "psnr_hand": 15.521,
+     "psnr_outside": 23.812
+    },
+    "hrdexr-inspire_f1-metal_measuring_flask-0_w180": {
+     "psnr": 14.919,
+     "psnr_hand": 13.834,
+     "psnr_outside": 14.961
+    },
+    "hrdexr-inspire_f1-mug_holder-0_w135": {
+     "psnr": 20.038,
+     "psnr_hand": 12.35,
+     "psnr_outside": 21.116
+    },
+    "hrdexr-inspire_f1-pepper_tuna-2_w225": {
+     "psnr": 12.887,
+     "psnr_hand": 9.595,
+     "psnr_outside": 13.221
+    },
+    "hrdexr-inspire_f1-plastic_elephant_jug-0_w405": {
+     "psnr": 18.476,
+     "psnr_hand": 16.109,
+     "psnr_outside": 18.614
+    },
+    "hrdexr-inspire_f1-rectangular_frying_pan-0_w180": {
+     "psnr": 20.086,
+     "psnr_hand": 13.018,
+     "psnr_outside": 21.196
+    },
+    "hrdexr-inspire_f1-scotch_tape-0_w270": {
+     "psnr": 15.429,
+     "psnr_hand": 14.532,
+     "psnr_outside": 15.492
+    },
+    "hrdexr-inspire_f1-screwdriver-0_w225": {
+     "psnr": 21.178,
+     "psnr_hand": 15.19,
+     "psnr_outside": 22.05
+    },
+    "hrdexr-inspire_f1-spray_bottle-0_w225": {
+     "psnr": 22.743,
+     "psnr_hand": 17.174,
+     "psnr_outside": 23.272
+    },
+    "hrdexr-inspire_f1-tea_case-0_w135": {
+     "psnr": 20.831,
+     "psnr_hand": 14.302,
+     "psnr_outside": 22.06
+    },
+    "hrdexr-inspire_f1-tennis_ball-0_w270": {
+     "psnr": 16.863,
+     "psnr_hand": 13.505,
+     "psnr_outside": 17.159
+    },
+    "hrdexr-inspire_f1-white_candle_holder-0_w225": {
+     "psnr": 21.878,
+     "psnr_hand": 13.616,
+     "psnr_outside": 24.567
+    },
+    "hrdexr-inspire_f1-white_wood_handle_watering_can-5_w315": {
+     "psnr": 25.436,
+     "psnr_hand": 18.062,
+     "psnr_outside": 26.262
+    },
+    "hrdexr-inspire_f1-yellow_funnel-2_w495": {
+     "psnr": 19.876,
+     "psnr_hand": 13.418,
+     "psnr_outside": 20.725
+    }
+   }
+  }
+ }
+}

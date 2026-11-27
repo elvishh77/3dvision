@@ -160,7 +160,27 @@
         const sig = lo > 0 || hi < 0; return `<td${sig ? "" : ' style="color:var(--ink-2);opacity:.6"'}>${sgn(m)} <span class="muted small">[${sgn(lo)}, ${sgn(hi)}]</span></td>`; };
       $("len-table").innerHTML = `<tr><th>Paired change (later minus earlier)</th>${LM.map((l) => `<th>${l.label}</th>`).join("")}</tr>` +
         pairs.map((p) => `<tr><td>${p.from.toLocaleString()} → ${p.to.toLocaleString()}</td>${LM.map((l) => cell(p.d[l.m], p.flip)).join("")}</tr>`).join("");
-      $("len-cap").textContent = "95% CI: bootstrap over the 20 held-out episodes. Greyed = the interval includes 0. The full-frame gain after 3,750 comes from outside the hands (scene and background); hand-region PSNR stops improving at 3,750. Same trend as the 1.3B model on HOT3D, where hand error stopped improving after about 2,500 steps.";
+      $("len-cap").textContent = "SharpaDex. 95% CI: bootstrap over the 20 held-out episodes; greyed = the interval includes 0. After 3,750 the full-frame gain comes from outside the hands (scene and background); hand-region PSNR stops improving here.";
+      // HRDexDB step curve (same checkpoints); human clips split into held-out objects vs clips from the training set
+      Promise.all([fetch("assets/media/hrdexdb_human_a14b/step_curve.json", { cache: "no-store" }).then((r) => r.json()),
+                   fetch("assets/media/hrdexdb_human_a14b/demo.json", { cache: "no-store" }).then((r) => r.json())]).then(([H, HD]) => {
+        const K = SC.keys, train = new Set((HD.items || []).filter((it) => /training set/.test(it.note || "")).map((it) => it.id));
+        let seed = 7; const rnd = () => ((seed = (seed * 1103515245 + 12345) % 2147483648) / 2147483648);
+        const boot = (d) => { const ms = []; for (let b = 0; b < 4000; b++) { let t = 0; for (let i = 0; i < d.length; i++) t += d[Math.floor(rnd() * d.length)]; ms.push(t / d.length); }
+          ms.sort((x, y) => x - y); return [ms[Math.floor(0.025 * ms.length)], ms[Math.floor(0.975 * ms.length)]]; };
+        const row = (label, pc, ids) => {
+          const means = K.map((k) => mean(ids.map((c) => pc[k][c].psnr_hand)));
+          const d = ids.map((c) => pc[K[K.length - 1]][c].psnr_hand - pc[K[K.length - 2]][c].psnr_hand), ci = boot(d), m = mean(d);
+          const sig = ci[0] > 0 || ci[1] < 0;
+          return `<tr><td>${esc(label)}</td><td>${ids.length}</td>${means.map((v) => `<td>${v.toFixed(2)}</td>`).join("")}<td${sig ? "" : ' style="color:var(--ink-2);opacity:.6"'}>${sgn(m)} <span class="muted small">[${sgn(ci[0])}, ${sgn(ci[1])}]</span></td></tr>`;
+        };
+        const hp = H.human.per_clip, rp = H.inspire_robot.per_clip, hid = Object.keys(hp[K[0]]), rid = Object.keys(rp[K[0]]);
+        $("len-hrdex").innerHTML = `<tr><th>Hand-region PSNR (dB)</th><th>n</th>${st.map((s) => `<th>${s.toLocaleString()}</th>`).join("")}<th>3,750 → 5,000 (paired)</th></tr>` +
+          row("Human hands, objects never seen in training", hp, hid.filter((c) => !train.has(c))) +
+          row("Human hands, clips from the training set", hp, hid.filter((c) => train.has(c))) +
+          row("Inspire robot hand (never seen in training)", rp, rid);
+        $("len-hrdex-cap").textContent = "Seed 0; 95% CI: bootstrap over clips. On human hands the hand region keeps improving to 5,000, just as much on objects the model never saw, so it is not memorization. The robot curve dips at 3,750 and recovers (2,500 → 5,000 is flat within noise). Two of three test sets still improve at 5,000, so the curve has not clearly flattened yet.";
+      }).catch(() => {});
     }
 
     // ---- side-by-side videos
