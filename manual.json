@@ -7,7 +7,7 @@
   "deadline": "2026-11-13",
   "deadline_note": "First-results target was Nov 13; it slipped because training only started on Nov 13. Final Phase 1 numbers expected around Nov 14 evening."
  },
- "updated_by_lead": "2026-11-27T00:30:00-05:00",
+ "updated_by_lead": "2026-11-27T15:00:00-05:00",
  "stages": [
   {
    "name": "Interface spec",
@@ -47,7 +47,7 @@
   {
    "name": "Scale-up: Wan2.2 I2V-A14B",
    "status": "in progress",
-   "detail": "Plain A14B on HOT3D: video quality at our 1.3B adapters' level without fine-tuning (FVD 582 vs 903 for the 1.3B base), no hand control (99.7 px). Hand adapter v4 (K=4, high-noise expert, 5k steps, 8x H100) trained; HRDexDB/SharpaDex PSNR done, HOT3D hand eval waiting for the checkpoints."
+   "detail": "Plain A14B on HOT3D: video quality at our 1.3B adapters' level without fine-tuning, no hand control (99.7 px). Hand adapter v4 (K=4, high-noise expert, 5k steps) trained and scored on SharpaDex/HRDexDB. Same-size control A14B + LoRA without hands (v4_a14b_high_lora32_nohand) submitted 2026-11-27."
   },
   {
    "name": "Phase 1 report",
@@ -353,6 +353,16 @@
    "gpus": 8,
    "gpu_type": "H100 80GB",
    "job_id": "300026"
+  },
+  {
+   "name": "v4_a14b_high_lora32_nohand",
+   "source": "remote",
+   "repo": "git@github.com:elvishh77/3dvision-code.git",
+   "branch": "run-status",
+   "cluster": "coreweave",
+   "gpus": 8,
+   "gpu_type": "H100 80GB",
+   "job_id": "304453"
   }
  ]
 }
