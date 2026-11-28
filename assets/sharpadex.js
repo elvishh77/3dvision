@@ -48,6 +48,29 @@
         return `<td>${sgn(d.mean_diff)} <span class="muted small">[${sgn(d.ci95[0])}, ${sgn(d.ci95[1])}] · ${d.wins}/${d.n}</span></td>`; }).join("")}</tr>`).join("");
     $("paired-cap").textContent = `Paired per clip (same first frame, prompt and seed). 95% CI: bootstrap over the ${S.n_episodes} held-out episodes; "${S.n_clips}/${S.n_clips}" = clips where the adapter is better. The 1.3B camera + LoRA model never trained on SharpaDex; the A14B adapter trained on other SharpaDex episodes.`;
 
+    // ---- HRDexDB: same A14B models (plain / LoRA without hands / hand adapter), hand region, paired adapter minus LoRA
+    fetch("assets/media/hrdexdb_human_a14b/step_curve.json", { cache: "no-store" }).then((r) => r.json()).then((H) => {
+      const CM = [["base_a14b", "Plain A14B"], ["a14b_lora", "A14B + LoRA, no hands"], ["a14b_v4", "A14B + hand adapter"], ["camlora", "1.3B camera + LoRA"]];
+      if (!H.human || !H.human.per_clip || !H.human.per_clip.a14b_lora) return;
+      let seed = 11; const rnd = () => ((seed = (seed * 1103515245 + 12345) % 2147483648) / 2147483648);
+      const boot = (d) => { const ms = []; for (let b = 0; b < 4000; b++) { let t = 0; for (let i = 0; i < d.length; i++) t += d[Math.floor(rnd() * d.length)]; ms.push(t / d.length); }
+        ms.sort((x, y) => x - y); return [ms[100], ms[3899]]; };
+      const row = (label, G, ids) => {
+        const pc = G.per_clip, v = (k) => mean(ids.map((c) => pc[k][c].psnr_hand));
+        const best = Math.max(...CM.map(([k]) => v(k)));
+        const d = ids.map((c) => pc.a14b_v4[c].psnr_hand - pc.a14b_lora[c].psnr_hand), ci = boot(d), w = d.filter((x) => x > 0).length;
+        return `<tr><td>${esc(label)}</td><td>${ids.length}</td>${CM.map(([k]) => v(k) === best ? `<td class="best"><span>${f1(v(k))}</span></td>` : `<td>${f1(v(k))}</td>`).join("")}` +
+          `<td>${sgn(mean(d))} <span class="muted small">[${sgn(ci[0])}, ${sgn(ci[1])}] · ${w}/${ids.length}</span></td></tr>`;
+      };
+      const hid = Object.keys(H.human.per_clip.a14b_v4), grp = H.human.group || {};
+      const held = hid.filter((c) => (grp[c] || "").endsWith("heldout")), seen = hid.filter((c) => (grp[c] || "").endsWith("seen_train"));
+      $("hrdex-cmp").innerHTML = `<tr><th>Hand-region PSNR (dB), seed 0</th><th>n</th>${CM.map(([, l]) => `<th>${esc(l)}</th>`).join("")}<th>Adapter − LoRA (paired)</th></tr>` +
+        row("Human hands, objects never seen in training", H.human, held) + row("Human hands, clips from the training set", H.human, seen) +
+        row("Inspire robot hand (never seen in training)", H.inspire_robot, Object.keys(H.inspire_robot.per_clip.a14b_v4));
+      $("hrdex-cap").textContent = "A14B + LoRA is the same A14B model fine-tuned on the same data for the same 5,000 steps, but without hand input (LoRA rank 32, 153 M trainable parameters vs 1,542 M for the hand adapter, so not capacity-matched). 95% CI: bootstrap over clips.";
+      $("hrdex-block").style.display = "";
+    }).catch(() => {});
+
     // ---- per-episode dot plot (hand-region PSNR)
     const eps = [...new Set(clips.map((c) => c.episode))].sort((a, b) => a - b);
     const ep = eps.map((e) => { const cs = clips.filter((c) => c.episode === e);
@@ -104,13 +127,13 @@
       ["Ends on gear 3", (c) => c.steps[c.steps.length - 1].gear === 3],
       ["Episode start (first window)", (c) => c.window_offset === 0],
     ];
-    $("step-table").innerHTML = `<tr><th>Clips</th><th>n</th>${MODELS.map((x) => `<th>${esc(x.short)}</th>`).join("")}<th>Adapter − camera + LoRA</th></tr>` +
+    $("step-table").innerHTML = `<tr><th>Clips</th><th>n</th>${MODELS.map((x) => `<th>${esc(x.short)}</th>`).join("")}<th>Adapter − ${MODELS.some((x) => x.key === "a14b_lora") ? "A14B + LoRA" : "camera + LoRA"}</th></tr>` +
       groups.map(([l, fn]) => { const cs = clips.filter(fn); if (!cs.length) return "";
         const v = (k) => mean(cs.map((c) => c[k].psnr_hand));
         const best = Math.max(...MODELS.filter((x) => !x.ref).map((x) => v(x.key)));
         return `<tr><td>${esc(l)}</td><td>${cs.length}</td>${MODELS.map((x) => { const val = v(x.key);
           return !x.ref && val === best ? `<td class="best"><span>${f1(val)}</span></td>` : `<td${x.ref ? ' class="muted"' : ""}>${f1(val)}</td>`; }).join("")}
-          <td>${sgn(mean(cs.map((c) => c.a14b_v4.psnr_hand - c.camlora.psnr_hand)))}</td></tr>`; }).join("");
+          <td>${sgn(mean(cs.map((c) => c.a14b_v4.psnr_hand - (c.a14b_lora || c.camlora).psnr_hand)))}</td></tr>`; }).join("");
 
     // ---- training-length curve (v4 milestones), change since the first milestone
     const SC = S.step_curve;
