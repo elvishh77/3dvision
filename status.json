@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-28T03:31:28+00:00",
+ "generated": "2026-11-28T04:01:40+00:00",
  "runs": [
   {
    "run": "v1_K8_h100",
@@ -23,14 +23,14 @@
    "s_per_step": 1.2,
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
-   "last_log": "2026-11-28T03:26:20+00:00",
-   "last_log_age_min": 5.1,
+   "last_log": "2026-11-28T03:56:45+00:00",
+   "last_log_age_min": 4.9,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
    "stop_rule": "pass",
    "last_other_gain": 0.08467,
-   "eta_finish": "2026-11-28T03:26:20+00:00",
+   "eta_finish": "2026-11-28T03:56:45+00:00",
    "milestones": [
     {
      "step": 2500,
@@ -2779,14 +2779,14 @@
    "s_per_step": 1.21,
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
-   "last_log": "2026-11-28T03:26:20+00:00",
-   "last_log_age_min": 5.1,
+   "last_log": "2026-11-28T03:56:45+00:00",
+   "last_log_age_min": 4.9,
    "health": "done",
    "health_reason": "reached 10000 steps",
    "errors": [],
    "stop_rule": "n/a (control)",
    "last_other_gain": 0.0,
-   "eta_finish": "2026-11-28T03:26:20+00:00",
+   "eta_finish": "2026-11-28T03:56:45+00:00",
    "milestones": [
     {
      "step": 2500,
@@ -5535,14 +5535,14 @@
    "s_per_step": 1.2,
    "eta_assumes_ada": false,
    "peak_mem_gib": 42.02,
-   "last_log": "2026-11-28T03:26:20+00:00",
-   "last_log_age_min": 5.1,
+   "last_log": "2026-11-28T03:56:45+00:00",
+   "last_log_age_min": 4.9,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
    "stop_rule": "pass",
    "last_other_gain": 0.08236,
-   "eta_finish": "2026-11-28T03:26:20+00:00",
+   "eta_finish": "2026-11-28T03:56:45+00:00",
    "milestones": [
     {
      "step": 1250,
@@ -6951,14 +6951,14 @@
    "s_per_step": 1.2,
    "eta_assumes_ada": false,
    "peak_mem_gib": 42.02,
-   "last_log": "2026-11-28T03:26:20+00:00",
-   "last_log_age_min": 5.1,
+   "last_log": "2026-11-28T03:56:45+00:00",
+   "last_log_age_min": 4.9,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
    "stop_rule": "pass",
    "last_other_gain": 0.08045,
-   "eta_finish": "2026-11-28T03:26:20+00:00",
+   "eta_finish": "2026-11-28T03:56:45+00:00",
    "milestones": [
     {
      "step": 1250,
@@ -8367,14 +8367,14 @@
    "s_per_step": 1.2,
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
-   "last_log": "2026-11-28T03:26:20+00:00",
-   "last_log_age_min": 5.1,
+   "last_log": "2026-11-28T03:56:45+00:00",
+   "last_log_age_min": 4.9,
    "health": "done",
    "health_reason": "reached 15000 steps",
    "errors": [],
    "stop_rule": "pass",
    "last_other_gain": 0.07508,
-   "eta_finish": "2026-11-28T03:26:20+00:00",
+   "eta_finish": "2026-11-28T03:56:45+00:00",
    "milestones": [
     {
      "step": 12500,
@@ -9759,14 +9759,14 @@
    "s_per_step": 1.19,
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.41,
-   "last_log": "2026-11-28T03:26:20+00:00",
-   "last_log_age_min": 5.1,
+   "last_log": "2026-11-28T03:56:45+00:00",
+   "last_log_age_min": 4.9,
    "health": "done",
    "health_reason": "reached 25000 steps",
    "errors": [],
    "stop_rule": "pass",
    "last_other_gain": 0.08807,
-   "eta_finish": "2026-11-28T03:26:20+00:00",
+   "eta_finish": "2026-11-28T03:56:45+00:00",
    "milestones": [
     {
      "step": 17500,
@@ -12501,14 +12501,14 @@
    "s_per_step": 1.19,
    "eta_assumes_ada": false,
    "peak_mem_gib": 40.42,
-   "last_log": "2026-11-28T03:26:20+00:00",
-   "last_log_age_min": 5.1,
+   "last_log": "2026-11-28T03:56:45+00:00",
+   "last_log_age_min": 4.9,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
    "stop_rule": "pass",
    "last_other_gain": 0.08871,
-   "eta_finish": "2026-11-28T03:26:20+00:00",
+   "eta_finish": "2026-11-28T03:56:45+00:00",
    "milestones": [
     {
      "step": 1250,
@@ -13917,14 +13917,14 @@
    "s_per_step": 1.35,
    "eta_assumes_ada": false,
    "peak_mem_gib": 57.19,
-   "last_log": "2026-11-28T03:26:21+00:00",
-   "last_log_age_min": 5.1,
+   "last_log": "2026-11-28T03:56:45+00:00",
+   "last_log_age_min": 4.9,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
    "stop_rule": "pass",
    "last_other_gain": 0.09712,
-   "eta_finish": "2026-11-28T03:26:21+00:00",
+   "eta_finish": "2026-11-28T03:56:45+00:00",
    "milestones": [
     {
      "step": 1250,
@@ -15333,14 +15333,14 @@
    "s_per_step": 1.36,
    "eta_assumes_ada": false,
    "peak_mem_gib": 57.19,
-   "last_log": "2026-11-28T03:26:20+00:00",
-   "last_log_age_min": 5.1,
+   "last_log": "2026-11-28T03:56:45+00:00",
+   "last_log_age_min": 4.9,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
    "stop_rule": "pass",
    "last_other_gain": 0.09659,
-   "eta_finish": "2026-11-28T03:26:20+00:00",
+   "eta_finish": "2026-11-28T03:56:45+00:00",
    "milestones": [
     {
      "step": 1250,
@@ -16749,14 +16749,14 @@
    "s_per_step": 5.75,
    "eta_assumes_ada": false,
    "peak_mem_gib": 67.09,
-   "last_log": "2026-11-28T03:26:21+00:00",
-   "last_log_age_min": 5.1,
+   "last_log": "2026-11-28T03:56:45+00:00",
+   "last_log_age_min": 4.9,
    "health": "done",
    "health_reason": "reached 5000 steps",
    "errors": [],
    "stop_rule": "pass",
    "last_other_gain": 0.14183,
-   "eta_finish": "2026-11-28T03:26:21+00:00",
+   "eta_finish": "2026-11-28T03:56:45+00:00",
    "milestones": [
     {
      "step": 16,
@@ -18173,25 +18173,25 @@
    "effective_batch": 8,
    "job": {
     "job_id": "304453",
-    "state": "RUNNING",
+    "state": "COMPLETED",
     "reason": "",
     "gpus": 8,
     "gpu_type": "H100 80GB",
     "est_start": null
    },
-   "step": 4880,
+   "step": 5000,
    "steps_total": 5000,
-   "s_per_step": 5.69,
+   "s_per_step": 5.7,
    "eta_assumes_ada": false,
    "peak_mem_gib": 44.04,
-   "last_log": "2026-11-28T03:26:21+00:00",
-   "last_log_age_min": 5.1,
-   "health": "healthy",
-   "health_reason": "step 4880, 5.7 s/step",
+   "last_log": "2026-11-28T03:56:45+00:00",
+   "last_log_age_min": 4.9,
+   "health": "done",
+   "health_reason": "reached 5000 steps",
    "errors": [],
    "stop_rule": "n/a (control)",
    "last_other_gain": 0.0,
-   "eta_finish": "2026-11-28T03:37:43+00:00",
+   "eta_finish": "2026-11-28T03:56:45+00:00",
    "milestones": [
     {
      "step": 16,
@@ -18215,8 +18215,8 @@
     },
     {
      "step": 5000,
-     "saved": false,
-     "eta": "2026-11-28T03:37:43+00:00"
+     "saved": true,
+     "eta": null
     }
    ],
    "loss_curve": [
@@ -19444,6 +19444,36 @@
      "step": 4880,
      "loss": 0.10723,
      "mse": 0.0914
+    },
+    {
+     "step": 4900,
+     "loss": 0.09918,
+     "mse": 0.08343
+    },
+    {
+     "step": 4920,
+     "loss": 0.08569,
+     "mse": 0.07193
+    },
+    {
+     "step": 4940,
+     "loss": 0.09978,
+     "mse": 0.08513
+    },
+    {
+     "step": 4960,
+     "loss": 0.09199,
+     "mse": 0.07716
+    },
+    {
+     "step": 4980,
+     "loss": 0.0968,
+     "mse": 0.0816
+    },
+    {
+     "step": 5000,
+     "loss": 0.09372,
+     "mse": 0.07797
     }
    ],
    "probes": [
@@ -19536,11 +19566,20 @@
      "swap_gain": 0.0,
      "probe_loss_hand": 0.18098,
      "sigma": 0.95
+    },
+    {
+     "step": 5000,
+     "other_gain": 0.0,
+     "zero_gain": 0.0,
+     "shuffle_gain": 0.0,
+     "swap_gain": 0.0,
+     "probe_loss_hand": 0.18008,
+     "sigma": 0.95
     }
    ],
    "latest": {
-    "loss": 0.10723,
-    "grad_norm": 0.1158,
+    "loss": 0.09372,
+    "grad_norm": 0.0902,
     "lr": 0.0001
    }
   }
@@ -20149,7 +20188,7 @@
  ],
  "eval_jobs": [],
  "iteration": {
-  "eta": "2026-11-28T06:37:43+00:00",
+  "eta": "2026-11-28T06:56:45+00:00",
   "final_eval_overhead_h": 3.0,
   "note": "Iteration = both 10k-step runs + final eval (10k checkpoints, then 3 seeds of the best) + report."
  },
