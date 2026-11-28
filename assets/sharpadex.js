@@ -7,8 +7,10 @@
   const sgn = (v) => (v >= 0 ? "+" : "−") + Math.abs(v).toFixed(2);
   // Model order and colours. The three generated models take the first three slots of the validated categorical palette
   // (valid for all-pairs forms such as dot plots); the "first frame repeated" reference is a neutral grey tick, not a series.
-  const MODELS = [
+  let MODELS = [
     { key: "a14b_v4", short: "A14B + hand adapter", color: "#2a78d6", ours: true },
+    // same A14B model fine-tuned on the same data without hand input: same hue as the adapter, hollow (shape encodes "no hands")
+    { key: "a14b_lora", short: "A14B + LoRA, no hands", color: "#2a78d6", hollow: true },
     { key: "camlora", short: "1.3B camera + LoRA", color: "#eb6834" },
     { key: "base_a14b", short: "Plain A14B", color: "#1baf7a" },
     { key: "static", short: "First frame repeated", color: "#6b6463", ref: true },
@@ -19,12 +21,14 @@
   Promise.all([fetch(D + "eval.json", { cache: "no-store" }).then((r) => r.json()),
                fetch(D + "demo.json", { cache: "no-store" }).then((r) => r.json())]).then(([E, V]) => {
     const S = E.summary, clips = E.clips, P = S.paired;
+    MODELS = MODELS.filter((x) => S.mean[x.key] && clips.every((c) => c[x.key]));   // a model appears once eval.json has it
     const pd = (other, m) => P[`a14b_v4_minus_${other}`][m];
 
     // ---- headline tiles
     const tile = (label, d, bg) => `<div class="card tile ${bg}"><div class="small muted">${esc(label)}</div>
       <div class="big">${sgn(d.mean_diff)} dB</div><div class="small">95% CI [${sgn(d.ci95[0])}, ${sgn(d.ci95[1])}] · better on ${d.wins} of ${d.n} clips</div></div>`;
     $("tiles").innerHTML = [
+      ...(P.a14b_v4_minus_a14b_lora ? [tile("Hand region: adapter vs A14B + LoRA without hands", pd("a14b_lora", "psnr_hand"), "bg-coral-soft")] : []),
       tile("Hand region: adapter vs plain A14B", pd("base_a14b", "psnr_hand"), "bg-mint-soft"),
       tile("Hand region: adapter vs 1.3B camera + LoRA", pd("camlora", "psnr_hand"), "bg-sky-soft"),
       tile("Hand region: adapter vs first frame repeated", pd("static", "psnr_hand"), "bg-yellow-soft"),
@@ -38,7 +42,7 @@
       }).join("")}</tr>`).join("");
 
     // ---- paired table
-    const others = [["base_a14b", "Plain A14B"], ["camlora", "1.3B camera + LoRA"], ["static", "First frame repeated"]];
+    const others = [["a14b_lora", "A14B + LoRA, no hands"], ["base_a14b", "Plain A14B"], ["camlora", "1.3B camera + LoRA"], ["static", "First frame repeated"]].filter(([k]) => P[`a14b_v4_minus_${k}`]);
     $("paired-table").innerHTML = `<tr><th>A14B + hand adapter minus …</th>${METRICS.map(([, l]) => `<th>${l}</th>`).join("")}</tr>` +
       others.map(([k, l]) => `<tr><td>${esc(l)}</td>${METRICS.map(([m]) => { const d = pd(k, m);
         return `<td>${sgn(d.mean_diff)} <span class="muted small">[${sgn(d.ci95[0])}, ${sgn(d.ci95[1])}] · ${d.wins}/${d.n}</span></td>`; }).join("")}</tr>`).join("");
@@ -48,7 +52,7 @@
     const eps = [...new Set(clips.map((c) => c.episode))].sort((a, b) => a - b);
     const ep = eps.map((e) => { const cs = clips.filter((c) => c.episode === e);
       return { e, n: cs.length, v: Object.fromEntries(MODELS.map((x) => [x.key, mean(cs.map((c) => c[x.key].psnr_hand))])) }; });
-    const W = 820, H = 320, L = 44, R = 150, T = 14, B = 40;
+    const W = 840, H = 320, L = 44, R = 178, T = 14, B = 40;
     const all = ep.flatMap((r) => MODELS.map((x) => r.v[x.key]));
     const y0 = Math.floor(Math.min(...all) - 0.5), y1 = Math.ceil(Math.max(...all) + 0.5);
     const bw = (W - L - R) / ep.length, X = (i) => L + bw * (i + 0.5), Y = (v) => T + (H - T - B) * (1 - (v - y0) / (y1 - y0));
@@ -61,6 +65,7 @@
     g += `<text x="${L + (W - L - R) / 2}" y="${H - 6}" text-anchor="middle" font-size="11" fill="var(--ink-2)">held-out episode</text>`;
     const mark = (x, cx, cy) => x.ref
       ? `<line x1="${cx - 7}" x2="${cx + 7}" y1="${cy}" y2="${cy}" stroke="${x.color}" stroke-width="2.5" stroke-linecap="round"/>`
+      : x.hollow ? `<circle cx="${cx}" cy="${cy}" r="4.5" fill="var(--card)" stroke="${x.color}" stroke-width="2.5"/>`
       : `<circle cx="${cx}" cy="${cy}" r="${x.ours ? 5.5 : 4.5}" fill="${x.color}" stroke="var(--card)" stroke-width="2"/>`;
     let marks = "";
     ep.forEach((r, i) => { [...MODELS].reverse().forEach((x) => { marks += mark(x, X(i), Y(r.v[x.key])); }); });
@@ -86,7 +91,7 @@
     });
     $("ep-legend").innerHTML = MODELS.map((x) => `<span><svg viewBox="0 0 18 12">${x.ref
       ? `<line x1="2" x2="16" y1="6" y2="6" stroke="${x.color}" stroke-width="2.5" stroke-linecap="round"/>`
-      : `<circle cx="9" cy="6" r="4.5" fill="${x.color}"/>`}</svg>${esc(x.short)}</span>`).join("");
+      : x.hollow ? `<circle cx="9" cy="6" r="4" fill="none" stroke="${x.color}" stroke-width="2.5"/>` : `<circle cx="9" cy="6" r="4.5" fill="${x.color}"/>`}</svg>${esc(x.short)}</span>`).join("");
     $("ep-table").innerHTML = `<tr><th>Episode</th><th>Clips</th>${MODELS.map((x) => `<th>${esc(x.short)}</th>`).join("")}</tr>` +
       ep.map((r) => `<tr><td>${r.e}</td><td>${r.n}</td>${MODELS.map((x) => `<td>${f1(r.v[x.key])}</td>`).join("")}</tr>`).join("");
 
